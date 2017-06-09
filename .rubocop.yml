@@ -70,5 +70,8 @@ Style/IndentationConsistency:
 Style/WordArray:
   Enabled: false
 
+Style/SymbolArray:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
