@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::Actors::ImageActor do
-  it "has tests" do
-    skip "Add your tests here"
+  it 'is a BaseActor' do
+    expect(described_class < ::Hyrax::Actors::BaseActor).to be true
   end
 end
