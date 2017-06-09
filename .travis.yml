@@ -10,5 +10,8 @@ env:
 script:
   - bundle exec rake donut:ci
 
+jdk:
+  - oraclejdk8
+
 rvm:
   - 2.4.1
