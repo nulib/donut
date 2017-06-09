@@ -7,6 +7,7 @@ RSpec.describe Hyrax::ImagesController do
 
   describe '#curation_concern_type' do
     subject { described_class.curation_concern_type }
+
     it { is_expected.to eq(::Image) }
   end
 end

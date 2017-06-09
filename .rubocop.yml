@@ -1,0 +1,74 @@
+# List of cops can be found here:
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+# https://github.com/bbatsov/rubocop/blob/master/config/disabled.yml
+# https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+require: rubocop-rspec
+
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+  ExtraDetails: true
+  TargetRubyVersion: 2.2
+
+Metrics/BlockLength:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+
+Metrics/LineLength:
+  Max: 164 # default is 80
+
+Metrics/MethodLength:
+  Max: 14 # default is 10
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails
+
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'
+
+Style/FileName: # https://github.com/bbatsov/rubocop/issues/2973
+  Exclude:
+    - 'Gemfile'
+
+Style/Documentation:
+  Enabled: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+ClassAndModuleChildren:
+  Enabled: false
+
+# Checks if there is a magic comment to enforce string literals
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: rails
+
+# Use %w or %W for arrays of words.
+Style/WordArray:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false

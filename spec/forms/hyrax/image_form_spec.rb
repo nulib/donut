@@ -10,6 +10,7 @@ RSpec.describe Hyrax::ImageForm do
 
   describe '::terms' do
     subject { form.terms }
+
     it do
       is_expected.to include(:title, :creator, :keyword, :license)
     end

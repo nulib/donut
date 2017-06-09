@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::ImagePresenter, type: :unit do
+  subject(:presenter) { described_class.new(solr_document, ability, request) }
+
   let(:image) do
     Image.new.tap do |image|
       image.id = 'image-id'
@@ -17,10 +19,8 @@ RSpec.describe Hyrax::ImagePresenter, type: :unit do
   let(:ability)       { Ability.new(nil) }
   let(:request)       { nil }
 
-  subject { described_class.new(solr_document, ability, request) }
-
-  it { expect(subject.title).to eq ['Blue'] }
-  it { expect(subject.depositor).to eq 'abc123' }
-  it { expect(subject.description).to eq ['cyan and turqoise image'] }
-  it { expect(subject.creator).to eq ['Same Person'] }
+  it { expect(presenter.title).to eq ['Blue'] }
+  it { expect(presenter.depositor).to eq 'abc123' }
+  it { expect(presenter.description).to eq ['cyan and turqoise image'] }
+  it { expect(presenter.creator).to eq ['Same Person'] }
 end
