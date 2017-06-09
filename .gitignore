@@ -38,6 +38,7 @@ config/resque-pool.yml
 config/role_map.yml
 config/secrets.yml
 config/solr.yml
+config/role_map.yml
 
 # MAC OS
 .DS_Store
