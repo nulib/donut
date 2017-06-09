@@ -25,21 +25,6 @@
 # Ignore public uploads directory
 /public/uploads
 
-# Ignore some config files
-config/analytics.yml
-config/blacklight.yml
-config/browse_everything_providers.yml
-config/cable.yml
-config/database.yml
-config/fedora.yml
-config/ldap.yml
-config/redis.yml
-config/resque-pool.yml
-config/role_map.yml
-config/secrets.yml
-config/solr.yml
-config/role_map.yml
-
 # MAC OS
 .DS_Store
 
