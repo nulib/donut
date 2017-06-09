@@ -9,3 +9,6 @@ env:
 
 script:
   - bundle exec rake donut:ci
+
+rvm:
+  - 2.4.1
