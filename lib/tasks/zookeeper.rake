@@ -7,7 +7,7 @@ namespace :zookeeper do
 
   desc 'Create a collection'
   task create: [:environment] do
-    collection_name = Blacklight.default_index.connection.uri.path.split(/\//).reject(&:empty?).last
+    collection_name = Blacklight.default_index.connection.uri.path.split(%r{\/}).reject(&:empty?).last
     SolrCollectionCreator.new(collection_name).perform
   end
 
