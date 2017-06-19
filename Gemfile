@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'master'
 
+gem 'config'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -67,4 +69,16 @@ gem 'rsolr', '>= 1.0'
 group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+end
+
+group :aws, optional: true do
+  gem 'active_elastic_job', '~> 1.7'
+  gem 'aws-sdk'
+  gem 'aws-sdk-rails'
+  gem 'cloudfront-signer'
+  gem 'zk'
+end
+
+group :postgres, optional: true do
+  gem 'pg'
 end
