@@ -303,6 +303,7 @@ GEM
       tilt
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
+    hashie (3.5.5)
     hiredis (0.6.1)
     htmlentities (4.3.4)
     httmultiparty (0.3.16)
@@ -476,6 +477,12 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
+    omniauth (1.6.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-openam (1.0.0)
+      faraday
+      omniauth (~> 1.0)
     openseadragon (0.3.3)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
@@ -760,6 +767,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  omniauth-openam
   pg
   puma (~> 3.7)
   rails (~> 5.1.1)

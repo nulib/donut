@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   with_themed_layout '1_column'
 
   protect_from_forgery with: :exception
+
+  def new_session_path(_scope)
+    new_user_session_path
+  end
 end
