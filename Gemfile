@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'master'
 
 gem 'config'
+gem 'hydra-role-management'
 gem 'omniauth-openam'
 
 group :test do

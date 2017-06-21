@@ -4,18 +4,16 @@ class Ability
   include Hyrax::Ability
   self.ability_logic += [:everyone_can_create_curation_concerns]
 
+  def can_create_any_work?
+    Hyrax.config.curation_concerns.any? do |curation_concern_type|
+      can?(:create, curation_concern_type)
+    end
+  end
+
   # Define any customized permissions here.
   def custom_permissions
-    # Limits deleting objects to a the admin user
-    #
-    # if current_user.admin?
-    #   can [:destroy], ActiveFedora::Base
-    # end
-
-    # Limits creating new objects to a specific group
-    #
-    # if user_groups.include? 'special_group'
-    #   can [:create], ActiveFedora::Base
-    # end
+    return unless admin?
+    can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
+    can [:destroy], ActiveFedora::Base
   end
 end
