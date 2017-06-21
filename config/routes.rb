@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     match '/users/auth/:provider', to: 'users/omniauth_callbacks#user', as: :user_omniauth_authorize, via: [:get, :post]
     match '/users/auth/:action/callback', controller: 'users/omniauth_callbacks', as: :user_omniauth_callback, via: [:get, :post]
   end
+  mount Hydra::RoleManagement::Engine => '/'
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
   resources :welcome, only: 'index'
