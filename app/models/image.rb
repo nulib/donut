@@ -30,15 +30,15 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :contributor_role, predicate: ::RDF::Vocab::DC11.contributor, multiple: true do |index|
+  property :contributor_role, predicate: ::RDF::URI('http://example.com/donut/contributor/role'), multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
-  property :creator_attribution, predicate: ::RDF::Vocab::DC11.creator, multiple: true do |index|
+  property :creator_attribution, predicate: ::RDF::URI('http://example.com/donut/creator/attribution'), multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
-  property :creator_role, predicate: ::RDF::Vocab::DC11.creator, multiple: true do |index|
+  property :creator_role, predicate: ::RDF::URI('http://example.com/donut/creator/role'), multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
