@@ -59,7 +59,7 @@ class SolrDocument
   end
 
   def genre
-    fetch(Solrizer.solr_name('contributor_role', :stored_searchable), [])
+    fetch(Solrizer.solr_name('genre', :stored_searchable), [])
   end
 
   def physical_description
