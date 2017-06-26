@@ -32,6 +32,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'iiif_manifest'
+gem 'riiif'
+
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'master'
 
 gem 'config'

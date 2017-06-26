@@ -69,4 +69,5 @@ class Image < ActiveFedora::Base
   # This must come after the WorkBehavior because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata
+
 end

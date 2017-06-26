@@ -1,0 +1,9 @@
+<% if presenter.representative_presenter && presenter.representative_presenter.image? %>
+  <% original_file_id = CGI.escape(FileSet.find(presenter.representative_id).original_file.id) %>
+  <%= original_file_id %>
+  <div class="uv" data-locale="en-GB:English (GB)" data-config="https://wellcomelibrary.org/assets/config/uv-config.json" data-uri="<%= main_app.polymorphic_path [main_app, :manifest, presenter] %>" data-collectionindex="0" data-manifestindex="0" data-sequenceindex="0" data-canvasindex="0" data-zoom="-1.0143,-0.0766,3.0285,1.5324" data-rotation="0" style="width:1068px; height:600px; background-color: #000"></div><script type="text/javascript" id="embedUV" src="http://devbox.library.northwestern.edu/assets/uv-2.0.0/lib/embed.js"></script><script type="text/javascript">/* wordpress fix */</script>
+<% elsif presenter.representative_id.present? && presenter.representative_presenter.present? %>
+  <%= media_display presenter.representative_presenter %>
+<% else %>
+  <%= image_tag 'default.png', class: "canonical-image" %>
+<% end %>
