@@ -18,6 +18,7 @@ RSpec.describe Hyrax::ImageForm do
 
   describe '::required_fields' do
     subject { form.required_fields }
+
     it do
       is_expected.to contain_exactly(:title, :date_created, :accession_number)
     end
@@ -25,6 +26,7 @@ RSpec.describe Hyrax::ImageForm do
 
   describe '#primary_terms' do
     subject { form.primary_terms }
+
     it do
       is_expected.to include(:title, :description, :date_created, :accession_number, :creator)
     end

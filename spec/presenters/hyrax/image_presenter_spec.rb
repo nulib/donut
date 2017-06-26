@@ -14,7 +14,7 @@ RSpec.describe Hyrax::ImagePresenter, type: :unit do
   it { expect(presenter.title).to eq ['Test title'] }
   it { expect(presenter.rights_statement).to eq ['http://rightsstatements.org/vocab/NKC/1.0/'] }
   it { expect(presenter.description).to eq ['Test description'] }
-  it { expect(presenter.abstract).to eq ['Lemon drops donut gummi bears carrot cake dragée. Toffee bonbon sesame snaps powder. Carrot cake dragée chupa chups gingerbread lollipop marzipan pudding oat cake dessert. Tiramisu cake macaroon sesame snaps cookie croissant pie chocolate bar. Sweet liquorice halvah toffee tootsie roll. Lollipop carrot cake bonbon dragée dragée icing carrot cake cheesecake chocolate cake.'] }
+  it { expect(presenter.abstract).to eq ['Lemon drops donut gummi bears carrot cake dragée.'] }
   it { expect(presenter.accession_number).to eq ['Lgf0825'] }
   it { expect(presenter.call_number).to eq ['W107.8:Am6'] }
   it { expect(presenter.catalog_key).to eq ['9943338434202441'] }

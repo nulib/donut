@@ -4,7 +4,7 @@ FactoryGirl.define do
     rights_statement ['http://rightsstatements.org/vocab/NKC/1.0/']
     description ['Test description']
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-    abstract ['Lemon drops donut gummi bears carrot cake dragée. Toffee bonbon sesame snaps powder. Carrot cake dragée chupa chups gingerbread lollipop marzipan pudding oat cake dessert. Tiramisu cake macaroon sesame snaps cookie croissant pie chocolate bar. Sweet liquorice halvah toffee tootsie roll. Lollipop carrot cake bonbon dragée dragée icing carrot cake cheesecake chocolate cake.']
+    abstract ['Lemon drops donut gummi bears carrot cake dragée.']
     accession_number 'Lgf0825'
     call_number 'W107.8:Am6'
     catalog_key ['9943338434202441']
