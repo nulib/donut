@@ -21,6 +21,7 @@ Metrics/BlockLength:
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
+    - 'spec/factories/images.rb'
 
 Metrics/ClassLength:
   Exclude:
@@ -28,6 +29,9 @@ Metrics/ClassLength:
 
 Metrics/LineLength:
   Max: 164 # default is 80
+  Exclude:
+    - 'spec/forms/hyrax/image_form_spec.rb'
+    - 'spec/factories/images.rb'
 
 Metrics/MethodLength:
   Max: 14 # default is 10

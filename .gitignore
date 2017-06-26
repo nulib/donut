@@ -34,6 +34,7 @@
 
 # Ignore fedora data
 fcrepo4-data
+fits.log
 
 # Ignore coverage report
 coverage
