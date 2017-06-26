@@ -9,6 +9,8 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * [Redis](http://redis.io/)
     * Start Redis with `redis-server`
 * [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
+* [Geonames user registration](http://www.geonames.org/manageaccount)
+    * For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
 
 ## Initial Setup
 
