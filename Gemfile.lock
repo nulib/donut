@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/pulibrary/pul_uv_rails.git
+  revision: c268739da1e849499a3c2954d4e069f0aef1ba9c
+  branch: master
+  specs:
+    pul_uv_rails (2.0.1)
+
+GIT
   remote: https://github.com/samvera/hyrax.git
   revision: 9bf83f9324cdbe17d76524e9658ca1ddbb1aa5bd
   branch: master
@@ -785,6 +792,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   omniauth-openam
   pg
+  pul_uv_rails!
   puma (~> 3.7)
   rails (~> 5.1.1)
   riiif
