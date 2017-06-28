@@ -32,11 +32,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'iiif_manifest'
+gem 'riiif'
+
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'master'
 
 gem 'config'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
+gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 
 group :test do
   gem 'database_cleaner'

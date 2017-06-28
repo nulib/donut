@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   curation_concerns_basic_routes
   curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
+  mount Riiif::Engine => '/images', as: 'riiif'
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
@@ -32,6 +33,12 @@ Rails.application.routes.draw do
 
     collection do
       delete 'clear'
+    end
+  end
+
+  curation_concerns_basic_routes do
+    member do
+      get :manifest
     end
   end
 
