@@ -12,8 +12,8 @@ module Hyrax
 
     private
 
-    def manifest_helper
-      @manifest_helper ||= ManifestHelper.new(request.base_url)
-    end
+      def manifest_helper
+        @manifest_helper ||= ManifestHelper.new(request.base_url)
+      end
   end
 end

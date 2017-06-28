@@ -11,19 +11,19 @@ class FileSetPresenter < Hyrax::FileSetPresenter
 
   private
 
-  def display_image_url(original_file, size = '600,')
-    Riiif::Engine.routes.url_helpers.image_url(original_file.id,
-                                               host: request.base_url,
-                                               size: size)
-  end
+    def display_image_url(original_file, size = '600,')
+      Riiif::Engine.routes.url_helpers.image_url(original_file.id,
+                                                 host: request.base_url,
+                                                 size: size)
+    end
 
-  def base_image_url(original_file)
-    uri = Riiif::Engine.routes.url_helpers.info_url(original_file.id, host: request.base_url)
-    # TODO: There should be a riiif route for this:
-    uri.sub(%r{/info\.json\Z}, '')
-  end
+    def base_image_url(original_file)
+      uri = Riiif::Engine.routes.url_helpers.info_url(original_file.id, host: request.base_url)
+      # TODO: There should be a riiif route for this:
+      uri.sub(%r{/info\.json\Z}, '')
+    end
 
-  def iiif_endpoint(original_file)
-    IIIFManifest::IIIFEndpoint.new(base_image_url(original_file), profile: 'http://iiif.io/api/image/2/level2.json')
-  end
+    def iiif_endpoint(original_file)
+      IIIFManifest::IIIFEndpoint.new(base_image_url(original_file), profile: 'http://iiif.io/api/image/2/level2.json')
+    end
 end

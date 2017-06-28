@@ -22,8 +22,8 @@ module Hyrax
 
     private
 
-    def manifest_builder
-      IIIFManifest::ManifestFactory.new(presenter)
-    end
+      def manifest_builder
+        IIIFManifest::ManifestFactory.new(presenter)
+      end
   end
 end
