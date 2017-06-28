@@ -80,3 +80,7 @@ Style/SymbolArray:
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/views/**/*'

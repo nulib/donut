@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'hyrax/base/_representative_media.html.erb' do
-  let(:solr_doc) { double(representative_id: file_set.id, hydra_model: Image) }
+  let(:solr_doc) { instance_double('SolrDocument', representative_id: file_set.id, hydra_model: Image) }
   let(:pres) { Hyrax::WorkShowPresenter.new(solr_doc, nil) }
   let(:file_set) { FileSet.create! { |fs| fs.apply_depositor_metadata('atz') } }
-  let(:file_presenter) { double('file presenter', id: file_set.id, image?: true) }
+  let(:file_presenter) { instance_double('FileSetPresenter', id: file_set.id, image?: true) }
 
   before do
     allow(pres).to receive_messages(representative_presenter: file_presenter)
