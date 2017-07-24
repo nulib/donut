@@ -68,10 +68,10 @@ Hyrax.config do |config|
   # config.minter_statefile = '/tmp/minter-state'
 
   # Prefix for Redis keys
-  # config.redis_namespace = "hyrax"
+  config.redis_namespace = "donut"
 
   # Path to the file characterization tool
-  # config.fits_path = "fits"
+  config.fits_path = Settings.fits.path
 
   # Path to the file derivatives creation tool
   # config.libreoffice_path = "soffice"
