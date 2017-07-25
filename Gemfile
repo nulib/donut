@@ -88,6 +88,7 @@ group :aws, optional: true do
   gem 'aws-sdk-rails'
   gem 'cloudfront-signer'
   gem 'zk'
+  gem 'carrierwave-aws'
 end
 
 group :postgres, optional: true do
