@@ -86,9 +86,9 @@ group :aws, optional: true do
   gem 'active_elastic_job', '~> 1.7'
   gem 'aws-sdk'
   gem 'aws-sdk-rails'
+  gem 'carrierwave-aws'
   gem 'cloudfront-signer'
   gem 'zk'
-  gem 'carrierwave-aws'
 end
 
 group :postgres, optional: true do

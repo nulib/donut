@@ -68,7 +68,7 @@ Hyrax.config do |config|
   # config.minter_statefile = '/tmp/minter-state'
 
   # Prefix for Redis keys
-  config.redis_namespace = "donut"
+  config.redis_namespace = 'donut'.freeze
 
   # Path to the file characterization tool
   config.fits_path = Settings.fits.path
