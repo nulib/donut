@@ -11,6 +11,12 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
 * [Geonames user registration](http://www.geonames.org/manageaccount)
     * For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
+* Add local fits path to `/config/settings.local.yml`
+
+   ```
+   fits:
+     path: /usr/local/bin/fits
+   ```
 
 ## Initial Setup
 
@@ -18,6 +24,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Install dependencies: `bundle install`
 * Setup the database: `rake db:migrate`
 * Generate roles: `rake generate_roles`
+* Run `fcrepo_wrapper` and `solr_wrapper` in separate tabs to start solr and fedora
 * Create the default admin set: `rake hyrax:default_admin_set:create`
 * Load the workflows in `config/workflows`: `rake hyrax:workflow:load`
 
@@ -45,5 +52,5 @@ And run the test suite in another window:
 
 1. Run the development servers with `rake hydra:server` (or run Rails and Solr/Fedora separately with `rails s` and `rake server:development`).
 1. Go to http://devbox.library.northwestern.edu/ and login with OpenAM
-1. $ rake add_admin_role
+1. To make the last user who logged in (you) and admin, run `rake add_admin_role`
 1. Go to http://devbox.library.northwestern.edu/admin/workflow_roles and grant workflow roles if needed
