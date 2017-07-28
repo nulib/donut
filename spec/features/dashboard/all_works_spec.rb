@@ -6,6 +6,7 @@ RSpec.feature 'Batch Select on All Works Page', js: false do
   context 'logged in as admin' do
     let(:user) { FactoryGirl.create(:admin) }
     let(:image) { FactoryGirl.create(:image, user: user) }
+
     before do
       AdminSet.find_or_create_default_admin_set_id
       login_as user
