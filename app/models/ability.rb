@@ -14,6 +14,7 @@ class Ability
   def custom_permissions
     return unless admin?
     can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
-    can [:destroy], ActiveFedora::Base
+    can [:edit, :destroy], ActiveFedora::Base
+    can :edit, String
   end
 end
