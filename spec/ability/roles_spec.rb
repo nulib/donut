@@ -17,6 +17,7 @@ describe Ability do
       is_expected.to be_able_to(:edit, image)
       is_expected.to be_able_to(:update, image)
       is_expected.to be_able_to(:destroy, image)
+      is_expected.to be_able_to(:edit, String)
     }
     # rubocop:enable RSpec/ExampleLength
 
