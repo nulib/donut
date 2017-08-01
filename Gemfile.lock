@@ -93,7 +93,7 @@ GEM
       activesupport (>= 3.0.0)
       rdf (~> 2.0, >= 2.0.2)
       rdf-vocab
-    active_elastic_job (1.7.0)
+    active_elastic_job (2.0.1)
       aws-sdk (~> 2)
       rails (>= 4.2)
     active_fedora-noid (2.2.0)
@@ -774,7 +774,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_elastic_job (~> 1.7)
+  active_elastic_job (~> 2.0)
   aws-sdk
   aws-sdk-rails
   byebug
@@ -817,4 +817,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.15.1
+   1.15.3

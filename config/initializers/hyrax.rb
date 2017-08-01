@@ -113,7 +113,7 @@ Hyrax.config do |config|
   # These must be lambdas that return a Pathname. Can be configured separately
   #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
   #  config.cache_path = ->() { Rails.root + 'tmp' + 'uploads' + 'cache' }
-  config.upload_path = ->() {
+  config.upload_path = lambda {
     Settings.upload_path || (Settings.s3.upload_bucket ? 'uploads' : Rails.root + 'tmp' + 'uploads')
   }
 

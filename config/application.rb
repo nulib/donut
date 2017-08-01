@@ -18,5 +18,13 @@ module Nextgen
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    config.before_initialize do
+      if defined? ActiveElasticJob
+        Rails.application.configure do
+          config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
+        end
+      end
+    end
   end
 end
