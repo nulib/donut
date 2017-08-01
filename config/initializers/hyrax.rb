@@ -114,7 +114,7 @@ Hyrax.config do |config|
   #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
   #  config.cache_path = ->() { Rails.root + 'tmp' + 'uploads' + 'cache' }
   config.upload_path = lambda {
-    Settings.upload_path || (Settings.s3.upload_bucket ? 'uploads' : Rails.root + 'tmp' + 'uploads')
+    Pathname(Settings.upload_path || (Settings.s3.upload_bucket ? 'uploads' : Rails.root + 'tmp' + 'uploads'))
   }
 
   # Location on local file system where derivatives will be stored
