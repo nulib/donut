@@ -82,8 +82,11 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :aws, :test do
+  gem 'active_elastic_job', '~> 2.0'
+end
+
 group :aws, optional: true do
-  gem 'active_elastic_job', '~> 1.7'
   gem 'aws-sdk'
   gem 'aws-sdk-rails'
   gem 'carrierwave-aws'
