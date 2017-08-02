@@ -1,0 +1,203 @@
+// standard page (with or without left navigation)
+
+.standard-page {
+    
+    // main content regions
+    #main-content { // gives content space before hitting footer
+        min-height: 300px;
+        margin-bottom: 5rem;
+    }
+    
+    .content {
+        width: 836px / 1120px * 100%;     
+        float: right;
+        margin-bottom: 3rem;
+    } 
+    
+    .content-full {
+        width: 100%;
+    }  
+    
+    p + h3, 
+    ul + h3, ol + h3 {
+        margin-top: 2.5rem;
+    }
+    
+    ul + h4, ol + h4, 
+    ul + h5, ol + h5, 
+    ul + h6, ol + h6 {
+        margin-top: 2rem;
+    }
+    
+    p + h4, p + h6 {
+        margin-top: 2.5rem;
+    }        
+    
+    #page {
+        margin: 2rem auto 0 auto;
+        max-width: 1120px;
+        @extend %clearfix;
+    
+        section {
+            margin-bottom: 3rem;
+        } 
+    }
+    
+    // right sidebar option
+    #sidebar {
+        width: 260px / 836px * 100%;
+        float: right;
+        margin: 0 0 2rem 2rem;
+        
+        .box {
+            background: $nu-purple-10; 
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 14px;
+            line-height: 1.4em;           
+            
+            h3 {
+                font: 18px/1.2em $CamptonBold;
+                color: $rich-black-80;
+            }
+            
+            h4 {
+                font: 16px/1.2em $AkkuratProBold;
+                color: $rich-black-80;
+                margin-top: inherit;
+            }
+            
+            ul {
+                margin: 1em 0 .5em 0;
+                
+                li { 
+                    background-position: 0 .3em
+                }
+            }
+        }
+    }
+
+    // pagination 
+    .pagination {
+        margin: 2.5em 0 2em;
+        padding-left: 0;
+
+        li {
+            display: inline;
+            padding: 0;
+        }
+
+        a {
+            background: $white;
+            border: 1px solid $medium-grey;
+            color: $rich-black-50;
+            font: 16px $AkkuratProBold;
+            display: inline-block;
+            margin: 0 .4em .3em 0;
+            padding: .5rem .8rem;
+            text-decoration: none;
+
+            &:hover {
+                background: $nu-purple;
+                color: $white;
+            }
+        }
+
+        .current-page a {
+            background: #616161 none repeat scroll 0 0;
+            color: $white;
+        }
+    }    
+    
+    // ordered list for steps (big numbers)
+    ol {
+        
+        &.steps {
+            counter-reset: li;
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1em;
+        
+            li {
+                position: relative;
+                display: block;
+                padding: 0;
+                margin-bottom: 1em;
+                padding: 1em .5em 0 5em;
+                min-height: 90px;
+
+                &:before {
+                    content: counter(li);
+                    counter-increment: li;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    font: 72px $CamptonBold;
+                    color: $nu-purple;
+                    margin: 0;
+                    padding: 0 .15em 0 .15em;
+                    text-align: center;
+                } 
+            }
+        }
+    }
+    
+    // media queries
+    @media screen and (max-width: 1145px) {
+        
+        #page { // gives left/right margin for smaller screen widths
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    }
+    
+    @media screen and (max-width: 970px) {    
+        
+        #page-narrow { // gives left/right margin for smaller screen widths 
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }    
+    }
+    
+    @media screen and (max-width: 768px) {
+        
+        .content, .content-full {
+            float: none;
+            width: 100%;
+         
+            h2 {
+                font-size: 36px;
+            }        
+        }
+
+        #sidebar {
+            width: 300px / 768px * 100%;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+
+        .content, .content-full {        
+            
+            h2 {
+                font-size: 32px;
+            }
+
+            h3 {
+                font-size: 24px;
+            } 
+        }
+        
+        #sidebar {
+            margin-left: 0;
+            width: 100%;
+            float: none;
+    
+            .box {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+} // end

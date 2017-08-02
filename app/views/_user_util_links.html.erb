@@ -1,0 +1,33 @@
+<div id="right">
+  <ul>
+    <%= render partial: '/toolbar' %>
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to hyrax.notifications_path do %>
+          <%= t("hyrax.toolbar.notifications") %>
+          <%= render 'hyrax/users/notify_number' %>
+        <% end %>
+      </li>
+      <li>
+          <%= link_to hyrax.profile_path(current_user), role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false} do %>
+            <span class="sr-only"><%= t("hyrax.toolbar.profile.sr_action") %></span>
+            <span class="hidden-xs"><i class="fa fa-user"></i><%= current_user.name %></span>
+            <span class="sr-only"><%= t("hyrax.toolbar.profile.sr_target") %></span>
+            <span class="dropdown-arrow"></span>
+          <% end %>
+          <ul>
+            <li><%= link_to 'View Profile', hyrax.profile_path(current_user) %></li>
+            <li><%= link_to 'Edit Profile', hyrax.edit_profile_path(current_user) %></li>
+            <li><%= link_to 'Logout', main_app.destroy_user_session_path %></li>
+          </ul>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to main_app.new_user_session_path do %>
+          <i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Login
+        <% end %>
+      </li>
+      <li><%= link_to 'Northwestern University Libraries', 'http://www.library.northwestern.edu/' %></li>
+    <% end %>
+  </ul>
+</div>
