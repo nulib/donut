@@ -1,0 +1,58 @@
+<header>
+  <div id="top-bar">
+    <div class="contain-1120">
+      <div id="left">
+        <a href="http://www.northwestern.edu/"><img src="https://common.northwestern.edu/v8/css/images/northwestern.svg" alt="Northwestern University" /><span class="hide-label">Northwestern University</span></a>
+      </div>
+      <div id="mobile-links">
+        <!-- Mobile Search -->
+        <a href="#mobile-search" class="mobile-link mobile-search-link"><span class="hide-label">Search</span></a>
+        <div id="mobile-search" style="display: none;">
+          <div class="search-form group">
+            <form accept-charset="UTF-8" action="/catalog" class="avalon-search-query-form avalon-form-search" method="get" role="search">
+              <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8)) %>
+              <%= hidden_field_tag :search_field, 'all_fields' %>
+              <label class="hide-label" for="q-mobile">Search</label>
+              <input id="search-field-header" name="q" placeholder="Search" type="text" value="">
+              <button type="submit"><span class="hide-label">Search</span></button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <a href="#mobile-nav" class="mobile-link mobile-nav-link"><span class="hide-label">Menu</span></a>
+        <nav id="mobile-nav">
+          <ul aria-label="main menu" tabindex="-1">
+            <li class="active"><a href="<%= main_app.search_catalog_path %>">Browse</a></li>
+            <li class="active"><a href="<%= hyrax.about_path %>">About</a></li>
+            <li class="active"><a href="<%= hyrax.help_path %>">Help</a></li>
+            <li class="active"><a href="<%= hyrax.contact_path %>">Contact</a></li>
+          </ul>
+          <div id="mobile-nav-bottom">
+            <%= render partial: '/toolbar_mobile' %>
+          </div>
+        </nav>
+      </div>
+      <%= render partial: '/user_util_links' %>
+    </div>
+  </div>
+
+  <div class="bottom-bar contain-1120">
+    <div id="department">
+      <h1><a href="<%= hyrax.root_path %>">LIBRARIES | <%= image_tag("global-perks-donut", class: "logo-donut") %></a></h1>
+    </div>
+
+    <!-- Desktop Search -->
+    <div id="search" class="hide-mobile">
+      <div class="search-form">
+  			<form id="search-form-header" accept-charset="UTF-8" action="/catalog" class="avalon-search-query-form avalon-form-search" method="get" role="search">
+          <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8)) %>
+          <%= hidden_field_tag :search_field, 'all_fields' %>
+  				<label class="hide-label" for="q-desktop">Search audio or video</label>
+          <input id="search-field-header" name="q" placeholder="Search" type="text" value="">
+  				<button type="submit"><span class="hide-label">Search</span></button>
+  			</form>
+  		</div>
+    </div>
+  </div>
+</header>

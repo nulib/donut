@@ -10,7 +10,16 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
- *= require_self
+ *
  */
+
+ // NU branding styles
+ @import "nuwebcomm/styles";
+ @import "nuwebcomm/nuwebcomm_overrides";
+
+ @import "hyrax";
+ @import "openseadragon";
+ @import "viewer";
+
+ // NU Donut theme styles
+ @import "donut/main";
