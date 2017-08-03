@@ -1,8 +1,27 @@
+// Top row of application, with Northwestern Logo
 #top-bar {
   #left {
     img {
       margin-top: 1.6rem;
     }
+  }
+  // Top level navigation
+  #right {
+    > ul {
+      > li {
+        > a {
+          line-height: 60px;
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+      &.dropdown-menu {
+        .divider {
+          height: 2px;
+        }
+      }
+    }
+
   }
 }
 .logo-donut {
