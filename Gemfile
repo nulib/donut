@@ -57,10 +57,10 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
-group :development, :staging do
+group :development, :aws do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2', require: false
+  gem 'web-console', '>= 3.3.0', require: false
 end
 
 group :development do
