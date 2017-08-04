@@ -94,6 +94,7 @@ group :aws, optional: true do
   gem 'aws-sdk-rails'
   gem 'carrierwave-aws'
   gem 'cloudfront-signer'
+  gem 'redis-rails'
   gem 'zk'
 end
 
