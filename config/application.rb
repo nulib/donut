@@ -19,6 +19,18 @@ module Nextgen
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    if ENV['REDIS_HOST']
+      redis_host = ENV['REDIS_HOST']
+      redis_port = ENV['REDIS_PORT'] || 6379
+
+      config.cache_store = :redis_store, {
+        host: redis_host,
+        port: redis_port,
+        db: 0,
+        namespace: 'donut-cache'
+      }
+    end
+
     config.before_initialize do
       if defined? ActiveElasticJob
         Rails.application.configure do
