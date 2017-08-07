@@ -1,9 +1,8 @@
-staging = if ENV['STAGING_ENV'].present?
+staging = false
+if ENV['STAGING_ENV'].present?
   require 'listen'
   require 'web_console'
-  true
-else
-  false
+  staging = true
 end
 
 Rails.application.configure do
