@@ -21,3 +21,4 @@ zookeeper:
 geonames_username: ''
 s3: {}
 fits: {}
+microservices: {}

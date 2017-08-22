@@ -35,7 +35,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'iiif_manifest'
 gem 'riiif'
 
-gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'master'
+gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
+gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
 gem 'hydra-role-management'

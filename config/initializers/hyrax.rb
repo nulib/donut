@@ -56,7 +56,7 @@ Hyrax.config do |config|
 
   # Hyrax uses NOIDs for files and collections instead of Fedora UUIDs
   # where NOID = 10-character string and UUID = 32-character string w/ hyphens
-  # config.enable_noids = true
+  config.enable_noids = false
 
   # Template for your repository's NOID IDs
   # config.noid_template = ".reeddeeddk"
