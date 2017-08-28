@@ -1,0 +1,7 @@
+// Make sure all page content nav tabs stay default coloring
+#content-wrapper {
+  .nav > li > a:hover,
+  .nav > li > a:focus {
+    background-color: transparent;
+  }
+}
