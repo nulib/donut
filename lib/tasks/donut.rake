@@ -6,24 +6,22 @@ unless Rails.env.production?
   require 'active_fedora/rake_support'
 
   namespace :donut do
-    desc 'Run style checker'
-    RuboCop::RakeTask.new(:rubocop) do |task|
-      task.fail_on_error = true
+    RSpec::Core::RakeTask.new(:rspec) do |t|
+      t.rspec_opts = ['--color', '--backtrace']
     end
 
-    RSpec::Core::RakeTask.new(:spec)
-
-    desc 'Spin up test servers and run specs'
-    task :spec_with_app_load do
-      with_test_server do
-        Rake::Task['spec'].invoke
+    namespace :travis do
+      desc 'Execute Continuous Integration build'
+      task rspec: :environment do
+        with_test_server do
+          Rake::Task['donut:rspec'].invoke
+        end
       end
-    end
 
-    desc 'Spin up test servers and run specs'
-    task ci: ['rubocop'] do
-      puts 'running continuous integration'
-      Rake::Task['donut:spec_with_app_load'].invoke
+      desc 'Run style checker'
+      RuboCop::RakeTask.new(:rubocop) do |task|
+        task.fail_on_error = true
+      end
     end
   end
 end
