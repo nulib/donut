@@ -8,10 +8,15 @@ class Image < ActiveFedora::Base
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
+  validates :accession_number, presence: { message: 'Your work must have an accession_number.' }
 
   self.human_readable_type = 'Image'
 
   property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :alternate_title, predicate: ::RDF::Vocab::DC.alternative, multiple: true do |index|
     index.as :stored_searchable
   end
 
@@ -20,6 +25,10 @@ class Image < ActiveFedora::Base
   end
 
   property :call_number, predicate: ::RDF::Vocab::Bibframe.shelfMark, multiple: false do |index|
+    index.as :stored_searchable
+  end
+
+  property :caption, predicate: ::RDF::Vocab::SCHEMA.caption, multiple: true do |index|
     index.as :stored_searchable
   end
 
@@ -35,11 +44,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :creator_attribution, predicate: ::RDF::URI('http://example.com/donut/creator/attribution'), multiple: true do |index|
-    index.as :stored_searchable, :facetable
-  end
-
-  property :creator_role, predicate: ::RDF::URI('http://example.com/donut/creator/role'), multiple: true do |index|
+  property :creator_role, predicate: ::RDF::Vocab::BF2.role, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -48,6 +53,10 @@ class Image < ActiveFedora::Base
   end
 
   property :physical_description, predicate: ::RDF::Vocab::Bibframe.extent, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :provenance, predicate: ::RDF::Vocab::DC.provenance, multiple: true do |index|
     index.as :stored_searchable
   end
 

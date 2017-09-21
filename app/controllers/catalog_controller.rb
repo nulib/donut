@@ -43,7 +43,6 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('human_readable_type', :facetable), label: 'Type', limit: 5
     config.add_facet_field solr_name('resource_type', :facetable), label: 'Resource Type', limit: 5
     config.add_facet_field solr_name('creator', :facetable), limit: 5
-    config.add_facet_field solr_name('creator_attribution', :facetable), label: 'Creator Attribution', limit: 5
     config.add_facet_field solr_name('creator_role', :facetable), label: 'Creator Role', limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('contributor_role', :facetable), label: 'Contributor Role', limit: 5

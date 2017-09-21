@@ -20,13 +20,15 @@ RSpec.describe Image do
   # NU Specific
   it { is_expected.to respond_to(:accession_number) }
   it { is_expected.to respond_to(:abstract) }
+  it { is_expected.to respond_to(:alternate_title) }
   it { is_expected.to respond_to(:call_number) }
+  it { is_expected.to respond_to(:caption) }
   it { is_expected.to respond_to(:catalog_key) }
   it { is_expected.to respond_to(:citation) }
   it { is_expected.to respond_to(:creator_role) }
-  it { is_expected.to respond_to(:creator_attribution) }
   it { is_expected.to respond_to(:contributor_role) }
   it { is_expected.to respond_to(:genre) }
+  it { is_expected.to respond_to(:provenance) }
   it { is_expected.to respond_to(:physical_description) }
   it { is_expected.to respond_to(:related_url_label) }
   it { is_expected.to respond_to(:rights_holder) }
