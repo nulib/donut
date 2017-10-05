@@ -664,6 +664,10 @@ GEM
     rsolr (2.0.2)
       builder (>= 2.1.2)
       faraday
+    rspec-activemodel-mocks (1.0.3)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -839,6 +843,7 @@ DEPENDENCIES
   redis-rails
   riiif
   rsolr (>= 1.0)
+  rspec-activemodel-mocks (~> 1.0)
   rspec-rails
   rubocop (~> 0.49.1)
   rubocop-rspec
