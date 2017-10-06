@@ -39,6 +39,7 @@ gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
+gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'

@@ -21,6 +21,7 @@ RSpec.describe Image do
   it { is_expected.to respond_to(:accession_number) }
   it { is_expected.to respond_to(:abstract) }
   it { is_expected.to respond_to(:alternate_title) }
+  it { is_expected.to respond_to(:ark) }
   it { is_expected.to respond_to(:call_number) }
   it { is_expected.to respond_to(:caption) }
   it { is_expected.to respond_to(:catalog_key) }

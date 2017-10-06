@@ -38,6 +38,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('alternate_title', :stored_searchable), [])
   end
 
+  def ark
+    fetch(Solrizer.solr_name('ark', :stored_searchable), [])
+  end
+
   def call_number
     fetch(Solrizer.solr_name('call_number', :stored_searchable), [])
   end

@@ -12,6 +12,10 @@ class Image < ActiveFedora::Base
 
   self.human_readable_type = 'Image'
 
+  after_save do
+    ArkMintingService.mint_identifier_for(self) if ark.nil?
+  end
+
   property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: true do |index|
     index.as :stored_searchable
   end
@@ -21,6 +25,10 @@ class Image < ActiveFedora::Base
   end
 
   property :accession_number, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/subjectSchemes/local'), multiple: false do |index|
+    index.as :stored_searchable
+  end
+
+  property :ark, predicate: ::RDF::Vocab::DataCite.ark, multiple: false do |index|
     index.as :stored_searchable
   end
 

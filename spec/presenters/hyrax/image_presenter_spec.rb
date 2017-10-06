@@ -15,8 +15,9 @@ RSpec.describe Hyrax::ImagePresenter, type: :unit do
   it { expect(presenter.alternate_title).to eq ['Alternate Title 1'] }
   it { expect(presenter.rights_statement).to eq ['http://rightsstatements.org/vocab/NKC/1.0/'] }
   it { expect(presenter.description).to eq ['Test description'] }
-  it { expect(presenter.abstract).to eq ['Lemon drops donut gummi bears carrot cake dragée.'] }
+  it { expect(presenter.abstract).to eq ['Lemon drops donut gummi bears carrot cake.'] }
   it { expect(presenter.accession_number).to eq ['Lgf0825'] }
+  it { expect(presenter.ark).to eq ['ark:/12345/12345'] }
   it { expect(presenter.call_number).to eq ['W107.8:Am6'] }
   it { expect(presenter.caption).to eq ['This is the caption seen on the image'] }
   it { expect(presenter.catalog_key).to eq ['9943338434202441'] }
