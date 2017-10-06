@@ -11,8 +11,12 @@ RSpec.describe Hyrax::ImageForm do
   describe '::terms' do
     subject { form.terms }
 
-    it do
+    it 'contains fields that users should are allowed to edit' do
       is_expected.to include(:resource_type, :abstract, :accession_number, :call_number, :caption, :catalog_key, :citation, :contributor_role, :creator_role, :genre, :provenance, :physical_description, :related_url_label, :rights_holder, :style_period, :technique)
+    end
+
+    it 'does not contain fields that users should not be allowed to edit' do
+      is_expected.not_to include(:ark)
     end
   end
 
