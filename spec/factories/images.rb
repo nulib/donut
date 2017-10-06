@@ -1,18 +1,20 @@
 FactoryGirl.define do
   factory :image do
     title ['Test title']
+    alternate_title ['Alternate Title 1']
     rights_statement ['http://rightsstatements.org/vocab/NKC/1.0/']
     description ['Test description']
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     abstract ['Lemon drops donut gummi bears carrot cake dragée.']
     accession_number 'Lgf0825'
     call_number 'W107.8:Am6'
+    caption ['This is the caption seen on the image']
     catalog_key ['9943338434202441']
     citation ['Test']
     contributor_role ['Joanne	Howell']
-    creator_attribution ['Unknown']
     creator_role ['http://id.loc.gov/vocabulary/relators/ill.html']
     genre ['Postmodern']
+    provenance ['The example provenance']
     physical_description ['Wood 6cm x 7cm']
     related_url_label ['Related Website']
     rights_holder ['Northwestern University Libraries']
