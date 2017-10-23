@@ -11,8 +11,12 @@ RSpec.describe Hyrax::ImageForm do
   describe '::terms' do
     subject { form.terms }
 
-    it do
-      is_expected.to include(:resource_type, :abstract, :accession_number, :call_number, :catalog_key, :citation, :contributor_role, :creator_attribution, :creator_role, :genre, :physical_description, :related_url_label, :rights_holder, :style_period, :technique)
+    it 'contains fields that users should are allowed to edit' do
+      is_expected.to include(:resource_type, :abstract, :accession_number, :call_number, :caption, :catalog_key, :citation, :contributor_role, :creator_role, :genre, :provenance, :physical_description, :related_url_label, :rights_holder, :style_period, :technique)
+    end
+
+    it 'does not contain fields that users should not be allowed to edit' do
+      is_expected.not_to include(:ark)
     end
   end
 
@@ -20,7 +24,7 @@ RSpec.describe Hyrax::ImageForm do
     subject { form.required_fields }
 
     it do
-      is_expected.to contain_exactly(:title, :date_created, :accession_number)
+      is_expected.to contain_exactly(:title, :date_created, :rights_statement)
     end
   end
 
@@ -28,7 +32,7 @@ RSpec.describe Hyrax::ImageForm do
     subject { form.primary_terms }
 
     it do
-      is_expected.to include(:title, :description, :date_created, :accession_number, :creator)
+      is_expected.to include(:title, :date_created, :accession_number, :creator, :description)
     end
   end
 end

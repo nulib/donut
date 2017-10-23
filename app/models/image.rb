@@ -11,7 +11,15 @@ class Image < ActiveFedora::Base
 
   self.human_readable_type = 'Image'
 
+  after_save do
+    ArkMintingService.mint_identifier_for(self) if ark.nil?
+  end
+
   property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :alternate_title, predicate: ::RDF::Vocab::DC.alternative, multiple: true do |index|
     index.as :stored_searchable
   end
 
@@ -19,7 +27,15 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :ark, predicate: ::RDF::Vocab::DataCite.ark, multiple: false do |index|
+    index.as :stored_searchable
+  end
+
   property :call_number, predicate: ::RDF::Vocab::Bibframe.shelfMark, multiple: false do |index|
+    index.as :stored_searchable
+  end
+
+  property :caption, predicate: ::RDF::Vocab::SCHEMA.caption, multiple: true do |index|
     index.as :stored_searchable
   end
 
@@ -35,11 +51,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :creator_attribution, predicate: ::RDF::URI('http://example.com/donut/creator/attribution'), multiple: true do |index|
-    index.as :stored_searchable, :facetable
-  end
-
-  property :creator_role, predicate: ::RDF::URI('http://example.com/donut/creator/role'), multiple: true do |index|
+  property :creator_role, predicate: ::RDF::Vocab::BF2.role, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -48,6 +60,10 @@ class Image < ActiveFedora::Base
   end
 
   property :physical_description, predicate: ::RDF::Vocab::Bibframe.extent, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :provenance, predicate: ::RDF::Vocab::DC.provenance, multiple: true do |index|
     index.as :stored_searchable
   end
 

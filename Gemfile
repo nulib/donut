@@ -39,6 +39,7 @@ gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
+gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
@@ -46,6 +47,7 @@ gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'rspec-activemodel-mocks', '~> 1.0'
 end
 
 group :development, :test do

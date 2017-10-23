@@ -34,8 +34,20 @@ class SolrDocument
     fetch(Solrizer.solr_name('accession_number', :stored_searchable), [])
   end
 
+  def alternate_title
+    fetch(Solrizer.solr_name('alternate_title', :stored_searchable), [])
+  end
+
+  def ark
+    fetch(Solrizer.solr_name('ark', :stored_searchable), [])
+  end
+
   def call_number
     fetch(Solrizer.solr_name('call_number', :stored_searchable), [])
+  end
+
+  def caption
+    fetch(Solrizer.solr_name('caption', :stored_searchable), [])
   end
 
   def catalog_key
@@ -50,10 +62,6 @@ class SolrDocument
     fetch(Solrizer.solr_name('contributor_role', :stored_searchable), [])
   end
 
-  def creator_attribution
-    fetch(Solrizer.solr_name('creator_attribution', :stored_searchable), [])
-  end
-
   def creator_role
     fetch(Solrizer.solr_name('creator_role', :stored_searchable), [])
   end
@@ -64,6 +72,10 @@ class SolrDocument
 
   def physical_description
     fetch(Solrizer.solr_name('physical_description', :stored_searchable), [])
+  end
+
+  def provenance
+    fetch(Solrizer.solr_name('provenance', :stored_searchable), [])
   end
 
   def related_url_label
