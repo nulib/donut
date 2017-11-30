@@ -19,4 +19,7 @@ Hydra.configure do |config|
   #
   # Specify the user model
   # config.user_model = 'User'
+
+  # Adding to get rid of deprecation warning
+  config.user_key_field = Devise.authentication_keys.first
 end
