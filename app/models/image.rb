@@ -9,8 +9,6 @@ class Image < ActiveFedora::Base
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
 
-  self.human_readable_type = 'Image'
-
   after_save do
     ArkMintingService.mint_identifier_for(self) if ark.nil?
   end
