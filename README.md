@@ -28,6 +28,13 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Create the default admin set: `rake hyrax:default_admin_set:create`
 * Load the workflows in `config/workflows`: `rake hyrax:workflow:load`
 
+## Minio
+
+To pull minio and stand it up, assuming you have docker installed:
+
+* `docker pull minio/minio`
+* `docker run -p 9000:9000 -e "MINIO_ACCESS_KEY=test-1234" -e "MINIO_SECRET_KEY=test-1234" minio/minio server ./data`
+
 ## Running the Tests
 
 Run the test suite:
