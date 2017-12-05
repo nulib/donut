@@ -89,11 +89,11 @@ group :development, :test do
 end
 
 group :aws, :test do
-  gem 'active_elastic_job', '~> 2.0'
+  gem 'active_elastic_job', github: 'damireh/active-elastic-job', branch: 'latest-aws-sdk'
 end
 
 group :aws, optional: true do
-  gem 'aws-sdk'
+  gem 'aws-sdk', '~> 3'
   gem 'aws-sdk-rails'
   gem 'carrierwave-aws'
   gem 'cloudfront-signer'

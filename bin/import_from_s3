@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+require 'aws-sdk'
+
+Aws.config.update(
+  endpoint: 'http://localhost:9000',
+  access_key_id: 'test-1234',
+  secret_access_key: 'test-1234',
+  force_path_style: true,
+  region: 'us-east-1'
+)
+
+def validate_csv_file!(bucket, csv_file_key)
+  s3 = Aws::S3::Resource.new
+  bucket = s3.bucket(bucket)
+  obj = bucket.object(csv_file_key)
+  return if csv_file && obj.exists?
+  usage
+  $stderr.puts 'Please provide a metadata file to import.'
+  exit(1)
+end
+
+def validate_files_directory!(bucket)
+  return if bucket
+  $stderr.puts 'Bucket was left blank. No files will be ingested'
+end
+
+def load_rails
+  puts 'Loading environment...'
+  require File.expand_path('../../config/environment', __FILE__)
+  require 'importer'
+  puts 'Starting import...'
+end
+
+def main(bucket, csv_file_key)
+  load_rails
+  validate_csv_file!(bucket, csv_file_key)
+  validate_files_directory!(files_directory)
+
+  size = Importer::CSVImporter.new(bucket, csv_file_key).import_all
+
+  puts "Imported #{size} records."
+end
+
+def logger
+  Rails.logger
+end
+
+def usage
+  $stderr.puts "Usage: #{$PROGRAM_NAME} <bucket> <csv file key>"
+end
+
+main(ARGV[0], ARGV[1])
