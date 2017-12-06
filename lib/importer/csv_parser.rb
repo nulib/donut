@@ -62,7 +62,7 @@ module Importer
       # rubocop:enable Metrics/MethodLength
 
       def valid_headers
-        GenericWork.attribute_names + %w(id type file) + collection_headers
+        Image.attribute_names + %w(id type file) + collection_headers
       end
 
       def collection_headers

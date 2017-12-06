@@ -1,4 +1,4 @@
-require 'importer/log_subscriber'
+
 module Importer
   module Factory
     class ObjectFactory

@@ -1,9 +1,11 @@
+
+require 'rails_helper'
 require 'importer'
 
 RSpec.describe Importer::CSVParser do
   let(:parser) { described_class.new(file) }
   let(:attributes) { parser.attributes }
-  let(:file) { "#{fixture_path}/csv/gse_metadata.csv" }
+  let(:file) { "#{fixture_path}/csv/sample.csv" }
   let(:first_record) { parser.first }
 
   context 'Importing just images' do
