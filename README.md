@@ -55,6 +55,13 @@ And run the test suite in another window:
    $ rake spec
    ```
 
+### Running the tests for our new CSV importer work from hyrax
+the active elastic job gem requires an environment variable to be set otherwise all the specs fail. so run this first: 
+
+```sh
+$ export PROCESS_ACTIVE_ELASTIC_JOBS=true
+```
+
 ## Adding an Admin user and assigning workflow roles
 
 1. Run the development servers with `rake hydra:server` (or run Rails and Solr/Fedora separately with `rails s` and `rake server:development`).
