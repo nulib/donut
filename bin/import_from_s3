@@ -67,7 +67,7 @@ def main(bucket, csv_file_key)
   validate_files_directory!(bucket)
 
   csv = csv_file(bucket, csv_file_key)
-  size = Importer::CSVImporter.new(csv).import_all
+  size = Importer::CSVImporter.new(csv, bucket).import_all
 
   puts "Imported #{size} records."
 end
