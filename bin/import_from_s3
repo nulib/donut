@@ -10,13 +10,40 @@ Aws.config.update(
   region: 'us-east-1'
 )
 
-def validate_csv_file!(bucket, csv_file_key)
-  s3 = Aws::S3::Resource.new
-  bucket = s3.bucket(bucket)
-  obj = bucket.object(csv_file_key)
-  return if csv_file && obj.exists?
+def s3_client
+  Aws::S3::Client.new
+end
+
+def s3_resource
+  Aws::S3::Resource.new
+end
+
+def csv_file(bucket, csv_file_key)
+  resp = s3_client.get_object(bucket: bucket, key: csv_file_key)
+  resp.body.read
+end
+
+def validate_arguments!(bucket, csv_file_key)
+  return if bucket && csv_file_key
   usage
-  $stderr.puts 'Please provide a metadata file to import.'
+  $stderr.puts 'Please provide a bucket and csv file key to import.'
+  exit(1)
+end
+
+def validate_bucket!(bucket)
+  bucket = s3_resource.bucket(bucket)
+  return if bucket.exists?
+  usage
+  $stderr.puts 'Bucket not found.'
+  exit(1)
+end
+
+def validate_csv_file!(bucket, csv_file_key)
+  bucket = s3_resource.bucket(bucket)
+  obj = bucket.object(csv_file_key)
+  return if obj.exists?
+  usage
+  $stderr.puts 'CSV file not found in bucket.'
   exit(1)
 end
 
@@ -34,10 +61,13 @@ end
 
 def main(bucket, csv_file_key)
   load_rails
+  validate_arguments!(bucket, csv_file_key)
+  validate_bucket!(bucket)
   validate_csv_file!(bucket, csv_file_key)
-  validate_files_directory!(files_directory)
+  validate_files_directory!(bucket)
 
-  size = Importer::CSVImporter.new(bucket, csv_file_key).import_all
+  csv = csv_file(bucket, csv_file_key)
+  size = Importer::CSVImporter.new(csv).import_all
 
   puts "Imported #{size} records."
 end
