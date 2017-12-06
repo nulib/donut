@@ -34,7 +34,7 @@ RSpec.describe Importer::Factory::ImageFactory, :clean do
     end
 
     context "for an existing image without files" do
-      let(:work) { create(:generic_work) }
+      let(:work) { create(:image) }
       let(:factory) { described_class.new(attributes.merge(id: work.id), 'tmp/files', files) }
       it 'creates file sets' do
         expect(actor).to receive(:update).with(Hyrax::Actors::Environment) do |k|
