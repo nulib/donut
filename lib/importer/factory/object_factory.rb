@@ -14,13 +14,6 @@ module Importer
       end
 
       def run
-        arg_hash = { id: attributes[:id], name: 'UPDATE', klass: klass }
-        @object = find
-        if @object
-          ActiveSupport::Notifications.instrument('import.importer', arg_hash) { update }
-        else
-          ActiveSupport::Notifications.instrument('import.importer', arg_hash.merge(name: 'CREATE')) { create }
-        end
         yield(object) if block_given?
         object
       end

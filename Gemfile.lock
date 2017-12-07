@@ -733,6 +733,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     clipboard-rails (1.7.1)
     cloudfront-signer (3.0.2)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -1059,6 +1060,11 @@ GEM
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     powerpack (0.1.1)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     public_suffix (3.0.1)
     puma (3.11.0)
     qa (2.0.0)
@@ -1371,6 +1377,7 @@ DEPENDENCIES
   nulib_microservices!
   omniauth-openam
   pg
+  pry-rails
   pul_uv_rails!
   puma (~> 3.7)
   rails (~> 5.1.1)

@@ -1,15 +1,21 @@
+# @s3_bucket.objects.each do |item|
+#   puts "Name:  #{item.key}"
+#   puts "URL:   #{item.presigned_url(:get)}"
+#   puts "SIZE:  #{item.size}"
+# end
+
 module Importer
   # Import a csv file with one work per row. The first row of the csv should be a
   # header row. The model for each row can either be specified in a column called
   # 'type' or globally by passing the model attribute
   class CSVImporter
-    # @param [String] metadata_file path to CSV file
-    # @param [String] files_directory path, passed to factory constructor
+    # @param [String] CSV contents
+    # @param [Aws::S3::Bucket] S3 Bucket, passed to factory constructor
     # @param [#to_s, Class] model if Class, the factory class to be invoked per row.
     # Otherwise, the stringable first (Xxx) portion of an "XxxFactory" constant.
-    def initialize(metadata_file, files_directory, model = nil)
-      @metadata_file = metadata_file
-      @files_directory = files_directory
+    def initialize(csv, s3_bucket, model = nil)
+      @csv = csv
+      @s3_bucket = s3_bucket
       @model = model
     end
 
@@ -26,7 +32,7 @@ module Importer
     private
 
       def parser
-        CSVParser.new(@metadata_file)
+        CSVParser.new(@csv)
       end
 
       # @return [Class] the model class to be used
@@ -45,7 +51,7 @@ module Importer
       # @option attributes [String] :type overrides model for a single object
       # @note remaining attributes are passed to factory constructor
       def create_fedora_objects(attributes)
-        factory_class(attributes.delete(:type) || @model).new(attributes, @files_directory).run
+        factory_class(attributes.delete(:type) || @model).new(attributes, @s3_bucket).run
       end
   end
 end
