@@ -4,7 +4,6 @@ module Importer
 
     eager_autoload do
       autoload :CollectionFactory
-      autoload :ETDFactory
       autoload :ImageFactory
       autoload :ObjectFactory
       autoload :StringLiteralProcessor

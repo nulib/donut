@@ -1,9 +1,3 @@
-# @s3_bucket.objects.each do |item|
-#   puts "Name:  #{item.key}"
-#   puts "URL:   #{item.presigned_url(:get)}"
-#   puts "SIZE:  #{item.size}"
-# end
-
 module Importer
   # Import a csv file with one work per row. The first row of the csv should be a
   # header row. The model for each row can either be specified in a column called
