@@ -10,7 +10,7 @@ module Importer
     # @yieldparam attributes [Hash] the attributes from one row of the file
     def each(&_block)
       headers = nil
-      CSV.parse(@file_name) do |row|
+      CSV.parse(@file_name, encoding: 'iso-8859-1:utf-8') do |row|
         if headers
           # we already have headers, so this is not the first row.
           yield attributes(headers, row)
