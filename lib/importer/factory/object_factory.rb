@@ -13,6 +13,13 @@ module Importer
       end
 
       def run
+        arg_hash = { id: attributes[:id], name: 'UPDATE', klass: klass }
+        @object = find
+        if @object
+          ActiveSupport::Notifications.instrument('import.importer', arg_hash) { update }
+        else
+          ActiveSupport::Notifications.instrument('import.importer', arg_hash.merge(name: 'CREATE')) { create }
+        end
         yield(object) if block_given?
         object
       end
@@ -102,24 +109,13 @@ module Importer
         # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:
         # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
-          files.present? ? { files: file_uris } : {}
+          { files: file_uris }
         end
-
-#         @s3_bucket.objects.each do |item|
-#   puts "Name:  #{item.key}"
-#   puts "URL:   #{item.presigned_url(:get)}"
-#   puts "SIZE:  #{item.size}"
-# end
 
         def file_uris
-          binding.pry
-          s3_bucket.objects.map do
-            # poo
+          s3_bucket.objects.map do |obj|
+            obj.presigned_url(:get)
           end
-        end
-
-        def file_paths
-          files.map { |file_name| File.join(files_directory, file_name) }
         end
 
         # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.
