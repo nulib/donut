@@ -109,7 +109,7 @@ module Importer
         # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:
         # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
-          { remote_files: file_uris }
+          { remote_files: file_uris.map { |uri| { uri: uri } } }
         end
 
         def file_uris
