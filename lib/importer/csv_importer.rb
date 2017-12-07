@@ -45,6 +45,7 @@ module Importer
       # @option attributes [String] :type overrides model for a single object
       # @note remaining attributes are passed to factory constructor
       def create_fedora_objects(attributes)
+        binding.pry
         factory_class(attributes.delete(:type) || @model).new(attributes, @s3_bucket).run
       end
   end

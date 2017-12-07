@@ -5,12 +5,11 @@ module Importer
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
       class_attribute :klass, :system_identifier_field
-      attr_reader :attributes, :files_directory, :object, :files
+      attr_reader :attributes, :s3_bucket, :object
 
-      def initialize(attributes, files_dir = nil, files = [])
+      def initialize(attributes, s3_bucket = nil)
         @attributes = attributes
-        @files_directory = files_dir
-        @files = files
+        @s3_bucket = s3_bucket
       end
 
       def run
@@ -103,7 +102,20 @@ module Importer
         # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:
         # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
-          files_directory.present? && files.present? ? { files: file_paths } : {}
+          files.present? ? { files: file_uris } : {}
+        end
+
+#         @s3_bucket.objects.each do |item|
+#   puts "Name:  #{item.key}"
+#   puts "URL:   #{item.presigned_url(:get)}"
+#   puts "SIZE:  #{item.size}"
+# end
+
+        def file_uris
+          binding.pry
+          s3_bucket.objects.map do
+            # poo
+          end
         end
 
         def file_paths
