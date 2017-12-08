@@ -1,10 +1,11 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :collection do
     transient do
-      user { FactoryGirl.create(:user) }
+      user { FactoryBot.create(:user) }
     end
 
-    title ["Test title"]
+    id 'test-collection-id'
+    title ['Test title']
 
     after(:build) do |work, evaluator|
       work.apply_depositor_metadata(evaluator.user)

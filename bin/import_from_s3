@@ -1,55 +1,10 @@
 #!/usr/bin/env ruby
 
-require 'aws-sdk'
-
-Aws.config.update(
-  endpoint: 'http://localhost:9000',
-  access_key_id: 'test-1234',
-  secret_access_key: 'test-1234',
-  force_path_style: true,
-  region: 'us-east-1'
-)
-
-def s3_client
-  Aws::S3::Client.new
-end
-
-def s3_resource
-  Aws::S3::Resource.new
-end
-
-def csv_file(bucket, csv_file_key)
-  resp = s3_client.get_object(bucket: bucket, key: csv_file_key)
-  resp.body.read
-end
-
 def validate_arguments!(bucket, csv_file_key)
   return if bucket && csv_file_key
   usage
   $stderr.puts 'Please provide a bucket and csv file key to import.'
   exit(1)
-end
-
-def validate_bucket!(bucket)
-  bucket = s3_resource.bucket(bucket)
-  return if bucket.exists?
-  usage
-  $stderr.puts 'Bucket not found.'
-  exit(1)
-end
-
-def validate_csv_file!(bucket, csv_file_key)
-  bucket = s3_resource.bucket(bucket)
-  obj = bucket.object(csv_file_key)
-  return if obj.exists?
-  usage
-  $stderr.puts 'CSV file not found in bucket.'
-  exit(1)
-end
-
-def validate_files_directory!(bucket)
-  return if bucket
-  $stderr.puts 'Bucket was left blank. No files will be ingested'
 end
 
 def load_rails
@@ -60,20 +15,9 @@ def load_rails
 end
 
 def main(bucket, csv_file_key)
-  load_rails
   validate_arguments!(bucket, csv_file_key)
-  validate_bucket!(bucket)
-  validate_csv_file!(bucket, csv_file_key)
-  validate_files_directory!(bucket)
-
-  csv = csv_file(bucket, csv_file_key)
-  size = Importer::CSVImporter.new(csv, s3_resource.bucket(bucket)).import_all
-
-  puts "Imported #{size} records."
-end
-
-def logger
-  Rails.logger
+  load_rails
+  S3ImportJob.perform_now("s3://#{bucket}/#{csv_file_key}")
 end
 
 def usage

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/damireh/active-elastic-job.git
-  revision: 99c6aa7268bf86a9fbe37d39831ede5c98819db3
+  revision: bb4bb2ae4e624e59da96dd90325be0537b1f0660
   branch: latest-aws-sdk
   specs:
     active_elastic_job (2.0.1)
@@ -141,7 +141,7 @@ GEM
       rails (>= 4.2, < 6)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (7.2.1)
+    autoprefixer-rails (7.2.2)
       execjs
     awesome_nested_set (3.1.3)
       activerecord (>= 4.0.0, < 5.2)
@@ -703,11 +703,11 @@ GEM
       sass (>= 3.3.4)
     bootstrap_form (2.7.0)
     breadcrumbs_on_rails (3.0.1)
-    browse-everything (0.15.0)
+    browse-everything (0.15.1)
       addressable (~> 2.5)
       aws-sdk-s3
       bootstrap-sass (~> 3.2)
-      dropbox-sdk (>= 1.6.2)
+      dropbox_api (>= 0.1.10)
       font-awesome-rails
       google-api-client (~> 0.9)
       google_drive
@@ -767,8 +767,9 @@ GEM
     devise-guests (0.6.0)
       devise
     diff-lcs (1.3)
-    dropbox-sdk (1.6.5)
-      json
+    dropbox_api (0.1.10)
+      faraday (~> 0.9, ~> 0.8)
+      oauth2 (~> 1.1)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
@@ -812,10 +813,10 @@ GEM
     execjs (2.7.0)
     ezid-client (1.7.1)
       hashie (~> 3.4, >= 3.4.3)
-    factory_girl (4.9.0)
+    factory_bot (4.8.2)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -1373,7 +1374,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   ezid-client
-  factory_girl_rails
+  factory_bot_rails
   fcrepo_wrapper
   hydra-role-management
   hyrax!

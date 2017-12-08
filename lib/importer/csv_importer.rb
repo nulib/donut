@@ -5,12 +5,9 @@ module Importer
   class CSVImporter
     # @param [String] CSV contents
     # @param [Aws::S3::Bucket] S3 Bucket, passed to factory constructor
-    # @param [#to_s, Class] model if Class, the factory class to be invoked per row.
-    # Otherwise, the stringable first (Xxx) portion of an "XxxFactory" constant.
-    def initialize(csv, s3_bucket, model = nil)
+    def initialize(csv, s3_resource)
       @csv = csv
-      @s3_bucket = s3_bucket
-      @model = model
+      @s3_resource = s3_resource
     end
 
     # @return [Integer] count of objects created
@@ -45,7 +42,7 @@ module Importer
       # @option attributes [String] :type overrides model for a single object
       # @note remaining attributes are passed to factory constructor
       def create_fedora_objects(attributes)
-        factory_class(attributes.delete(:type) || @model).new(attributes, @s3_bucket).run
+        factory_class(attributes.delete(:type)).new(attributes, @s3_resource).run
       end
   end
 end

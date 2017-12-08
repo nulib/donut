@@ -3,18 +3,27 @@ sudo: false
 
 cache: bundler
 
+services:
+  - redis
+  - docker
+
 before_install:
+  - 'docker pull minio/minio'
+  - 'docker run -d -v ${TRAVIS_BUILD_DIR}/spec/fixtures/minio:/data -p 127.0.0.1:9000:9000 -e "MINIO_ACCESS_KEY=travis-build-key" -e "MINIO_SECRET_KEY=travis-build-secret" minio/minio server /data'
   - 'gem update bundler'
 
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - AWS_ACCESS_KEY_ID=travis-build-key
+    - AWS_SECRET_ACCESS_KEY=travis-build-secret
+    - AWS_DEFAULT_REGION=us-east-1
   matrix:
     - TEST_SUITE=rspec
     - TEST_SUITE=rubocop
 
 script:
-  - 'bundle exec rake donut:travis:$TEST_SUITE'
+  - 'bundle exec rake donut:ci:$TEST_SUITE'
 
 jdk:
   - oraclejdk8

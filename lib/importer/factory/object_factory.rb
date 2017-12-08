@@ -1,15 +1,14 @@
-
 module Importer
   module Factory
     class ObjectFactory
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
       class_attribute :klass, :system_identifier_field
-      attr_reader :attributes, :s3_bucket, :object
+      attr_reader :attributes, :s3_resource, :object
 
-      def initialize(attributes, s3_bucket = nil)
+      def initialize(attributes, s3_resource = nil)
         @attributes = attributes
-        @s3_bucket = s3_bucket
+        @s3_resource = s3_resource
       end
 
       def run
@@ -41,13 +40,12 @@ module Importer
       end
 
       def find
-        return find_by_id if attributes[:id]
+        return find_object_by_id if attributes[:id]
         return search_by_identifier if attributes[system_identifier_field].present?
-        raise "Missing identifier: Unable to search for existing object without " \
-          "either fedora ID or #{system_identifier_field}"
+        nil
       end
 
-      def find_by_id
+      def find_object_by_id
         klass.find(attributes[:id]) if klass.exists?(attributes[:id])
       end
 
@@ -57,9 +55,6 @@ module Importer
         klass.where(query).first
       end
 
-      # An ActiveFedora bug when there are many habtm <-> has_many associations means they won't all get saved.
-      # https://github.com/projecthydra/active_fedora/issues/874
-      # 2+ years later, still open!
       def create
         attrs = create_attributes
         @object = klass.new
@@ -95,7 +90,7 @@ module Importer
 
         def create_collection(attrs)
           @object.attributes = attrs
-          @object.apply_depositor_metadata(User.batch_user)
+          @object.apply_depositor_metadata(User.first)
           @object.save!
         end
 
@@ -109,16 +104,26 @@ module Importer
         # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:
         # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
-          { remote_files: file_uris.map { |uri| { uri: uri } } }
-        end
-
-        def file_uris
-          s3_bucket.objects.map do |obj|
-            obj.presigned_url(:get)
+          file_specs = Array.wrap(attributes[:file]).map do |file_path|
+            file_spec(file_path)
           end
+          file_specs.empty? ? {} : { remote_files: file_specs }
         end
 
-        # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.
+        def resolve_file(file_path)
+          target = Pathname.new(file_path)
+          source = Pathname.new(s3_resource.key)
+          relative_key = target.relative_path_from(source).relative_path_from(Pathname.new('..'))
+          s3_resource.bucket.object(relative_key.to_s)
+        end
+
+        def file_spec(file_path)
+          s3_object = resolve_file(file_path)
+          url = s3_object.presigned_url(:get)
+          url = URI.decode(url) while URI.decode(url) != url
+          { url: url, file_size: s3_object.size }
+        end
+
         def permitted_attributes
           klass.properties.keys.map(&:to_sym) + [:id, :edit_users, :edit_groups, :read_groups, :visibility]
         end

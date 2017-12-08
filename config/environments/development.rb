@@ -57,4 +57,6 @@ Rails.application.configure do
 
   # Whitelist the custom dev IP
   config.web_console.whitelisted_ips = '172.16.123.1'
+
+  config.active_job.queue_adapter = :inline
 end

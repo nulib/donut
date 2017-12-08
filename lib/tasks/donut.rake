@@ -10,7 +10,7 @@ unless Rails.env.production?
       t.rspec_opts = ['--color', '--backtrace']
     end
 
-    namespace :travis do
+    namespace :ci do
       desc 'Execute Continuous Integration build'
       task rspec: :environment do
         with_test_server do
