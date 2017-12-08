@@ -5,11 +5,11 @@ module Importer
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
       class_attribute :klass, :system_identifier_field
-      attr_reader :attributes, :s3_bucket, :object
+      attr_reader :attributes, :s3_resource, :object
 
-      def initialize(attributes, s3_bucket = nil)
+      def initialize(attributes, s3_resource = nil)
         @attributes = attributes
-        @s3_bucket = s3_bucket
+        @s3_resource = s3_resource
       end
 
       def run
@@ -109,13 +109,21 @@ module Importer
         # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:
         # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
-          { remote_files: file_uris.map { |uri| { uri: uri } } }
+          file_specs = Array.wrap(attributes[:file]).map do |file_path|
+            { uri: uri_for(file_path) }
+          end
+          { remote_files: file_specs }
         end
 
-        def file_uris
-          s3_bucket.objects.map do |obj|
-            obj.presigned_url(:get)
-          end
+        def resolve_file(file_path)
+          target = Pathname.new(file_path)
+          source = Pathname.new(s3_resource.key)
+          relative_key = target.relative_path_from(source).relative_path_from(Pathname.new('..'))
+          s3_resource.bucket.object(relative_key.to_s)
+        end
+
+        def uri_for(file_path)
+          resolve_file(file_path).presigned_url(:get)
         end
 
         # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.

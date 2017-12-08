@@ -19,8 +19,7 @@ def s3_resource
 end
 
 def csv_file(bucket, csv_file_key)
-  resp = s3_client.get_object(bucket: bucket, key: csv_file_key)
-  resp.body.read
+  s3_client.get_object(bucket: bucket, key: csv_file_key).body.read
 end
 
 def validate_arguments!(bucket, csv_file_key)
@@ -67,7 +66,8 @@ def main(bucket, csv_file_key)
   validate_files_directory!(bucket)
 
   csv = csv_file(bucket, csv_file_key)
-  size = Importer::CSVImporter.new(csv, s3_resource.bucket(bucket)).import_all
+  csv_resource = Aws::S3::Object.new(client: s3_client, bucket_name: bucket, key: csv_file_key)
+  size = Importer::CSVImporter.new(csv, csv_resource).import_all
 
   puts "Imported #{size} records."
 end
