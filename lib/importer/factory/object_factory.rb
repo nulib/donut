@@ -57,9 +57,6 @@ module Importer
         klass.where(query).first
       end
 
-      # An ActiveFedora bug when there are many habtm <-> has_many associations means they won't all get saved.
-      # https://github.com/projecthydra/active_fedora/issues/874
-      # 2+ years later, still open!
       def create
         attrs = create_attributes
         @object = klass.new
@@ -95,7 +92,7 @@ module Importer
 
         def create_collection(attrs)
           @object.attributes = attrs
-          @object.apply_depositor_metadata(User.batch_user)
+          @object.apply_depositor_metadata(User.first)
           @object.save!
         end
 
@@ -110,9 +107,9 @@ module Importer
         # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
           file_specs = Array.wrap(attributes[:file]).map do |file_path|
-            { uri: uri_for(file_path) }
+            file_spec(file_path)
           end
-          { remote_files: file_specs }
+          file_specs.empty? ? {} : { remote_files: file_specs }
         end
 
         def resolve_file(file_path)
@@ -122,8 +119,9 @@ module Importer
           s3_resource.bucket.object(relative_key.to_s)
         end
 
-        def uri_for(file_path)
-          resolve_file(file_path).presigned_url(:get)
+        def file_spec(file_path)
+          s3_object = resolve_file(file_path)
+          { url: s3_object.presigned_url(:get), file_size: s3_object.size }
         end
 
         # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.

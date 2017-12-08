@@ -24,7 +24,6 @@ module Importer
     end
 
     private
-
       def parser
         CSVParser.new(@csv)
       end
