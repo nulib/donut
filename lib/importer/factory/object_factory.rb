@@ -121,7 +121,11 @@ module Importer
 
         def file_spec(file_path)
           s3_object = resolve_file(file_path)
-          { url: s3_object.presigned_url(:get), file_size: s3_object.size }
+          url = s3_object.presigned_url(:get)
+          while URI.decode(url) != url
+            url = URI.decode(url)
+          end
+          { url: url, file_size: s3_object.size }
         end
 
         # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.
