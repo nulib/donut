@@ -46,7 +46,7 @@ gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 
 group :test do
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rspec-activemodel-mocks', '~> 1.0'
 end
 

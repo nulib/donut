@@ -5,9 +5,9 @@ describe Ability do
   subject(:admin) { described_class.new(current_user) }
 
   describe 'as an admin' do
-    let(:admin_user) { FactoryGirl.create(:admin) }
+    let(:admin_user) { FactoryBot.create(:admin) }
     let(:current_user) { admin_user }
-    let(:image) { FactoryGirl.create(:image, user: current_user) }
+    let(:image) { FactoryBot.create(:image, user: current_user) }
 
     # rubocop:disable RSpec/ExampleLength
     it {
