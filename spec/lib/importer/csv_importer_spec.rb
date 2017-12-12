@@ -1,40 +1,26 @@
 require 'rails_helper'
 require 'importer'
+require 'aws-sdk'
 
 RSpec.describe Importer::CSVImporter do
-  let(:image_directory) { 'spec/fixtures/images' }
-
-  context 'when the model is passed' do
-    let(:csv_file) { "#{fixture_path}/csv/sample.csv" }
-    let(:importer) { described_class.new(csv_file, image_directory, fallback_class) }
-    let(:fallback_class) { Class.new { def initialize(_x, _y); end } }
-    let(:factory) { double(run: true) }
-
-    # note: 2 rows do not specify type, 17 do
-    it 'creates new works' do
-      expect(fallback_class).to receive(:new)
-        .with(any_args).and_return(factory).exactly(2).times
-      importer.import_all
-    end
-  end
+  let(:bucket) { 'test-1234' }
+  let(:csv_file_key) { 'sample.csv' }
+  let(:csv) { Aws::S3::Client.new.get_object(bucket: bucket, key: csv_file_key).body.read }
+  let(:csv_resource) { Aws::S3::Object.new(client: Aws::S3::Client.new, bucket_name: bucket, key: csv_file_key) }
 
   context 'when the model specified on the row' do
-    let(:csv_file) { "#{fixture_path}/csv/sample.csv" }
-    let(:importer) { described_class.new(csv_file, image_directory) }
+    let(:importer) { described_class.new(csv, csv_resource) }
     let(:collection_factory) { double }
     let(:image_factory) { double }
 
+    # rubocop:disable RSpec/MessageSpies
     it 'creates new images and collections' do
-      expect(Importer::Factory::CollectionFactory).to receive(:new)
-        .with(hash_excluding(:type), image_directory)
-        .and_return(collection_factory)
-      expect(collection_factory).to receive(:run)
       expect(Importer::Factory::ImageFactory).to receive(:new)
-        .with(hash_excluding(:type), image_directory)
+        .with(hash_excluding(:type), csv_resource)
         .and_return(collection_factory)
       expect(collection_factory).to receive(:run)
-      expect(image_factory).to receive(:run)
       importer.import_all
     end
+    # rubocop:enable RSpec/MessageSpies
   end
 end
