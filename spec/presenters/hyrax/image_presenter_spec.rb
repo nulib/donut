@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Hyrax::ImagePresenter, type: :unit do
   subject(:presenter) { described_class.new(solr_document, ability, request) }
 
-  let(:image) { FactoryGirl.create(:image) }
+  let(:image) { FactoryBot.create(:image) }
 
   let(:solr_document) { SolrDocument.new(image.to_solr) }
   let(:ability)       { Ability.new(nil) }

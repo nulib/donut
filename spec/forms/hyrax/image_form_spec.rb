@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::ImageForm do
-  let(:image) { FactoryGirl.create(:image) }
+  let(:image) { FactoryBot.create(:image) }
   let(:ability) { Ability.new(nil) }
   let(:request) { nil }
   let(:form)    { described_class.new(image, ability, request) }
