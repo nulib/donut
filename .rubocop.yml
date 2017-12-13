@@ -22,6 +22,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
     - 'spec/factories/images.rb'
+    - 'spec/lib/importer/csv_parser_spec.rb'
 
 Metrics/ClassLength:
   Exclude:
