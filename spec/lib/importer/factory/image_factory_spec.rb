@@ -28,7 +28,6 @@ RSpec.describe Importer::Factory::ImageFactory, :clean do
       it 'creates file sets with access controls' do
         expect(actor).to receive(:create).with(Hyrax::Actors::Environment) do |k|
           expect(k.attributes).to include(member_of_collections: [coll])
-          expect(k.attributes).to include(:remote_files)
           expect(k.attributes[:remote_files].first[:url]).to start_with('http://localhost:9000/test-1234/files/coffee.jpg')
         end
         factory.run
@@ -42,7 +41,6 @@ RSpec.describe Importer::Factory::ImageFactory, :clean do
       it 'creates file sets' do
         expect(actor).to receive(:update).with(Hyrax::Actors::Environment) do |k|
           expect(k.attributes).to include(member_of_collections: [coll])
-          expect(k.attributes).to include(:remote_files)
           expect(k.attributes[:remote_files].first[:url]).to start_with('http://localhost:9000/test-1234/files/coffee.jpg')
         end
         factory.run
