@@ -28,6 +28,7 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
+    - 'lib/importer/factory/object_factory.rb'
 
 Metrics/LineLength:
   Max: 164 # default is 80

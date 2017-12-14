@@ -37,13 +37,12 @@ module Importer
         # e.g. For an author, author_type might be 'Person'.
         difference.delete_if { |h| h.match(type_header_pattern) }
 
-        raise "Invalid headers: #{difference.join(', ')}" unless difference.blank?
+        raise "Invalid headers: #{difference.join(', ')}" if difference.present?
 
         validate_header_pairs(row)
         row
       end
 
-      # rubocop:disable Metrics/MethodLength
       # If you have a header like lc_subject_type, the next
       # header must be the corresponding field (e.g. lc_subject)
       def validate_header_pairs(row)
@@ -57,16 +56,16 @@ module Importer
             errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
           end
         end
-        raise errors.join(', ') unless errors.blank?
+        raise errors.join(', ') if errors.present?
       end
       # rubocop:enable Metrics/MethodLength
 
       def valid_headers
-        Image.attribute_names + %w(id type file) + collection_headers
+        Image.attribute_names + %w[id type file] + collection_headers
       end
 
       def collection_headers
-        %w(collection_id collection_title collection_accession_number)
+        %w[collection_id collection_title collection_accession_number]
       end
 
       def attributes(headers, row)
@@ -143,7 +142,7 @@ module Importer
       end
 
       def update_collection(collection, field, val)
-        val = [val] unless %w(admin_policy_id id).include? field
+        val = [val] unless %w[admin_policy_id id].include? field
         collection[field.to_sym] = val
       end
 
