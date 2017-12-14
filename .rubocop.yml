@@ -23,7 +23,8 @@ Metrics/BlockLength:
     - 'config/initializers/simple_form_bootstrap.rb'
     - 'spec/factories/images.rb'
     - 'spec/lib/importer/factory/image_factory_spec.rb'
-
+    - 'spec/lib/importer/csv_parser_spec.rb'
+    
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
