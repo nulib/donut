@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :image do
     title ['Test title']
     alternate_title ['Alternate Title 1']
@@ -23,7 +23,7 @@ FactoryGirl.define do
     technique ['Gauche']
 
     transient do
-      user { FactoryGirl.create(:user) }
+      user { FactoryBot.create(:user) }
     end
 
     after(:build) do |work, evaluator|

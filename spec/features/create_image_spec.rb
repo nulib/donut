@@ -6,7 +6,7 @@ include Warden::Test::Helpers
 # NOTE: If you generated more than one work, you have to set "js: true"
 RSpec.feature 'Create a Image', js: false do
   context 'a logged in user' do
-    let(:depositor) { FactoryGirl.create(:user) }
+    let(:depositor) { FactoryBot.create(:user) }
 
     before do
       AdminSet.find_or_create_default_admin_set_id

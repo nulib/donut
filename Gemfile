@@ -46,7 +46,7 @@ gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 
 group :test do
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rspec-activemodel-mocks', '~> 1.0'
 end
 
@@ -55,6 +55,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
@@ -89,11 +91,11 @@ group :development, :test do
 end
 
 group :aws, :test do
-  gem 'active_elastic_job', '~> 2.0'
+  gem 'active_elastic_job', github: 'damireh/active-elastic-job', branch: 'latest-aws-sdk'
 end
 
-group :aws, optional: true do
-  gem 'aws-sdk'
+group :aws do
+  gem 'aws-sdk', '~> 3'
   gem 'aws-sdk-rails'
   gem 'carrierwave-aws'
   gem 'cloudfront-signer'

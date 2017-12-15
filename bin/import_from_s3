@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+def validate_arguments!(bucket, csv_file_key)
+  return if bucket && csv_file_key
+  usage
+  $stderr.puts 'Please provide a bucket and csv file key to import.'
+  exit(1)
+end
+
+def load_rails
+  puts 'Loading environment...'
+  require File.expand_path('../../config/environment', __FILE__)
+  require 'importer'
+  puts 'Starting import...'
+end
+
+def main(bucket, csv_file_key)
+  validate_arguments!(bucket, csv_file_key)
+  load_rails
+  S3ImportJob.perform_now("s3://#{bucket}/#{csv_file_key}")
+end
+
+def usage
+  $stderr.puts "Usage: #{$PROGRAM_NAME} <bucket> <csv file key>"
+end
+
+main(ARGV[0], ARGV[1])

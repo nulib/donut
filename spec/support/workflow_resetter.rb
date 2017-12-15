@@ -1,5 +1,5 @@
 RSpec.configure do |config|
-  config.before(:each) do
+  config.before do
     Hyrax::Workflow::WorkflowImporter.load_workflows
   end
   config.before(:each, admin_set: true) do
