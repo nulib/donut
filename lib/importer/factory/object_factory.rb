@@ -1,4 +1,3 @@
-
 module Importer
   module Factory
     class ObjectFactory
@@ -41,13 +40,13 @@ module Importer
       end
 
       def find
-        return find_by_id if attributes[:id]
+        return find_object_by_id if attributes[:id]
         return search_by_identifier if attributes[system_identifier_field].present?
-        raise "Missing identifier: Unable to search for existing object without " \
+        raise 'Missing identifier: Unable to search for existing object without ' \
           "either fedora ID or #{system_identifier_field}"
       end
 
-      def find_by_id
+      def find_object_by_id
         klass.find(attributes[:id]) if klass.exists?(attributes[:id])
       end
 
@@ -122,13 +121,10 @@ module Importer
         def file_spec(file_path)
           s3_object = resolve_file(file_path)
           url = s3_object.presigned_url(:get)
-          while URI.decode(url) != url
-            url = URI.decode(url)
-          end
+          url = URI.decode(url) while URI.decode(url) != url
           { url: url, file_size: s3_object.size }
         end
 
-        # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.
         def permitted_attributes
           klass.properties.keys.map(&:to_sym) + [:id, :edit_users, :edit_groups, :read_groups, :visibility]
         end
