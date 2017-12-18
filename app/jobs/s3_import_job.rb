@@ -1,3 +1,5 @@
+require 'importer'
+
 class S3ImportJob < ApplicationJob
   attr_reader :bucket, :csv_file_key
 
