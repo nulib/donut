@@ -120,10 +120,6 @@ module Importer
         def file_spec(file_path)
           s3_object = resolve_file(file_path)
           url = s3_object.presigned_url(:get)
-          # WHAT: Fully decode the URL and then encode it one level
-          # WHY:  Minio hates double-encoding; S3 hates no encoding
-          url = URI.decode(url) while URI.decode(url) != url
-          url = URI.encode(url)
           { url: url, file_size: s3_object.size }
         end
 
