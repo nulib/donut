@@ -29,7 +29,7 @@ RSpec.describe Importer::Factory::ImageFactory, :clean do
         factory.run
         expect(actor).to have_received(:create).with(Hyrax::Actors::Environment) do |k|
           expect(k.attributes).to include(member_of_collections: [coll])
-          expect(k.attributes[:remote_files].first[:url]).to start_with('http://127.0.0.1:9000/buckett/files/coffee.jpg')
+          expect(k.attributes[:remote_files].first[:url]).to include('/buckett/files/coffee.jpg')
         end
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe Importer::Factory::ImageFactory, :clean do
         factory.run
         expect(actor).to have_received(:update).with(Hyrax::Actors::Environment) do |k|
           expect(k.attributes).to include(member_of_collections: [coll])
-          expect(k.attributes[:remote_files].first[:url]).to start_with('http://127.0.0.1:9000/buckett/files/coffee.jpg')
+          expect(k.attributes[:remote_files].first[:url]).to include('/buckett/files/coffee.jpg')
         end
       end
     end
