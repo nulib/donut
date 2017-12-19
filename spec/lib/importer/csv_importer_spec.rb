@@ -3,7 +3,7 @@ require 'importer'
 require 'aws-sdk'
 
 RSpec.describe Importer::CSVImporter do
-  let(:bucket) { 'buckett' }
+  let(:bucket) { Settings.aws.bucket }
   let(:csv_file_key) { 'sample.csv' }
   let(:csv) { Aws::S3::Client.new.get_object(bucket: bucket, key: csv_file_key).body.read }
   let(:csv_resource) { Aws::S3::Object.new(client: Aws::S3::Client.new, bucket_name: bucket, key: csv_file_key) }

@@ -4,7 +4,7 @@ require 'importer'
 RSpec.describe Importer::Factory::ImageFactory, :clean do
   let(:factory) { described_class.new(attributes) }
   let(:actor) { instance_spy('actor') }
-  let(:bucket) { 'buckett' }
+  let(:bucket) { Settings.aws.bucket }
   let(:csv_file_key) { 'sample.csv' }
   let(:csv_resource) { Aws::S3::Object.new(client: Aws::S3::Client.new, bucket_name: bucket, key: csv_file_key) }
   let(:attributes) do
@@ -29,7 +29,7 @@ RSpec.describe Importer::Factory::ImageFactory, :clean do
         factory.run
         expect(actor).to have_received(:create).with(Hyrax::Actors::Environment) do |k|
           expect(k.attributes).to include(member_of_collections: [coll])
-          expect(k.attributes[:remote_files].first[:url]).to include('/buckett/files/coffee.jpg')
+          expect(k.attributes[:remote_files].first[:url]).to include("#{Settings.aws.bucket}/files/coffee.jpg")
         end
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe Importer::Factory::ImageFactory, :clean do
         factory.run
         expect(actor).to have_received(:update).with(Hyrax::Actors::Environment) do |k|
           expect(k.attributes).to include(member_of_collections: [coll])
-          expect(k.attributes[:remote_files].first[:url]).to include('/buckett/files/coffee.jpg')
+          expect(k.attributes[:remote_files].first[:url]).to include("#{Settings.aws.bucket}/files/coffee.jpg")
         end
       end
     end

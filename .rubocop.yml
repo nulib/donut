@@ -24,6 +24,7 @@ Metrics/BlockLength:
     - 'spec/factories/images.rb'
     - 'spec/lib/importer/factory/image_factory_spec.rb'
     - 'spec/lib/importer/csv_parser_spec.rb'
+    - 'lib/tasks/s3_tasks.rake'
 
 Metrics/ClassLength:
   Exclude:
