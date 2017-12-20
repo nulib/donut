@@ -33,46 +33,11 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 To pull minio and stand it up, assuming you have docker installed:
 
 * `docker pull minio/minio`
-* `docker run -p 9000:9000 -e "MINIO_ACCESS_KEY=test-1234" -e "MINIO_SECRET_KEY=test-1234" minio/minio server ./data`
+* `docker run -p 9000:9000 -e "MINIO_ACCESS_KEY=travis-build-key" -e "MINIO_SECRET_KEY=travis-build-secret" minio/minio server ./data`
 
-### Create a bucket in minio
+### Create and populate bucket in minio
 
-The following command uses `aws s3api` to create a bucket named `test-1234`
-
-```shell
-aws --profile minio --endpoint-url http://localhost:9000 s3api create-bucket --bucket test-1234 --region us-east-1
-```
-
-### Copying fixture data to minio
-
-The following command uses `aws s3` to copy the contents of `spec/fixtures/csv` recursively to a minio bucket named `test-1234`
-
-```shell
-aws --profile minio --endpoint-url http://localhost:9000 s3 cp spec/fixtures/csv s3://test-1234 --recursive --exclude ".DS_Store"
-```
-
-## AWS-CLI
-
-Update `~/.aws/credentials`
-
-```
-[minio]
-aws_access_key_id=test-1234
-aws_secret_access_key=test-1234
-```
-
-Update `~/.aws/config`
-
-```
-[profile minio]
-region=us-east-1
-```
-
-Export AWS_PROFILE environment variable with the `minio` profile, so the application can pick up the configuration.
-
-```shell
-export AWS_PROFILE=minio
-```
+just run `bundle exec rake s3:setup` , that creates a new bucket and populates it with our fixtures
 
 ## Running the Tests
 

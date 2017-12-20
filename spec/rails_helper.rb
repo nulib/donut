@@ -5,6 +5,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+require 'rake'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -62,6 +63,18 @@ RSpec.configure do |config|
 
   config.before(:each, type: :feature) do
     Warden.test_mode!
+  end
+
+  config.before(:suite) do
+    Rake.application.rake_require 'tasks/s3_tasks'
+    Rake::Task.define_task(:environment)
+    Rake::Task['s3:setup'].invoke
+  end
+
+  config.after(:suite) do
+    Rake.application.rake_require 'tasks/s3_tasks'
+    Rake::Task.define_task(:environment)
+    Rake::Task['s3:teardown'].invoke
   end
 
   config.after(:each, type: :feature) do

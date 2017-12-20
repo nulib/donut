@@ -9,7 +9,7 @@ services:
 
 before_install:
   - 'docker pull minio/minio'
-  - 'docker run -d -v ${TRAVIS_BUILD_DIR}/spec/fixtures/minio:/data -p 127.0.0.1:9000:9000 -e "MINIO_ACCESS_KEY=travis-build-key" -e "MINIO_SECRET_KEY=travis-build-secret" minio/minio server /data'
+  - 'docker run -d -p 127.0.0.1:9000:9000 -e "MINIO_ACCESS_KEY=travis-build-key" -e "MINIO_SECRET_KEY=travis-build-secret" minio/minio server /data'
   - 'gem update bundler'
 
 env:
