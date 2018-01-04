@@ -120,6 +120,11 @@ module Importer
         def file_spec(file_path)
           s3_object = resolve_file(file_path)
           url = s3_object.presigned_url(:get)
+          # Line 124 is ugly and very hacky, but it's much easier for us to change our scripts than upstream hyrax
+          # Hyrax encodes the URL here https://github.com/samvera/hyrax/blob/4fd8d9ad3c32db7deffc3b5246af5d1459a4b046/app/actors/hyrax/actors/create_with_remote_files_actor.rb#L53
+          # but the presigned url we get above is already encoded. So we're unencoding it here before we sent it to
+          # hyrax, where it will get encoded again. Not pretty, but it works
+          url = Addressable::URI.unencode(url)
           { url: url, file_size: s3_object.size }
         end
 
