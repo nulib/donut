@@ -15,6 +15,7 @@ RSpec.describe Importer::CSVParser do
       expect(first_record[:title]).to eq [
         'Knowing their lines: how social boundaries undermine equity-based integration policies in United States and South African schools'
       ]
+      expect(first_record[:admin_set_id]).to contain_exactly('admin_set/default')
       expect(first_record[:file]).to contain_exactly('files/coffee.jpg', 'files/nul.jpg')
       expect(first_record[:date_created]).to contain_exactly('2009-12')
       expect(first_record[:contributor]).to contain_exactly(
@@ -22,9 +23,9 @@ RSpec.describe Importer::CSVParser do
         a_hash_including(name: ['Caruthers, Jakeya']),
         a_hash_including(name: ['Perspectives in Education'])
       )
-      expect(first_record.keys).to match_array [:type, :title, :description,
-                                                :subject, :resource_type, :contributor,
-                                                :date_created, :file, :collection]
+      expect(first_record.keys).to contain_exactly(:type, :title, :description,
+                                                   :subject, :resource_type, :contributor,
+                                                   :date_created, :file, :collection, :admin_set_id)
     end
     # rubocop:enable RSpec/ExampleLength
   end

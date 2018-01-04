@@ -124,7 +124,7 @@ module Importer
         end
 
         def permitted_attributes
-          klass.properties.keys.map(&:to_sym) + [:id, :edit_users, :edit_groups, :read_groups, :visibility]
+          klass.properties.keys.map(&:to_sym) + [:admin_set_id, :id, :edit_users, :edit_groups, :read_groups, :visibility]
         end
     end
   end
