@@ -2,6 +2,7 @@
 #  `rails generate hyrax:work Image`
 class Image < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
+  include ::Schema::Administrative
   include MicroserviceMinter
 
   self.indexer = ImageIndexer
