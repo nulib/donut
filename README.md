@@ -37,7 +37,7 @@ To pull minio and stand it up, assuming you have docker installed:
 
 ### Create and populate bucket in minio
 
-just run `bundle exec rake s3:setup` , that creates a new bucket and populates it with our fixtures
+Run `bundle exec rake s3:setup`, which creates a new bucket and populates it with our fixtures. If you already have the bucket, then run `bundle exec rake s3:populate_bucket` to upload the fixture data to the bucket.
 
 ## Running the Tests
 
@@ -45,6 +45,12 @@ Run the test suite:
 
 ```sh
 $ rake donut:ci
+```
+
+You can run rubocop and the specs independently with:
+```sh
+$ rake donut:ci:rubocop
+$ rake donut:ci:rspec
 ```
 
 You may also want to run the Fedora and Solr servers in one window with:
