@@ -10,6 +10,7 @@ services:
 before_install:
   - 'docker pull minio/minio'
   - 'docker run -d -p 127.0.0.1:9000:9000 -e "MINIO_ACCESS_KEY=travis-build-key" -e "MINIO_SECRET_KEY=travis-build-secret" minio/minio server /data'
+  - 'gem update --system'
   - 'gem update bundler'
 
 env:
@@ -30,3 +31,4 @@ jdk:
 
 rvm:
   - 2.4.1
+  - 2.5
