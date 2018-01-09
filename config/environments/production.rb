@@ -1,4 +1,4 @@
-staging = false
+staging = true
 if ENV['STAGING_ENV'].present?
   require 'listen'
   require 'web_console'
