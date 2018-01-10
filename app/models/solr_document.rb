@@ -74,6 +74,30 @@ class SolrDocument
     fetch(Solrizer.solr_name('physical_description', :stored_searchable), [])
   end
 
+  def preservation_level
+    fetch(Solrizer.solr_name('preservation_level', :stored_searchable), [])
+  end
+
+  def project_cycle
+    fetch(Solrizer.solr_name('project_cycle', :stored_searchable), [])
+  end
+
+  def project_name
+    fetch(Solrizer.solr_name('project_name', :stored_searchable), [])
+  end
+
+  def project_description
+    fetch(Solrizer.solr_name('project_description', :stored_searchable), [])
+  end
+
+  def project_manager
+    fetch(Solrizer.solr_name('project_manager', :stored_searchable), [])
+  end
+
+  def proposer
+    fetch(Solrizer.solr_name('proposer', :stored_searchable), [])
+  end
+
   def provenance
     fetch(Solrizer.solr_name('provenance', :stored_searchable), [])
   end
@@ -86,8 +110,16 @@ class SolrDocument
     fetch(Solrizer.solr_name('rights_holder', :stored_searchable), [])
   end
 
+  def status
+    fetch(Solrizer.solr_name('status', :stored_searchable), [])
+  end
+
   def style_period
     fetch(Solrizer.solr_name('style_period', :stored_searchable), [])
+  end
+
+  def task_number
+    fetch(Solrizer.solr_name('task_number', :stored_searchable), [])
   end
 
   def technique

@@ -35,5 +35,14 @@ RSpec.describe Image do
   it { is_expected.to respond_to(:rights_holder) }
   it { is_expected.to respond_to(:style_period) }
   it { is_expected.to respond_to(:technique) }
+  # Administrative metadata
+  it { is_expected.to respond_to(:project_name) }
+  it { is_expected.to respond_to(:project_description) }
+  it { is_expected.to respond_to(:proposer) }
+  it { is_expected.to respond_to(:project_manager) }
+  it { is_expected.to respond_to(:task_number) }
+  it { is_expected.to respond_to(:preservation_level) }
+  it { is_expected.to respond_to(:project_cycle) }
+  it { is_expected.to respond_to(:status) }
 end
 # rubocop:enable Metrics/BlockLength

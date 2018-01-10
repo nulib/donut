@@ -12,7 +12,30 @@ RSpec.describe Hyrax::ImageForm do
     subject { form.terms }
 
     it 'contains fields that users should are allowed to edit' do
-      is_expected.to include(:resource_type, :abstract, :accession_number, :call_number, :caption, :catalog_key, :citation, :contributor_role, :creator_role, :genre, :provenance, :physical_description, :related_url_label, :rights_holder, :style_period, :technique)
+      is_expected.to include(:resource_type,
+                             :abstract,
+                             :accession_number,
+                             :call_number,
+                             :caption,
+                             :catalog_key,
+                             :citation,
+                             :contributor_role,
+                             :creator_role,
+                             :genre,
+                             :provenance,
+                             :physical_description,
+                             :related_url_label,
+                             :rights_holder,
+                             :style_period,
+                             :technique,
+                             :preservation_level,
+                             :status,
+                             :project_name,
+                             :project_description,
+                             :proposer,
+                             :project_manager,
+                             :task_number,
+                             :project_cycle)
     end
 
     it 'does not contain fields that users should not be allowed to edit' do
@@ -24,7 +47,7 @@ RSpec.describe Hyrax::ImageForm do
     subject { form.required_fields }
 
     it do
-      is_expected.to contain_exactly(:title, :date_created, :rights_statement)
+      is_expected.to contain_exactly(:title, :date_created, :rights_statement, :preservation_level, :status)
     end
   end
 
@@ -32,7 +55,14 @@ RSpec.describe Hyrax::ImageForm do
     subject { form.primary_terms }
 
     it do
-      is_expected.to include(:title, :date_created, :accession_number, :creator, :description)
+      is_expected.to contain_exactly(:title,
+                                     :date_created,
+                                     :accession_number,
+                                     :creator,
+                                     :description,
+                                     :rights_statement,
+                                     :preservation_level,
+                                     :status)
     end
   end
 end

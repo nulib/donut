@@ -7,10 +7,10 @@ module Vocab
     term :project_name
     term :project_description
     term :proposer
-    term :manager
+    term :project_manager
     term :task_number
     term :preservation_level
-    term :cycle
-    term :qr_status
+    term :project_cycle
+    term :status
   end
 end

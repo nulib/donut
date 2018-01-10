@@ -25,6 +25,7 @@ Metrics/BlockLength:
     - 'spec/lib/importer/factory/image_factory_spec.rb'
     - 'spec/lib/importer/csv_parser_spec.rb'
     - 'lib/tasks/s3_tasks.rake'
+    - 'spec/forms/hyrax/image_form_spec.rb'
 
 Metrics/ClassLength:
   Exclude:
@@ -92,3 +93,4 @@ RSpec/DescribeClass:
 RSpec/ExampleLength:
   Exclude:
     - 'spec/lib/importer/factory/image_factory_spec.rb'
+    - 'spec/forms/hyrax/image_form_spec.rb'

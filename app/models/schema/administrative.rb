@@ -48,13 +48,13 @@ module Schema
         index.as :stored_searchable, :facetable
       end
 
-      property :qr_status, predicate: ::Vocab::Donut.qr_status do |index|
+      property :status, predicate: ::Vocab::Donut.status do |index|
         index.as :stored_searchable, :facetable
       end
     end
 
     def mark_reviewed
-      self.qr_status = [REVIEWED_STRING]
+      self.status = [REVIEWED_STRING]
     end
 
     def mark_reviewed!
@@ -63,7 +63,7 @@ module Schema
     end
 
     def reviewed?
-      status.qr_include?(REVIEWED_STRING)
+      status.include?(REVIEWED_STRING)
     end
   end
 end

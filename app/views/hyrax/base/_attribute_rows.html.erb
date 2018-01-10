@@ -26,3 +26,11 @@
 <%= presenter.attribute_to_html(:source) %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:technique) %>
+<%= presenter.attribute_to_html(:preservation_level, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:status, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:project_name) %>
+<%= presenter.attribute_to_html(:project_description) %>
+<%= presenter.attribute_to_html(:proposer, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:project_manager, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:task_number) %>
+<%= presenter.attribute_to_html(:project_cycle, render_as: :faceted) %>
