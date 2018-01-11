@@ -55,7 +55,12 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('publisher', :facetable), limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('technique', :facetable), label: 'Technique', limit: 5
-    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
+    config.add_facet_field solr_name('member_of_collections', :symbol), label: 'Collections', limit: 5
+    config.add_facet_field solr_name('proposer', :facetable), label: 'Proposer', limit: 5
+    config.add_facet_field solr_name('project_manager', :facetable), label: 'Project Manager', limit: 5
+    config.add_facet_field solr_name('preservation_level', :facetable), label: 'Preservation Level', limit: 5
+    config.add_facet_field solr_name('project_cycle', :facetable), label: 'Project Cycle', limit: 5
+    config.add_facet_field solr_name('status', :facetable), label: 'Status', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -88,6 +93,13 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('identifier', :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'
     config.add_index_field solr_name('embargo_release_date', :stored_sortable, type: :date), label: 'Embargo release date', helper_method: :human_readable_date
     config.add_index_field solr_name('lease_expiration_date', :stored_sortable, type: :date), label: 'Lease expiration date', helper_method: :human_readable_date
+    # rubocop:disable Metrics/LineLength
+    config.add_index_field solr_name('preservation_level', :stored_searchable), label: 'Preservation level', link_to_search: solr_name('preservation_level', :facetable)
+    # rubocop:enable Metrics/LineLength
+    config.add_index_field solr_name('proposer', :stored_searchable), label: 'Proposer', link_to_search: solr_name('proposer', :facetable)
+    config.add_index_field solr_name('project_manager', :stored_searchable), label: 'Project manager', link_to_search: solr_name('project_manager', :facetable)
+    config.add_index_field solr_name('project_cycle', :stored_searchable), label: 'Project cycle', link_to_search: solr_name('project_cycle', :facetable)
+    config.add_index_field solr_name('status', :stored_searchable), label: 'Status', link_to_search: solr_name('status', :facetable)
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -107,6 +119,14 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('resource_type', :stored_searchable), label: 'Resource Type'
     config.add_show_field solr_name('format', :stored_searchable)
     config.add_show_field solr_name('identifier', :stored_searchable)
+    config.add_show_field solr_name('project_name', :stored_searchable)
+    config.add_show_field solr_name('project_description', :stored_searchable)
+    config.add_show_field solr_name('proposer', :stored_searchable)
+    config.add_show_field solr_name('project_manager', :stored_searchable)
+    config.add_show_field solr_name('task_number', :stored_searchable)
+    config.add_show_field solr_name('preservation_level', :stored_searchable)
+    config.add_show_field solr_name('project_cycle', :stored_searchable)
+    config.add_show_field solr_name('status', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

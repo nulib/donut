@@ -32,7 +32,15 @@ RSpec.describe SolrDocument do
       technique_tesim: ['Test title'],
       resource_type_tesim: ['Image'],
       rights_statement_tesim: ['test'],
-      member_of_collection_ids_ssim: ['1']
+      member_of_collection_ids_ssim: ['1'],
+      project_name_tesim: ['Project name'],
+      project_description_tesim: ['Description'],
+      proposer_tesim: ['Proposer'],
+      project_manager_tesim: ['Project manager'],
+      task_number_tesim: ['1'],
+      preservation_level_tesim: ['1'],
+      project_cycle_tesim: ['Project cycle 1'],
+      status_tesim: ['Reviewed']
     }
   end
 
