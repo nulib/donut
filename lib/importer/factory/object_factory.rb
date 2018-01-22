@@ -124,7 +124,9 @@ module Importer
           # Hyrax encodes the URL here https://github.com/samvera/hyrax/blob/4fd8d9ad3c32db7deffc3b5246af5d1459a4b046/app/actors/hyrax/actors/create_with_remote_files_actor.rb#L53
           # but the presigned url we get above is already encoded. So we're unencoding it here before we sent it to
           # hyrax, where it will get encoded again. Not pretty, but it works
-          url = Addressable::URI.unencode(url)
+          # 2018-1-22 Update: sort of a weird situation, but commenting out the 'unencode' below allows the URL to resolve on AWS, but not locally
+          # I'm going to leave it commented out for now, but this is an annoying environment mismatch we'll have to address later on
+          # url = Addressable::URI.unencode(url)
           { url: url, file_size: s3_object.size }
         end
 
