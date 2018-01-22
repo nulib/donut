@@ -126,7 +126,7 @@ module Importer
           # hyrax, where it will get encoded again. Not pretty, but it works
           # 2018-1-22 Update: sort of a weird situation, but commenting out the 'unencode' below allows the URL to resolve on AWS, but not locally
           # I'm going to leave it commented out for now, but this is an annoying environment mismatch we'll have to address later on
-          url = Addressable::URI.unencode(url) if Rails.env.development? || Rails.env.test?
+          url = Addressable::URI.unencode(url) unless Rails.env.production?
           { url: url, file_size: s3_object.size }
         end
 
