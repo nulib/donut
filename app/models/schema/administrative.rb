@@ -17,7 +17,7 @@ module Schema
   module Administrative
     extend ActiveSupport::Concern
 
-    REVIEWED_STRING = 'Reviewed'.freeze
+    REVIEWED_STATUS = 'Reviewed'.freeze
 
     included do
       property :project_name, predicate: ::Vocab::Donut.project_name do |index|
@@ -54,7 +54,7 @@ module Schema
     end
 
     def mark_reviewed
-      self.status = [REVIEWED_STRING]
+      self.status = [REVIEWED_STATUS]
     end
 
     def mark_reviewed!
@@ -63,7 +63,7 @@ module Schema
     end
 
     def reviewed?
-      status.include?(REVIEWED_STRING)
+      status.include?(REVIEWED_STATUS)
     end
   end
 end
