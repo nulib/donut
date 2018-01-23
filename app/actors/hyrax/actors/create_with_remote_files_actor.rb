@@ -50,7 +50,7 @@ module Hyrax
           remote_files.each do |file_info|
             next if file_info.blank? || file_info[:url].blank?
             # Escape any space characters, so that this is a legal URI
-            # uri = URI.parse(Addressable::URI.escape(file_info[:url]))
+            uri = URI.parse(file_info[:url])
             unless validate_remote_url(uri)
               Rails.logger.error "User #{env.user.user_key} attempted to ingest file from url #{file_info[:url]}, which doesn't pass validation"
               return false
