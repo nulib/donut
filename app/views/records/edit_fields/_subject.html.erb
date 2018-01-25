@@ -1,0 +1,19 @@
+<% subject_authorities = Hyrax::SubjectAuthorities.new %>
+
+<%=
+  f.input key,
+  as: :multi_value,
+  input_html: {
+    class: 'form-control',
+    data: { 'autocomplete-url' => "/authorities/search/loc/names",
+      'autocomplete' => key }
+  } ,
+  required: f.object.required?(key) %>
+
+  <%= f.input key,
+    input_html: {
+      class: 'form-control image_subject',
+      data: { 'authority-select' => "image_subject" }
+    },
+    collection: subject_authorities.select_active_options,
+    label: t('hyrax.records.edit_fields.subject') %>
