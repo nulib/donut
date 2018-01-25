@@ -13,6 +13,7 @@ AllCops:
     - 'vendor/**/*'
     - 'db/**/*'
     - 'tmp/**/*'
+    - 'app/actors/hyrax/actors/create_with_remote_files_actor.rb'
   ExtraDetails: true
   TargetRubyVersion: 2.2
 
