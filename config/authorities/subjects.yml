@@ -1,0 +1,16 @@
+terms:
+    - id: /authorities/search/loc/subjects
+      term: LCSH
+      active: true
+    - id: /authorities/search/assign_fast/all
+      term: FAST
+      active: true
+    - id: /authorities/search/getty/aat
+      term: AAT
+      active: true
+    - id: /authorities/search/getty/ulan
+      term: ULAN
+      active: true
+    - id: /authorities/search/loc/names
+      term: LCNAF
+      active: true
