@@ -1,0 +1,19 @@
+<% contributor_authorities = Hyrax::ContributorAuthorities.new %>
+
+<%=
+  f.input key,
+  as: :multi_value,
+  input_html: {
+    class: 'form-control',
+    data: { 'autocomplete-url' => "/authorities/search/loc/names",
+      'autocomplete' => key }
+  } ,
+  required: f.object.required?(key) %>
+
+  <%= f.input key,
+    input_html: {
+      class: 'form-control image_contributor',
+      data: { 'authority-select' => "image_contributor" }
+    },
+    collection: contributor_authorities.select_active_options,
+    label: t('hyrax.records.edit_fields.contributor') %>
