@@ -13,19 +13,18 @@
  *
  */
 
- /* ...
+/* ...
   *= require select2
   *= require jquery-ui
  */
 
- // NU branding styles
- @import "nuwebcomm/styles";
- @import "nuwebcomm/nuwebcomm_overrides";
+// NU branding styles
+@import 'nuwebcomm/styles';
+@import 'nuwebcomm/nuwebcomm_overrides';
 
- @import "donut/abstracts/bootstrap_variables";
- @import "hyrax";
- @import "openseadragon";
- @import "viewer";
+@import 'donut/abstracts/bootstrap_variables';
+@import 'hyrax';
+@import 'openseadragon';
 
- // NU Donut theme styles
- @import "donut/main";
+// NU Donut theme styles
+@import 'donut/main';

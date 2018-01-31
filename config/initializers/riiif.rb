@@ -5,24 +5,22 @@ Riiif::Image.info_service = lambda do |id, _file|
   # but we just want the id for the FileSet it's attached to.
 
   # Capture everything before the first slash
-  fs_id = id.sub(%r{\A([^\/]*)\/.*}, '\1')
+  fs_id = id.sub(/\A([^\/]*)\/.*/, '\1') # rubocop:disable Style/RegexpLiteral
   resp = ActiveFedora::SolrService.get("id:#{fs_id}")
   doc = resp['response']['docs'].first
   raise "Unable to find solr document with id:#{fs_id}" unless doc
   { height: doc['height_is'], width: doc['width_is'] }
 end
 
-def logger
-  Rails.logger
-end
-
 Riiif::Image.file_resolver.id_to_uri = lambda do |id|
   ActiveFedora::Base.id_to_uri(CGI.unescape(id)).tap do |url|
-    logger.info "Riiif resolved #{id} to #{url}"
+    Rails.logger.info "Riiif resolved #{id} to #{url}"
   end
 end
 
-Riiif.not_found_image = 'app/assets/images/us_404.svg'
-Riiif.unauthorized_image = 'app/assets/images/us_404.svg'
+Riiif::Image.authorization_service = Hyrax::IIIFAuthorizationService
+
+Riiif.not_found_image = Rails.root.join('app', 'assets', 'images', 'us_404.svg')
+Riiif.unauthorized_image = Rails.root.join('app', 'assets', 'images', 'us_404.svg')
 
 Riiif::Engine.config.cache_duration_in_days = 365

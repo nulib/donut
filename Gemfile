@@ -32,9 +32,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'iiif_manifest'
-gem 'riiif'
-
 gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
@@ -42,7 +39,6 @@ gem 'config'
 gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
-gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 
 group :test do
   gem 'database_cleaner'
@@ -107,3 +103,5 @@ end
 group :postgres, optional: true do
   gem 'pg'
 end
+
+gem 'riiif', '~> 1.1'

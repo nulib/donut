@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new
@@ -21,7 +22,6 @@ Rails.application.routes.draw do
   root 'hyrax/homepage#index'
   curation_concerns_basic_routes
   concern :exportable, Blacklight::Routes::Exportable.new
-  mount Riiif::Engine => '/images', as: 'riiif'
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
@@ -32,12 +32,6 @@ Rails.application.routes.draw do
 
     collection do
       delete 'clear'
-    end
-  end
-
-  curation_concerns_basic_routes do
-    member do
-      get :manifest
     end
   end
 
