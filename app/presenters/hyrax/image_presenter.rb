@@ -11,17 +11,5 @@ module Hyrax
                    :task_number, :preservation_level, :project_cycle, :status].freeze
 
     (TERMS + ADMIN_TERMS).uniq.each { |term| delegate term, to: :solr_document }
-
-    Hyrax::MemberPresenterFactory.file_presenter_class = ::FileSetPresenter
-
-    def manifest_url
-      manifest_helper.polymorphic_url([:manifest, self])
-    end
-
-    private
-
-      def manifest_helper
-        @manifest_helper ||= ManifestHelper.new(request.base_url)
-      end
   end
 end
