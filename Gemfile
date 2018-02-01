@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
+gem 'bootsnap', require: false
 gem 'config'
 gem 'ezid-client'
 gem 'hydra-role-management'
