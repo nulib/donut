@@ -40,7 +40,7 @@ module Schema
         index.as :stored_searchable
       end
 
-      property :preservation_level, predicate: ::Vocab::Donut.preservation_level do |index|
+      property :preservation_level, predicate: ::Vocab::Donut.preservation_level, multiple: false do |index|
         index.as :stored_searchable, :facetable
       end
 
