@@ -10,6 +10,6 @@
   } ,
   required: f.object.required?(key) %>
 
- <%=
-  select_tag "subject_authorities", options_for_select(subject_authorities.select_active_options), class: 'form-control image_subject', data: { 'authority-select' => "image_subject" }
+ <%= label_tag('subject_authorities', t('hyrax.records.edit_fields.subject')) %>
+ <%= select_tag "subject_authorities", options_for_select(subject_authorities.select_active_options), class: 'form-control image_subject', data: { 'authority-select' => "image_subject" }
   %>
