@@ -46,6 +46,7 @@ en:
     records:
       edit_fields:
         subject: "Select Authority For Subject"
+        contributor: "Select Authority For Contributor"
     product_name:           "Hyrax"
     product_twitter_handle: "@HydraSphere"
     institution_name:       "Institution"
