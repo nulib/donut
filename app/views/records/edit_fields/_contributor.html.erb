@@ -10,10 +10,13 @@
   } ,
   required: f.object.required?(key) %>
 
-  <%= f.input key,
-    input_html: {
-      class: 'form-control image_contributor',
-      data: { 'authority-select' => "image_contributor" }
-    },
-    collection: contributor_authorities.select_active_options,
-    label: t('hyrax.records.edit_fields.contributor') %>
+<%= label_tag('contributor_authorities',
+              t('hyrax.records.edit_fields.contributor.label'))
+%>
+
+<%= select_tag "contributor_authorities",
+                options_for_select(contributor_authorities.select_active_options),
+                class: 'form-control image_contributor',
+                data: { 'authority-select' => "image_contributor" },
+                prompt: t('hyrax.records.edit_fields.contributor.prompt')
+%>
