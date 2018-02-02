@@ -1,0 +1,12 @@
+/*
+ * Override: Reset li.attribute.status to the same state as other li.attribute elements
+ *
+ * Reason: Hyrax automatically applies "attribute" and attribute-name classes to each attribute
+ * line item, resulting in the Status attribute inheriting the .status padding and color styles
+ * in https://github.com/samvera/hyrax/blob/master/app/assets/stylesheets/hyrax/_file_sets.scss
+ */
+
+li.attribute.status {
+  padding: 0;
+  color: $rich-black-80;
+}
