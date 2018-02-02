@@ -689,8 +689,6 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
-    bootsnap (1.1.8)
-      msgpack (~> 1.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -1022,7 +1020,6 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
-    msgpack (1.2.2)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -1370,7 +1367,6 @@ DEPENDENCIES
   active_elastic_job!
   aws-sdk (~> 3)
   aws-sdk-rails
-  bootsnap
   byebug
   capybara (~> 2.13)
   carrierwave-aws
