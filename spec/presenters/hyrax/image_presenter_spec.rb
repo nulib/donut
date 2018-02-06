@@ -29,6 +29,6 @@ RSpec.describe Hyrax::ImagePresenter, type: :unit do
   it { expect(presenter.physical_description).to eq ['Wood 6cm x 7cm'] }
   it { expect(presenter.related_url_label).to eq ['Related Website'] }
   it { expect(presenter.rights_holder).to eq ['Northwestern University Libraries'] }
-  it { expect(presenter.style_period).to eq ['Renaissance'] }
+  it { expect(presenter.style_period_label).to eq ['Renaissance'] }
   it { expect(presenter.technique).to eq ['Gauche'] }
 end

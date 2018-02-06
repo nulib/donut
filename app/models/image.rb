@@ -74,7 +74,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :style_period, predicate: ::RDF::URI('http://purl.org/vra/StylePeriod'), multiple: true do |index|
+  property :style_period, predicate: ::RDF::URI('http://purl.org/vra/StylePeriod'), class_name: ControlledVocabularies::StylePeriod, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -85,4 +85,9 @@ class Image < ActiveFedora::Base
   # This must come after the WorkBehavior because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata
+
+  id_blank = proc { |attributes| attributes[:id].blank? }
+
+  self.controlled_properties += [:style_period]
+  accepts_nested_attributes_for :style_period, reject_if: id_blank, allow_destroy: true
 end
