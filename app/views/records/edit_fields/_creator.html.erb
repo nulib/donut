@@ -1,0 +1,22 @@
+<% creator_authorities = Hyrax::CreatorAuthorities.new %>
+
+<%=
+  f.input key,
+  as: :multi_value,
+  input_html: {
+    class: 'form-control',
+    data: { 'autocomplete-url' => "/authorities/search/loc/names",
+      'autocomplete' => key }
+  } ,
+  required: f.object.required?(key) %>
+
+<%= label_tag('creator_authorities',
+              t('hyrax.records.edit_fields.creator.label'))
+%>
+
+<%= select_tag "creator_authorities",
+                options_for_select(creator_authorities.select_active_options),
+                class: 'form-control image_creator',
+                data: { 'authority-select' => "image_creator" },
+                prompt: t('hyrax.records.edit_fields.creator.prompt')
+%>
