@@ -1,4 +1,4 @@
-if ENV['USE_AWS_SSM']
+if ENV['SSM_PARAM_PATH']
   require 'aws-sdk-ssm'
 
   def add_param_to_hash(hash, param, path)
@@ -26,6 +26,6 @@ if ENV['USE_AWS_SSM']
     result
   end
 
-  Settings.add_source!(aws_param_hash(path: "/#{Settings.name}/Settings"))
+  Settings.add_source!(aws_param_hash(path: "#{ENV['SSM_PARAM_PATH']}/Settings"))
   Settings.reload!
 end
