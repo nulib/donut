@@ -26,6 +26,8 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
+  attribute :style_period_label, Solr::Array, solr_name('style_period_label')
+
   def abstract
     fetch(Solrizer.solr_name('abstract', :stored_searchable), [])
   end

@@ -50,8 +50,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('language', :facetable), limit: 5
-    config.add_facet_field solr_name('style_period', :facetable), label: 'Style Period', limit: 5
-    config.add_facet_field solr_name('based_near_label', :facetable), limit: 5
+    config.add_facet_field solr_name('based_near_label', :facetable), label: 'Location', limit: 5
     config.add_facet_field solr_name('publisher', :facetable), limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('technique', :facetable), label: 'Technique', limit: 5
@@ -61,6 +60,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('preservation_level', :facetable), label: 'Preservation Level', limit: 5
     config.add_facet_field solr_name('project_cycle', :facetable), label: 'Project Cycle', limit: 5
     config.add_facet_field solr_name('status', :facetable), label: 'Status', limit: 5
+    config.add_facet_field solr_name('style_period_label', :facetable), label: 'Style Period', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -73,6 +73,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
+    # rubocop:disable Metrics/LineLength
     config.add_index_field solr_name('title', :stored_searchable), label: 'Title', itemprop: 'name', if: false
     config.add_index_field solr_name('description', :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
     config.add_index_field solr_name('keyword', :stored_searchable), itemprop: 'keywords', link_to_search: solr_name('keyword', :facetable)
@@ -82,7 +83,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('proxy_depositor', :symbol), label: 'Depositor', helper_method: :link_to_profile
     config.add_index_field solr_name('depositor'), label: 'Owner', helper_method: :link_to_profile
     config.add_index_field solr_name('publisher', :stored_searchable), itemprop: 'publisher', link_to_search: solr_name('publisher', :facetable)
-    config.add_index_field solr_name('based_near_label', :stored_searchable), itemprop: 'contentLocation', link_to_search: solr_name('based_near_label', :facetable)
+    config.add_index_field solr_name('based_near_label', :stored_searchable), label: 'Location', itemprop: 'contentLocation', link_to_search: solr_name('based_near_label', :facetable)
     config.add_index_field solr_name('language', :stored_searchable), itemprop: 'inLanguage', link_to_search: solr_name('language', :facetable)
     config.add_index_field solr_name('date_uploaded', :stored_sortable, type: :date), itemprop: 'datePublished', helper_method: :human_readable_date
     config.add_index_field solr_name('date_modified', :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date
@@ -93,13 +94,13 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('identifier', :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'
     config.add_index_field solr_name('embargo_release_date', :stored_sortable, type: :date), label: 'Embargo release date', helper_method: :human_readable_date
     config.add_index_field solr_name('lease_expiration_date', :stored_sortable, type: :date), label: 'Lease expiration date', helper_method: :human_readable_date
-    # rubocop:disable Metrics/LineLength
     config.add_index_field solr_name('preservation_level', :stored_searchable), label: 'Preservation level', link_to_search: solr_name('preservation_level', :facetable)
-    # rubocop:enable Metrics/LineLength
     config.add_index_field solr_name('proposer', :stored_searchable), label: 'Proposer', link_to_search: solr_name('proposer', :facetable)
     config.add_index_field solr_name('project_manager', :stored_searchable), label: 'Project manager', link_to_search: solr_name('project_manager', :facetable)
     config.add_index_field solr_name('project_cycle', :stored_searchable), label: 'Project cycle', link_to_search: solr_name('project_cycle', :facetable)
     config.add_index_field solr_name('status', :stored_searchable), label: 'Status', link_to_search: solr_name('status', :facetable)
+    config.add_index_field solr_name('style_period_label', :stored_searchable), label: 'Style Period', link_to_search: solr_name('style_period_label', :facetable)
+    # rubocop:enable Metrics/LineLength
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -127,6 +128,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('preservation_level', :stored_searchable)
     config.add_show_field solr_name('project_cycle', :stored_searchable)
     config.add_show_field solr_name('status', :stored_searchable)
+    config.add_show_field solr_name('style_period_label', :stored_searchable), label: 'Style Period'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -257,6 +259,15 @@ class CatalogController < ApplicationController
     config.add_search_field('based_near') do |field|
       field.label = 'Location'
       solr_name = solr_name('based_near_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('style_period') do |field|
+      field.label = 'Style Period'
+      solr_name = solr_name('style_period_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

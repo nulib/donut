@@ -14,5 +14,14 @@ module Hyrax
     def primary_terms
       [:title, :date_created, :rights_statement, :preservation_level, :status, :accession_number, :creator, :description]
     end
+
+    # not sure about this.
+    def self.build_permitted_params
+      super + [
+        {
+          style_period_attributes: [:id, :_destroy]
+        }
+      ]
+    end
   end
 end
