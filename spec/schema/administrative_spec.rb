@@ -13,5 +13,5 @@ RSpec.describe Schema::Administrative do
     end
   end
 
-  it_behaves_like 'a model with admin metadata attributes'
+  it_behaves_like 'a model with admin metadata'
 end
