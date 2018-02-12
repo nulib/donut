@@ -16,7 +16,7 @@
 <%= presenter.attribute_to_html(:genre_label, label: 'Genre') %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim') %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:language, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:language_label, render_as: :faceted, label: 'Language') %>
 <%= presenter.attribute_to_html(:physical_description, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :faceted) %>

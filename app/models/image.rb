@@ -2,7 +2,7 @@
 #  `rails generate hyrax:work Image`
 class Image < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
-  include ::Schema::Administrative
+  include ::Schemas::Administrative
   include MicroserviceMinter
 
   self.indexer = ImageIndexer
@@ -88,8 +88,11 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:style_period, :genre, :technique]
+  self.controlled_properties += [:language, :style_period, :genre, :technique]
   accepts_nested_attributes_for :style_period, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :genre, reject_if: id_blank, allow_destroy: true
+  accepts_nested_attributes_for :language, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :technique, reject_if: id_blank, allow_destroy: true
+
+  apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
 end

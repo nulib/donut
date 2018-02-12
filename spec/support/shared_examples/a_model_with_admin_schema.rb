@@ -1,6 +1,5 @@
-require 'hyrax/spec/matchers'
-
 # rubocop:disable Metrics/BlockLength
+
 RSpec.shared_examples 'a model with admin metadata' do
   it do
     is_expected
