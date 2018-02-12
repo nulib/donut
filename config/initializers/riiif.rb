@@ -18,6 +18,9 @@ Riiif::Image.file_resolver.id_to_uri = lambda do |id|
   end
 end
 
+Riiif::ImagemagickCommandFactory.external_command = 'gm convert'
+Riiif::ImageMagickInfoExtractor.external_command  = 'gm identify'
+
 Riiif::Image.authorization_service = Hyrax::IIIFAuthorizationService
 
 Riiif.not_found_image = Rails.root.join('app', 'assets', 'images', 'us_404.svg')
