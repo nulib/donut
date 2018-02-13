@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'hydra-derivatives', github: 'nulib/hydra-derivatives', branch: 'vips'
 gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
