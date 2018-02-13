@@ -14,11 +14,12 @@ class ImportUrlJob < Hyrax::ApplicationJob
     operation.pending_job(job)
   end
 
+  # rubocop:disable Rails/DynamicFindBy
   # @param [FileSet] file_set
   # @param [Hyrax::BatchCreateOperation] operation
   def perform(file_set, operation)
     operation.performing!
-    user = User.find_by(user_key: file_set.depositor)
+    user = User.find_by_user_key(file_set.depositor)
     uri = URI(file_set.import_url)
     # @todo Use Hydra::Works::AddExternalFileToFileSet instead of manually
     #       copying the file here. This will be gnarly.
@@ -38,6 +39,7 @@ class ImportUrlJob < Hyrax::ApplicationJob
       end
     end
   end
+  # rubocop:enable
 
   private
 
