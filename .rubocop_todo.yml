@@ -8,4 +8,6 @@
 
 # Offense count: 1
 Metrics/AbcSize:
+  Exclude:
+    - 'app/jobs/import_url_job.rb'
   Max: 16
