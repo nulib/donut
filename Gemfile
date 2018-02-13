@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
+gem 'hydra-derivatives', github: 'nulib/hydra-derivatives', branch: 'vips'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
