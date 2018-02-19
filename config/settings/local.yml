@@ -1,2 +1,4 @@
 fits:
   path: /usr/local/bin/fits
+ffmpeg:
+  path: ffmpeg
