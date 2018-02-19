@@ -4,7 +4,7 @@ module Hyrax
   class ImagePresenter < Hyrax::WorkShowPresenter
     TERMS = [:abstract, :accession_number, :alternate_title, :ark,
              :call_number, :caption, :catalog_key, :citation, :contributor_role,
-             :creator_role, :genre, :provenance, :physical_description,
+             :creator_role, :genre_label, :provenance, :physical_description,
              :related_url_label, :rights_holder, :style_period_label, :technique].freeze
 
     ADMIN_TERMS = [:project_name, :project_description, :proposer, :project_manager,

@@ -13,7 +13,7 @@
 <%= presenter.attribute_to_html(:creator_role) %>
 <%= presenter.attribute_to_html(:date_created, render_as: :linked, search_field: 'date_created_tesim') %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link) %>
-<%= presenter.attribute_to_html(:genre) %>
+<%= presenter.attribute_to_html(:genre_label, label: 'Genre') %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim') %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:language, render_as: :faceted) %>

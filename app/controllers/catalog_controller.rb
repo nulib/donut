@@ -46,7 +46,6 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('creator_role', :facetable), label: 'Creator Role', limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('contributor_role', :facetable), label: 'Contributor Role', limit: 5
-    config.add_facet_field solr_name('genre', :facetable), label: 'Genre', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('language', :facetable), limit: 5
@@ -61,6 +60,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('project_cycle', :facetable), label: 'Project Cycle', limit: 5
     config.add_facet_field solr_name('status', :facetable), label: 'Status', limit: 5
     config.add_facet_field solr_name('style_period_label', :facetable), label: 'Style Period', limit: 5
+    config.add_facet_field solr_name('genre_label', :facetable), label: 'Genre', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -100,6 +100,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('project_cycle', :stored_searchable), label: 'Project cycle', link_to_search: solr_name('project_cycle', :facetable)
     config.add_index_field solr_name('status', :stored_searchable), label: 'Status', link_to_search: solr_name('status', :facetable)
     config.add_index_field solr_name('style_period_label', :stored_searchable), label: 'Style Period', link_to_search: solr_name('style_period_label', :facetable)
+    config.add_index_field solr_name('genre_label', :stored_searchable), label: 'Genre', link_to_search: solr_name('genre_label', :facetable)
     # rubocop:enable Metrics/LineLength
 
     # solr fields to be displayed in the show (single result) view
@@ -129,6 +130,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('project_cycle', :stored_searchable)
     config.add_show_field solr_name('status', :stored_searchable)
     config.add_show_field solr_name('style_period_label', :stored_searchable), label: 'Style Period'
+    config.add_show_field solr_name('genre_label', :stored_searchable), label: 'Genre'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -268,6 +270,15 @@ class CatalogController < ApplicationController
     config.add_search_field('style_period') do |field|
       field.label = 'Style Period'
       solr_name = solr_name('style_period_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('genre') do |field|
+      field.label = 'Genre'
+      solr_name = solr_name('genre_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
