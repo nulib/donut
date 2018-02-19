@@ -19,7 +19,8 @@ module Hyrax
     def self.build_permitted_params
       super + [
         {
-          style_period_attributes: [:id, :_destroy]
+          style_period_attributes: [:id, :_destroy],
+          genre_attributes: [:id, :_destroy]
         }
       ]
     end

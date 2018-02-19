@@ -54,7 +54,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :genre, predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'), multiple: true do |index|
+  property :genre, predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'), class_name: ControlledVocabularies::Genre, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -88,6 +88,7 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:style_period]
+  self.controlled_properties += [:style_period, :genre]
   accepts_nested_attributes_for :style_period, reject_if: id_blank, allow_destroy: true
+  accepts_nested_attributes_for :genre, reject_if: id_blank, allow_destroy: true
 end

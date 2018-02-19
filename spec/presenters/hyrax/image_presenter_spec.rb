@@ -24,7 +24,7 @@ RSpec.describe Hyrax::ImagePresenter, type: :unit do
   it { expect(presenter.citation).to eq ['Test'] }
   it { expect(presenter.contributor_role).to eq ['Joanne	Howell'] }
   it { expect(presenter.creator_role).to eq ['http://id.loc.gov/vocabulary/relators/ill.html'] }
-  it { expect(presenter.genre).to eq ['Postmodern'] }
+  it { expect(presenter.genre_label).to eq ['Postmodern'] }
   it { expect(presenter.provenance).to eq ['The example provenance'] }
   it { expect(presenter.physical_description).to eq ['Wood 6cm x 7cm'] }
   it { expect(presenter.related_url_label).to eq ['Related Website'] }
