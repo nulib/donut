@@ -61,6 +61,9 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('status', :facetable), label: 'Status', limit: 5
     config.add_facet_field solr_name('style_period_label', :facetable), label: 'Style Period', limit: 5
     config.add_facet_field solr_name('genre_label', :facetable), label: 'Genre', limit: 5
+    config.add_facet_field solr_name('nul_creator', :facetable), label: 'NUL Creator', limit: 5
+    config.add_facet_field solr_name('nul_subject', :facetable), label: 'NUL Subject', limit: 5
+    config.add_facet_field solr_name('nul_contributor', :facetable), label: 'NUL Contributor', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile

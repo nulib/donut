@@ -21,6 +21,9 @@ FactoryBot.define do
     rights_holder ['Northwestern University Libraries']
     style_period ['Renaissance']
     technique ['Gauche']
+    nul_creator ['Willie Wildcat']
+    nul_subject ['Just Northwestern Things']
+    nul_contributor ['ContribCat']
 
     transient do
       user { FactoryBot.create(:user) }

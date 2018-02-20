@@ -76,6 +76,18 @@ class SolrDocument
     fetch(Solrizer.solr_name('genre', :stored_searchable), [])
   end
 
+  def nul_contributor
+    fetch(Solrizer.solr_name('nul_contributor', :stored_searchable), [])
+  end
+
+  def nul_creator
+    fetch(Solrizer.solr_name('nul_creator', :stored_searchable), [])
+  end
+
+  def nul_subject
+    fetch(Solrizer.solr_name('nul_subject', :stored_searchable), [])
+  end
+
   def physical_description
     fetch(Solrizer.solr_name('physical_description', :stored_searchable), [])
   end
