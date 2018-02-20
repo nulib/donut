@@ -20,7 +20,8 @@ module Hyrax
       super + [
         {
           style_period_attributes: [:id, :_destroy],
-          genre_attributes: [:id, :_destroy]
+          genre_attributes: [:id, :_destroy],
+          technique_attributes: [:id, :_destroy]
         }
       ]
     end

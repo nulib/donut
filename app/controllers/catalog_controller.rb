@@ -52,7 +52,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('based_near_label', :facetable), label: 'Location', limit: 5
     config.add_facet_field solr_name('publisher', :facetable), limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
-    config.add_facet_field solr_name('technique', :facetable), label: 'Technique', limit: 5
+    config.add_facet_field solr_name('technique_label', :facetable), label: 'Technique', limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), label: 'Collections', limit: 5
     config.add_facet_field solr_name('proposer', :facetable), label: 'Proposer', limit: 5
     config.add_facet_field solr_name('project_manager', :facetable), label: 'Project Manager', limit: 5
@@ -101,6 +101,8 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('status', :stored_searchable), label: 'Status', link_to_search: solr_name('status', :facetable)
     config.add_index_field solr_name('style_period_label', :stored_searchable), label: 'Style Period', link_to_search: solr_name('style_period_label', :facetable)
     config.add_index_field solr_name('genre_label', :stored_searchable), label: 'Genre', link_to_search: solr_name('genre_label', :facetable)
+    config.add_index_field solr_name('technique_label', :stored_searchable), label: 'Technique', link_to_search: solr_name('technique_label', :facetable)
+    config.add_index_field solr_name('physical_description', :stored_searchable), label: 'Physical Description', link_to_search: solr_name('physical_description_label', :facetable)
     # rubocop:enable Metrics/LineLength
 
     # solr fields to be displayed in the show (single result) view
@@ -131,6 +133,8 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('status', :stored_searchable)
     config.add_show_field solr_name('style_period_label', :stored_searchable), label: 'Style Period'
     config.add_show_field solr_name('genre_label', :stored_searchable), label: 'Genre'
+    config.add_show_field solr_name('technique_label', :stored_searchable), label: 'Technique'
+    config.add_show_field solr_name('physical_description', :stored_searchable), label: 'Physical Description'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -270,6 +274,15 @@ class CatalogController < ApplicationController
     config.add_search_field('style_period') do |field|
       field.label = 'Style Period'
       solr_name = solr_name('style_period_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('technique') do |field|
+      field.label = 'Technique'
+      solr_name = solr_name('technique_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

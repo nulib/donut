@@ -23,10 +23,16 @@ export default class Autocomplete {
           element,
           url)
         break
+      case 'based_near':
+        new LinkedData(element, url)
+        break
+      case 'genre':
+        new LinkedData(element, url)
+        break
       case 'style_period':
         new LinkedData(element, url)
         break
-      case 'based_near':
+      case 'technique':
         new LinkedData(element, url)
         break
       default:
