@@ -3,7 +3,7 @@
 module Hyrax
   class ImagePresenter < Hyrax::WorkShowPresenter
     TERMS = [:abstract, :accession_number, :alternate_title, :ark,
-             :call_number, :caption, :catalog_key, :citation, :contributor_role,
+             :call_number, :caption, :catalog_key, :citation, :contributor_role_label,
              :creator_role, :genre_label, :language_label, :provenance, :physical_description,
              :related_url_label, :rights_holder, :style_period_label, :technique_label].freeze
 

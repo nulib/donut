@@ -45,7 +45,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('creator', :facetable), limit: 5
     config.add_facet_field solr_name('creator_role', :facetable), label: 'Creator Role', limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
-    config.add_facet_field solr_name('contributor_role', :facetable), label: 'Contributor Role', limit: 5
+    config.add_facet_field solr_name('contributor_role_label', :facetable), label: 'Contributor Role', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('language_label', :facetable), label: 'Language', limit: 5
@@ -102,7 +102,8 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('style_period_label', :stored_searchable), label: 'Style Period', link_to_search: solr_name('style_period_label', :facetable)
     config.add_index_field solr_name('genre_label', :stored_searchable), label: 'Genre', link_to_search: solr_name('genre_label', :facetable)
     config.add_index_field solr_name('technique_label', :stored_searchable), label: 'Technique', link_to_search: solr_name('technique_label', :facetable)
-    config.add_index_field solr_name('physical_description', :stored_searchable), label: 'Physical Description', link_to_search: solr_name('physical_description_label', :facetable)
+    config.add_index_field solr_name('physical_description', :stored_searchable), label: 'Physical Description', link_to_search: solr_name('physical_description', :facetable)
+    config.add_index_field solr_name('contributor_role_label', :stored_searchable), label: 'Contributor Role', link_to_search: solr_name('contributor_role_label', :facetable)
     # rubocop:enable Metrics/LineLength
 
     # solr fields to be displayed in the show (single result) view
@@ -135,6 +136,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('genre_label', :stored_searchable), label: 'Genre'
     config.add_show_field solr_name('technique_label', :stored_searchable), label: 'Technique'
     config.add_show_field solr_name('physical_description', :stored_searchable), label: 'Physical Description'
+    config.add_show_field solr_name('contributor_role_label', :stored_searchable), label: 'Contributor Role'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
