@@ -78,7 +78,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :technique, predicate: ::RDF::URI('http://purl.org/vra/Technique'), multiple: true do |index|
+  property :technique, predicate: ::RDF::URI('http://purl.org/vra/Technique'), class_name: ControlledVocabularies::Technique, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -88,7 +88,8 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:style_period, :genre]
+  self.controlled_properties += [:style_period, :genre, :technique]
   accepts_nested_attributes_for :style_period, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :genre, reject_if: id_blank, allow_destroy: true
+  accepts_nested_attributes_for :technique, reject_if: id_blank, allow_destroy: true
 end
