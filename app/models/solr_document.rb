@@ -27,6 +27,7 @@ class SolrDocument
   use_extension(Hydra::ContentNegotiation)
 
   attribute :language_label, Solr::Array, solr_name('language_label')
+  attribute :contributor_role_label, Solr::Array, solr_name('contributor_role_label')
   attribute :style_period_label, Solr::Array, solr_name('style_period_label')
   attribute :genre_label, Solr::Array, solr_name('genre_label')
   attribute :technique_label, Solr::Array, solr_name('technique_label')

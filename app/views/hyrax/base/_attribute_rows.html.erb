@@ -7,7 +7,7 @@
 <%= presenter.attribute_to_html(:catalog_key) %>
 <%= presenter.attribute_to_html(:citation) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:contributor_role) %>
+<%= presenter.attribute_to_html(:contributor_role_label, render_as: :faceted, label: 'Contributor Role') %>
 <%= presenter.attribute_to_html(:creator, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:creator_attribution) %>
 <%= presenter.attribute_to_html(:creator_role) %>
