@@ -35,7 +35,10 @@ RSpec.describe Hyrax::ImageForm do
                              :proposer,
                              :project_manager,
                              :task_number,
-                             :project_cycle)
+                             :project_cycle,
+                             :nul_creator,
+                             :nul_subject,
+                             :nul_contributor)
     end
 
     it 'does not contain fields that users should not be allowed to edit' do

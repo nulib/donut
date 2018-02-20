@@ -40,7 +40,10 @@ RSpec.describe SolrDocument do
       task_number_tesim: ['1'],
       preservation_level_tesim: ['1'],
       project_cycle_tesim: ['Project cycle 1'],
-      status_tesim: ['Reviewed']
+      status_tesim: ['Reviewed'],
+      nul_creator_tesim: ['Willie Wildcat'],
+      nul_subject_tesim: ['Just Northwestern Things'],
+      nul_contributor_tesim: ['ContribCat']
     }
   end
 

@@ -16,4 +16,7 @@ RSpec.shared_examples 'a model with image metadata' do
   it { is_expected.to have_editable_property(:rights_holder, RDF::Vocab::DC.rightsHolder) }
   it { is_expected.to have_editable_property(:style_period, 'http://purl.org/vra/StylePeriod') }
   it { is_expected.to have_editable_property(:technique, 'http://purl.org/vra/Technique') }
+  it { is_expected.to have_editable_property(:nul_creator, Vocab::Donut.has_creator) }
+  it { is_expected.to have_editable_property(:nul_subject, Vocab::Donut.has_subject) }
+  it { is_expected.to have_editable_property(:nul_contributor, Vocab::Donut.has_contributor) }
 end
