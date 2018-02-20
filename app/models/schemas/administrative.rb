@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Schema
+module Schemas
   ##
   # Schema for Donut administrative metadata
   #
@@ -8,7 +8,7 @@ module Schema
   #
   #   class WorkType < ActiveFedora::Base
   #     include ::Hyrax::WorkBehavior
-  #     include ::Schema::Administrative
+  #     include ::Schemas::Administrative
   #     include ::Hyrax::BasicMetadata
   #   end
   #
