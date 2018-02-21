@@ -12,8 +12,7 @@ module Vocab
     term :preservation_level
     term :project_cycle
     term :status
-    term :creator
-    term :subject
-    term :contributor
+    term :hasCreator
+    term :hasContributor
   end
 end

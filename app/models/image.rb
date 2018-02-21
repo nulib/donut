@@ -84,15 +84,15 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :nul_creator, predicate: ::Vocab::Donut.has_creator, multiple: true do |index|
+  property :nul_creator, predicate: ::Vocab::Donut.hasCreator, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
-  property :nul_subject, predicate: ::Vocab::Donut.has_subject, multiple: true do |index|
+  property :nul_subject, predicate: ::RDF::Vocab::DC.subject, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
-  property :nul_contributor, predicate: ::Vocab::Donut.has_contributor, multiple: true do |index|
+  property :nul_contributor, predicate: ::Vocab::Donut.hasContributor, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
