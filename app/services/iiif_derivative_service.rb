@@ -1,11 +1,11 @@
 class IiifDerivativeService
   class << self
     def s3?
-      return !(Settings&.aws&.buckets&.pyramids.nil?)
+      Settings.aws && Settings.aws.buckets && !Settings.aws.buckets.pyramids.nil?
     end
 
     def derivative_path_for(file_id)
-      Hyrax::DerivativePath.derivative_path_for_reference(file_part_of(file_id), 'pyramid').sub!(/pyramid$/,'tif')
+      Hyrax::DerivativePath.derivative_path_for_reference(file_part_of(file_id), 'pyramid').sub!(/pyramid$/, 'tif')
     end
 
     def s3_key_for(file_id)
