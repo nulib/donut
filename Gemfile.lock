@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/damireh/active-elastic-job.git
-  revision: bb4bb2ae4e624e59da96dd90325be0537b1f0660
+  remote: https://github.com/nulib/active-elastic-job.git
+  revision: 091d87d0151a68b99fb815a099089990cb3e532b
   branch: latest-aws-sdk
   specs:
     active_elastic_job (2.0.1)

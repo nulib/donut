@@ -89,7 +89,7 @@ group :development, :test do
 end
 
 group :aws, :test do
-  gem 'active_elastic_job', github: 'damireh/active-elastic-job', branch: 'latest-aws-sdk'
+  gem 'active_elastic_job', github: 'nulib/active-elastic-job', branch: 'latest-aws-sdk'
 end
 
 group :aws do
