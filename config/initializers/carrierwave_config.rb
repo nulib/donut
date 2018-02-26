@@ -1,9 +1,9 @@
 require 'carrierwave'
 
-if Settings.s3.upload_bucket
+if Settings.aws.buckets.upload
   CarrierWave.configure do |config|
     config.storage = :aws
-    config.aws_bucket = Settings.s3.upload_bucket
+    config.aws_bucket = Settings.aws.buckets.upload
     config.aws_acl = 'bucket-owner-full-control'
   end
 end

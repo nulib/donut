@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   mount BrowseEverything::Engine => '/browse'
-  mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new

@@ -19,6 +19,7 @@ Hyrax.config do |config|
   # Text prefacing the subject entered in the contact form
   # config.subject_prefix = "Contact form:"
 
+  config.realtime_notifications = false
   # How many notifications should be displayed on the dashboard
   # config.max_notifications_for_dashboard = 5
 
@@ -111,20 +112,19 @@ Hyrax.config do |config|
   #   * iiif_image_size_default
   #
   # Default is false
-  config.iiif_image_server = false
+  config.iiif_image_server = true
 
   # Returns a URL that resolves to an image provided by a IIIF image server
-  config.iiif_image_url_builder = lambda do |file_id, base_url, size|
-    Riiif::Engine.routes.url_helpers.image_url(file_id, host: base_url, size: size)
+  config.iiif_image_url_builder = lambda do |file_id, _base_url, size|
+    IiifDerivativeService.resolve(file_id, extra_path: "/full/#{size}/0/default.jpg")
   end
   # config.iiif_image_url_builder = lambda do |file_id, base_url, size|
   #   "#{base_url}/downloads/#{file_id.split('/').first}"
   # end
 
   # Returns a URL that resolves to an info.json file provided by a IIIF image server
-  config.iiif_info_url_builder = lambda do |file_id, base_url|
-    uri = Riiif::Engine.routes.url_helpers.info_url(file_id, host: base_url)
-    uri.sub(%r{/info\.json\Z}, '')
+  config.iiif_info_url_builder = lambda do |file_id, _base_url|
+    IiifDerivativeService.resolve(file_id)
   end
   # config.iiif_info_url_builder = lambda do |_, _|
   #   ""
@@ -153,7 +153,7 @@ Hyrax.config do |config|
   #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
   #  config.cache_path = ->() { Rails.root + 'tmp' + 'uploads' + 'cache' }
   config.upload_path = lambda {
-    Pathname(Settings.upload_path || (Settings.s3.upload_bucket ? 'uploads' : Rails.root + 'tmp' + 'uploads'))
+    Pathname(Settings.upload_path || (Settings.aws.buckets.upload ? 'uploads' : Rails.root + 'tmp' + 'uploads'))
   }
 
   # Location on local file system where derivatives will be stored
@@ -236,3 +236,5 @@ Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
 # Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
+
+Hyrax::DerivativeService.services = [Donut::FileSetDerivativesService]
