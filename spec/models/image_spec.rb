@@ -8,5 +8,5 @@ RSpec.describe Image do
   it_behaves_like 'a model with admin metadata'
   it_behaves_like 'a model with image metadata'
   it_behaves_like 'a model with nul core metadata'
-  it_behaves_like 'a model with hyrax basic metadata', except: :language
+  it_behaves_like 'a model with hyrax basic metadata', except: [:keyword, :language]
 end
