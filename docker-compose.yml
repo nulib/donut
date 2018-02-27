@@ -1,0 +1,45 @@
+version: '2'
+
+volumes:
+  fedora:
+  solr:
+  minio:
+
+services:
+  fedora:
+    image: nulib/fcrepo4
+    volumes:
+      - fedora:/data
+    ports:
+      - "8984:8080"
+  solr:
+    image: solr:7.2-alpine
+    ports:
+      - "8983:8983"
+    volumes:
+      - solr:/opt/solr/server/solr/mycores
+      - ./solr:/solr_config
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - hydra-development
+      - /solr_config/config
+  cantaloupe:
+    image: nulib/cantaloupe
+    ports:
+      - "8182:8182"
+    volumes:
+      - ./tmp/derivatives:/var/lib/cantaloupe/images
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - minio:/data
+    environment:
+      MINIO_ACCESS_KEY: minio-dev-key
+      MINIO_SECRET_KEY: minio-dev-secret
+    command:
+      - minio
+      - server
+      - /data

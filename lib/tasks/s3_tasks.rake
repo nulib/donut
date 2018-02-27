@@ -1,12 +1,15 @@
 
 namespace :s3 do
-  desc 'Generate S3 bucket for dev/staging'
-  task generate_bucket: :environment do
-    Aws::S3::Client.new.create_bucket(bucket: Settings.aws.buckets.batch)
+  desc 'Create all configured S3 buckets'
+  task create_buckets: :environment do
+    client = Aws::S3::Client.new
+    Settings.aws.buckets.values.each do |bucket|
+      client.create_bucket(bucket: bucket)
+    end
   end
 
-  desc 'populate s3 buckets with test data'
-  task populate_bucket: :environment do
+  desc 'Populate S3 batch bucket with test data'
+  task populate_batch_bucket: :environment do
     s3 = Aws::S3::Resource.new
     Dir.chdir('spec/fixtures/csv')
     Dir.glob('**/*').each do |file|
@@ -16,29 +19,33 @@ namespace :s3 do
     end
   end
 
-  desc 'create and populate a s3 bucket with test data'
+  desc 'Create buckets and populate with test batch data'
   task :setup do
-    Rake::Task['s3:generate_bucket'].invoke
-    Rake::Task['s3:populate_bucket'].invoke
+    Rake::Task['s3:create_buckets'].invoke
+    Rake::Task['s3:populate_batch_bucket'].invoke
   end
 
-  desc 'removes files from s3 bucket'
-  task empty_bucket: :environment do
+  desc 'Empty configured S3 buckets'
+  task empty_buckets: :environment do
     client = Aws::S3::Client.new
-    objs = client.list_objects_v2(bucket: Settings.aws.buckets.batch)
-    objs.contents.each do |obj|
-      client.delete_object(bucket: Settings.aws.buckets.batch, key: obj.key)
+    Settings.aws.buckets.values.each do |bucket|
+      objs = client.list_objects_v2(bucket: bucket)
+      objs.contents.each do |obj|
+        client.delete_object(bucket: bucket, key: obj.key)
+      end
     end
   end
 
-  desc 'deletes an empty bucket'
-  task delete_bucket: :environment do
-    Aws::S3::Client.new.delete_bucket(bucket: Settings.aws.buckets.batch)
+  desc 'Delete configured S3 buckets'
+  task delete_buckets: :environment do
+    Settings.aws.buckets.values.each do |bucket|
+      Aws::S3::Client.new.delete_bucket(bucket: bucket)
+    end
   end
 
-  desc 'empties and deletes the test bucket'
+  desc 'Empty and delete the batch bucket'
   task :teardown do
-    Rake::Task['s3:empty_bucket'].invoke
-    Rake::Task['s3:delete_bucket'].invoke
+    Rake::Task['s3:empty_buckets'].invoke
+    Rake::Task['s3:delete_buckets'].invoke
   end
 end
