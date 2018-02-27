@@ -19,7 +19,6 @@ solr:
 zookeeper:
   connection_str: "localhost:9983/configs"
 geonames_username: ''
-s3: {}
 fits: {}
 microservices: {}
 aws: {}

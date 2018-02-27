@@ -3,4 +3,6 @@ aws:
   region: us-east-1
   aws_access_key_id: travis-build-key
   aws_secret_key_id: travis-build-secret
-  bucket: development-bucket
+  buckets:
+    batch:    development-bucket
+    uploads:  development-bucket
