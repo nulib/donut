@@ -10,6 +10,12 @@ unless Rails.env.production?
       t.rspec_opts = ['--color', '--backtrace']
     end
 
+    desc 'Run all Continuous Integration tests'
+    task ci: :environment do
+      Rake::Task['donut:ci:rubocop'].invoke
+      Rake::Task['donut:ci:rspec'].invoke
+    end
+
     namespace :ci do
       desc 'Execute Continuous Integration build'
       task rspec: :environment do

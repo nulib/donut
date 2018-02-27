@@ -24,22 +24,21 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Install dependencies: `bundle install`
 * Setup the database: `rake db:migrate`
 * Generate roles: `rake generate_roles`
-* Run `fcrepo_wrapper` and `solr_wrapper` in separate tabs to start solr and fedora
+* Run `docker-compose up` in a separate tab to start solr, fedora, cantaloupe, and minio.
 * Create the default admin set: `rake hyrax:default_admin_set:create`
 * Load the workflows in `config/workflows`: `rake hyrax:workflow:load`
 
-## Minio
-
-To pull minio and stand it up, assuming you have docker installed:
-
-* `docker pull minio/minio`
-* `docker run -p 9000:9000 -e "MINIO_ACCESS_KEY=travis-build-key" -e "MINIO_SECRET_KEY=travis-build-secret" minio/minio server ./data`
-
 ### Create and populate bucket in minio
 
-Run `bundle exec rake s3:setup`, which creates a new bucket and populates it with our fixtures. If you already have the bucket, then run `bundle exec rake s3:populate_bucket` to upload the fixture data to the bucket.
+Run `bundle exec rake s3:setup`, which creates a new bucket and populates it with our fixtures. If you already have the bucket, then run `bundle exec rake s3:populate_batch_bucket` to upload the fixture data to the bucket.
 
 ## Running the Tests
+
+Start minio on its own in a separate tab:
+
+```sh
+$ docker-compose up minio
+```
 
 Run the test suite:
 
@@ -48,6 +47,7 @@ $ rake donut:ci
 ```
 
 You can run rubocop and the specs independently with:
+
 ```sh
 $ rake donut:ci:rubocop
 $ rake donut:ci:rspec

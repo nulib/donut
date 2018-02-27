@@ -1,8 +1,8 @@
 aws:
   endpoint: http://127.0.0.1:9000
   region: us-east-1
-  aws_access_key_id: travis-build-key
-  aws_secret_key_id: travis-build-secret
+  aws_access_key_id: minio-dev-key
+  aws_secret_key_id: minio-dev-secret
   buckets:
-    batch:   test-bucket
-    uploads: test-bucket
+    batch:   test-batch
+    uploads: test-uploads

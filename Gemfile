@@ -104,5 +104,3 @@ end
 group :postgres, optional: true do
   gem 'pg'
 end
-
-gem 'riiif', '~> 1.1'
