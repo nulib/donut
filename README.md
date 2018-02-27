@@ -38,7 +38,6 @@ Start minio on its own in a separate tab:
 
 ```sh
 $ docker-compose up minio
-$ bundle exec rake s3:setup RAILS_ENV=test
 ```
 
 Run the test suite:
@@ -48,6 +47,7 @@ $ rake donut:ci
 ```
 
 You can run rubocop and the specs independently with:
+
 ```sh
 $ rake donut:ci:rubocop
 $ rake donut:ci:rspec
