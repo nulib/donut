@@ -24,13 +24,12 @@ module ControlledVocabularies
 
       def correct_uri_for(id)
         return if id.nil?
-        return_type = id.class
         value = case id.to_s
                 when /^info:lc(.+)$/ then "http://id.loc.gov#{Regexp.last_match(1)}"
                 when /^fst(.+)$/ then "http://id.worldcat.org/fast/#{Regexp.last_match(1)}"
                 else id
                 end
-        return_type.new(value)
+        ::RDF::URI(value)
       end
   end
 end
