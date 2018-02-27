@@ -26,7 +26,6 @@ RSpec.describe SolrDocument do
       genre_tesim: ['Postmodern'],
       provenance: ['The example provenance'],
       physical_description_tesim: ['Wood 6cm x 7cm'],
-      related_url_label_tesim: ['Related Website'],
       rights_holder_tesim: ['Northwestern University Libraries'],
       style_period_tesim: ['Renaissance'],
       technique_tesim: ['Test title'],

@@ -24,7 +24,6 @@ RSpec.describe Hyrax::ImageForm do
                              :genre,
                              :provenance,
                              :physical_description,
-                             :related_url_label,
                              :rights_holder,
                              :style_period,
                              :technique,

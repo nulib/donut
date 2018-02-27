@@ -68,10 +68,6 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :related_url_label, predicate: ::RDF::RDFS.label, multiple: true do |index|
-    index.as :stored_searchable
-  end
-
   property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: true do |index|
     index.as :stored_searchable
   end
