@@ -120,10 +120,6 @@ class SolrDocument
     fetch(Solrizer.solr_name('provenance', :stored_searchable), [])
   end
 
-  def related_url_label
-    fetch(Solrizer.solr_name('related_url_label', :stored_searchable), [])
-  end
-
   def rights_holder
     fetch(Solrizer.solr_name('rights_holder', :stored_searchable), [])
   end

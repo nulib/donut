@@ -17,7 +17,6 @@ FactoryBot.define do
     genre ['Postmodern']
     provenance ['The example provenance']
     physical_description ['Wood 6cm x 7cm']
-    related_url_label ['Related Website']
     rights_holder ['Northwestern University Libraries']
     style_period ['Renaissance']
     technique ['Gauche']

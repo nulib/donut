@@ -5,7 +5,7 @@ module Hyrax
     self.model_class = ::Image
     self.terms += [:alternate_title, :resource_type, :abstract, :accession_number,
                    :call_number, :caption, :catalog_key, :citation, :contributor_role,
-                   :creator_role, :genre, :provenance, :physical_description, :related_url_label,
+                   :creator_role, :genre, :provenance, :physical_description,
                    :rights_holder, :style_period, :technique, :preservation_level, :status,
                    :project_name, :project_description, :proposer, :project_manager,
                    :task_number, :project_cycle, :nul_creator, :nul_subject, :nul_contributor]
