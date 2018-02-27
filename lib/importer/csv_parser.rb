@@ -80,7 +80,7 @@ module Importer
       def extract_field(header, val, processed)
         return unless val
         case header
-        when 'type', 'id'
+        when 'type', 'id', 'accession_number', 'ark', 'call_number', 'preservation_level'
           # type and id are singular
           processed[header.to_sym] = val
         when /^(created|issued|date_copyrighted|date_valid)_(.*)$/
