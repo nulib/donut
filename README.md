@@ -38,7 +38,7 @@ Start minio on its own in a separate tab:
 
 ```sh
 $ docker-compose up minio
-$ bundle exec rake s3:setup -e test
+$ bundle exec rake s3:setup RAILS_ENV=test
 ```
 
 Run the test suite:

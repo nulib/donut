@@ -3,7 +3,7 @@ namespace :s3 do
   desc 'Create all configured S3 buckets'
   task create_buckets: :environment do
     client = Aws::S3::Client.new
-    Settings.aws.buckets.values.each do |bucket|
+    Settings.aws.buckets.to_h.values.each do |bucket|
       client.create_bucket(bucket: bucket)
     end
   end
@@ -28,7 +28,7 @@ namespace :s3 do
   desc 'Empty configured S3 buckets'
   task empty_buckets: :environment do
     client = Aws::S3::Client.new
-    Settings.aws.buckets.values.each do |bucket|
+    Settings.aws.buckets.to_h.values.each do |bucket|
       objs = client.list_objects_v2(bucket: bucket)
       objs.contents.each do |obj|
         client.delete_object(bucket: bucket, key: obj.key)
@@ -38,7 +38,7 @@ namespace :s3 do
 
   desc 'Delete configured S3 buckets'
   task delete_buckets: :environment do
-    Settings.aws.buckets.values.each do |bucket|
+    Settings.aws.buckets.to_h.values.each do |bucket|
       Aws::S3::Client.new.delete_bucket(bucket: bucket)
     end
   end
