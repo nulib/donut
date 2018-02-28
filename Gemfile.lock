@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/nulib/hydra-derivatives.git
-  revision: 2b818cb808c571dd6c4bfabe455290edd74541d2
+  revision: fbc325db8fa5f1e87172d7e83aa792ccf07b9ee4
   branch: vips
   specs:
     hydra-derivatives (3.4.1)

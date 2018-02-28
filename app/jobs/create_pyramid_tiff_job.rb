@@ -1,3 +1,5 @@
+require 'ruby-vips'
+
 class CreatePyramidTiffJob < ApplicationJob
   queue_as Hyrax.config.ingest_queue_name
 
