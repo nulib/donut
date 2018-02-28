@@ -3,6 +3,7 @@
 class Image < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::Schemas::Administrative
+  include ::Schemas::Workflow
   include MicroserviceMinter
 
   self.indexer = ImageIndexer
@@ -12,10 +13,6 @@ class Image < ActiveFedora::Base
 
   after_save do
     ArkMintingService.mint_identifier_for(self) if ark.nil?
-  end
-
-  property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: true do |index|
-    index.as :stored_searchable
   end
 
   property :alternate_title, predicate: ::RDF::Vocab::DC.alternative, multiple: true do |index|
