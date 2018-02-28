@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ClassLength
 # frozen_string_literal: true
 
 class SolrDocument
@@ -48,6 +49,14 @@ class SolrDocument
     fetch(Solrizer.solr_name('ark', :stored_searchable), [])
   end
 
+  def box_name
+    fetch(Solrizer.solr_name('box_name', :stored_searchable), [])
+  end
+
+  def box_number
+    fetch(Solrizer.solr_name('box_number', :stored_searchable), [])
+  end
+
   def call_number
     fetch(Solrizer.solr_name('call_number', :stored_searchable), [])
   end
@@ -70,6 +79,14 @@ class SolrDocument
 
   def creator_role
     fetch(Solrizer.solr_name('creator_role', :stored_searchable), [])
+  end
+
+  def folder_name
+    fetch(Solrizer.solr_name('folder_name', :stored_searchable), [])
+  end
+
+  def folder_number
+    fetch(Solrizer.solr_name('folder_number', :stored_searchable), [])
   end
 
   def genre
@@ -140,3 +157,4 @@ class SolrDocument
     fetch(Solrizer.solr_name('technique', :stored_searchable), [])
   end
 end
+# rubocop:enable Metrics/ClassLength

@@ -1,6 +1,5 @@
 RSpec.shared_examples 'a model with image metadata' do
   it { is_expected.to have_editable_property(:accession_number, 'http://id.loc.gov/vocabulary/subjectSchemes/local') }
-  it { is_expected.to have_editable_property(:abstract, RDF::Vocab::DC.abstract) }
   it { is_expected.to have_editable_property(:alternate_title, RDF::Vocab::DC.alternative) }
   it { is_expected.to have_editable_property(:ark, RDF::Vocab::DataCite.ark) }
   it { is_expected.to have_editable_property(:call_number, RDF::Vocab::Bibframe.shelfMark) }

@@ -8,7 +8,8 @@ module Hyrax
                    :creator_role, :genre, :provenance, :physical_description,
                    :rights_holder, :style_period, :technique, :preservation_level, :status,
                    :project_name, :project_description, :proposer, :project_manager,
-                   :task_number, :project_cycle, :nul_creator, :nul_subject, :nul_contributor]
+                   :task_number, :project_cycle, :nul_creator, :nul_subject, :nul_contributor,
+                   :box_number, :folder_number, :box_name, :folder_name]
     self.required_fields = [:title, :date_created, :rights_statement, :preservation_level, :status]
 
     def primary_terms

@@ -23,6 +23,10 @@ FactoryBot.define do
     nul_creator ['Willie Wildcat']
     nul_subject ['Just Northwestern Things']
     nul_contributor ['ContribCat']
+    box_name ['A good box name']
+    box_number ['42']
+    folder_name ['The folder name']
+    folder_number ['99']
 
     transient do
       user { FactoryBot.create(:user) }
