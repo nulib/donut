@@ -107,6 +107,11 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('technique_label', :stored_searchable), label: 'Technique', link_to_search: solr_name('technique_label', :facetable)
     config.add_index_field solr_name('physical_description', :stored_searchable), label: 'Physical Description', link_to_search: solr_name('physical_description', :facetable)
     config.add_index_field solr_name('contributor_role_label', :stored_searchable), label: 'Contributor Role', link_to_search: solr_name('contributor_role_label', :facetable)
+    config.add_index_field solr_name('abstract', :stored_searchable), label: 'Abstract'
+    config.add_index_field solr_name('box_name', :stored_searchable), label: 'Box Name'
+    config.add_index_field solr_name('box_number', :stored_searchable), label: 'Box Number'
+    config.add_index_field solr_name('folder_name', :stored_searchable), label: 'Folder Name'
+    config.add_index_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
     # rubocop:enable Metrics/LineLength
 
     # solr fields to be displayed in the show (single result) view
@@ -140,6 +145,11 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('technique_label', :stored_searchable), label: 'Technique'
     config.add_show_field solr_name('physical_description', :stored_searchable), label: 'Physical Description'
     config.add_show_field solr_name('contributor_role_label', :stored_searchable), label: 'Contributor Role'
+    config.add_show_field solr_name('abstract', :stored_searchable)
+    config.add_show_field solr_name('box_name', :stored_searchable), label: 'Box Name'
+    config.add_show_field solr_name('box_number', :stored_searchable), label: 'Box Number'
+    config.add_show_field solr_name('folder_name', :stored_searchable), label: 'Folder Name'
+    config.add_show_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
