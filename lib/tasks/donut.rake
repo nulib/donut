@@ -1,21 +1,8 @@
 unless Rails.env.production?
+  require 'docker_controller'
   require 'rspec/core/rake_task'
   require 'rubocop/rake_task'
   require 'active_fedora/rake_support'
-
-  def start_containers(config: 'docker-compose.yml', cleanup: false)
-    dc = Docker::Compose::Session.new(dir: Rails.root, file: config)
-    begin
-      Signal.trap('INT') { exit(0) }
-      dc.up('fedora', 'solr', 'redis', 'minio', detached: block_given?)
-      if block_given?
-        sleep(20)
-        yield
-      end
-    ensure
-      dc.run!('down', v: cleanup)
-    end
-  end
 
   namespace :donut do
     RSpec::Core::RakeTask.new(:rspec) do |t|
@@ -25,17 +12,17 @@ unless Rails.env.production?
     namespace :server do
       desc 'Clean up the development stack'
       task :clean do
-        Docker::Compose::Session.new(dir: Rails.root).run!('down', v: true)
+        DockerController.new(cleanup: true).down
       end
 
       desc 'Run the development stack in the foreground'
       task :dev do
-        start_containers
+        DockerController.new.start
       end
 
       desc 'Run the test stack in the foreground'
       task :test do
-        start_containers(config: 'docker-compose.test.yml', cleanup: true)
+        DockerController.new(config: 'docker-compose.test.yml', cleanup: true).start
       end
     end
 
@@ -48,7 +35,7 @@ unless Rails.env.production?
     namespace :ci do
       desc 'Execute Continuous Integration build'
       task rspec: :environment do
-        start_containers(config: 'docker-compose.test.yml', cleanup: true) do
+        DockerController.new(config: 'docker-compose.test.yml', cleanup: true).with_containers do
           Rake::Task['donut:rspec'].invoke
         end
       end

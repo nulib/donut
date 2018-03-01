@@ -775,6 +775,9 @@ GEM
     devise-guests (0.6.0)
       devise
     diff-lcs (1.3)
+    docker-api (1.34.0)
+      excon (>= 0.47.0)
+      multi_json
     docker-compose (1.1.8)
       backticks (~> 1.0)
     dropbox_api (0.1.10)
@@ -820,6 +823,7 @@ GEM
     erubi (1.7.0)
     ethon (0.11.0)
       ffi (>= 1.3.0)
+    excon (0.60.0)
     execjs (2.7.0)
     ezid-client (1.7.1)
       hashie (~> 3.4, >= 3.4.3)
@@ -1385,6 +1389,7 @@ DEPENDENCIES
   database_cleaner
   devise
   devise-guests (~> 0.6)
+  docker-api
   docker-compose
   ezid-client
   factory_bot_rails
