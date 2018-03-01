@@ -24,7 +24,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Install dependencies: `bundle install`
 * Setup the database: `rake db:migrate`
 * Generate roles: `rake generate_roles`
-* Run `docker-compose up` in a separate tab to start solr, fedora, cantaloupe, and minio.
+* Run `rake donut:server:dev` in a separate tab to start solr, fedora, cantaloupe, and minio.
 * Create the default admin set: `rake hyrax:default_admin_set:create`
 * Load the workflows in `config/workflows`: `rake hyrax:workflow:load`
 
@@ -33,12 +33,6 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 Run `bundle exec rake s3:setup`, which creates a new bucket and populates it with our fixtures. If you already have the bucket, then run `bundle exec rake s3:populate_batch_bucket` to upload the fixture data to the bucket.
 
 ## Running the Tests
-
-Start minio on its own in a separate tab:
-
-```sh
-$ docker-compose up minio
-```
 
 Run the test suite:
 
@@ -56,7 +50,7 @@ $ rake donut:ci:rspec
 You may also want to run the Fedora and Solr servers in one window with:
 
 ```sh
-$ rake hydra:test_server
+$ rake donut:server:test
 ```
 
 And run the test suite in another window:

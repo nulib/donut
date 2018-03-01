@@ -1,8 +1,8 @@
 aws:
   endpoint: http://127.0.0.1:9000
   region: us-east-1
-  aws_access_key_id: minio-dev-key
-  aws_secret_key_id: minio-dev-secret
+  aws_access_key_id: minio-test-key
+  aws_secret_key_id: minio-test-secret
   buckets:
     batch:   test-batch
     uploads: test-uploads

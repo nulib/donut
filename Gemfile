@@ -76,6 +76,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
+  gem 'docker-compose'
+  gem 'fcrepo_wrapper'
+  gem 'rspec-rails'
   gem 'solr_wrapper', '>= 0.3'
 end
 
@@ -83,10 +86,6 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
-group :development, :test do
-  gem 'fcrepo_wrapper'
-  gem 'rspec-rails'
-end
 
 group :aws, :test do
   gem 'active_elastic_job', github: 'nulib/active-elastic-job', branch: 'latest-aws-sdk'
