@@ -1,0 +1,43 @@
+version: '2'
+
+volumes:
+  fedora-test:
+  solr-test:
+  minio-test:
+
+services:
+  fedora:
+    image: nulib/fcrepo4
+    volumes:
+      - fedora-test:/data
+    ports:
+      - "8986:8080"
+  solr:
+    image: solr:7.2-alpine
+    ports:
+      - "8985:8983"
+    volumes:
+      - solr-test:/opt/solr/server/solr/mycores
+      - ./solr:/solr_config
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - hydra-test
+      - /solr_config/config
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - minio-test:/data
+    environment:
+      MINIO_ACCESS_KEY: minio-test-key
+      MINIO_SECRET_KEY: minio-test-secret
+    command:
+      - minio
+      - server
+      - /data
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

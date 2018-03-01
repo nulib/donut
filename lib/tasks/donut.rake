@@ -1,13 +1,42 @@
 unless Rails.env.production?
   require 'rspec/core/rake_task'
-  require 'solr_wrapper'   # necessary for rake_support to work
-  require 'fcrepo_wrapper' # necessary for rake_support to work
   require 'rubocop/rake_task'
   require 'active_fedora/rake_support'
+
+  def start_containers(config: 'docker-compose.yml', cleanup: false)
+    dc = Docker::Compose::Session.new(dir: Rails.root, file: config)
+    begin
+      Signal.trap('INT') { exit(0) }
+      dc.up('fedora', 'solr', 'redis', 'minio', detached: block_given?)
+      if block_given?
+        sleep(20)
+        yield
+      end
+    ensure
+      dc.run!('down', v: cleanup)
+    end
+  end
 
   namespace :donut do
     RSpec::Core::RakeTask.new(:rspec) do |t|
       t.rspec_opts = ['--color', '--backtrace']
+    end
+
+    namespace :server do
+      desc 'Clean up the development stack'
+      task :clean do
+        Docker::Compose::Session.new(dir: Rails.root).run!('down', v: true)
+      end
+
+      desc 'Run the development stack in the foreground'
+      task :dev do
+        start_containers
+      end
+
+      desc 'Run the test stack in the foreground'
+      task :test do
+        start_containers(config: 'docker-compose.test.yml', cleanup: true)
+      end
     end
 
     desc 'Run all Continuous Integration tests'
@@ -19,7 +48,7 @@ unless Rails.env.production?
     namespace :ci do
       desc 'Execute Continuous Integration build'
       task rspec: :environment do
-        with_test_server do
+        start_containers(config: 'docker-compose.test.yml', cleanup: true) do
           Rake::Task['donut:rspec'].invoke
         end
       end

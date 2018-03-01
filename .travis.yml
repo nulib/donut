@@ -4,21 +4,15 @@ sudo: false
 cache: bundler
 
 services:
-  - redis
   - docker
 
 before_install:
-  - 'docker pull minio/minio'
-  - 'docker run -d -p 127.0.0.1:9000:9000 -e "MINIO_ACCESS_KEY=minio-dev-key" -e "MINIO_SECRET_KEY=minio-dev-secret" minio/minio server /data'
   - 'gem update --system'
   - 'gem update bundler'
 
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-    - AWS_ACCESS_KEY_ID=minio-dev-key
-    - AWS_SECRET_ACCESS_KEY=minio-dev-secret
-    - AWS_DEFAULT_REGION=us-east-1
   matrix:
     - TEST_SUITE=rspec
     - TEST_SUITE=rubocop
