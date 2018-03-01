@@ -29,7 +29,17 @@ export default class LinkedData {
       .val(uri);
   }
 
+  // Grab the current autocompleteUrl data attribute.  It may have been changed by an
+  // authority select dropdown selection.
+  getAuthorityUrl($element) {
+    if (!$element[0]) { return; }
+    return $element[0].dataset.autocompleteUrl || '';
+  }
+
   options(element) {
+    let _this2 = this;
+    let $element = element;
+
     return {
       // placeholder: $(this).attr("value") || "Search for a location",
       minimumInputLength: 2,
@@ -43,8 +53,6 @@ export default class LinkedData {
         // Called when Select2 is created to allow the user to initialize the
         // selection based on the value of the element select2 is attached to.
         // Essentially this is an id->object mapping function.
-
-        // TODO: Presently we're just showing a URI, but we should show the label.
         var data = {
           id: element.val(),
           label: element.val()
@@ -53,7 +61,9 @@ export default class LinkedData {
       },
       ajax: {
         // Use the jQuery.ajax wrapper provided by Select2
-        url: this.url,
+        url: function (params) {
+          return _this2.getAuthorityUrl($element);
+        },
         dataType: 'json',
         data: function(term, page) {
           return {

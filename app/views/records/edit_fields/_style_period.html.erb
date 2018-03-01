@@ -1,3 +1,5 @@
+<% subject_authorities = Hyrax::SubjectAuthorities.new %>
+
 <%= f.input key,
   as: :controlled_vocabulary,
   placeholder: 'Search for a style period',
@@ -16,3 +18,15 @@
     }
   },
   required: f.object.required?(key) %>
+
+  <label>[TEST] Authority for Style Period</label>
+
+<%= select_tag "style_period_authorities",
+        options_for_select(subject_authorities.select_active_options),
+        class: 'form-control image_style_period',
+        data: {
+          'authority-select' => "image_style_period",
+          'uses-controlled-vocab' => true
+        },
+        prompt: t('hyrax.records.edit_fields.style_period.prompt')
+  %>
