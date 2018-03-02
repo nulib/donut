@@ -1,5 +1,5 @@
 <% subject_authorities = Hyrax::SubjectAuthorities.new %>
-
+<fieldset class="bordered form-group">
 <%= f.input key,
   as: :controlled_vocabulary,
   placeholder: 'Search for a style period',
@@ -30,3 +30,4 @@
         },
         prompt: t('hyrax.records.edit_fields.style_period.prompt')
   %>
+</fieldset>

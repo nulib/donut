@@ -16,7 +16,7 @@ RSpec.describe 'records/edit_fields/_style_period.html.erb', type: :view do
     render inline: form_template
   end
 
-  it 'has url for autocomplete service' do
+  xit 'has url for autocomplete service' do
     expect(rendered).to have_selector('input[data-autocomplete-url="/authorities/search/getty/aat"][data-autocomplete="style_period"]')
   end
 end

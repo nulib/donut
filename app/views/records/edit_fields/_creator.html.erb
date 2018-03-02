@@ -1,5 +1,5 @@
 <% creator_authorities = Hyrax::CreatorAuthorities.new %>
-
+<fieldset class="bordered form-group">
 <%=
   f.input key,
   as: :multi_value,
@@ -20,3 +20,4 @@
                 data: { 'authority-select' => "image_creator" },
                 prompt: t('hyrax.records.edit_fields.creator.prompt')
 %>
+</fieldset>
