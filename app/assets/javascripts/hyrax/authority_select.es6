@@ -72,19 +72,19 @@ export default class AuthoritySelect {
    * intialize the Hyrax autocomplete with the fields that you are using
    */
   setupAutocomplete() {
-    // Return immediately if it's using controlled vobab, otherwise repeatedly calling
-    // autocomplete results in infinite loop.
-    // Technical debt... this should be mapped out and cleaned up.
+    // Deny this setupAutocomplete() call if using controlled vobab, otherwise repeatedly calling
+    // autocomplete results in infinite loop.  Why are we repeatedly calling autocomplete
+    // after each dropdown change?  Seems like overkill maybe?
     if (this.usesControlledVocab) {
       return;
     }
 
-    var inputField = $(this.inputField);
-    var autocomplete = new Autocomplete();
+    const $inputField = $(this.inputField);
+    const autocomplete = new Autocomplete();
     autocomplete.setup(
-      inputField,
-      inputField.data('autocomplete'),
-      inputField.data('autocompleteUrl')
+      $inputField,
+      $inputField.attr('data-autocomplete'),
+      $inputField.attr('data-autocomplete-url')
     );
   }
 }
