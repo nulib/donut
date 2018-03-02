@@ -29,11 +29,19 @@ export default class LinkedData {
       .val(uri);
   }
 
-  // Grab the current autocompleteUrl data attribute.  It may have been changed by an
-  // authority select dropdown selection.
+  /**
+   * Grab the autocompleteUrl data attribute from it's wrapper DOM element.
+   * @param  {jQuery} $element Current input element
+   * @return {string}          Autocomplete url - the authority url to query
+   */
   getAuthorityUrl($element) {
-    if (!$element[0]) { return; }
-    return $element[0].dataset.autocompleteUrl || '';
+    const key = $element.data('attribute');
+    const $wrapperEl = $element.closest('[data-field-name="' + key + '"]');
+
+    if ($wrapperEl.length === 0 || !$wrapperEl.data('autocompleteUrl')) {
+      return;
+    }
+    return $wrapperEl[0].dataset.autocompleteUrl || '';
   }
 
   options(element) {
@@ -61,7 +69,7 @@ export default class LinkedData {
       },
       ajax: {
         // Use the jQuery.ajax wrapper provided by Select2
-        url: function (params) {
+        url: function(params) {
           return _this2.getAuthorityUrl($element);
         },
         dataType: 'json',

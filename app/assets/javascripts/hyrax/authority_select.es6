@@ -11,7 +11,9 @@ export default class AuthoritySelect {
   constructor(options) {
     this.selectBox = options.selectBox;
     this.inputField = options.inputField;
+    // Is this authority select dropdown using controlled vocabulary?
     this.usesControlledVocab = options.usesControlledVocab;
+
     this.selectBoxChange();
     this.observeAddedElement();
     if (!this.usesControlledVocab) {
@@ -23,27 +25,22 @@ export default class AuthoritySelect {
    * Bind behavior for select box
    */
   selectBoxChange() {
-    var selectBox = this.selectBox;
-    var inputField = this.inputField;
-    console.log('selectBoxChange()');
-    console.log('selectBox', selectBox);
-    console.log('inputField', inputField);
-    var _this2 = this;
+    const selectBox = this.selectBox;
+    const inputField = this.inputField;
+    let _this2 = this;
     $(selectBox).on('change', function(data) {
-      var selectBoxValue = $(this).val();
-      console.log('selectBoxValue on change()', selectBoxValue);
+      const selectBoxValue = $(this).val();
 
       $(inputField).each(function(data, el) {
-        console.log('el', el);
-        console.log('$(inputField) data', data);
-        //$(this).data('autocomplete-url', selectBoxValue);
+        const key = $(el).data('attribute');
+        const $wrapperEl = $(el).closest('[data-field-name="' + key + '"]');
+
+        // Update element's autocomplete attribute
         $(this).attr('data-autocomplete-url', selectBoxValue);
-        console.log('selectBoxValue', selectBoxValue);
-        console.log('$this[0]', $(this)[0].outerHTML);
-        if (!_this2.usesControlledVocab) {
-          console.log('_this2.setupAutocomplete()');
-          _this2.setupAutocomplete();
-        }
+        // Update element's wrapper autocomplete attribute
+        $wrapperEl.attr('data-autocomplete-url', selectBoxValue);
+
+        _this2.setupAutocomplete();
       });
     });
   }
@@ -59,10 +56,10 @@ export default class AuthoritySelect {
     var observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         $(inputField).each(function(data) {
+          // TODO: Does this actually work explicity on the DOM,
+          // or was it specifically setup to work in memory?
           $(this).data('autocomplete-url', $(selectBox).val());
-          if (!_this2.usesControlledVocab) {
-            _this2.setupAutocomplete();
-          }
+          _this2.setupAutocomplete();
         });
       });
     });
@@ -75,6 +72,13 @@ export default class AuthoritySelect {
    * intialize the Hyrax autocomplete with the fields that you are using
    */
   setupAutocomplete() {
+    // Return immediately if it's using controlled vobab, otherwise repeatedly calling
+    // autocomplete results in infinite loop.
+    // Technical debt... this should be mapped out and cleaned up.
+    if (this.usesControlledVocab) {
+      return;
+    }
+
     var inputField = $(this.inputField);
     var autocomplete = new Autocomplete();
     autocomplete.setup(
