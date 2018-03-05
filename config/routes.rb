@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :batches, only: [:index, :show]
+
   mount BrowseEverything::Engine => '/browse'
   mount Blacklight::Engine => '/'
 

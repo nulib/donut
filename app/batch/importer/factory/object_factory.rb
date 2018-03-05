@@ -5,13 +5,15 @@ module Importer
       define_model_callbacks :save, :create
       class_attribute :klass, :system_identifier_field
       attr_reader :attributes, :s3_resource, :object
+      delegate :valid?, to: :trashable_instance
 
       def initialize(attributes, s3_resource = nil)
         @attributes = attributes
         @s3_resource = s3_resource
       end
 
-      def run
+      def run(user: User.first)
+        @deposit_user = user
         arg_hash = { id: attributes[:id], name: 'UPDATE', klass: klass }
         @object = find
         if @object
@@ -55,6 +57,12 @@ module Importer
         klass.where(query).first
       end
 
+      def errors
+        t = trashable_instance
+        t.valid?
+        t.errors
+      end
+
       def create
         attrs = create_attributes
         @object = klass.new
@@ -81,7 +89,7 @@ module Importer
         # @param [Hash] attrs the attributes to put in the environment
         # @return [Hyrax::Actors::Environment]
         def environment(attrs)
-          Hyrax::Actors::Environment.new(@object, Ability.new(User.first), attrs)
+          Hyrax::Actors::Environment.new(@object, Ability.new(@deposit_user), attrs)
         end
 
         def work_actor
@@ -89,8 +97,9 @@ module Importer
         end
 
         def create_collection(attrs)
+          @object.collection_type_gid = Hyrax::CollectionType.find_or_create_default_collection_type.gid
           @object.attributes = attrs
-          @object.apply_depositor_metadata(User.first)
+          @object.apply_depositor_metadata(@deposit_user)
           @object.save!
         end
 
@@ -125,6 +134,10 @@ module Importer
 
         def permitted_attributes
           klass.properties.keys.map(&:to_sym) + [:admin_set_id, :id, :edit_users, :edit_groups, :read_groups, :visibility]
+        end
+
+        def trashable_instance
+          klass.new(create_attributes.slice(*permitted_attributes))
         end
     end
   end

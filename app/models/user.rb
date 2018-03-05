@@ -28,9 +28,15 @@ class User < ApplicationRecord
     username = auth.uid
     email = auth.info.email
 
-    User.find_by(username: username) ||
+    (User.find_by(username: username) ||
       User.find_by(email: email) ||
-      User.create(username: username, email: email)
+      User.create(username: username, email: email)).tap do |user|
+        if user.username.nil? || user.email.nil?
+          user.username = username
+          user.email = email
+          user.save
+        end
+      end
   end
 end
 

@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe SolrDocument do
   subject(:solr_doc) { described_class.new(document_hash) }
 
@@ -72,4 +71,3 @@ RSpec.describe SolrDocument do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

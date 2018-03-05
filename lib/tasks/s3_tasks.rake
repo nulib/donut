@@ -15,7 +15,7 @@ namespace :s3 do
     Dir.glob('**/*').each do |file|
       next if File.directory?(file)
       obj = s3.bucket(Settings.aws.buckets.batch).object(file)
-      obj.upload_file(file) unless obj.exists?
+      obj.upload_file(file)
     end
   end
 

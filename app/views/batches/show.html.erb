@@ -1,0 +1,18 @@
+<h1><span class="fa fa-copy"></span> Batch <%= @batch.job_id %></h1>
+
+<div class='table-responsive'>
+  <table class='table table-striped'>
+    <thead>
+      <th scope='col'>Status</th>
+      <th scope='col'>Row Number</th>
+      <th scope='col'>Accession Number</th>
+    </thead>
+    <tbody>
+      <% @batch.batch_items.each do |item| %>
+        <td><%= status_label item.status %></td>
+        <td><%= item.row_number %></td>
+        <td><%= item.accession_number %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

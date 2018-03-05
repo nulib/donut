@@ -23,7 +23,7 @@ RSpec.describe Importer::CSVParser do
         a_hash_including(name: ['Caruthers, Jakeya']),
         a_hash_including(name: ['Perspectives in Education'])
       )
-      expect(first_record.keys).to contain_exactly(:type, :title, :description,
+      expect(first_record.keys).to contain_exactly(:accession_number, :type, :title, :description,
                                                    :subject, :resource_type, :contributor, :style_period,
                                                    :date_created, :file, :collection, :admin_set_id, :subject_topical)
     end

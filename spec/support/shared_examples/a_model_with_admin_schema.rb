@@ -1,5 +1,3 @@
-# rubocop:disable Metrics/BlockLength
-
 RSpec.shared_examples 'a model with admin metadata' do
   it do
     is_expected
@@ -50,4 +48,3 @@ RSpec.shared_examples 'a model with admin metadata' do
       .with_predicate('http://www.library.northwestern.edu/terms#status')
   end
 end
-# rubocop:enable Metrics/BlockLength

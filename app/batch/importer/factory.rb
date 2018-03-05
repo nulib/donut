@@ -1,3 +1,7 @@
+require 'hydra/access_controls'
+require 'hydra/access_controls/permission'
+require 'hydra/access_controls/permissions'
+
 module Importer
   module Factory
     extend ActiveSupport::Autoload
