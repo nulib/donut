@@ -68,6 +68,8 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
+    Hyrax::CollectionType.find_or_create_default_collection_type
+    Hyrax::CollectionType.find_or_create_admin_set_type
     Rake.application.rake_require 'tasks/s3_tasks'
     Rake::Task.define_task(:environment)
     Rake::Task['s3:setup'].invoke

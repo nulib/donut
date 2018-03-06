@@ -18,7 +18,7 @@ RSpec.feature 'Batch Select on All Works Page', js: false do
       check 'check_all'
       expect(page).to have_selector("input[type=submit][value='Edit Selected']")
       expect(page).to have_selector("input[type=submit][value='Delete Selected']")
-      expect(page).to have_content('Add to Collection')
+      expect(page).to have_content('Add to collection')
     end
   end
 end
