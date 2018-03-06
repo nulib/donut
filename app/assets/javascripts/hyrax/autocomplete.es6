@@ -32,9 +32,9 @@ export default class Autocomplete {
       case 'style_period':
         new LinkedData(element, url);
         break;
-      // case 'subject':
-      //   new LinkedData(element, url);
-      //   break;
+      case 'subject':
+        new LinkedData(element, url);
+        break;
       case 'technique':
         new LinkedData(element, url);
         break;

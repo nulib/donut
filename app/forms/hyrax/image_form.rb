@@ -24,6 +24,7 @@ module Hyrax
           style_period_attributes: [:id, :_destroy],
           genre_attributes: [:id, :_destroy],
           language_attributes: [:id, :destroy],
+          subject_attributes: [:id, :destroy],
           technique_attributes: [:id, :_destroy]
         }
       ]
