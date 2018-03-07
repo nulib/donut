@@ -2,9 +2,9 @@
 namespace :s3 do
   desc 'Create all configured S3 buckets'
   task create_buckets: :environment do
-    client = Aws::S3::Client.new
     Settings.aws.buckets.to_h.values.each do |bucket|
-      client.create_bucket(bucket: bucket)
+      bucket = Aws::S3::Bucket.new(bucket)
+      bucket.create unless bucket.exists?
     end
   end
 
@@ -15,7 +15,7 @@ namespace :s3 do
     Dir.glob('**/*').each do |file|
       next if File.directory?(file)
       obj = s3.bucket(Settings.aws.buckets.batch).object(file)
-      obj.upload_file(file)
+      obj.upload_file(file) unless obj.exists?
     end
   end
 

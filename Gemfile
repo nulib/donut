@@ -7,7 +7,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
-# Use sqlite3 as the database for Active Record
+# Install both postgres & sqlite3 adapters
+gem 'pg'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -99,8 +100,4 @@ group :aws do
   gem 'cloudfront-signer'
   gem 'redis-rails'
   gem 'zk'
-end
-
-group :postgres, optional: true do
-  gem 'pg'
 end

@@ -1,11 +1,24 @@
-version: '3'
+version: '3.4'
 
 volumes:
+  db:
   fedora:
   solr:
   minio:
 
+x-container-prefix: donut-dev
+
 services:
+  db:
+    image: healthcheck/postgres:alpine
+    volumes:
+      - db:/data
+    environment:
+      - PGDATA=/data
+      - POSTGRES_USER=donut
+      - POSTGRES_PASSWORD=d0nut
+    ports:
+      - "5433:5432"
   fedora:
     image: nulib/fcrepo4
     volumes:
@@ -37,7 +50,7 @@ services:
   cantaloupe:
     image: nulib/cantaloupe
     ports:
-      - "8182:8182"
+      - "8183:8182"
     volumes:
       - ./tmp/derivatives:/var/lib/cantaloupe/images
     healthcheck:
@@ -48,7 +61,7 @@ services:
   minio:
     image: minio/minio
     ports:
-      - "9000:9000"
+      - "9001:9000"
     volumes:
       - minio:/data
     environment:
@@ -61,7 +74,7 @@ services:
   redis:
     image: redis:alpine
     ports:
-      - "6379:6379"
+      - "6380:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
