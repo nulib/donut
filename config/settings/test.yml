@@ -1,5 +1,5 @@
 aws:
-  endpoint: http://127.0.0.1:9010
+  endpoint: http://127.0.0.1:9002
   region: us-east-1
   aws_access_key_id: minio-test-key
   aws_secret_key_id: minio-test-secret

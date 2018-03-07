@@ -1,5 +1,5 @@
 aws:
-  endpoint: http://127.0.0.1:9000
+  endpoint: http://127.0.0.1:9001
   region: us-east-1
   aws_access_key_id: minio-dev-key
   aws_secret_key_id: minio-dev-secret
@@ -7,4 +7,4 @@ aws:
     uploads: dev-uploads
     batch: dev-batch
 iiif:
-  endpoint: http://localhost:8182/iiif/2/
+  endpoint: http://localhost:8183/iiif/2/

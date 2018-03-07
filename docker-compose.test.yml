@@ -1,15 +1,28 @@
-version: '3'
+version: '3.4'
 
 volumes:
-  fedora-test:
-  solr-test:
-  minio-test:
+  db:
+  fedora:
+  solr:
+  minio:
+
+x-container-prefix: donut-test
 
 services:
+  db:
+    image: healthcheck/postgres:alpine
+    volumes:
+      - db:/data
+    environment:
+      - PGDATA=/data
+      - POSTGRES_USER=donut
+      - POSTGRES_PASSWORD=d0nut
+    ports:
+      - "5434:5432"
   fedora:
     image: nulib/fcrepo4
     volumes:
-      - fedora-test:/data
+      - fedora:/data
     ports:
       - "8986:8080"
     healthcheck:
@@ -22,7 +35,7 @@ services:
     ports:
       - "8985:8983"
     volumes:
-      - solr-test:/opt/solr/server/solr/mycores
+      - solr:/opt/solr/server/solr/mycores
       - ./solr:/solr_config
     entrypoint:
       - docker-entrypoint.sh
@@ -37,9 +50,9 @@ services:
   minio:
     image: minio/minio
     ports:
-      - "9010:9000"
+      - "9002:9000"
     volumes:
-      - minio-test:/data
+      - minio:/data
     environment:
       MINIO_ACCESS_KEY: minio-test-key
       MINIO_SECRET_KEY: minio-test-secret
@@ -50,7 +63,7 @@ services:
   redis:
     image: redis:alpine
     ports:
-      - "6380:6379"
+      - "6381:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
