@@ -1,5 +1,5 @@
 module ControlledVocabularies
-  class Language < ActiveTriples::Resource
+  class Language < Base
     def initialize(*args, &block)
       args[0] = correct_uri_for(args.first) unless args.first.is_a?(Hash)
       super(*args, &block)
