@@ -23,7 +23,7 @@ module Hyrax
           contributor_role_attributes: [:id, :_destroy],
           style_period_attributes: [:id, :_destroy],
           genre_attributes: [:id, :_destroy],
-          language_attributes: [:id, :destroy],
+          language_attributes: [:id, :_destroy],
           technique_attributes: [:id, :_destroy]
         }
       ]
