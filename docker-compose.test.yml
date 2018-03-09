@@ -4,7 +4,7 @@ volumes:
   db:
   fedora:
   solr:
-  minio:
+  localstack:
 
 x-container-prefix: donut-test
 
@@ -47,19 +47,20 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-  minio:
-    image: minio/minio
+  localstack:
+    image: localstack/localstack
     ports:
-      - "9002:9000"
+      - "9002:4572"
     volumes:
-      - minio:/data
+      - localstack:/data
     environment:
-      MINIO_ACCESS_KEY: minio-test-key
-      MINIO_SECRET_KEY: minio-test-secret
-    command:
-      - minio
-      - server
-      - /data
+      SERVICES: s3
+      DATA_DIR: /data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4572/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
   redis:
     image: redis:alpine
     ports:
