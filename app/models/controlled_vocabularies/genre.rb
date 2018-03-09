@@ -1,5 +1,5 @@
 module ControlledVocabularies
-  class Genre < ActiveTriples::Resource
+  class Genre < Base
     # Return a tuple of url & label
     def solrize
       return [rdf_subject.to_s] unless label_present
