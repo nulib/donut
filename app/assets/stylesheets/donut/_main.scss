@@ -5,15 +5,17 @@
 
   // 3. Base stuff
   'base/hyrax_overrides',
-  
+
   // 4. Layout-related sections
   'layout/body',
   'layout/header',
   'layout/nav',
-  'layout/sidebar';
+  'layout/sidebar',
 
   // 5. Components
+  'components/forms',
 
   // 6. Page-specific styles
+  'pages/edit-work';
 
   // 7. Themes
