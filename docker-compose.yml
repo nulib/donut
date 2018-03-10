@@ -61,18 +61,30 @@ services:
   localstack:
     image: localstack/localstack
     ports:
-      - "9001:4572"
+      - "4672:4572"
+      - "4676:4576"
       - "8080:8080"
     volumes:
       - localstack:/data
     environment:
-      SERVICES: s3
+      SERVICES: s3,sqs
       DATA_DIR: /data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4572/"]
       interval: 30s
       timeout: 5s
       retries: 3
+  sqsd:
+    image: nulib/sqsd
+    depends_on:
+      - localstack
+    environment:
+      SQSD_WORKER_HTTP_URL: http://docker.for.mac.host.internal:3000
+      SQSD_QUEUE_URL: http://localstack:4576/queue/donut
+      SQSD_SSL_ENABLED: 'false'
+      SQSD_RUN_DAEMONIZED: 'true'
+      AWS_ACCESS_KEY_ID: minio-dev-key
+      AWS_SECRET_ACCESS_KEY: minio-dev-secret
   redis:
     image: redis:alpine
     ports:

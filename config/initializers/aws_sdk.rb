@@ -1,10 +1,14 @@
-require 'aws-sdk'
-
-if Settings.aws.endpoint.present?
-  Aws.config.update(
-    endpoint: Settings.aws.endpoint,
-    region: Settings.aws.region,
-    credentials: Aws::Credentials.new(Settings.aws.aws_access_key_id, Settings.aws.aws_secret_key_id),
-    force_path_style: true
-  )
+if Settings.localstack
+  # Use localstack for AWS services
+  require 'localstack_stub'
+  if Settings.localstack.sqs
+    require 'active_job/queue_adapters/better_active_elastic_job_adapter'
+    Rails.application.configure do
+      config.active_job.queue_adapter = :better_active_elastic_job
+      config.active_elastic_job.process_jobs = true
+      config.active_elastic_job.aws_credentials = Aws::SharedCredentials.new
+      config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
+      config.middleware.use(ActiveElasticJob::Rack::SqsMessageConsumer)
+    end
+  end
 end

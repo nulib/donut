@@ -15,7 +15,7 @@ AllCops:
     - 'tmp/**/*'
     - 'app/actors/hyrax/actors/create_with_remote_files_actor.rb'
   ExtraDetails: true
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.4
 
 Metrics/BlockLength:
   Exclude:

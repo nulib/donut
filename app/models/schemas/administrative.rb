@@ -17,7 +17,7 @@ module Schemas
   module Administrative
     extend ActiveSupport::Concern
 
-    REVIEWED_STATUS = 'Reviewed'.freeze
+    REVIEWED_STATUS = 'Reviewed'
 
     included do
       property :project_name, predicate: ::Vocab::Donut.project_name do |index|

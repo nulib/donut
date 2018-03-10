@@ -1,8 +1,9 @@
+localstack:
+  sqs: true
+  port_offset: 100
+active_job_queue:
+  url: http://localhost:4576/queue/donut
 aws:
-  endpoint: http://127.0.0.1:9001
-  region: us-east-1
-  aws_access_key_id: minio-dev-key
-  aws_secret_key_id: minio-dev-secret
   buckets:
     uploads: dev-uploads
     batch: dev-batch

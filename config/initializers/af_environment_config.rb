@@ -8,7 +8,7 @@ class EnvironmentConfigurator < ActiveFedora::FileConfigurator
 
     fedora_setting = Settings.fedora_url || ENV['FEDORA_URL']
     if fedora_setting.present?
-      ActiveFedora::Base.logger.info('ActiveFedora: loading fedora config from FEDORA_URL') if ActiveFedora::Base.logger
+      ActiveFedora::Base.logger&.info('ActiveFedora: loading fedora config from FEDORA_URL')
       fedora_url = URI.parse(fedora_setting)
       @fedora_config = { user: fedora_url.user, password: fedora_url.password, base_path: ENV['FEDORA_BASE_PATH'] || '' }
       fedora_url.userinfo = ''
@@ -25,7 +25,7 @@ class EnvironmentConfigurator < ActiveFedora::FileConfigurator
 
     solr_setting = Settings.solr_url || ENV['SOLR_URL']
     if solr_setting.present?
-      ActiveFedora::Base.logger.info('ActiveFedora: loading solr config from SOLR_URL') if ActiveFedora::Base.logger
+      ActiveFedora::Base.logger&.info('ActiveFedora: loading solr config from SOLR_URL')
       @solr_config = { url: solr_setting }
       ENV['SOLR_URL'] ||= solr_setting
     else
