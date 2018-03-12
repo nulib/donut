@@ -54,7 +54,7 @@ unless Rails.env.production?
 
       desc 'Run the test stack in the foreground'
       task :test do
-        DockerController.new(config: 'docker-compose.test.yml', cleanup: true).start
+        DockerController.new(cleanup: true).start
       end
     end
 
@@ -67,9 +67,9 @@ unless Rails.env.production?
     namespace :ci do
       desc 'Execute Continuous Integration build'
       task :rspec do
-        DockerController.new(config: 'docker-compose.test.yml', cleanup: true).with_containers do
+        Rails.env = 'test'
+        DockerController.new(cleanup: true).with_containers do
           # rspec doesn't force us into test mode yet, so we have to do it ourselves
-          Rails.env = 'test'
           Rake::Task['donut:db:create'].invoke
           Rake::Task['db:migrate'].invoke
           Rake::Task['donut:rspec'].invoke

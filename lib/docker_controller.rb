@@ -1,11 +1,11 @@
 class DockerController
   attr_reader :dc, :cleanup
 
-  def initialize(config: 'docker-compose.yml', cleanup: false)
-    @dc = Docker::Compose::Session.new(dir: Rails.root, file: config)
+  def initialize(project: Rails.root.basename, env: Rails.env, cleanup: false)
+    project_and_env = [project, env].join('-')
+    @workdir = Rails.root.join('docker', project_and_env)
+    @dc = Docker::Compose::Session.new(dir: @workdir)
     @cleanup = cleanup
-    spec = YAML.safe_load(File.read(Rails.root.join(config)))
-    ENV['COMPOSE_PROJECT_NAME'] = spec['x-container-prefix'] if spec.key?('x-container-prefix')
   end
 
   def status

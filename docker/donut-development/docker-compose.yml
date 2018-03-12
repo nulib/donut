@@ -6,8 +6,6 @@ volumes:
   solr:
   localstack:
 
-x-container-prefix: donut-test
-
 services:
   db:
     image: healthcheck/postgres:alpine
@@ -18,13 +16,13 @@ services:
       - POSTGRES_USER=donut
       - POSTGRES_PASSWORD=d0nut
     ports:
-      - "5434:5432"
+      - "5433:5432"
   fedora:
     image: nulib/fcrepo4
     volumes:
       - fedora:/data
     ports:
-      - "8986:8080"
+      - "8984:8080"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/rest/"]
       interval: 30s
@@ -33,38 +31,62 @@ services:
   solr:
     image: solr:7.2-alpine
     ports:
-      - "8985:8983"
+      - "8983:8983"
     volumes:
       - solr:/opt/solr/server/solr/mycores
-      - ./solr:/solr_config
+      - ../../solr:/solr_config
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
-      - hydra-test
+      - hydra-development
       - /solr_config/config
     healthcheck:
       test: ["CMD", "wget", "-O", "/dev/null", "http://localhost:8983/solr/"]
       interval: 30s
       timeout: 5s
       retries: 3
+  cantaloupe:
+    image: nulib/cantaloupe
+    ports:
+      - "8183:8182"
+    volumes:
+      - ../../tmp/derivatives:/var/lib/cantaloupe/images
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8182/iiif/2/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
   localstack:
     image: localstack/localstack
     ports:
-      - "4772:4572"
+      - "4672:4572"
+      - "4676:4576"
+      - "8080:8080"
     volumes:
       - localstack:/data
     environment:
-      SERVICES: s3
+      SERVICES: s3,sqs
       DATA_DIR: /data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4572/"]
       interval: 30s
       timeout: 5s
       retries: 3
+  sqsd:
+    image: nulib/sqsd
+    depends_on:
+      - localstack
+    environment:
+      SQSD_WORKER_HTTP_URL: http://docker.for.mac.host.internal:3000
+      SQSD_QUEUE_URL: http://localstack:4576/queue/donut
+      SQSD_SSL_ENABLED: 'false'
+      SQSD_RUN_DAEMONIZED: 'true'
+      AWS_ACCESS_KEY_ID: minio-dev-key
+      AWS_SECRET_ACCESS_KEY: minio-dev-secret
   redis:
     image: redis:alpine
     ports:
-      - "6381:6379"
+      - "6380:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
