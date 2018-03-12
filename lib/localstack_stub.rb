@@ -1,5 +1,10 @@
 require 'aws-sdk'
 
+Aws.config.update(
+  region: 'us-east-1',
+  credentials: Aws::Credentials.new('localstack-key', 'localstack-secret')
+)
+
 # rubocop:disable Metrics/BlockLength
 Seahorse::Client::Base.add_plugin(
   Class.new(Seahorse::Client::Plugin) do
