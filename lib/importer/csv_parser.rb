@@ -49,7 +49,7 @@ module Importer
         errors = []
         row.each_with_index do |header, i|
           next if header == 'resource_type'
-          next unless header.match(type_header_pattern)
+          next unless header.match?(type_header_pattern)
           next_header = row[i + 1]
           field_name = header.gsub('_type', '')
           if next_header != field_name
@@ -131,7 +131,7 @@ module Importer
 
       # Fields that have an associated *_type column
       def update_typed_field(header, val, processed)
-        if header.match(type_header_pattern)
+        if header.match?(type_header_pattern)
           stripped_header = header.gsub('_type', '')
           processed[stripped_header.to_sym] ||= []
           processed[stripped_header.to_sym] << { type: val }

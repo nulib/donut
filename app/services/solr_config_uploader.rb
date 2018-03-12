@@ -66,6 +66,6 @@ class SolrConfigUploader
     end
 
     def ensure_chroot!
-      raise ArgumentError, 'Zookeeper connection string must include a chroot path' unless connection_str =~ %r{/[^/]}
+      raise ArgumentError, 'Zookeeper connection string must include a chroot path' unless connection_str.match?(%r{/[^/]})
     end
 end
