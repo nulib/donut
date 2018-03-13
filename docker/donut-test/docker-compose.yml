@@ -23,11 +23,6 @@ services:
       - fedora:/data
     ports:
       - "8986:8080"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/rest/"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
   solr:
     image: solr:7.2-alpine
     ports:

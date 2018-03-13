@@ -54,6 +54,7 @@ unless Rails.env.production?
 
       desc 'Run the test stack in the foreground'
       task :test do
+        Rails.env = 'test'
         DockerController.new(cleanup: true).start
       end
     end
