@@ -101,3 +101,5 @@ group :aws do
   gem 'redis-rails'
   gem 'zk'
 end
+
+gem 'ldp', github: 'samvera/ldp', branch: 'content-disposition-parser'

@@ -2,7 +2,7 @@ localstack:
   sqs: true
   port_offset: 100
 active_job_queue:
-  url: http://localhost:4576/queue/donut
+  url: http://localhost:4676/queue/donut
 aws:
   buckets:
     uploads: dev-uploads

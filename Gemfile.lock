@@ -83,6 +83,22 @@ GIT
       simple_form (= 3.5.0)
       tinymce-rails (~> 4.1)
 
+GIT
+  remote: https://github.com/samvera/ldp.git
+  revision: e8f0c19654a5fb93d11ad71ae94db4f1ccd42abe
+  branch: content-disposition-parser
+  specs:
+    ldp (0.7.0)
+      deprecation
+      faraday
+      http_logger
+      json-ld
+      rdf (>= 1.1)
+      rdf-isomorphic
+      rdf-turtle
+      rdf-vocab (>= 0.8)
+      slop
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -969,16 +985,6 @@ GEM
       rdf-xsd (>= 2.2, < 4.0)
       sparql (>= 2.2, < 4.0)
       sxp (~> 1.0)
-    ldp (0.7.0)
-      deprecation
-      faraday
-      http_logger
-      json-ld
-      rdf (>= 1.1)
-      rdf-isomorphic
-      rdf-turtle
-      rdf-vocab (>= 0.8)
-      slop
     legato (0.7.0)
       multi_json
     link_header (0.0.8)
@@ -1291,7 +1297,7 @@ GEM
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
-    slop (4.6.1)
+    slop (4.6.2)
     solr_wrapper (1.2.0)
       faraday
       retriable
@@ -1399,6 +1405,7 @@ DEPENDENCIES
   hyrax-spec (~> 0.2)
   jbuilder (~> 2.5)
   jquery-rails
+  ldp!
   listen (>= 3.0.5, < 3.2)
   nulib_microservices!
   omniauth-openam
