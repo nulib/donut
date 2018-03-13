@@ -23,8 +23,6 @@ RSpec.describe SolrDocument do
       caption_tesim: ['This is the caption seen on the image'],
       catalog_key_tesim: ['9943338434202441'],
       citation_tesim: ['Test'],
-      contributor_role_tesim: ['Joanne	Howell'],
-      creator_role_tesim: ['http://id.loc.gov/vocabulary/relators/ill.html'],
       folder_name_tesim: ['The folder name'],
       folder_number_tesim: ['99'],
       genre_tesim: ['Postmodern'],

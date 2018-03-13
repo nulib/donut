@@ -43,9 +43,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('human_readable_type', :facetable), label: 'Type', limit: 5
     config.add_facet_field solr_name('resource_type', :facetable), label: 'Resource Type', limit: 5
     config.add_facet_field solr_name('creator', :facetable), limit: 5
-    config.add_facet_field solr_name('creator_role', :facetable), label: 'Creator Role', limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
-    config.add_facet_field solr_name('contributor_role_label', :facetable), label: 'Contributor Role', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject_label', :facetable), label: 'Subject', limit: 5
     config.add_facet_field solr_name('language_label', :facetable), label: 'Language', limit: 5
@@ -106,7 +104,6 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('genre_label', :stored_searchable), label: 'Genre', link_to_search: solr_name('genre_label', :facetable)
     config.add_index_field solr_name('technique_label', :stored_searchable), label: 'Technique', link_to_search: solr_name('technique_label', :facetable)
     config.add_index_field solr_name('physical_description', :stored_searchable), label: 'Physical Description', link_to_search: solr_name('physical_description', :facetable)
-    config.add_index_field solr_name('contributor_role_label', :stored_searchable), label: 'Contributor Role', link_to_search: solr_name('contributor_role_label', :facetable)
     config.add_index_field solr_name('abstract', :stored_searchable), label: 'Abstract'
     config.add_index_field solr_name('box_name', :stored_searchable), label: 'Box Name'
     config.add_index_field solr_name('box_number', :stored_searchable), label: 'Box Number'
@@ -144,7 +141,6 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('genre_label', :stored_searchable), label: 'Genre'
     config.add_show_field solr_name('technique_label', :stored_searchable), label: 'Technique'
     config.add_show_field solr_name('physical_description', :stored_searchable), label: 'Physical Description'
-    config.add_show_field solr_name('contributor_role_label', :stored_searchable), label: 'Contributor Role'
     config.add_show_field solr_name('abstract', :stored_searchable)
     config.add_show_field solr_name('box_name', :stored_searchable), label: 'Box Name'
     config.add_show_field solr_name('box_number', :stored_searchable), label: 'Box Number'

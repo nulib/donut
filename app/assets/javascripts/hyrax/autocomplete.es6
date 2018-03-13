@@ -20,9 +20,6 @@ export default class Autocomplete {
       case 'based_near':
         new LinkedData(element, url);
         break;
-      case 'contributor_role':
-        new LinkedData(element, url);
-        break;
       case 'genre':
         new LinkedData(element, url);
         break;
