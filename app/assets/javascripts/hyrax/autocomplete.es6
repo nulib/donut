@@ -35,6 +35,75 @@ export default class Autocomplete {
       case 'technique':
         new LinkedData(element, url);
         break;
+      case 'architect':
+        new LinkedData(element, url);
+        break;
+      case 'artist':
+        new LinkedData(element, url);
+        break;
+      case 'author':
+        new LinkedData(element, url);
+        break;
+      case 'cartographer':
+        new LinkedData(element, url);
+        break;
+      case 'compiler':
+        new LinkedData(element, url);
+        break;
+      case 'composer':
+        new LinkedData(element, url);
+        break;
+      case 'designer':
+        new LinkedData(element, url);
+        break;
+      case 'director':
+        new LinkedData(element, url);
+        break;
+      case 'draftsman':
+        new LinkedData(element, url);
+        break;
+      case 'editor':
+        new LinkedData(element, url);
+        break;
+      case 'engraver':
+        new LinkedData(element, url);
+        break;
+      case 'illustrator':
+        new LinkedData(element, url);
+        break;
+      case 'librettist':
+        new LinkedData(element, url);
+        break;
+      case 'performer':
+        new LinkedData(element, url);
+        break;
+      case 'photographer':
+        new LinkedData(element, url);
+        break;
+      case 'presenter':
+        new LinkedData(element, url);
+        break;
+      case 'printer':
+        new LinkedData(element, url);
+        break;
+      case 'printmaker':
+        new LinkedData(element, url);
+        break;
+      case 'producer':
+        new LinkedData(element, url);
+        break;
+      case 'production_manager':
+        new LinkedData(element, url);
+        break;
+      case 'screenwriter':
+        new LinkedData(element, url);
+        break;
+      case 'sculptor':
+        new LinkedData(element, url);
+        break;
+      case 'sponsor':
+        new LinkedData(element, url);
+        break;
       default:
         new Default(element, url);
         break;

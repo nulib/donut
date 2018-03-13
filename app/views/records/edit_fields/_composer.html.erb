@@ -1,0 +1,33 @@
+<% composer_authorities = Hyrax::ComposerAuthorities.new %>
+<fieldset class="bordered form-group">
+<%= f.input key,
+  as: :controlled_vocabulary,
+  placeholder: 'Search for a composer',
+  input_html: {
+    class: 'form-control',
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'autocomplete' => key
+    }
+  },
+  ### Required for the ControlledVocabulary javascript:
+  wrapper_html: {
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'field-name' => key
+    }
+  },
+  required: f.object.required?(key) %>
+
+  <label>Authority for Composer</label>
+
+<%= select_tag "composer_authorities",
+        options_for_select(composer_authorities.select_active_options),
+        class: 'form-control image_composer',
+        data: {
+          'authority-select' => "image_composer",
+          'uses-controlled-vocab' => true
+        },
+        prompt: t('hyrax.records.edit_fields.composer.prompt')
+  %>
+</fieldset>

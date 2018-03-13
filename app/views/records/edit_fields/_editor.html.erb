@@ -1,0 +1,33 @@
+<% editor_authorities = Hyrax::EditorAuthorities.new %>
+<fieldset class="bordered form-group">
+<%= f.input key,
+  as: :controlled_vocabulary,
+  placeholder: 'Search for an editor',
+  input_html: {
+    class: 'form-control',
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'autocomplete' => key
+    }
+  },
+  ### Required for the ControlledVocabulary javascript:
+  wrapper_html: {
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'field-name' => key
+    }
+  },
+  required: f.object.required?(key) %>
+
+  <label>Authority for Editor</label>
+
+<%= select_tag "editor_authorities",
+        options_for_select(editor_authorities.select_active_options),
+        class: 'form-control image_editor',
+        data: {
+          'authority-select' => "image_editor",
+          'uses-controlled-vocab' => true
+        },
+        prompt: t('hyrax.records.edit_fields.editor.prompt')
+  %>
+</fieldset>

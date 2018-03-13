@@ -60,6 +60,75 @@ en:
         creator:
           label: "Select Authority For Creator"
           prompt: "Choose authority"
+        architect:
+          label: "Select Authority For Architect"
+          prompt: "Choose authority"
+        artist:
+          label: "Select Authority For Artist"
+          prompt: "Choose authority"
+        author:
+          label: "Select Authority For Author"
+          prompt: "Choose authority"
+        cartographer:
+          label: "Select Authority For Cartographer"
+          prompt: "Choose authority"
+        compiler:
+          label: "Select Authority For Compiler"
+          prompt: "Choose authority"
+        composer:
+          label: "Select Authority For Composer"
+          prompt: "Choose authority"
+        designer:
+          label: "Select Authority For Designer"
+          prompt: "Choose authority"
+        director:
+          label: "Select Authority For Director"
+          prompt: "Choose authority"
+        draftsman:
+          label: "Select Authority For Draftsman"
+          prompt: "Choose authority"
+        editor:
+          label: "Select Authority For Editor"
+          prompt: "Choose authority"
+        engraver:
+          label: "Select Authority For Engraver"
+          prompt: "Choose authority"
+        illustrator:
+          label: "Select Authority For Illustrator"
+          prompt: "Choose authority"
+        librettist:
+          label: "Select Authority For Librettist"
+          prompt: "Choose authority"
+        performer:
+          label: "Select Authority For Performer"
+          prompt: "Choose authority"
+        photographer:
+          label: "Select Authority For Photographer"
+          prompt: "Choose authority"
+        presenter:
+          label: "Select Authority For Presenter"
+          prompt: "Choose authority"
+        printer:
+          label: "Select Authority For Printer"
+          prompt: "Choose authority"
+        printmaker:
+          label: "Select Authority For Printmaker"
+          prompt: "Choose authority"
+        producer:
+          label: "Select Authority For Producer"
+          prompt: "Choose authority"
+        production_manager:
+          label: "Select Authority For Production Manager"
+          prompt: "Choose authority"
+        screenwriter:
+          label: "Select Authority For Screenwriter"
+          prompt: "Choose authority"
+        sculptor:
+          label: "Select Authority For Sculptor"
+          prompt: "Choose authority"
+        sponsor:
+          label: "Select Authority For Sponsor"
+          prompt: "Choose authority"
     product_name:           "Hyrax"
     product_twitter_handle: "@HydraSphere"
     institution_name:       "Institution"
