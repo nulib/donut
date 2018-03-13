@@ -21,8 +21,6 @@ RSpec.describe Hyrax::ImageForm do
                              :caption,
                              :catalog_key,
                              :citation,
-                             :contributor_role,
-                             :creator_role,
                              :folder_name,
                              :folder_number,
                              :genre,

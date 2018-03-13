@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/ClassLength
 # frozen_string_literal: true
 
 class SolrDocument
@@ -28,7 +27,6 @@ class SolrDocument
   use_extension(Hydra::ContentNegotiation)
 
   attribute :language_label, Solr::Array, solr_name('language_label')
-  attribute :contributor_role_label, Solr::Array, solr_name('contributor_role_label')
   attribute :style_period_label, Solr::Array, solr_name('style_period_label')
   attribute :genre_label, Solr::Array, solr_name('genre_label')
   attribute :technique_label, Solr::Array, solr_name('technique_label')
@@ -72,14 +70,6 @@ class SolrDocument
 
   def citation
     fetch(Solrizer.solr_name('citation', :stored_searchable), [])
-  end
-
-  def contributor_role
-    fetch(Solrizer.solr_name('contributor_role', :stored_searchable), [])
-  end
-
-  def creator_role
-    fetch(Solrizer.solr_name('creator_role', :stored_searchable), [])
   end
 
   def folder_name
@@ -158,4 +148,3 @@ class SolrDocument
     fetch(Solrizer.solr_name('technique', :stored_searchable), [])
   end
 end
-# rubocop:enable Metrics/ClassLength

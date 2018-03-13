@@ -43,16 +43,6 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :contributor_role, predicate: ::RDF::URI('http://example.com/donut/contributor/role'),
-                              class_name: ControlledVocabularies::ContributorRole,
-                              multiple: true do |index|
-    index.as :stored_searchable, :facetable
-  end
-
-  property :creator_role, predicate: ::RDF::Vocab::BF2.role, multiple: true do |index|
-    index.as :stored_searchable, :facetable
-  end
-
   property :genre, predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'), class_name: ControlledVocabularies::Genre, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
@@ -95,8 +85,7 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:subject, :contributor_role, :language, :style_period, :genre, :technique]
-  accepts_nested_attributes_for :contributor_role, reject_if: id_blank, allow_destroy: true
+  self.controlled_properties += [:subject, :language, :style_period, :genre, :technique]
   accepts_nested_attributes_for :style_period, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :genre, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :language, reject_if: id_blank, allow_destroy: true

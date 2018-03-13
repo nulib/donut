@@ -1,18 +1,15 @@
 require 'rails_helper'
 
-# rubocop:disable Metrics/BlockLength
 RSpec.describe 'hyrax/base/_attribute_rows.html.erb', type: :view do
   let(:url) { 'http://example.com' }
   let(:citation_text) { 'Blah blah blah' }
-  let(:creator_role) { 'The Role' }
   let(:rights_statement_uri) { 'http://rightsstatements.org/vocab/InC/1.0/' }
   let(:ability) { double }
   let(:work) do
     stub_model(Image,
                related_url: [url],
                rights_statement: [rights_statement_uri],
-               citation: [citation_text],
-               creator_role: [creator_role])
+               citation: [citation_text])
   end
   let(:solr_document) { SolrDocument.new(work.to_solr) }
   let(:presenter) { Hyrax::ImagePresenter.new(solr_document, ability) }
@@ -32,7 +29,5 @@ RSpec.describe 'hyrax/base/_attribute_rows.html.erb', type: :view do
 
   it 'shows NU attributes' do
     expect(page).to have_content(citation_text)
-    expect(page).to have_content(creator_role)
   end
 end
-# rubocop:enable Metrics/BlockLength

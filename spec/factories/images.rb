@@ -12,8 +12,6 @@ FactoryBot.define do
     caption ['This is the caption seen on the image']
     catalog_key ['9943338434202441']
     citation ['Test']
-    contributor_role ['Joanne	Howell']
-    creator_role ['http://id.loc.gov/vocabulary/relators/ill.html']
     genre ['Postmodern']
     provenance ['The example provenance']
     physical_description ['Wood 6cm x 7cm']
