@@ -73,7 +73,7 @@ services:
       - localstack
     environment:
       SQSD_WORKER_HTTP_URL: http://docker.for.mac.host.internal:3000
-      SQSD_QUEUE_URL: http://localstack:4676/queue/donut
+      SQSD_QUEUE_URL: http://localstack:4576/queue/donut
       SQSD_SSL_ENABLED: 'false'
       SQSD_RUN_DAEMONIZED: 'true'
       AWS_ACCESS_KEY_ID: localstack-dev-key
