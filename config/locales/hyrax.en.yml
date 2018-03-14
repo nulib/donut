@@ -10,7 +10,7 @@ en:
           keyword_sim: Keyword
           language_sim: Language
           publisher_sim: Publisher
-          subject_sim: Subject
+          subject_sim: NUL Subject
         index:
           based_near_tesim: Location
           contributor_tesim: Contributor
@@ -25,7 +25,7 @@ en:
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
-          subject_tesim: Subject
+          subject_tesim: NUL Subject
         show:
           based_near_tesim: Location
           contributor_tesim: Contributor
@@ -40,13 +40,15 @@ en:
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
-          subject_tesim: Subject
+          subject_tesim: NUL Subject
           title_tesim: Title
   hyrax:
     records:
       edit_fields:
         subject:
-          label: "Select Authority For Subject"
+          label: "NUL Subject"
+        subject_topical:
+          label: "Select Authority For Subject Topical"
           prompt: "Choose authority"
         contributor:
           label: "Select Authority For Contributor"

@@ -71,7 +71,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :nul_subject, predicate: ::RDF::Vocab::DC.subject, multiple: true do |index|
+  property :subject_topical, predicate: ::RDF::Vocab::DC.subject, class_name: ControlledVocabularies::SubjectTopical, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -85,11 +85,11 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:subject, :language, :style_period, :genre, :technique]
+  self.controlled_properties += [:subject_topical, :language, :style_period, :genre, :technique]
   accepts_nested_attributes_for :style_period, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :genre, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :language, reject_if: id_blank, allow_destroy: true
-  accepts_nested_attributes_for :subject, reject_if: id_blank, allow_destroy: true
+  accepts_nested_attributes_for :subject_topical, reject_if: id_blank, allow_destroy: true
   accepts_nested_attributes_for :technique, reject_if: id_blank, allow_destroy: true
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new

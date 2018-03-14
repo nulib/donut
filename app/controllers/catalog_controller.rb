@@ -45,7 +45,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('creator', :facetable), limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
-    config.add_facet_field solr_name('subject_label', :facetable), label: 'Subject', limit: 5
+    config.add_facet_field solr_name('subject', :facetable), label: 'NUL Subject', limit: 5
     config.add_facet_field solr_name('language_label', :facetable), label: 'Language', limit: 5
     config.add_facet_field solr_name('based_near_label', :facetable), label: 'Location', limit: 5
     config.add_facet_field solr_name('publisher', :facetable), limit: 5
@@ -60,7 +60,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('style_period_label', :facetable), label: 'Style Period', limit: 5
     config.add_facet_field solr_name('genre_label', :facetable), label: 'Genre', limit: 5
     config.add_facet_field solr_name('nul_creator', :facetable), label: 'NUL Creator', limit: 5
-    config.add_facet_field solr_name('nul_subject', :facetable), label: 'NUL Subject', limit: 5
+    config.add_facet_field solr_name('subject_topical_label', :facetable), label: 'Subject Topical', limit: 5
     config.add_facet_field solr_name('nul_contributor', :facetable), label: 'NUL Contributor', limit: 5
 
     # The generic_type isn't displayed on the facet list
@@ -78,7 +78,8 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('title', :stored_searchable), label: 'Title', itemprop: 'name', if: false
     config.add_index_field solr_name('description', :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
     config.add_index_field solr_name('keyword', :stored_searchable), itemprop: 'keywords', link_to_search: solr_name('keyword', :facetable)
-    config.add_index_field solr_name('subject_label', :stored_searchable), itemprop: 'about', link_to_search: solr_name('subject_label', :facetable)
+    config.add_index_field solr_name('subject_topical_label', :stored_searchable), link_to_search: solr_name('subject_topical_label', :facetable)
+    config.add_index_field solr_name('subject', :stored_searchable), label: 'NUL Subject', itemprop: 'about', link_to_search: solr_name('subject', :facetable)
     config.add_index_field solr_name('creator', :stored_searchable), itemprop: 'creator', link_to_search: solr_name('creator', :facetable)
     config.add_index_field solr_name('contributor', :stored_searchable), itemprop: 'contributor', link_to_search: solr_name('contributor', :facetable)
     config.add_index_field solr_name('proxy_depositor', :symbol), label: 'Depositor', helper_method: :link_to_profile
@@ -116,7 +117,8 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('title', :stored_searchable)
     config.add_show_field solr_name('description', :stored_searchable)
     config.add_show_field solr_name('keyword', :stored_searchable)
-    config.add_show_field solr_name('subject_label', :stored_searchable), label: 'Subject'
+    config.add_show_field solr_name('subject_topical_label', :stored_searchable), label: 'Subject Topical'
+    config.add_show_field solr_name('subject', :stored_searchable), label: 'NUL Subject'
     config.add_show_field solr_name('creator', :stored_searchable)
     config.add_show_field solr_name('contributor', :stored_searchable)
     config.add_show_field solr_name('publisher', :stored_searchable)

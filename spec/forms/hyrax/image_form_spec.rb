@@ -38,7 +38,6 @@ RSpec.describe Hyrax::ImageForm do
                              :task_number,
                              :project_cycle,
                              :nul_creator,
-                             :nul_subject,
                              :nul_contributor)
     end
 

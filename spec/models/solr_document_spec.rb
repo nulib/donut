@@ -43,7 +43,7 @@ RSpec.describe SolrDocument do
       project_cycle_tesim: ['Project cycle 1'],
       status_tesim: ['Reviewed'],
       nul_creator_tesim: ['Willie Wildcat'],
-      nul_subject_tesim: ['Just Northwestern Things'],
+      subject_tesim: ['Just Northwestern Things'],
       nul_contributor_tesim: ['ContribCat']
     }
   end
