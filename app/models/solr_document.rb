@@ -30,7 +30,7 @@ class SolrDocument
   attribute :style_period_label, Solr::Array, solr_name('style_period_label')
   attribute :genre_label, Solr::Array, solr_name('genre_label')
   attribute :technique_label, Solr::Array, solr_name('technique_label')
-  attribute :subject_label, Solr::Array, solr_name('subject_label')
+  attribute :subject_topical_label, Solr::Array, solr_name('subject_topical_label')
 
   def abstract
     fetch(Solrizer.solr_name('abstract', :stored_searchable), [])
@@ -92,10 +92,6 @@ class SolrDocument
     fetch(Solrizer.solr_name('nul_creator', :stored_searchable), [])
   end
 
-  def nul_subject
-    fetch(Solrizer.solr_name('nul_subject', :stored_searchable), [])
-  end
-
   def physical_description
     fetch(Solrizer.solr_name('physical_description', :stored_searchable), [])
   end
@@ -138,6 +134,10 @@ class SolrDocument
 
   def style_period
     fetch(Solrizer.solr_name('style_period', :stored_searchable), [])
+  end
+
+  def subject_topical_label
+    fetch(Solrizer.solr_name('subject_topical_label', :stored_searchable), [])
   end
 
   def task_number

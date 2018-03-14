@@ -19,7 +19,7 @@ FactoryBot.define do
     style_period ['Renaissance']
     technique ['Gauche']
     nul_creator ['Willie Wildcat']
-    nul_subject ['Just Northwestern Things']
+    subject ['Just Northwestern Things']
     nul_contributor ['ContribCat']
     box_name ['A good box name']
     box_number ['42']
