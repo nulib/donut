@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= status_context batch.status %>">
   <td><%= status_label batch.status %></td>
   <td><%= link_to(batch.job_id, url_for(batch)) %></td>
   <td><%= batch.submitter %></td>
