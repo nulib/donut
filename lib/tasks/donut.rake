@@ -34,7 +34,10 @@ unless Rails.env.production?
       Hyrax::PermissionTemplate.create!(source_id: AdminSet::DEFAULT_ID) if Hyrax::PermissionTemplate.count.zero?
       Rake::Task['hyrax:workflow:load'].invoke
       Rake::Task['s3:setup'].invoke
-      Sipity::Workflow.all.each { |wf| wf.update_attribute :active, true } # rubocop:disable Rails/SkipsModelValidations
+      # rubocop:disable Rails/SkipsModelValidations
+      Sipity::Workflow.find_by(name: 'default').update_attribute :active, true
+      Sipity::Workflow.find_by(name: 'one_step_mediated_deposit').update_attribute :active, false
+      # rubocop:enable Rails/SkipsModelValidations
       if ENV['ADMIN_USER']
         User.find_or_create_by(username: ENV['ADMIN_USER'], email: ENV['ADMIN_EMAIL'])
         Rake::Task['donut:add_admin_role'].invoke

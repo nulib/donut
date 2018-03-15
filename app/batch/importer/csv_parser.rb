@@ -2,26 +2,38 @@ module Importer
   # rubocop:disable Metrics/ClassLength
   class CSVParser
     include Enumerable
+    attr_reader :email
 
-    def initialize(file_name)
-      @file_name = file_name
+    def initialize(content)
+      @content = content
+      # Read email from first row
+      read_email
     end
 
     # @yieldparam attributes [Hash] the attributes from one row of the file
     def each(&_block)
       headers = nil
-      CSV.parse(@file_name, encoding: 'iso-8859-1:utf-8') do |row|
+      CSV.parse(@content, encoding: 'iso-8859-1:utf-8') do |row|
         if headers
           # we already have headers, so this is not the first row.
           yield attributes(headers, row)
         else
-          # Grab headers from first row
+          # Read headers
           headers = validate_headers(row)
         end
       end
     end
 
     private
+
+      def email_row?(row)
+        row.length == 1 && row.first.match?(/\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+      end
+
+      def read_email
+        row = CSV.parse(@content).first
+        @email = row.first if email_row?(row)
+      end
 
       # Match headers like "lc_subject_type"
       def type_header_pattern
@@ -31,6 +43,7 @@ module Importer
       def validate_headers(row)
         row.compact!
         difference = (row - valid_headers)
+        return nil if email_row?(difference)
 
         # Allow headers with the pattern *_type to specify the
         # record type for a local authority.

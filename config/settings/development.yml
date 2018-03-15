@@ -1,5 +1,5 @@
 localstack:
-  sqs: true
+  sqs: false
   port_offset: 100
 active_job_queue:
   url: http://localhost:4676/queue/donut

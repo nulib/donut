@@ -43,6 +43,10 @@ en:
           subject_tesim: NUL Subject
           title_tesim: Title
   hyrax:
+    admin:
+      sidebar:
+        batches: "Batches"
+        batch: "Batch detail"
     records:
       edit_fields:
         subject:

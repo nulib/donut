@@ -13,6 +13,7 @@ class Ability
   # Define any customized permissions here.
   def custom_permissions
     return unless admin?
+    can [:show], Batch
     can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
     can [:edit, :destroy], ActiveFedora::Base
     can :edit, String
