@@ -31,7 +31,7 @@ module Hyrax
         Hyrax::VersioningService.create(repository_file, user)
         pathhint = io.uploaded_file.uploader.path if io.uploaded_file # in case next worker is on same filesystem
         CharacterizeJob.perform_later(file_set, repository_file.id, pathhint || io.path)
-        CreateExifTechnicalMetadataJob.perform_later(file_set, pathhint || io.path)
+        #CreateExifTechnicalMetadataJob.perform_later(file_set, pathhint || io.path)
       end
 
       # Reverts file and spawns async job to characterize and create derivatives.
