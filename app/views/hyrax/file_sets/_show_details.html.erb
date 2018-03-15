@@ -1,0 +1,81 @@
+<h2>File Details</h2>
+<dl class="dl-horizontal file-show-term file-show-details">
+  <dt>Depositor</dt>
+  <dd itemprop="accountablePerson" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><%= link_to_profile @presenter.depositor %></span></dd>
+  <dt>Date Uploaded</dt>
+  <dd itemprop="datePublished"><%= @presenter.date_uploaded %></dd>
+  <dt>Date Modified</dt>
+  <dd itemprop="dateModified"><%= @presenter.date_modified %></dd>
+  <dt>Fixity Check</dt>
+  <dd><%= @presenter.fixity_check_status %></dd>
+  <dt>Characterization</dt>
+  <dd>
+    <% if @presenter.characterized? %>
+      <%= render 'show_characterization_details' %>
+    <% else %>
+      not yet characterized
+    <% end %>
+  </dd>
+  <dt>Image Height</dt>
+  <dd itemprop="imageHeight"><%= @presenter.exif_image_height.first %></dd>
+  <dt>Image Width</dt>
+  <dd itemprop="imageWidth"><%= @presenter.exif_image_width.first %></dd>
+  <dt>Compression</dt>
+  <dd itemprop="compression"><%= @presenter.exif_compression.first %></dd>
+  <% unless @presenter.photometric_interpretation.blank? %>
+    <dt>Photometric Interpretation</dt>
+    <dd itemprop="photometricInterpretation"><%= @presenter.photometric_interpretation.first %></dd>
+  <% end %>
+  <% unless @presenter.samples_per_pixel.blank? %>
+    <dt>Samples Per Pixel</dt>
+    <dd itemprop="samplesPerPixel"><%= @presenter.samples_per_pixel.first %></dd>
+  <% end %>
+  <% unless @presenter.x_resolution.blank? %>
+    <dt>X Resolution</dt>
+    <dd itemprop="xResolution"><%= @presenter.x_resolution.first %></dd>
+  <% end %>
+  <% unless @presenter.y_resolution.blank? %>
+    <dt>Y Resolution</dt>
+    <dd itemprop="yResolution"><%= @presenter.y_resolution.first %></dd>
+  <% end %>
+  <% unless @presenter.resolution_unit.blank? %>
+    <dt>Resolution Unit</dt>
+    <dd itemprop="resolutionUnit"><%= @presenter.resolution_unit.first %></dd>
+  <% end %>
+  <% unless @presenter.date_time.blank? %>
+    <dt>Date Time</dt>
+    <dd itemprop="dateTime"><%= @presenter.date_time.first %></dd>
+  <% end %>
+  <% unless @presenter.bits_per_sample.blank? %>
+    <dt>Bits Per Sample</dt>
+    <dd itemprop="bitsPerSample"><%= @presenter.bits_per_sample.first %></dd>
+  <% end %>
+  <% unless @presenter.make.blank? %>
+    <dt>Make</dt>
+    <dd itemprop="make"><%= @presenter.make.first %></dd>
+  <% end %>
+  <% unless @presenter.model.blank? %>
+    <dt>Model</dt>
+    <dd itemprop="model"><%= @presenter.model.first %></dd>
+  <% end %>
+  <% unless @presenter.strip_offsets.blank? %>
+    <dt>Strip Offsets</dt>
+    <dd itemprop="stripOffsets"><%= @presenter.strip_offsets.first %></dd>
+  <% end %>
+  <% unless @presenter.rows_per_strip.blank? %>
+    <dt>Rows Per Strip</dt>
+    <dd itemprop="rowsPerStrip"><%= @presenter.rows_per_strip.first %></dd>
+  <% end %>
+  <% unless @presenter.strip_byte_counts.blank? %>
+    <dt>Strip Byte Counts</dt>
+    <dd itemprop="stripByteCounts"><%= @presenter.strip_byte_counts.first %></dd>
+  <% end %>
+  <% unless @presenter.software.blank? %>
+    <dt>Software</dt>
+    <dd itemprop="software"><%= @presenter.software.first %></dd>
+  <% end %>
+  <% unless @presenter.extra_samples.blank? %>
+    <dt>Extra Samples</dt>
+    <dd itemprop="extraSamples"><%= @presenter.extra_samples.first %></dd>
+  <% end %>
+</dl>
