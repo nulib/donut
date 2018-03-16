@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :batches, only: [:index, :show]
+  get '/batches/detail/:accession_number', to: 'batches#detail', as: :batch_item
 
   mount BrowseEverything::Engine => '/browse'
   mount Blacklight::Engine => '/'

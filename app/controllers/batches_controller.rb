@@ -17,4 +17,13 @@ class BatchesController < Hyrax::MyController
     add_breadcrumb t(:'hyrax.admin.sidebar.batches'), main_app.batches_path
     add_breadcrumb t(:'hyrax.admin.sidebar.batch'), @batch
   end
+
+  def detail
+    @batch_items = BatchItem.where(accession_number: params[:accession_number]).order(:updated_at)
+
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
+    add_breadcrumb t(:'hyrax.admin.sidebar.batches'), main_app.batches_path
+    add_breadcrumb t(:'hyrax.admin.sidebar.batch_item'), batch_item_path(accession_number: params[:accession_number])
+  end
 end

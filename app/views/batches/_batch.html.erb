@@ -3,5 +3,5 @@
   <td><%= link_to(batch.job_id, url_for(batch)) %></td>
   <td><%= batch.submitter %></td>
   <td><%= batch.original_filename %></td>
-  <td><%= batch.created_at.localtime %></td>
+  <td><%= time_ago_in_words(batch.created_at) %> ago</td>
 </tr>

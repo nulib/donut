@@ -47,6 +47,7 @@ en:
       sidebar:
         batches: "Batches"
         batch: "Batch detail"
+        batch_item: "Accession Number history"
     records:
       edit_fields:
         subject:

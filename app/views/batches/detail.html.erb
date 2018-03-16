@@ -1,20 +1,22 @@
-<h1><span class="fa fa-copy"></span> Batch <%= @batch.job_id %></h1>
+<h1><span class="fa fa-copy"></span> History for Accession Number <%= params[:accession_number] %></h1>
 
 <div class='table-responsive'>
   <table class='table table-condensed'>
     <thead>
       <tr>
         <th scope='col'>Status</th>
+        <th scope='col'>Job ID</th>
         <th scope='col'>Row Number</th>
-        <th scope='col'>Accession Number</th>
+        <th scope='col'>Submitted</th>
       </tr>
     </thead>
     <tbody>
-      <% @batch.batch_items.each.with_index do |item, index| %>
+      <% @batch_items.each.with_index do |item, index| %>
         <tr class="<%= status_context(item.status) %>">
           <td><span data-toggle="collapse" data-target="#error_<%= index %>" class="clickable <%= status_context(item.status) %>" style="cursor: pointer;"><%= status_label item.status %></span></td>
+          <td><%= link_to(item.batch.job_id, url_for(item.batch)) %></td>
           <td><%= item.row_number %></td>
-          <td><%= link_to(item.accession_number, batch_item_path(accession_number: item.accession_number)) %></td>
+          <td><%= time_ago_in_words(item.created_at) %> ago</td>
         </tr>
         <%= render partial: 'error_row', locals: { index: index, item: item } %>
       <% end %>
