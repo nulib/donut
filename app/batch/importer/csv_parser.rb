@@ -1,6 +1,8 @@
 module Importer
   # rubocop:disable Metrics/ClassLength
   class CSVParser
+    class ParserError < StandardError
+    end
     include Enumerable
     attr_reader :email
 
@@ -50,7 +52,7 @@ module Importer
         # e.g. For an author, author_type might be 'Person'.
         difference.delete_if { |h| h.match(type_header_pattern) }
 
-        raise "Invalid headers: #{difference.join(', ')}" if difference.present?
+        raise ParserError, "Invalid headers: #{difference.join(', ')}" if difference.present?
 
         validate_header_pairs(row)
         row
@@ -69,7 +71,7 @@ module Importer
             errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
           end
         end
-        raise errors.join(', ') if errors.present?
+        raise ParserError, errors.join(', ') if errors.present?
       end
       # rubocop:enable Metrics/MethodLength
 

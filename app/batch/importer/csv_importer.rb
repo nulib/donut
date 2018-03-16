@@ -13,18 +13,19 @@ module Importer
 
     # @return [Integer] count of objects created
     def import_all
-      count = 0
       @batch = Batch.create(
         submitter: parser.email,
         job_id: @job_id,
         original_filename: @s3_resource.key
       )
-      parser.each_with_index do |attributes, index|
-        create_item_row(attributes.merge(row_number: index + 1, batch_location: s3_url))
-        count += 1
+      begin
+        parser.each_with_index do |attributes, index|
+          create_item_row(attributes.merge(row_number: index + 1, batch_location: s3_url))
+        end
+        BatchJob.perform_later(@batch)
+      rescue CSVParser::ParserError => error
+        create_error_row(error)
       end
-      BatchJob.perform_later(@batch)
-      count
     end
 
     private
@@ -42,6 +43,16 @@ module Importer
           row_number: attributes.delete(:row_number),
           accession_number: attributes[:accession_number],
           attribute_hash: attributes
+        )
+      end
+
+      def create_error_row(error)
+        @batch.batch_items.create(
+          row_number: 0,
+          accession_number: @batch.job_id,
+          attribute_hash: {},
+          status: 'error',
+          error: { batch: error.message }
         )
       end
   end

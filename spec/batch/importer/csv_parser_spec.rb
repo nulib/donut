@@ -45,7 +45,7 @@ RSpec.describe Importer::CSVParser do
       let(:headers) { ['something bad', 'title'] }
 
       it 'raises an error' do
-        expect { parsed_headers }.to raise_error(RuntimeError, 'Invalid headers: something bad')
+        expect { parsed_headers }.to raise_error(Importer::CSVParser::ParserError)
       end
     end
 
@@ -80,7 +80,7 @@ RSpec.describe Importer::CSVParser do
       let(:headers) { %w[note note_type rights_holder_type rights_holder_type rights_holder title] }
 
       it 'raises an error' do
-        expect { parsed_headers }.to raise_error(RuntimeError, "Invalid headers: 'note_type' column " \
+        expect { parsed_headers }.to raise_error(Importer::CSVParser::ParserError, "Invalid headers: 'note_type' column " \
           "must be immediately followed by 'note' column., Invalid headers: " \
           "'rights_holder_type' column must be immediately followed by " \
           "'rights_holder' column.")
