@@ -73,6 +73,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('ark', :stored_searchable), [])
   end
 
+  def bibliographic_citation
+    fetch(Solrizer.solr_name('bibliographic_citation', :stored_searchable), [])
+  end
+
   def box_name
     fetch(Solrizer.solr_name('box_name', :stored_searchable), [])
   end
@@ -91,10 +95,6 @@ class SolrDocument
 
   def catalog_key
     fetch(Solrizer.solr_name('catalog_key', :stored_searchable), [])
-  end
-
-  def citation
-    fetch(Solrizer.solr_name('citation', :stored_searchable), [])
   end
 
   def folder_name
@@ -117,8 +117,8 @@ class SolrDocument
     fetch(Solrizer.solr_name('nul_creator', :stored_searchable), [])
   end
 
-  def physical_description
-    fetch(Solrizer.solr_name('physical_description', :stored_searchable), [])
+  def physical_description_size
+    fetch(Solrizer.solr_name('physical_description_size', :stored_searchable), [])
   end
 
   def preservation_level

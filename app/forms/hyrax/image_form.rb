@@ -4,8 +4,8 @@ module Hyrax
   class ImageForm < Hyrax::Forms::WorkForm
     self.model_class = ::Image
     self.terms += [:alternate_title, :resource_type, :abstract, :accession_number,
-                   :call_number, :caption, :catalog_key, :citation, :genre, :provenance,
-                   :physical_description, :rights_holder, :style_period, :technique,
+                   :bibliographic_citation, :call_number, :caption, :catalog_key, :genre, :provenance,
+                   :physical_description_size, :rights_holder, :style_period, :technique,
                    :preservation_level, :status, :subject_topical, :project_name,
                    :project_description, :proposer, :project_manager, :task_number,
                    :project_cycle, :nul_creator, :nul_contributor, :box_number,

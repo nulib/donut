@@ -11,10 +11,9 @@ FactoryBot.define do
     call_number 'W107.8:Am6'
     caption ['This is the caption seen on the image']
     catalog_key ['9943338434202441']
-    citation ['Test']
     genre ['Postmodern']
     provenance ['The example provenance']
-    physical_description ['Wood 6cm x 7cm']
+    physical_description_size ['Wood 6cm x 7cm']
     rights_holder ['Northwestern University Libraries']
     style_period ['Renaissance']
     technique ['Gauche']

@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'hyrax/base/_attribute_rows.html.erb', type: :view do
   let(:url) { 'http://example.com' }
-  let(:citation_text) { 'Blah blah blah' }
   let(:rights_statement_uri) { 'http://rightsstatements.org/vocab/InC/1.0/' }
   let(:ability) { double }
   let(:work) do
     stub_model(Image,
                related_url: [url],
-               rights_statement: [rights_statement_uri],
-               citation: [citation_text])
+               rights_statement: [rights_statement_uri])
   end
   let(:solr_document) { SolrDocument.new(work.to_solr) }
   let(:presenter) { Hyrax::ImagePresenter.new(solr_document, ability) }
@@ -25,9 +23,5 @@ RSpec.describe 'hyrax/base/_attribute_rows.html.erb', type: :view do
 
   it 'shows rights statement with link to statement URL' do
     expect(page).to have_link(rights_statement_uri)
-  end
-
-  it 'shows NU attributes' do
-    expect(page).to have_content(citation_text)
   end
 end

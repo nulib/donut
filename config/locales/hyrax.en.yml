@@ -3,7 +3,7 @@ en:
     search:
       fields:
         facet:
-          based_near_sim: Location
+          based_near_label_sim: Location (Place of Publication)
           creator_sim: Creator
           file_format_sim: Format
           generic_type_sim: Type
@@ -12,7 +12,8 @@ en:
           publisher_sim: Publisher
           subject_sim: NUL Subject
         index:
-          based_near_tesim: Location
+          based_near_label_tesim: Location (Place of Publication)
+          bibliographic_citation_tesim: Citation
           contributor_tesim: Contributor
           creator_tesim: Creator
           date_created_tesim: Date Created
@@ -27,7 +28,8 @@ en:
           rights_tesim: Rights
           subject_tesim: NUL Subject
         show:
-          based_near_tesim: Location
+          based_near_label_tesim: Location (Place of Publication)
+          bibliographic_citation_tesim: Citation
           contributor_tesim: Contributor
           creator_tesim: Creator
           date_created_tesim: Date Created
@@ -50,6 +52,10 @@ en:
         batch_item: "Accession Number history"
     records:
       edit_fields:
+        based_near:
+          label: "Location (Place of Publication)"
+        bibliographic_citation:
+          label: "Citation"
         subject:
           label: "NUL Subject"
         subject_topical:

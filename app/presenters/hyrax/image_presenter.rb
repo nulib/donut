@@ -3,9 +3,9 @@
 module Hyrax
   class ImagePresenter < Hyrax::WorkShowPresenter
     TERMS = [:abstract, :accession_number, :alternate_title, :ark,
-             :call_number, :caption, :catalog_key, :citation,
+             :bibliographic_citation, :call_number, :caption, :catalog_key,
              :genre_label, :subject_topical_label, :language_label, :provenance,
-             :physical_description, :rights_holder, :style_period_label,
+             :physical_description_size, :rights_holder, :style_period_label,
              :technique_label, :nul_creator, :nul_contributor,
              :box_name, :box_number, :folder_name, :folder_number, :architect,
              :artist_label, :author_label, :cartographer_label, :compiler_label, :composer_label, :designer_label,

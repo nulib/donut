@@ -40,15 +40,11 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :citation, predicate: ::RDF::Vocab::DC.bibliographicCitation, multiple: true do |index|
-    index.as :stored_searchable
-  end
-
   property :genre, predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'), class_name: ControlledVocabularies::Base, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
-  property :physical_description, predicate: ::RDF::Vocab::Bibframe.extent, multiple: true do |index|
+  property :physical_description_size, predicate: ::RDF::Vocab::Bibframe.extent, multiple: true do |index|
     index.as :stored_searchable
   end
 
@@ -68,7 +64,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :nul_creator, predicate: ::Vocab::Donut.hasCreator, multiple: true do |index|
+  property :nul_creator, predicate: ::Vocab::Donut.creator, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -76,7 +72,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :nul_contributor, predicate: ::Vocab::Donut.hasContributor, multiple: true do |index|
+  property :nul_contributor, predicate: ::Vocab::Donut.contributor, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
