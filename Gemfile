@@ -76,6 +76,7 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
   gem 'solr_wrapper', '>= 0.3'
+  gem 'webmock'
 end
 
 gem 'devise'
