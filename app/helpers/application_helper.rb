@@ -8,8 +8,8 @@ module ApplicationHelper
 
   def status_context(status)
     case status
-    when 'error'       then 'danger'
     when 'complete'    then 'success'
+    when 'error'       then 'danger'
     when 'initialized' then 'info'
     when 'processing'  then 'active'
     else ''
@@ -22,17 +22,20 @@ module ApplicationHelper
 
   private
 
+    # rubocop:disable Metrics/CyclomaticComplexity
     def status_span_generator(status)
       fa_class = case status
-                 when 'error' then 'fa fa-exclamation-triangle'
                  when 'complete' then 'fa fa-check-circle'
-                 when 'initialized' then 'fa fa-info'
                  when 'empty' then 'fa fa-minus-circle'
-                 when 'processing' then 'fa fa-sync'
+                 when 'error' then 'fa fa-exclamation-triangle'
+                 when 'initialized' then 'fa fa-info'
+                 when 'processing' then 'fa fa-refresh fa-sync'
+                 when 'skipped' then 'fa fa-forward'
                  end
       content_tag(:span, class: fa_class) do
         concat ' ' # en space
         concat content_tag(:a, status.titleize)
       end
     end
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
