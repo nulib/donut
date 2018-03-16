@@ -1,0 +1,33 @@
+<% photographer_authorities = Hyrax::PhotographerAuthorities.new %>
+<fieldset class="bordered form-group">
+<%= f.input key,
+  as: :controlled_vocabulary,
+  placeholder: 'Search for a photographer',
+  input_html: {
+    class: 'form-control',
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'autocomplete' => key
+    }
+  },
+  ### Required for the ControlledVocabulary javascript:
+  wrapper_html: {
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'field-name' => key
+    }
+  },
+  required: f.object.required?(key) %>
+
+  <label>Authority for Photographer</label>
+
+<%= select_tag "photographer_authorities",
+        options_for_select(photographer_authorities.select_active_options),
+        class: 'form-control image_photographer',
+        data: {
+          'authority-select' => "image_photographer",
+          'uses-controlled-vocab' => true
+        },
+        prompt: t('hyrax.records.edit_fields.photographer.prompt')
+  %>
+</fieldset>

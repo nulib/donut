@@ -1,0 +1,33 @@
+<% sponsor_authorities = Hyrax::SponsorAuthorities.new %>
+<fieldset class="bordered form-group">
+<%= f.input key,
+  as: :controlled_vocabulary,
+  placeholder: 'Search for a sponsor',
+  input_html: {
+    class: 'form-control',
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'autocomplete' => key
+    }
+  },
+  ### Required for the ControlledVocabulary javascript:
+  wrapper_html: {
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'field-name' => key
+    }
+  },
+  required: f.object.required?(key) %>
+
+  <label>Authority for Sponsor</label>
+
+<%= select_tag "sponsor_authorities",
+        options_for_select(sponsor_authorities.select_active_options),
+        class: 'form-control image_sponsor',
+        data: {
+          'authority-select' => "image_sponsor",
+          'uses-controlled-vocab' => true
+        },
+        prompt: t('hyrax.records.edit_fields.sponsor.prompt')
+  %>
+</fieldset>

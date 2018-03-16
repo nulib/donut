@@ -1,0 +1,33 @@
+<% designer_authorities = Hyrax::DesignerAuthorities.new %>
+<fieldset class="bordered form-group">
+<%= f.input key,
+  as: :controlled_vocabulary,
+  placeholder: 'Search for a designer',
+  input_html: {
+    class: 'form-control',
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'autocomplete' => key
+    }
+  },
+  ### Required for the ControlledVocabulary javascript:
+  wrapper_html: {
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'field-name' => key
+    }
+  },
+  required: f.object.required?(key) %>
+
+  <label>Authority for Designer</label>
+
+<%= select_tag "designer_authorities",
+        options_for_select(designer_authorities.select_active_options),
+        class: 'form-control image_designer',
+        data: {
+          'authority-select' => "image_designer",
+          'uses-controlled-vocab' => true
+        },
+        prompt: t('hyrax.records.edit_fields.designer.prompt')
+  %>
+</fieldset>

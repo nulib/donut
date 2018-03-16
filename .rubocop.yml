@@ -31,6 +31,7 @@ Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
     - 'app/batch/importer/factory/object_factory.rb'
+    - 'app/models/solr_document.rb'
 
 Metrics/LineLength:
   Max: 164 # default is 80

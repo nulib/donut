@@ -4,11 +4,11 @@ class Image < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::Schemas::Administrative
   include ::Schemas::Workflow
+  include ::Schemas::CommonMetadata
   include MicroserviceMinter
 
   self.indexer = ImageIndexer
-  # Change this to restrict which works can be added as a child.
-  # self.valid_child_concerns = []
+
   validates :title, presence: { message: 'Your work must have a title.' }
 
   after_save do
@@ -43,7 +43,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :genre, predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'), class_name: ControlledVocabularies::Genre, multiple: true do |index|
+  property :genre, predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'), class_name: ControlledVocabularies::Base, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -59,11 +59,11 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :style_period, predicate: ::RDF::URI('http://purl.org/vra/StylePeriod'), class_name: ControlledVocabularies::StylePeriod, multiple: true do |index|
+  property :style_period, predicate: ::RDF::URI('http://purl.org/vra/StylePeriod'), class_name: ControlledVocabularies::Base, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
-  property :technique, predicate: ::RDF::URI('http://purl.org/vra/Technique'), class_name: ControlledVocabularies::Technique, multiple: true do |index|
+  property :technique, predicate: ::RDF::URI('http://purl.org/vra/Technique'), class_name: ControlledVocabularies::Base, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -71,7 +71,7 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :subject_topical, predicate: ::RDF::Vocab::DC.subject, class_name: ControlledVocabularies::SubjectTopical, multiple: true do |index|
+  property :subject_topical, predicate: ::RDF::Vocab::DC.subject, class_name: ControlledVocabularies::Base, multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
 
@@ -85,12 +85,15 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:subject_topical, :language, :style_period, :genre, :technique]
-  accepts_nested_attributes_for :style_period, reject_if: id_blank, allow_destroy: true
-  accepts_nested_attributes_for :genre, reject_if: id_blank, allow_destroy: true
-  accepts_nested_attributes_for :language, reject_if: id_blank, allow_destroy: true
-  accepts_nested_attributes_for :subject_topical, reject_if: id_blank, allow_destroy: true
-  accepts_nested_attributes_for :technique, reject_if: id_blank, allow_destroy: true
+  self.controlled_properties += [:architect, :artist, :author, :cartographer, :compiler, :composer,
+                                 :contributor, :creator, :designer, :director, :draftsman, :editor, :engraver,
+                                 :genre, :illustrator, :language, :librettist, :performer, :photographer, :presenter,
+                                 :printer, :printmaker, :producer, :production_manager, :screenwriter, :sculptor,
+                                 :sponsor, :style_period, :subject_topical, :technique]
+
+  self.controlled_properties.without(:based_near).each do |property|
+    accepts_nested_attributes_for property, reject_if: id_blank, allow_destroy: true
+  end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
 end

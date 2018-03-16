@@ -63,6 +63,31 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('subject_topical_label', :facetable), label: 'Subject Topical', limit: 5
     config.add_facet_field solr_name('nul_contributor', :facetable), label: 'NUL Contributor', limit: 5
 
+    # CommonMetadata facet fields
+    config.add_facet_field solr_name('architect_label', :facetable), limit: 5
+    config.add_facet_field solr_name('artist_label', :facetable), limit: 5
+    config.add_facet_field solr_name('author_label', :facetable), limit: 5
+    config.add_facet_field solr_name('cartographer_label', :facetable), limit: 5
+    config.add_facet_field solr_name('compiler_label', :facetable), limit: 5
+    config.add_facet_field solr_name('composer_label', :facetable), limit: 5
+    config.add_facet_field solr_name('designer_label', :facetable), limit: 5
+    config.add_facet_field solr_name('director_label', :facetable), limit: 5
+    config.add_facet_field solr_name('draftsman_label', :facetable), limit: 5
+    config.add_facet_field solr_name('editor_label', :facetable), limit: 5
+    config.add_facet_field solr_name('engraver_label', :facetable), limit: 5
+    config.add_facet_field solr_name('illustrator_label', :facetable), limit: 5
+    config.add_facet_field solr_name('librettist_label', :facetable), limit: 5
+    config.add_facet_field solr_name('performer_label', :facetable), limit: 5
+    config.add_facet_field solr_name('photographer_label', :facetable), limit: 5
+    config.add_facet_field solr_name('presenter_label', :facetable), limit: 5
+    config.add_facet_field solr_name('printer_label', :facetable), limit: 5
+    config.add_facet_field solr_name('printmaker_label', :facetable), limit: 5
+    config.add_facet_field solr_name('producer_label', :facetable), limit: 5
+    config.add_facet_field solr_name('production_manager_label', :facetable), limit: 5
+    config.add_facet_field solr_name('screenwriter_label', :facetable), limit: 5
+    config.add_facet_field solr_name('sculptor_label', :facetable), limit: 5
+    config.add_facet_field solr_name('sponsor_label', :facetable), limit: 5
+
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
     config.add_facet_field solr_name('generic_type', :facetable), if: false
@@ -112,6 +137,31 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
     # rubocop:enable Metrics/LineLength
 
+    # CommonMetadata fields to display in search results
+    config.add_index_field solr_name('architect_label', :stored_searchable), link_to_search: solr_name('architect', :facetable)
+    config.add_index_field solr_name('artist_label', :stored_searchable), link_to_search: solr_name('artist', :facetable)
+    config.add_index_field solr_name('author_label', :stored_searchable), link_to_search: solr_name('author', :facetable)
+    config.add_index_field solr_name('cartographer_label', :stored_searchable), link_to_search: solr_name('cartographer', :facetable)
+    config.add_index_field solr_name('compiler_label', :stored_searchable), link_to_search: solr_name('compiler', :facetable)
+    config.add_index_field solr_name('composer_label', :stored_searchable), link_to_search: solr_name('composer', :facetable)
+    config.add_index_field solr_name('designer_label', :stored_searchable), link_to_search: solr_name('designer', :facetable)
+    config.add_index_field solr_name('director_label', :stored_searchable), link_to_search: solr_name('director', :facetable)
+    config.add_index_field solr_name('draftsman_label', :stored_searchable), link_to_search: solr_name('draftsman', :facetable)
+    config.add_index_field solr_name('editor_label', :stored_searchable), link_to_search: solr_name('editor', :facetable)
+    config.add_index_field solr_name('engraver_label', :stored_searchable), link_to_search: solr_name('engraver', :facetable)
+    config.add_index_field solr_name('illustrator_label', :stored_searchable), link_to_search: solr_name('illustrator', :facetable)
+    config.add_index_field solr_name('librettist_label', :stored_searchable), link_to_search: solr_name('librettist', :facetable)
+    config.add_index_field solr_name('performer_label', :stored_searchable), link_to_search: solr_name('performer', :facetable)
+    config.add_index_field solr_name('photographer_label', :stored_searchable), link_to_search: solr_name('photographer', :facetable)
+    config.add_index_field solr_name('presenter_label', :stored_searchable), link_to_search: solr_name('presenter', :facetable)
+    config.add_index_field solr_name('printer_label', :stored_searchable), link_to_search: solr_name('printer', :facetable)
+    config.add_index_field solr_name('printmaker_label', :stored_searchable), link_to_search: solr_name('printmaker', :facetable)
+    config.add_index_field solr_name('producer_label', :stored_searchable), link_to_search: solr_name('producer', :facetable)
+    config.add_index_field solr_name('production_manager_label', :stored_searchable), link_to_search: solr_name('production_manager', :facetable)
+    config.add_index_field solr_name('screenwriter_label', :stored_searchable), link_to_search: solr_name('screenwriter', :facetable)
+    config.add_index_field solr_name('sculptor_label', :stored_searchable), link_to_search: solr_name('sculptor', :facetable)
+    config.add_index_field solr_name('sponsor_label', :stored_searchable), link_to_search: solr_name('sponsor', :facetable)
+
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name('title', :stored_searchable)
@@ -148,6 +198,31 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('box_number', :stored_searchable), label: 'Box Number'
     config.add_show_field solr_name('folder_name', :stored_searchable), label: 'Folder Name'
     config.add_show_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
+
+    # CommonMetadata fields for the single result view
+    config.add_show_field solr_name('architect_label', :stored_searchable)
+    config.add_show_field solr_name('artist_label', :stored_searchable)
+    config.add_show_field solr_name('author_label', :stored_searchable)
+    config.add_show_field solr_name('cartographer_label', :stored_searchable)
+    config.add_show_field solr_name('compiler_label', :stored_searchable)
+    config.add_show_field solr_name('composer_label', :stored_searchable)
+    config.add_show_field solr_name('designer_label', :stored_searchable)
+    config.add_show_field solr_name('director_label', :stored_searchable)
+    config.add_show_field solr_name('draftsman_label', :stored_searchable)
+    config.add_show_field solr_name('editor_label', :stored_searchable)
+    config.add_show_field solr_name('engraver_label', :stored_searchable)
+    config.add_show_field solr_name('illustrator_label', :stored_searchable)
+    config.add_show_field solr_name('librettist_label', :stored_searchable)
+    config.add_show_field solr_name('performer_label', :stored_searchable)
+    config.add_show_field solr_name('photographer_label', :stored_searchable)
+    config.add_show_field solr_name('presenter_label', :stored_searchable)
+    config.add_show_field solr_name('printer_label', :stored_searchable)
+    config.add_show_field solr_name('printmaker_label', :stored_searchable)
+    config.add_show_field solr_name('producer_label', :stored_searchable)
+    config.add_show_field solr_name('production_manager_label', :stored_searchable)
+    config.add_show_field solr_name('screenwriter_label', :stored_searchable)
+    config.add_show_field solr_name('sculptor_label', :stored_searchable)
+    config.add_show_field solr_name('sponsor_label', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -329,6 +404,215 @@ class CatalogController < ApplicationController
 
     config.add_search_field('rights') do |field|
       solr_name = solr_name('rights', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    # CommonMetadata fields
+
+    config.add_search_field('architect') do |field|
+      field.label = 'Architect'
+      solr_name = solr_name('architect_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('artist') do |field|
+      field.label = 'Artist'
+      solr_name = solr_name('artist_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('author') do |field|
+      field.label = 'Author'
+      solr_name = solr_name('author_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('cartographer') do |field|
+      field.label = 'Cartographer'
+      solr_name = solr_name('cartographer_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('compiler') do |field|
+      field.label = 'Compiler'
+      solr_name = solr_name('compiler_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('composer') do |field|
+      field.label = 'Composer'
+      solr_name = solr_name('composer_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('designer') do |field|
+      field.label = 'Designer'
+      solr_name = solr_name('designer_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('director') do |field|
+      field.label = 'Director'
+      solr_name = solr_name('director_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('draftsman') do |field|
+      field.label = 'Draftsman'
+      solr_name = solr_name('draftsman_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('editor') do |field|
+      field.label = 'Editor'
+      solr_name = solr_name('editor_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('engraver') do |field|
+      field.label = 'Engraver'
+      solr_name = solr_name('engraver_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('illustrator') do |field|
+      field.label = 'Illustrator'
+      solr_name = solr_name('illustrator_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('librettist') do |field|
+      field.label = 'Librettist'
+      solr_name = solr_name('librettist_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('performer') do |field|
+      field.label = 'Performer'
+      solr_name = solr_name('performer_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('photographer') do |field|
+      field.label = 'Photographer'
+      solr_name = solr_name('photographer_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('presenter') do |field|
+      field.label = 'Presenter'
+      solr_name = solr_name('presenter_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('printer') do |field|
+      field.label = 'Printer'
+      solr_name = solr_name('printer_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('printmaker') do |field|
+      field.label = 'Printmaker'
+      solr_name = solr_name('printmaker_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('producer') do |field|
+      field.label = 'Producer'
+      solr_name = solr_name('producer_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('production_manager') do |field|
+      field.label = 'Production Manager'
+      solr_name = solr_name('production_manager_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('screenwriter') do |field|
+      field.label = 'Screenwriter'
+      solr_name = solr_name('screenwriter_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('sculptor') do |field|
+      field.label = 'Sculptor'
+      solr_name = solr_name('sculptor_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('sponsor') do |field|
+      field.label = 'Sponsor'
+      solr_name = solr_name('sponsor_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

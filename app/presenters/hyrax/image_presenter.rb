@@ -7,7 +7,11 @@ module Hyrax
              :genre_label, :subject_topical_label, :language_label, :provenance,
              :physical_description, :rights_holder, :style_period_label,
              :technique_label, :nul_creator, :nul_contributor,
-             :box_name, :box_number, :folder_name, :folder_number].freeze
+             :box_name, :box_number, :folder_name, :folder_number, :architect,
+             :artist, :author, :cartographer, :compiler, :composer, :designer,
+             :director, :draftsman, :editor, :engraver, :illustrator, :librettist,
+             :performer, :photographer, :presenter, :printer, :printmaker, :producer,
+             :production_manager, :screenwriter, :sculptor, :sponsor].freeze
 
     ADMIN_TERMS = [:project_name, :project_description, :proposer, :project_manager,
                    :task_number, :preservation_level, :project_cycle, :status].freeze
