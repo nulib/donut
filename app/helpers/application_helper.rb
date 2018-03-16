@@ -2,7 +2,7 @@ module ApplicationHelper
   def error_collector(error_hash)
     return 'No errors' if error_hash.empty?
     error_hash.collect do |field, errors|
-      errors.collect { |error| "#{field}: #{error} " }
+      Array(errors).collect { |error| "#{field}: #{error} " }
     end.flatten.join('<br/>')
   end
 
