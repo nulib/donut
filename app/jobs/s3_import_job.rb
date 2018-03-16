@@ -11,8 +11,8 @@ class S3ImportJob < ApplicationJob
     validate_bucket!
     validate_csv_file!
 
-    size = Importer::CSVImporter.new(csv_file, csv_resource, job_id).import_all
-    Rails.logger.info("#{size} records imported from #{s3_url}")
+    Importer::CSVImporter.new(csv_file, csv_resource, job_id).import_all
+    Rails.logger.info("Batch complete. Records imported from #{s3_url}")
   end
 
   private
