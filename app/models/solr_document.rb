@@ -33,29 +33,29 @@ class SolrDocument
   attribute :subject_topical_label, Solr::Array, solr_name('subject_topical_label')
 
   # CommonMetadata attributes
-  attribute :architect, Solr::Array, solr_name('architect_label')
-  attribute :artist, Solr::Array, solr_name('artist_label')
-  attribute :author, Solr::Array, solr_name('author_label')
-  attribute :cartographer, Solr::Array, solr_name('cartographer_label')
-  attribute :compiler, Solr::Array, solr_name('compiler_label')
-  attribute :composer, Solr::Array, solr_name('composer_label')
-  attribute :designer, Solr::Array, solr_name('designer_label')
-  attribute :director, Solr::Array, solr_name('director_label')
-  attribute :draftsman, Solr::Array, solr_name('draftsman_label')
-  attribute :editor, Solr::Array, solr_name('editor_label')
-  attribute :engraver, Solr::Array, solr_name('engraver_label')
-  attribute :illustrator, Solr::Array, solr_name('illustrator_label')
-  attribute :librettist, Solr::Array, solr_name('librettist_label')
-  attribute :performer, Solr::Array, solr_name('performer_label')
-  attribute :photographer, Solr::Array, solr_name('photographer_label')
-  attribute :presenter, Solr::Array, solr_name('presenter_label')
-  attribute :printer, Solr::Array, solr_name('printer_label')
-  attribute :printmaker, Solr::Array, solr_name('printmaker_label')
-  attribute :producer, Solr::Array, solr_name('producer_label')
-  attribute :production_manager, Solr::Array, solr_name('production_manager_label')
-  attribute :screenwriter, Solr::Array, solr_name('screenwriter_label')
-  attribute :sculptor, Solr::Array, solr_name('sculptor_label')
-  attribute :sponsor, Solr::Array, solr_name('sponsor_label')
+  attribute :architect_label, Solr::Array, solr_name('architect_label')
+  attribute :artist_label, Solr::Array, solr_name('artist_label')
+  attribute :author_label, Solr::Array, solr_name('author_label')
+  attribute :cartographer_label, Solr::Array, solr_name('cartographer_label')
+  attribute :compiler_label, Solr::Array, solr_name('compiler_label')
+  attribute :composer_label, Solr::Array, solr_name('composer_label')
+  attribute :designer_label, Solr::Array, solr_name('designer_label')
+  attribute :director_label, Solr::Array, solr_name('director_label')
+  attribute :draftsman_label, Solr::Array, solr_name('draftsman_label')
+  attribute :editor_label, Solr::Array, solr_name('editor_label')
+  attribute :engraver_label, Solr::Array, solr_name('engraver_label')
+  attribute :illustrator_label, Solr::Array, solr_name('illustrator_label')
+  attribute :librettist_label, Solr::Array, solr_name('librettist_label')
+  attribute :performer_label, Solr::Array, solr_name('performer_label')
+  attribute :photographer_label, Solr::Array, solr_name('photographer_label')
+  attribute :presenter_label, Solr::Array, solr_name('presenter_label')
+  attribute :printer_label, Solr::Array, solr_name('printer_label')
+  attribute :printmaker_label, Solr::Array, solr_name('printmaker_label')
+  attribute :producer_label, Solr::Array, solr_name('producer_label')
+  attribute :production_manager_label, Solr::Array, solr_name('production_manager_label')
+  attribute :screenwriter_label, Solr::Array, solr_name('screenwriter_label')
+  attribute :sculptor_label, Solr::Array, solr_name('sculptor_label')
+  attribute :sponsor_label, Solr::Array, solr_name('sponsor_label')
 
   def abstract
     fetch(Solrizer.solr_name('abstract', :stored_searchable), [])
@@ -174,95 +174,95 @@ class SolrDocument
   end
 
   # CommonMetadata methods
-  def architect
-    fetch(Solrizer.solr_name('architect', :stored_searchable), [])
+  def architect_label
+    fetch(Solrizer.solr_name('architect_label', :stored_searchable), [])
   end
 
-  def artist
-    fetch(Solrizer.solr_name('artist', :stored_searchable), [])
+  def artist_label
+    fetch(Solrizer.solr_name('artist_label', :stored_searchable), [])
   end
 
-  def author
-    fetch(Solrizer.solr_name('author', :stored_searchable), [])
+  def author_label
+    fetch(Solrizer.solr_name('author_label', :stored_searchable), [])
   end
 
-  def cartographer
-    fetch(Solrizer.solr_name('cartographer', :stored_searchable), [])
+  def cartographer_label
+    fetch(Solrizer.solr_name('cartographer_label', :stored_searchable), [])
   end
 
-  def compiler
-    fetch(Solrizer.solr_name('compiler', :stored_searchable), [])
+  def compiler_label
+    fetch(Solrizer.solr_name('compiler_label', :stored_searchable), [])
   end
 
-  def composer
-    fetch(Solrizer.solr_name('composer', :stored_searchable), [])
+  def composer_label
+    fetch(Solrizer.solr_name('composer_label', :stored_searchable), [])
   end
 
-  def designer
-    fetch(Solrizer.solr_name('designer', :stored_searchable), [])
+  def designer_label
+    fetch(Solrizer.solr_name('designer_label', :stored_searchable), [])
   end
 
-  def director
-    fetch(Solrizer.solr_name('director', :stored_searchable), [])
+  def director_label
+    fetch(Solrizer.solr_name('director_label', :stored_searchable), [])
   end
 
-  def draftsman
-    fetch(Solrizer.solr_name('draftsman', :stored_searchable), [])
+  def draftsman_label
+    fetch(Solrizer.solr_name('draftsman_label', :stored_searchable), [])
   end
 
-  def editor
-    fetch(Solrizer.solr_name('editor', :stored_searchable), [])
+  def editor_label
+    fetch(Solrizer.solr_name('editor_label', :stored_searchable), [])
   end
 
-  def engraver
-    fetch(Solrizer.solr_name('engraver', :stored_searchable), [])
+  def engraver_label
+    fetch(Solrizer.solr_name('engraver_label', :stored_searchable), [])
   end
 
-  def illustrator
-    fetch(Solrizer.solr_name('illustrator', :stored_searchable), [])
+  def illustrator_label
+    fetch(Solrizer.solr_name('illustrator_label', :stored_searchable), [])
   end
 
-  def librettist
-    fetch(Solrizer.solr_name('librettist', :stored_searchable), [])
+  def librettist_label
+    fetch(Solrizer.solr_name('librettist_label', :stored_searchable), [])
   end
 
-  def performer
-    fetch(Solrizer.solr_name('performer', :stored_searchable), [])
+  def performer_label
+    fetch(Solrizer.solr_name('performer_label', :stored_searchable), [])
   end
 
-  def photographer
-    fetch(Solrizer.solr_name('photographer', :stored_searchable), [])
+  def photographer_label
+    fetch(Solrizer.solr_name('photographer_label', :stored_searchable), [])
   end
 
-  def presenter
-    fetch(Solrizer.solr_name('presenter', :stored_searchable), [])
+  def presenter_label
+    fetch(Solrizer.solr_name('presenter_label', :stored_searchable), [])
   end
 
-  def printer
-    fetch(Solrizer.solr_name('printer', :stored_searchable), [])
+  def printer_label
+    fetch(Solrizer.solr_name('printer_label', :stored_searchable), [])
   end
 
-  def printmaker
-    fetch(Solrizer.solr_name('printmaker', :stored_searchable), [])
+  def printmaker_label
+    fetch(Solrizer.solr_name('printmaker_label', :stored_searchable), [])
   end
 
-  def producer
-    fetch(Solrizer.solr_name('producer', :stored_searchable), [])
+  def producer_label
+    fetch(Solrizer.solr_name('producer_label', :stored_searchable), [])
   end
 
-  def production_manager
-    fetch(Solrizer.solr_name('production_manager', :stored_searchable), [])
+  def production_manager_label
+    fetch(Solrizer.solr_name('production_manager_label', :stored_searchable), [])
   end
 
-  def screenwriter
-    fetch(Solrizer.solr_name('screenwriter', :stored_searchable), [])
+  def screenwriter_label
+    fetch(Solrizer.solr_name('screenwriter_label', :stored_searchable), [])
   end
 
-  def sculptor
-    fetch(Solrizer.solr_name('sculptor', :stored_searchable), [])
+  def sculptor_label
+    fetch(Solrizer.solr_name('sculptor_label', :stored_searchable), [])
   end
 
-  def sponsor
-    fetch(Solrizer.solr_name('sponsor', :stored_searchable), [])
+  def sponsor_label
+    fetch(Solrizer.solr_name('sponsor_label', :stored_searchable), [])
   end
 end
