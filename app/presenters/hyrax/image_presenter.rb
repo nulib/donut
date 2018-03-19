@@ -8,10 +8,10 @@ module Hyrax
              :physical_description, :rights_holder, :style_period_label,
              :technique_label, :nul_creator, :nul_contributor,
              :box_name, :box_number, :folder_name, :folder_number, :architect,
-             :artist, :author, :cartographer, :compiler, :composer, :designer,
-             :director, :draftsman, :editor, :engraver, :illustrator, :librettist,
-             :performer, :photographer, :presenter, :printer, :printmaker, :producer,
-             :production_manager, :screenwriter, :sculptor, :sponsor].freeze
+             :artist_label, :author_label, :cartographer_label, :compiler_label, :composer_label, :designer_label,
+             :director_label, :draftsman_label, :editor_label, :engraver_label, :illustrator_label, :librettist_label,
+             :performer_label, :photographer_label, :presenter_label, :printer_label, :printmaker_label, :producer_label,
+             :production_manager_label, :screenwriter_label, :sculptor_label, :sponsor_label].freeze
 
     ADMIN_TERMS = [:project_name, :project_description, :proposer, :project_manager,
                    :task_number, :preservation_level, :project_cycle, :status].freeze
