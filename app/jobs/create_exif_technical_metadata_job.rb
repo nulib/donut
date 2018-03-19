@@ -1,6 +1,5 @@
 class CreateExifTechnicalMetadataJob < ApplicationJob
-
-  def perform(file_set, file_path)
+  def perform(file_set, file_path, strict: false)
 
     byebug
     exif_data = Exiftool.new(file_path, '-a -u -g1').to_hash

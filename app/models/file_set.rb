@@ -3,4 +3,6 @@ class FileSet < ActiveFedora::Base
   include ::Hyrax::FileSetBehavior
   #include ::Schemas::Technical::Exif
   include MicroserviceMinter
+
+  has_one: :techMD, property: :is_part_of, class_name: 'Exif' 
 end
