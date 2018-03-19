@@ -9,6 +9,7 @@ require 'rake'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'hyrax/spec/matchers'
 require 'hyrax/spec/shared_examples'
+require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -32,6 +33,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.file_fixture_path = "#{::Rails.root}/spec/fixtures/files"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -68,6 +70,7 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
+    WebMock.allow_net_connect!
     Hyrax::CollectionType.find_or_create_default_collection_type
     Hyrax::CollectionType.find_or_create_admin_set_type
     Rake.application.rake_require 'tasks/s3_tasks'

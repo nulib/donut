@@ -1,0 +1,447 @@
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#Subject> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#Concept> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "Angkorean"@en .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "Angkor"@en .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "Angkorian"@en .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "Khmer (Angkorean)"@en .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "\u5433\u54E5"@zh-hant .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "w\u00FA g\u0113"@zh-latn-pinyin-x-hanyu .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "wu ge"@zh-latn-pinyin-x-notone .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "wu ko"@zh-latn-wadegile .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "Ankorees"@nl .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#label> "Angkoreano"@es .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.getty.edu/vow/AATFullDisplay?find=&logic=AND&note=&subjectid=300120209> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/created> "1969-12-31T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2001-07-26T21:59:32"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2010-04-23T02:53:03"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2011-01-07T18:21:57"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2013-03-29T09:30:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2010-04-23T02:53:04"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2013-03-29T09:30:07"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2012-03-16T14:10:14"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/modified> "2011-01-07T18:21:58"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5000005817> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001056984> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001056985> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001056986> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001056987> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002364071> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002797222> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003349170> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003349171> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003349172> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003349173> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003177683> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002364078> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002797230> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003349188> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broader> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300111079> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300120146> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300018279> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300264088> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300015646> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300111079> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300120146> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300018279> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300264088> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300015646> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300111079> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300120146> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300018279> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300264088> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300015646> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#parentString> "Cambodian (culture or style), Southeast Asian, Asian, <styles, periods, and cultures by region>, Styles and Periods (hierarchy name), Styles and Periods Facet" .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/51552> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/92803> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/109920> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5000005817> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001056984> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001056985> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001056986> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001056987> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002364071> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002797222> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003349170> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003349171> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003349172> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003349173> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003177683> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002364078> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002797230> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003349188> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#parentStringAbbrev> "Cambodian (culture or style), Southeast Asian, ... Styles and Periods Facet" .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#displayOrder> "2"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000120209-en> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000556428-zh-Hant> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000490938-nl> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000437652-es> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#prefLabel> "Angkorean"@en .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#prefLabel> "\u5433\u54E5"@zh-hant .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#prefLabel> "w\u00FA g\u0113"@zh-latn-pinyin-x-hanyu .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#prefLabel> "wu ge"@zh-latn-pinyin-x-notone .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#prefLabel> "wu ko"@zh-latn-wadegile .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ankorees"@nl .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#prefLabel> "Angkoreano"@es .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000271471-en> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000271472-en> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000271473-en> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#altLabel> "Angkor"@en .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#altLabel> "Angkorian"@en .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#altLabel> "Khmer (Angkorean)"@en .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderGeneric> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#broaderPreferred> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#broader> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/iso25964/skos-thes#broaderGeneric> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://vocab.getty.edu/ontology#prefLabelGVP> <http://vocab.getty.edu/aat/term/1000120209-en> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#inScheme> <http://vocab.getty.edu/aat/> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/51552> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/92803> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/109920> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000088> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052378> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000024811-subject-300120209> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000035111-subject-300120209> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051089-subject-300120209> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/elements/1.1/identifier> "300120209" .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300019104> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300120146> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300018279> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019157> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300118112> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019166> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019158> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019161> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019163> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019164> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019165> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019168> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019169> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019170> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019171> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019172> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019173> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019174> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019175> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019176> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019177> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019178> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/2004/02/skos/core#narrower> <http://vocab.getty.edu/aat/300019179> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/iso25964/skos-thes#subordinateArray> <http://vocab.getty.edu/aat/300019130> .
+<http://vocab.getty.edu/aat/300120209> <http://rdfs.org/ns/void#inDataset> <http://vocab.getty.edu/dataset/aat> .
+<http://vocab.getty.edu/aat/300120209> <http://purl.org/dc/terms/license> <http://opendatacommons.org/licenses/by/1.0/> .
+<http://vocab.getty.edu/aat/300120209> <http://creativecommons.org/ns#license> <http://opendatacommons.org/licenses/by/1.0/> .
+<http://vocab.getty.edu/aat/300120209> <http://www.w3.org/ns/prov#wasGeneratedBy> <http://vocab.getty.edu/aat/rev/5000005817> .
+<http://vocab.getty.edu/aat/rev/5000005817> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5000005817> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Create> .
+<http://vocab.getty.edu/aat/rev/5000005817> <http://purl.org/dc/elements/1.1/type> "created" .
+<http://vocab.getty.edu/aat/rev/5000005817> <http://www.w3.org/ns/prov#startedAtTime> "1969-12-31T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5001056984> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5001056984> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5001056984> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5001056984> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T21:59:32"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5001056984> <http://purl.org/dc/elements/1.1/description> "Angkorean (1000120209);" .
+<http://vocab.getty.edu/aat/rev/5001056984> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5001056985> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5001056985> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5001056985> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5001056985> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T21:59:32"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5001056985> <http://purl.org/dc/elements/1.1/description> "Angkor (1000271471);" .
+<http://vocab.getty.edu/aat/rev/5001056985> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5001056986> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5001056986> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5001056986> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5001056986> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T21:59:32"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5001056986> <http://purl.org/dc/elements/1.1/description> "Angkorian (1000271472);" .
+<http://vocab.getty.edu/aat/rev/5001056986> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5001056987> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5001056987> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5001056987> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5001056987> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T21:59:32"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5001056987> <http://purl.org/dc/elements/1.1/description> "Khmer (Angkorean) (1000271473);" .
+<http://vocab.getty.edu/aat/rev/5001056987> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5002364071> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5002364071> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5002364071> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5002364071> <http://www.w3.org/ns/prov#startedAtTime> "2010-04-23T02:53:03"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5002364071> <http://purl.org/dc/elements/1.1/description> "Angkoreano (1000437652);" .
+<http://vocab.getty.edu/aat/rev/5002364071> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5002797222> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5002797222> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5002797222> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5002797222> <http://www.w3.org/ns/prov#startedAtTime> "2011-01-07T18:21:57"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5002797222> <http://purl.org/dc/elements/1.1/description> "Ankorees (1000490938);" .
+<http://vocab.getty.edu/aat/rev/5002797222> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5003349170> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5003349170> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5003349170> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5003349170> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:30:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5003349170> <http://purl.org/dc/elements/1.1/description> "\u5433\u54E5 (1000556428);" .
+<http://vocab.getty.edu/aat/rev/5003349170> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5003349171> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5003349171> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5003349171> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5003349171> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:30:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5003349171> <http://purl.org/dc/elements/1.1/description> "wu ge (1000556429);" .
+<http://vocab.getty.edu/aat/rev/5003349171> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5003349172> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5003349172> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5003349172> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5003349172> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:30:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5003349172> <http://purl.org/dc/elements/1.1/description> "w\u00FA g\u0113 (1000556430);" .
+<http://vocab.getty.edu/aat/rev/5003349172> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5003349173> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5003349173> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5003349173> <http://purl.org/dc/elements/1.1/type> "term added" .
+<http://vocab.getty.edu/aat/rev/5003349173> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:30:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5003349173> <http://purl.org/dc/elements/1.1/description> "wu ko (1000556431);" .
+<http://vocab.getty.edu/aat/rev/5003349173> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/rev/5003177683> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+<http://vocab.getty.edu/aat/rev/5003177683> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+<http://vocab.getty.edu/aat/rev/5003177683> <http://purl.org/dc/elements/1.1/type> "updated" .
+<http://vocab.getty.edu/aat/rev/5003177683> <http://www.w3.org/ns/prov#startedAtTime> "2012-03-16T14:10:14"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://vocab.getty.edu/aat/rev/5003177683> <http://purl.org/dc/elements/1.1/description> "GCI Source and Contributor added" .
+<http://vocab.getty.edu/aat/rev/5003177683> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300120209> .
+<http://vocab.getty.edu/aat/source/2000024811-subject-300120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000024811-subject-300120209> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000024811> .
+<http://vocab.getty.edu/aat/source/2000024811-subject-300120209> <http://purl.org/ontology/bibo/locator> "Khmer ...; also used in inverted order headings as well as natural order ones, e.g., art, Khmer; ..., Khmer" .
+<http://vocab.getty.edu/aat/source/2000035111-subject-300120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000035111-subject-300120209> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000035111> .
+<http://vocab.getty.edu/aat/source/2000035111-subject-300120209> <http://purl.org/ontology/bibo/locator> "Khmer ..." .
+<http://vocab.getty.edu/aat/source/2000051089-subject-300120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000051089-subject-300120209> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000051089> .
+<http://vocab.getty.edu/aat/source/2000051089-subject-300120209> <http://purl.org/ontology/bibo/locator> "120399 checked 26 January 2012" .
+<http://vocab.getty.edu/aat/scopeNote/51552> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+<http://vocab.getty.edu/aat/scopeNote/51552> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Refers to the civilization, period, and style that developed from around 802 CE to 1432 CE in the Khmer region known today as Cambodia. Artistic production based in the Angkor culture marked the height of Cambodian creativity, featuring prominent architectural structures such as the temples at Angkor Vat and Angkor Thom. Temples from this period are generally characterized by large-scale and intricately stylized sculptural representations of deities' faces and bodies carved into exterior walls."@en .
+<http://vocab.getty.edu/aat/scopeNote/51552> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/scopeNote/51552> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099620> .
+<http://vocab.getty.edu/aat/scopeNote/51552> <http://purl.org/dc/elements/1.1/identifier> "51552" .
+<http://vocab.getty.edu/aat/scopeNote/51552> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+<http://vocab.getty.edu/aat/scopeNote/51552> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Verwijst naar de civilisatie, periode en stijl die werd ontwikkeld vanaf circa 802 n. Chr. tot 1432 n. Chr. in de Khmer-regio die tegenwoordig bekend staat als Cambodja. Artistieke productie die is gebaseerd op Angkor-cultuur markeerde het hoogtepunt van Cambodjaanse creativiteit, met onder andere prominente architecturale structuren zoals de tempels van Angkor Vat en Angkor Thom. Tempels uit deze periode worden over het algemeen gekenmerkt door grootschalige en complexe gestileerde sculptuurrepresentaties van de gezichten en lichamen van heiligen, uitgehakt in buitenmuren."@nl .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052378> .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099619> .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://purl.org/dc/elements/1.1/identifier> "92803" .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
+<http://vocab.getty.edu/aat/scopeNote/92803> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
+<http://vocab.getty.edu/aat/scopeNote/109920> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+<http://vocab.getty.edu/aat/scopeNote/109920> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "\u6307\u897F\u5143802\u5E74\u81F31432\u5E74\u9593\u767C\u5C55\u65BC\u9AD8\u68C9\u5730\u5340\uFF0C\u4EA6\u5373\u73FE\u4ECA\u67EC\u57D4\u5BE8\u4E00\u5730\u7684\u6587\u660E\u3001\u6642\u4EE3\u3001\u98A8\u683C\u3002\u5433\u54E5\u6587\u5316\u6240\u767C\u5C55\u51FA\u7684\u85DD\u8853\u4F5C\u54C1\u6A19\u793A\u4E86\u67EC\u57D4\u5BE8\u5275\u9020\u529B\u7684\u985B\u5CF0\uFF0C\u9019\u6642\u671F\u7684\u8457\u540D\u5EFA\u7BC9\u6709\uFF1A\u5433\u54E5\u7A9F\u8207\u5927\u5433\u54E5\u57CE\u3002\u9019\u6642\u671F\u7684\u5EDF\u5B87\u5916\u7246\u4E00\u822C\u90FD\u6709\u7CBE\u5DE7\u8907\u96DC\u4E14\u6975\u70BA\u98A8\u683C\u5316\u7684\u5927\u898F\u6A21\u795E\u9762\u8207\u795E\u660E\u96D5\u523B\u3002"@zh-hant .
+<http://vocab.getty.edu/aat/scopeNote/109920> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/scopeNote/109920> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+<http://vocab.getty.edu/aat/scopeNote/109920> <http://purl.org/dc/elements/1.1/identifier> "109920" .
+<http://vocab.getty.edu/aat/scopeNote/109920> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388116> .
+<http://vocab.getty.edu/aat/scopeNote/109920> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Hant> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#term> "Angkorean"@en .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#displayOrder> "1"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "Angkorean"@en .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/Adjectival> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000088> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000088> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000008951-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000093795-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000024431-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000051089-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000008951-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000093795-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000024431-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051089-term-1000120209> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/elements/1.1/identifier> "1000120209" .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+<http://vocab.getty.edu/aat/term/1000120209-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://vocab.getty.edu/ontology#term> "\u5433\u54E5"@zh-hant .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://vocab.getty.edu/ontology#displayOrder> "5"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://www.w3.org/2008/05/skos-xl#literalForm> "\u5433\u54E5"@zh-hant .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000093495-term-1000556428> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000065712-term-1000556428> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000065713-term-1000556428> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000093495-term-1000556428> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000065712-term-1000556428> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000065713-term-1000556428> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://purl.org/dc/elements/1.1/identifier> "1000556428" .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388116> .
+<http://vocab.getty.edu/aat/term/1000556428-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Hant> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#term> "w\u00FA g\u0113"@zh-latn-pinyin-x-hanyu .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#displayOrder> "6"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://www.w3.org/2008/05/skos-xl#literalForm> "w\u00FA g\u0113"@zh-latn-pinyin-x-hanyu .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/elements/1.1/identifier> "1000556430" .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388117> .
+<http://vocab.getty.edu/aat/term/1000556430-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-pinyin-x-hanyu> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#term> "wu ge"@zh-latn-pinyin-x-notone .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#displayOrder> "7"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://www.w3.org/2008/05/skos-xl#literalForm> "wu ge"@zh-latn-pinyin-x-notone .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://purl.org/dc/elements/1.1/identifier> "1000556429" .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388118> .
+<http://vocab.getty.edu/aat/term/1000556429-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-pinyin-x-notone> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#term> "wu ko"@zh-latn-wadegile .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#displayOrder> "8"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://www.w3.org/2008/05/skos-xl#literalForm> "wu ko"@zh-latn-wadegile .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://purl.org/dc/elements/1.1/identifier> "1000556431" .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388121> .
+<http://vocab.getty.edu/aat/term/1000556431-zh-Latn-wadegile> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-wadegile> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://vocab.getty.edu/ontology#term> "Ankorees"@nl .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://vocab.getty.edu/ontology#displayOrder> "9"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://www.w3.org/2008/05/skos-xl#literalForm> "Ankorees"@nl .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000205> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000099619> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052378> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099619> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://purl.org/dc/elements/1.1/identifier> "1000490938" .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
+<http://vocab.getty.edu/aat/term/1000490938-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://vocab.getty.edu/ontology#term> "Angkoreano"@es .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://vocab.getty.edu/ontology#displayOrder> "10"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://www.w3.org/2008/05/skos-xl#literalForm> "Angkoreano"@es .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000131> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000051034> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051034> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://purl.org/dc/elements/1.1/identifier> "1000437652" .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+<http://vocab.getty.edu/aat/term/1000437652-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+<http://vocab.getty.edu/aat/source/2000008951-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000008951-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000008951-term-1000120209> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000008951> .
+<http://vocab.getty.edu/aat/source/2000008951-term-1000120209> <http://purl.org/ontology/bibo/locator> "25.2" .
+<http://vocab.getty.edu/aat/source/2000093795-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000093795-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000093795-term-1000120209> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000093795> .
+<http://vocab.getty.edu/aat/source/2000093795-term-1000120209> <http://purl.org/ontology/bibo/locator> "\"Cambodia: Cultural life;\" \"Angkorean;\" Accessed 6/29/00" .
+<http://vocab.getty.edu/aat/source/2000024431-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000024431-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000024431-term-1000120209> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000024431> .
+<http://vocab.getty.edu/aat/source/2000024431-term-1000120209> <http://purl.org/ontology/bibo/locator> "34" .
+<http://vocab.getty.edu/aat/source/2000051089-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000051089-term-1000120209> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000051089-term-1000120209> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000051089> .
+<http://vocab.getty.edu/aat/source/2000051089-term-1000120209> <http://purl.org/ontology/bibo/locator> "120399 checked 26 January 2012" .
+<http://vocab.getty.edu/aat/source/2000093495-term-1000556428> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000093495-term-1000556428> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000093495-term-1000556428> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000093495> .
+<http://vocab.getty.edu/aat/source/2000093495-term-1000556428> <http://purl.org/ontology/bibo/locator> "March 7, 2012" .
+<http://vocab.getty.edu/aat/source/2000065712-term-1000556428> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000065712-term-1000556428> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000065712-term-1000556428> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000065712> .
+<http://vocab.getty.edu/aat/source/2000065712-term-1000556428> <http://purl.org/ontology/bibo/locator> "March 7, 2012" .
+<http://vocab.getty.edu/aat/source/2000065713-term-1000556428> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000065713-term-1000556428> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000065713-term-1000556428> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000065713> .
+<http://vocab.getty.edu/aat/source/2000065713-term-1000556428> <http://purl.org/ontology/bibo/locator> "103" .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://vocab.getty.edu/ontology#term> "Angkor"@en .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://vocab.getty.edu/ontology#displayOrder> "2"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "Angkor"@en .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000016711-term-1000271471> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000040971-term-1000271471> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000016711-term-1000271471> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000025171-term-1000271471> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000040971-term-1000271471> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000025171-term-1000271471> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://purl.org/dc/elements/1.1/identifier> "1000271471" .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+<http://vocab.getty.edu/aat/term/1000271471-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://vocab.getty.edu/ontology#term> "Angkorian"@en .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://vocab.getty.edu/ontology#displayOrder> "3"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "Angkorian"@en .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000034571-term-1000271472> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000034571-term-1000271472> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://purl.org/dc/elements/1.1/identifier> "1000271472" .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+<http://vocab.getty.edu/aat/term/1000271472-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#term> "Khmer"@en .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#qualifier> "Angkorean"@en .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#displayOrder> "4"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "Khmer (Angkorean)"@en .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000000271-term-1000271473> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000046657-term-1000271473> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000028801-term-1000271473> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000094828> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000000271-term-1000271473> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000046657-term-1000271473> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000028801-term-1000271473> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000094828> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/elements/1.1/identifier> "1000271473" .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+<http://vocab.getty.edu/aat/term/1000271473-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+<http://vocab.getty.edu/aat/source/2000016711-term-1000271471> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000016711-term-1000271471> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000016711-term-1000271471> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000016711> .
+<http://vocab.getty.edu/aat/source/2000016711-term-1000271471> <http://purl.org/ontology/bibo/locator> "254" .
+<http://vocab.getty.edu/aat/source/2000025171-term-1000271471> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000025171-term-1000271471> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000025171-term-1000271471> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000025171> .
+<http://vocab.getty.edu/aat/source/2000025171-term-1000271471> <http://purl.org/ontology/bibo/locator> "12" .
+<http://vocab.getty.edu/aat/source/2000040971-term-1000271471> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000040971-term-1000271471> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000040971-term-1000271471> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000040971> .
+<http://vocab.getty.edu/aat/source/2000040971-term-1000271471> <http://purl.org/ontology/bibo/locator> "254" .
+<http://vocab.getty.edu/aat/source/2000034571-term-1000271472> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000034571-term-1000271472> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000034571-term-1000271472> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000034571> .
+<http://vocab.getty.edu/aat/source/2000034571-term-1000271472> <http://purl.org/ontology/bibo/locator> "xiii" .
+<http://vocab.getty.edu/aat/source/2000000271-term-1000271473> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000000271-term-1000271473> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000000271-term-1000271473> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000000271> .
+<http://vocab.getty.edu/aat/source/2000000271-term-1000271473> <http://purl.org/ontology/bibo/locator> "13; Khmer" .
+<http://vocab.getty.edu/aat/source/2000046657-term-1000271473> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000046657-term-1000271473> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000046657-term-1000271473> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000046657> .
+<http://vocab.getty.edu/aat/source/2000046657-term-1000271473> <http://purl.org/ontology/bibo/locator> "(source AAT) - subhead.; Khmer" .
+<http://vocab.getty.edu/aat/source/2000028801-term-1000271473> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+<http://vocab.getty.edu/aat/source/2000028801-term-1000271473> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+<http://vocab.getty.edu/aat/source/2000028801-term-1000271473> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000028801> .
+<http://vocab.getty.edu/aat/source/2000028801-term-1000271473> <http://purl.org/ontology/bibo/locator> "9; Khmer" .
