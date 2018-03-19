@@ -14,10 +14,10 @@ module Hyrax
                    :draftsman, :editor, :engraver, :illustrator, :librettist, :performer,
                    :photographer, :presenter, :printer, :printmaker, :producer,
                    :production_manager, :screenwriter, :sculptor, :sponsor]
-    self.required_fields = [:title, :date_created, :rights_statement, :preservation_level, :status]
+    self.required_fields = [:accession_number, :title, :date_created, :rights_statement, :preservation_level, :status]
 
     def primary_terms
-      [:title, :date_created, :rights_statement, :preservation_level, :status, :accession_number, :creator, :description]
+      [:title, :accession_number, :date_created, :rights_statement, :preservation_level, :status, :creator, :description]
     end
 
     # rubocop:disable Metrics/MethodLength

@@ -64,7 +64,7 @@ class BatchItem < ApplicationRecord
     # @return [Class] the model class to be used
     def factory_class(model)
       return model if model.is_a?(Class)
-      raise ArgumentError, 'ERROR: No model was specified' if model.empty?
+      raise ArgumentError, 'ERROR: No model was specified' if model.blank?
       return ::Importer::Factory.for(model.to_s) if model.respond_to?(:to_s)
       raise "Unrecognized model type: #{model.class}"
     end
