@@ -10,12 +10,13 @@ class BatchItem < ApplicationRecord
   end
 
   def run
-    if unique? && attributes_valid?
+    if runnable_item?
       factory.run(user: batch.deposit_user)
       complete!
     end
   rescue StandardError => e
     error!(e.class.name => [e.message])
+    Rails.logger.info "Error for Batch Item: #{id}, from Batch #{batch.id}: #{e.message} \n#{e.backtrace}"
   end
 
   def complete!
@@ -35,6 +36,10 @@ class BatchItem < ApplicationRecord
   end
 
   private
+
+    def runnable_item?
+      unique? && attributes_valid?
+    end
 
     def attributes_valid?
       return true if accession_number.present? && factory.valid?
@@ -65,7 +70,11 @@ class BatchItem < ApplicationRecord
     def factory_class(model)
       return model if model.is_a?(Class)
       raise ArgumentError, 'ERROR: No model was specified' if model.blank?
-      return ::Importer::Factory.for(model.to_s) if model.respond_to?(:to_s)
-      raise "Unrecognized model type: #{model.class}"
+      begin
+        return ::Importer::Factory.for(model.to_s) if model.respond_to?(:to_s)
+      rescue NameError
+        Rails.logger.warn "Unrecognized model type: #{model}"
+        raise "Unrecognized model type: #{model}"
+      end
     end
 end
