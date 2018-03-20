@@ -9,15 +9,20 @@ RSpec.describe BatchItem, type: :model do
   let(:original_filename) { 'path/to/batch_file.csv' }
   let(:batch_location) { "s3://test-bucket/#{original_filename}" }
   let(:batch) { Batch.create(submitter: submitter, job_id: job_id, original_filename: original_filename) }
+  let(:accession_number) { SecureRandom.uuid }
   let(:common_attributes) do
     {
+      accession_number: accession_number,
       type: 'Image',
       title: ['Title'],
       contributor: [{ name: ['Contributor, Prudence L.'] }],
       date_created: ['2018'],
       collection: { id: 'test-collection-id', title: ['Test Collection'] },
       admin_set_id: ['admin_set/default'],
-      batch_location: batch_location
+      batch_location: batch_location,
+      preservation_level: '2',
+      status: ['reviewed'],
+      rights_statement: ['http://rights_statement']
     }
   end
 
@@ -32,7 +37,6 @@ RSpec.describe BatchItem, type: :model do
   end
 
   context 'initialization' do
-    let(:accession_number) { 'nul:123' }
     let(:attributes) { {} }
 
     it { is_expected.to have_attributes(status: 'initialized') }
@@ -42,7 +46,6 @@ RSpec.describe BatchItem, type: :model do
   end
 
   context 'valid item with accession number' do
-    let(:accession_number) { 'nul:123' }
     let(:attributes) { common_attributes }
 
     it 'completes successfully' do
@@ -52,7 +55,6 @@ RSpec.describe BatchItem, type: :model do
   end
 
   context 'invalid item with accession number' do
-    let(:accession_number) { 'nul:123' }
     let(:attributes) { common_attributes.reject { |k, _v| k == :title } }
 
     it 'errors on :title' do
@@ -64,8 +66,7 @@ RSpec.describe BatchItem, type: :model do
   end
 
   context 'valid item without accession number' do
-    let(:accession_number) { nil }
-    let(:attributes) { common_attributes }
+    let(:attributes) { common_attributes.reject { |k, _v| k == :accession_number } }
 
     it 'errors on :accession_number' do
       batch_item.run
@@ -88,7 +89,6 @@ RSpec.describe BatchItem, type: :model do
   end
 
   context 'duplicate of already completed item' do
-    let(:accession_number) { 'nul:123' }
     let(:attributes) { common_attributes }
     let(:prior_batch) { Batch.create(submitter: submitter, job_id: job_id.reverse, original_filename: original_filename) }
     let(:prior_item) { prior_batch.batch_items.create(accession_number: accession_number, attribute_hash: attributes, row_number: 1) }

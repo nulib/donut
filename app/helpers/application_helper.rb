@@ -20,6 +20,11 @@ module ApplicationHelper
     status_span_generator status
   end
 
+  def accession_number_linker(accession_number)
+    return 'No accession number' if accession_number.blank?
+    link_to(accession_number, batch_item_path(accession_number: accession_number))
+  end
+
   private
 
     # rubocop:disable Metrics/CyclomaticComplexity

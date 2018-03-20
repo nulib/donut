@@ -20,6 +20,7 @@ module Importer
           # we already have headers, so this is not the first row.
           yield attributes(headers, row)
         else
+          row.first.sub!(/^\W+/, '')
           # Read headers
           headers = validate_headers(row)
         end
@@ -37,43 +38,22 @@ module Importer
         @email = row.first if email_row?(row)
       end
 
-      # Match headers like "lc_subject_type"
-      def type_header_pattern
-        /\A.*_type\Z/
-      end
-
       def validate_headers(row)
         row.compact!
         difference = (row - valid_headers)
         return nil if email_row?(difference)
 
-        # Allow headers with the pattern *_type to specify the
-        # record type for a local authority.
-        # e.g. For an author, author_type might be 'Person'.
-        difference.delete_if { |h| h.match(type_header_pattern) }
-
         raise ParserError, "Invalid headers: #{difference.join(', ')}" if difference.present?
 
-        validate_header_pairs(row)
+        required_headers(row)
         row
       end
 
-      # If you have a header like lc_subject_type, the next
-      # header must be the corresponding field (e.g. lc_subject)
-      def validate_header_pairs(row)
-        errors = []
-        row.each_with_index do |header, i|
-          next if header == 'resource_type'
-          next unless header.match?(type_header_pattern)
-          next_header = row[i + 1]
-          field_name = header.gsub('_type', '')
-          if next_header != field_name
-            errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
-          end
-        end
-        raise ParserError, errors.join(', ') if errors.present?
+      def required_headers(row)
+        required_fields = Hyrax::ImageForm.required_fields.map(&:to_s) + ['file', 'type']
+        missing = required_fields.reject { |item| row.include?(item) }
+        raise ParserError, "Required headers missing: #{missing.join(', ')}" if missing.present?
       end
-      # rubocop:enable Metrics/MethodLength
 
       def valid_headers
         Image.attribute_names + %w[id type file] + collection_headers
@@ -103,10 +83,6 @@ module Importer
           # TODO: this only handles one date of each type
           processed[key] ||= [{}]
           update_date(processed[key].first, Regexp.last_match(2), val)
-        when 'resource_type'
-          extract_multi_value_field(header, val, processed)
-        when type_header_pattern
-          update_typed_field(header, val, processed)
         when /^contributor$/
           update_contributor(header, val, processed)
         when /^collection_(.*)$/

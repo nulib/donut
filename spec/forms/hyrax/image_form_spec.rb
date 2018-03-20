@@ -50,7 +50,7 @@ RSpec.describe Hyrax::ImageForm do
     subject { form.required_fields }
 
     it do
-      is_expected.to contain_exactly(:title, :date_created, :rights_statement, :preservation_level, :status)
+      is_expected.to contain_exactly(:accession_number, :title, :date_created, :rights_statement, :preservation_level, :status)
     end
   end
 
