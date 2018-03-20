@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 class Exif < ActiveFedora::Base
-  property :image_width, predicate: ::RDF::Vocab::EBUCore.width, multiple: true do |index|
-    index.as :stored_searchable
-  end
-
-  property :image_height, predicate: ::RDF::Vocab::EBUCore.height, multiple: true do |index|
-    index.as :stored_searchable
-  end
-
-  property :compression, predicate: ::RDF::Vocab::EXIF.compression, multiple: true do |index|
-    index.as :stored_searchable
-  end
+  # property :image_width, predicate: ::RDF::Vocab::EBUCore.width, multiple: true do |index|
+  #   index.as :stored_searchable
+  # end
+  #
+  # property :image_height, predicate: ::RDF::Vocab::EBUCore.height, multiple: true do |index|
+  #   index.as :stored_searchable
+  # end
+  #
+  # property :compression, predicate: ::RDF::Vocab::EXIF.compression, multiple: true do |index|
+  #   index.as :stored_searchable
+  # end
 
   property :photometric_interpretation, predicate: ::RDF::Vocab::EXIF.photometricInterpretation, multiple: true do |index|
     index.as :stored_searchable
@@ -74,10 +74,11 @@ class Exif < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :exif_tool_version, predicate: ::RDF::Vocab::EXIF.exifVersion do |index|
-      index.as :stored_searchable
-  end
+  # property :exif_tool_version, predicate: ::RDF::Vocab::EXIF.exifVersion do |index|
+  #     index.as :stored_searchable
+  # end
 
+  #TODO: Update with Jen's new predicate from spreadsheet
   property :exif_all_data, predicate: ::Vocab::Donut.exif_all do |index|
       index.as :stored_searchable
   end
