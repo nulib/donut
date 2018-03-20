@@ -42,7 +42,7 @@ gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 
-gem 'rubyzip'
+gem 'rubyzip', require: 'zip'
 
 group :test do
   gem 'database_cleaner'
