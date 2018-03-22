@@ -5,17 +5,17 @@ module Schemas
       extend ActiveSupport::Concern
 
       included do
-        property :image_width, predicate: ::RDF::Vocab::EBUcore.width, multiple: true do |index|
-          index_as :stored_searchable
+        property :image_width, predicate: ::RDF::Vocab::EBUCore.width, multiple: true do |index|
+          index.as :stored_searchable
         end
 
-        property :image_height, predicate: ::RDF::Vocab::EBUcore.height, multiple: true do |index|
-          index_as :stored_searchable
+        property :image_height, predicate: ::RDF::Vocab::EBUCore.height, multiple: true do |index|
+          index.as :stored_searchable
         end
 
         #TODO: Make my predicate ns012:compressionScheme
         property :compression, predicate: ::RDF::Vocab::EXIF.compression, multiple: true do |index|
-          index_as :stored_searchable
+          index.as :stored_searchable
         end
 
         #TODO: Make my predicate ns010:colorSpace
