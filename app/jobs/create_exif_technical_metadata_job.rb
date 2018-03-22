@@ -11,9 +11,9 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
 
     def populate_fields(exif_data, fs)
       t = TechnicalMetadata.new
-      # fs.image_width                       = exif_data[:ifd0]['ImageWidth']
-      # fs.image_height                      = exif_data[:ifd0]['ImageHeight']
-      # fs.compression                 = exif_data[:ifd0]['Compression']
+      t.image_width                 << exif_data[:ifd0]['ImageWidth']
+      t.image_height                << exif_data[:ifd0]['ImageHeight']
+      t.compression                 << exif_data[:ifd0]['Compression']
       t.photometric_interpretation  << exif_data[:ifd0]['PhotometricInterpretation']
       t.samples_per_pixel           << exif_data[:ifd0]['SamplesPerPixel'] unless exif_data[:ifd0]['SamplesPerPixel'].blank?
       t.x_resolution                << exif_data[:ifd0]['XResolution'] unless exif_data[:ifd0]['XResolution'].blank?
@@ -28,9 +28,9 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
       t.strip_byte_counts           << exif_data[:ifd0]['StripByteCounts'] unless exif_data[:ifd0]['StripByteCounts'].blank?
       t.software                    << exif_data[:ifd0]['Software'] unless exif_data[:ifd0]['Software'].blank?
       # fs.artist                      =
-      # fs.exif_tool_version           = exif_data[:exif_tool]['ExifToolVersion']
+      fs.exif_tool_version          << exif_data[:exif_tool]['ExifToolVersion']
       t.extra_samples               << exif_data[:ifd0]['ExtraSamples'] unless exif_data[:ifd0]['ExtraSamples'].blank?
-      # fs.exif_all_data               = exif_data
+      fs.exif_all_data              << exif_data.to_json
       t.save
       fs.members << t
       fs.update_index

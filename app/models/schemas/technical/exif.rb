@@ -5,6 +5,20 @@ module Schemas
       extend ActiveSupport::Concern
 
       included do
+        property :image_width, predicate: ::RDF::Vocab::EBUcore.width, multiple: true do |index|
+          index_as :stored_searchable
+        end
+
+        property :image_height, predicate: ::RDF::Vocab::EBUcore.height, multiple: true do |index|
+          index_as :stored_searchable
+        end
+
+        #TODO: Make my predicate ns012:compressionScheme
+        property :compression, predicate: ::RDF::Vocab::EXIF.compression, multiple: true do |index|
+          index_as :stored_searchable
+        end
+
+        #TODO: Make my predicate ns010:colorSpace
         property :photometric_interpretation, predicate: ::RDF::Vocab::EXIF.photometricInterpretation, multiple: true do |index|
           index.as :stored_searchable
         end
@@ -66,14 +80,14 @@ module Schemas
           index.as :stored_searchable
         end
 
-        # property :exif_tool_version, predicate: ::RDF::Vocab::EXIF.exifVersion do |index|
-        #     index.as :stored_searchable
-        # end
+        property :exif_tool_version, predicate: ::Vocab::Donut.exif_tool_version do |index|
+            index.as :stored_searchable
+        end
 
-        #TODO: Update with Jen's new predicate from spreadsheet
-        # property :exif_all_data, predicate: ::Vocab::Donut.exif_all do |index|
-        #     index.as :stored_searchable
-        # end
+
+        property :exif_all_data, predicate: ::Vocab::Donut.exif_all_data do |index|
+            index.as :stored_searchable
+        end
       end
     end
   end
