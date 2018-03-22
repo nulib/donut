@@ -44,6 +44,10 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  property :physical_description_material, predicate: ::RDF::Vocab::DC.medium, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
   property :physical_description_size, predicate: ::RDF::Vocab::Bibframe.extent, multiple: true do |index|
     index.as :stored_searchable
   end

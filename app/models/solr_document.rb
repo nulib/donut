@@ -122,6 +122,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('nul_use_statement', :stored_searchable), [])
   end
 
+  def physical_description_material
+    fetch(Solrizer.solr_name('physical_description_material', :stored_searchable), [])
+  end
+
   def physical_description_size
     fetch(Solrizer.solr_name('physical_description_size', :stored_searchable), [])
   end

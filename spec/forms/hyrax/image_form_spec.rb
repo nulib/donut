@@ -24,6 +24,7 @@ RSpec.describe Hyrax::ImageForm do
                              :folder_number,
                              :genre,
                              :provenance,
+                             :physical_description_material,
                              :physical_description_size,
                              :rights_holder,
                              :style_period,
