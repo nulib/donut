@@ -11,11 +11,12 @@ namespace :s3 do
   desc 'Populate S3 batch bucket with test data'
   task populate_batch_bucket: :environment do
     s3 = Aws::S3::Resource.new
-    Dir.chdir('spec/fixtures/csv')
-    Dir.glob('**/*').each do |file|
-      next if File.directory?(file)
-      obj = s3.bucket(Settings.aws.buckets.batch).object(file)
-      obj.upload_file(file)
+    Dir.chdir('spec/fixtures/csv') do
+      Dir.glob('**/*').each do |file|
+        next if File.directory?(file)
+        obj = s3.bucket(Settings.aws.buckets.batch).object(file)
+        obj.upload_file(file)
+      end
     end
   end
 

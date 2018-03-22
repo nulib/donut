@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: 881e0a397057b2d6b2946414ee54fe7ab6614209
+  revision: 34c1a7b97379d1f975c73256c94691531454a7e6
   branch: master
   specs:
     hyrax (2.1.0.beta1)
@@ -80,7 +80,7 @@ GIT
       samvera-nesting_indexer (~> 1.0, >= 1.0.1)
       select2-rails (~> 3.5)
       signet
-      simple_form (= 3.5.0)
+      simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
 
 GEM
@@ -779,11 +779,15 @@ GEM
     devise-guests (0.6.0)
       devise
     diff-lcs (1.3)
-    docker-api (1.34.0)
+    docker-api (1.34.2)
       excon (>= 0.47.0)
       multi_json
     docker-compose (1.1.8)
       backticks (~> 1.0)
+    docker-stack (0.2.4)
+      docker-api
+      docker-compose
+      rails (~> 5.0)
     dropbox_api (0.1.10)
       faraday (~> 0.9, ~> 0.8)
       oauth2 (~> 1.1)
@@ -824,10 +828,10 @@ GEM
       sxp (~> 1.0)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
-    erubi (1.7.0)
+    erubi (1.7.1)
     ethon (0.11.0)
       ffi (>= 1.3.0)
-    excon (0.60.0)
+    excon (0.61.0)
     execjs (2.7.0)
     ezid-client (1.7.1)
       hashie (~> 3.4, >= 3.4.3)
@@ -880,7 +884,7 @@ GEM
     hiredis (0.6.1)
     htmlentities (4.3.4)
     http_logger (0.5.1)
-    httparty (0.16.0)
+    httparty (0.16.1)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     hydra-access-controls (10.5.0)
@@ -1017,7 +1021,7 @@ GEM
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.2.0)
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -1041,7 +1045,7 @@ GEM
       redic
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
-    nio4r (2.2.0)
+    nio4r (2.3.0)
     noid (0.9.0)
     noid-rails (3.0.0)
       actionpack (>= 5.0.0, < 6)
@@ -1125,7 +1129,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.3.0)
+    rake (12.3.1)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -1393,6 +1397,7 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   docker-api
   docker-compose
+  docker-stack
   ezid-client
   factory_bot_rails
   fcrepo_wrapper
