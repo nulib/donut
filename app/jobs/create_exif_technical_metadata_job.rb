@@ -31,6 +31,7 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
       fs.exif_tool_version          << exif_data[:exif_tool]['ExifToolVersion']
       t.extra_samples               << exif_data[:ifd0]['ExtraSamples'] unless exif_data[:ifd0]['ExtraSamples'].blank?
       fs.exif_all_data              << exif_data.to_json
+      t.file_set_id                 = fs.id
       t.save
       fs.members << t
       fs.update_index

@@ -31,6 +31,6 @@ class FileSet < ActiveFedora::Base
   private
 
   def technical_metadata
-    @techmd || @techmd = self.members.first #@techmd = TechnicalMetadata.where(file_set_id: self.id)
+    @techmd || @techmd = TechnicalMetadata.where(file_set_id: self.id)
   end
 end
