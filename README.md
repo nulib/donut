@@ -72,5 +72,5 @@ $ export PROCESS_ACTIVE_ELASTIC_JOBS=true
 
 1. Run the development servers with `rake docker:dev:up` (or `daemon`) and `rails s`
 1. Go to http://devbox.library.northwestern.edu/ and login with OpenAM
-1. To make the last user who logged in (you) and admin, run `rake add_admin_role`
+1. To make the last user who logged in (you) and admin, run `rake donut:add_admin_role`
 1. Go to http://devbox.library.northwestern.edu/admin/workflow_roles and grant workflow roles if needed
