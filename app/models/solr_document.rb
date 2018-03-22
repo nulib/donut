@@ -33,6 +33,7 @@ class SolrDocument
   attribute :subject_topical_label, Solr::Array, solr_name('subject_topical_label')
 
   # CommonMetadata attributes
+  attribute :subject_geographical_label, Solr::Array, solr_name('subject_geographical_label')
   attribute :architect_label, Solr::Array, solr_name('architect_label')
   attribute :artist_label, Solr::Array, solr_name('artist_label')
   attribute :author_label, Solr::Array, solr_name('author_label')
@@ -117,6 +118,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('nul_creator', :stored_searchable), [])
   end
 
+  def nul_use_statement
+    fetch(Solrizer.solr_name('nul_use_statement', :stored_searchable), [])
+  end
+
   def physical_description_size
     fetch(Solrizer.solr_name('physical_description_size', :stored_searchable), [])
   end
@@ -159,6 +164,14 @@ class SolrDocument
 
   def style_period
     fetch(Solrizer.solr_name('style_period', :stored_searchable), [])
+  end
+
+  def subject_geographical_label
+    fetch(Solrizer.solr_name('subject_geographical_label', :stored_searchable), [])
+  end
+
+  def subject_temporal
+    fetch(Solrizer.solr_name('subject_temporal', :stored_searchable), [])
   end
 
   def subject_topical_label

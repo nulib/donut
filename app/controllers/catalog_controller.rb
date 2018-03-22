@@ -64,6 +64,9 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('nul_contributor', :facetable), label: 'NUL Contributor', limit: 5
 
     # CommonMetadata facet fields
+    config.add_facet_field solr_name('subject_geographical_label', :facetable), label: 'Subject Geographical', limit: 5
+    config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject Temporal', limit: 5
+
     config.add_facet_field solr_name('architect_label', :facetable), limit: 5
     config.add_facet_field solr_name('artist_label', :facetable), limit: 5
     config.add_facet_field solr_name('author_label', :facetable), limit: 5
@@ -139,6 +142,7 @@ class CatalogController < ApplicationController
     # rubocop:enable Metrics/LineLength
 
     # CommonMetadata fields to display in search results
+    config.add_index_field solr_name('nul_use_statement', :stored_searchable), label: 'NUL Use Statement'
     config.add_index_field solr_name('architect_label', :stored_searchable), link_to_search: solr_name('architect', :facetable)
     config.add_index_field solr_name('artist_label', :stored_searchable), link_to_search: solr_name('artist', :facetable)
     config.add_index_field solr_name('author_label', :stored_searchable), link_to_search: solr_name('author', :facetable)
@@ -202,6 +206,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
 
     # CommonMetadata fields for the single result view
+    config.add_show_field solr_name('nul_use_statement', :stored_searchable)
+    config.add_show_field solr_name('subject_geographical_label', :stored_searchable)
+    config.add_show_field solr_name('subject_temporal', :stored_searchable)
     config.add_show_field solr_name('architect_label', :stored_searchable)
     config.add_show_field solr_name('artist_label', :stored_searchable)
     config.add_show_field solr_name('author_label', :stored_searchable)
@@ -413,6 +420,33 @@ class CatalogController < ApplicationController
     end
 
     # CommonMetadata fields
+
+    config.add_search_field('nul_use_statement') do |field|
+      field.label = 'NUL Use Statement'
+      solr_name = solr_name('nul_use_statement', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('subject_geographical') do |field|
+      field.label = 'Subject Geographical'
+      solr_name = solr_name('subject_geographical_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('subject_temporal') do |field|
+      field.label = 'Subject Temporal'
+      solr_name = solr_name('subject_temporal', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
 
     config.add_search_field('architect') do |field|
       field.label = 'Architect'

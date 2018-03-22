@@ -19,6 +19,20 @@ module Schemas
 
     # rubocop:disable Metrics/BlockLength
     included do
+      property :nul_use_statement, predicate: ::RDF::Vocab::DC.accessRights do |index|
+        index.as :stored_searchable
+      end
+
+      property :subject_geographical, predicate: ::RDF::Vocab::DC.spatial, class_name: ControlledVocabularies::Base do |index|
+        index.as :stored_searchable, :facetable
+      end
+
+      property :subject_temporal, predicate: ::RDF::Vocab::DC.temporal do |index|
+        index.as :stored_searchable, :facetable
+      end
+
+      # MARC Relators
+
       property :architect, predicate: ::RDF::Vocab::MARCRelators.arc, class_name: ControlledVocabularies::Base do |index|
         index.as :stored_searchable, :facetable
       end

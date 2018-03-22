@@ -1,4 +1,7 @@
 RSpec.shared_examples 'a model with common metadata' do
+  it { is_expected.to have_editable_property(:nul_use_statement, RDF::Vocab::DC.accessRights) }
+  it { is_expected.to have_editable_property(:subject_geographical, RDF::Vocab::DC.spatial) }
+  it { is_expected.to have_editable_property(:subject_temporal, RDF::Vocab::DC.temporal) }
   it { is_expected.to have_editable_property(:architect, RDF::Vocab::MARCRelators.arc) }
   it { is_expected.to have_editable_property(:artist, RDF::Vocab::MARCRelators.art) }
   it { is_expected.to have_editable_property(:author, RDF::Vocab::MARCRelators.aut) }

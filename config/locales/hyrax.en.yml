@@ -58,6 +58,9 @@ en:
           label: "Citation"
         subject:
           label: "NUL Subject"
+        subject_geographical:
+          label: "Select Authority For Subject Geographical"
+          prompt: "Choose authority"
         subject_topical:
           label: "Select Authority For Subject Topical"
           prompt: "Choose authority"
