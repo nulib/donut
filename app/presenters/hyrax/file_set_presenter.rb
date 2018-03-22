@@ -29,8 +29,17 @@ module Hyrax
              :publisher, :language, :date_uploaded,
              :embargo_release_date, :lease_expiration_date,
              :depositor, :keyword, :title_or_label, :keyword,
-             :date_created, :date_modified, :itemtype, :make,
+             :date_created, :date_modified, :itemtype,
              to: :solr_document
+
+    # Exif TechnicalMetadata
+    delegate :exifImageWidth, :exifImageHeight, :exifCompression,
+             :make, :photometricInterpretation, :samplesPerPixel,
+             :xResolution, :yResolution, :resolutionUnit, :dateTime,
+             :bitsPerSample, :make, :model, :stripOffsets,
+             :rowsPerStrip, :stripByteCounts, :software, :extraSamples,
+             to: :solr_document
+
 
     def single_use_links
       @single_use_links ||= SingleUseLink.where(itemId: id).map { |link| link_presenter_class.new(link) }

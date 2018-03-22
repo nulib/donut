@@ -11,7 +11,7 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
 
     def populate_fields(exif_data, fs)
       t = TechnicalMetadata.new
-      t.image_width                 << exif_data[:ifd0]['ImageWidth'].to_s
+      t.image_width            << exif_data[:ifd0]['ImageWidth'].to_s
       t.image_height                << exif_data[:ifd0]['ImageHeight'].to_s
       t.compression                 << exif_data[:ifd0]['Compression'].to_s
       t.photometric_interpretation  << exif_data[:ifd0]['PhotometricInterpretation'].to_s

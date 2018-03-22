@@ -24,9 +24,9 @@ class FileSet < ActiveFedora::Base
         doc[Solrizer.solr_name('model', :stored_searchable)] = technical_metadata.model
         doc[Solrizer.solr_name('stripOffsets', :stored_searchable)] = technical_metadata.strip_offsets
         doc[Solrizer.solr_name('rowsPerStrip', :stored_searchable)] = technical_metadata.rows_per_strip
-        doc[Solrizer.solr_name('stripByteCounts', :stored_searchable)] = technical_metadata.stripByteCounts
+        doc[Solrizer.solr_name('stripByteCounts', :stored_searchable)] = technical_metadata.strip_byte_counts
         doc[Solrizer.solr_name('software', :stored_searchable)] = technical_metadata.software
-        doc[Solrizer.solr_name('extraSamples', :stored_searchable)] = technical_metadata.extraSamples
+        doc[Solrizer.solr_name('extraSamples', :stored_searchable)] = technical_metadata.extra_samples
         doc[Solrizer.solr_name('exifToolVersion', :stored_searchable)] = technical_metadata.exif_tool_version
         doc[Solrizer.solr_name('exifAllData', :stored_searchable)] = technical_metadata.exif_all_data
       end
@@ -36,6 +36,9 @@ class FileSet < ActiveFedora::Base
   private
 
   def technical_metadata
-    @techmd || @techmd = TechnicalMetadata.where(file_set_id: self.id)
+    # TODO: For demo tomorrow
+    self.members.first
+    # TODO: Fixme, I return a relation, not the actual techmd
+    # @techmd || @techmd = TechnicalMetadata.where(file_set_id: self.id)
   end
 end

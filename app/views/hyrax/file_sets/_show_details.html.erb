@@ -16,67 +16,66 @@
       not yet characterized
     <% end %>
   </dd>
-  <h3> EXIF Data </h3>
   <dt>Image Height</dt>
-  <dd itemprop="imageHeight"><%= @presenter.exifImageHeight %></dd>
+  <dd itemprop="imageHeight"><%= @presenter.exifImageHeight.first %></dd>
   <dt>Image Width</dt>
-  <dd itemprop="imageWidth"><%= @presenter.exifImageHeight %></dd>
+  <dd itemprop="imageWidth"><%= @presenter.exifImageWidth.first %></dd>
   <dt>Compression</dt>
-  <dd itemprop="compression"><%= @presenter.exifCompression %></dd>
+  <dd itemprop="compression"><%= @presenter.exifCompression.first %></dd>
   <% unless @presenter.photometricInterpretation.blank? %>
     <dt>Photometric Interpretation</dt>
-    <dd itemprop="photometricInterpretation"><%= @presenter.photometricInterpretation %></dd>
+    <dd itemprop="photometricInterpretation"><%= @presenter.photometricInterpretation.first %></dd>
   <% end %>
   <% unless @presenter.samplesPerPixel.blank? %>
     <dt>Samples Per Pixel</dt>
-    <dd itemprop="samplesPerPixel"><%= @presenter.samplesPerPixel %></dd>
+    <dd itemprop="samplesPerPixel"><%= @presenter.samplesPerPixel.first %></dd>
   <% end %>
   <% unless @presenter.xResolution.blank? %>
     <dt>X Resolution</dt>
-    <dd itemprop="xResolution"><%= @presenter.xResolution %></dd>
+    <dd itemprop="xResolution"><%= @presenter.xResolution.first %></dd>
   <% end %>
   <% unless @presenter.yResolution.blank? %>
     <dt>Y Resolution</dt>
-    <dd itemprop="yResolution"><%= @presenter.yResolution %></dd>
+    <dd itemprop="yResolution"><%= @presenter.yResolution.first %></dd>
   <% end %>
   <% unless @presenter.resolutionUnit.blank? %>
     <dt>Resolution Unit</dt>
-    <dd itemprop="resolutionUnit"><%= @presenter.resolutionUnit %></dd>
+    <dd itemprop="resolutionUnit"><%= @presenter.resolutionUnit.first %></dd>
   <% end %>
   <% unless @presenter.dateTime.blank? %>
     <dt>Date Time</dt>
-    <dd itemprop="dateTime"><%= @presenter.dateTime %></dd>
+    <dd itemprop="dateTime"><%= @presenter.dateTime.first %></dd>
   <% end %>
   <% unless @presenter.bitsPerSample.blank? %>
     <dt>Bits Per Sample</dt>
-    <dd itemprop="bitsPerSample"><%= @presenter.bitsPerSample %></dd>
+    <dd itemprop="bitsPerSample"><%= @presenter.bitsPerSample.first %></dd>
   <% end %>
   <% unless @presenter.make.blank? %>
     <dt>Make</dt>
-    <dd itemprop="make"><%= @presenter.make %></dd>
+    <dd itemprop="make"><%= @presenter.make.first %></dd>
   <% end %>
   <% unless @presenter.model.blank? %>
     <dt>Model</dt>
-    <dd itemprop="model"><%= @presenter.model %></dd>
+    <dd itemprop="model"><%= @presenter.model.first %></dd>
   <% end %>
   <% unless @presenter.stripOffsets.blank? %>
     <dt>Strip Offsets</dt>
-    <dd itemprop="stripOffsets"><%= @presenter.stripOffsets %></dd>
+    <dd itemprop="stripOffsets"><%= @presenter.stripOffsets.first %></dd>
   <% end %>
   <% unless @presenter.rowsPerStrip.blank? %>
     <dt>Rows Per Strip</dt>
-    <dd itemprop="rowsPerStrip"><%= @presenter.rowsPerStrip %></dd>
+    <dd itemprop="rowsPerStrip"><%= @presenter.rowsPerStrip.first %></dd>
   <% end %>
   <% unless @presenter.stripByteCounts.blank? %>
     <dt>Strip Byte Counts</dt>
-    <dd itemprop="stripByteCounts"><%= @presenter.stripByteCounts %></dd>
+    <dd itemprop="stripByteCounts"><%= @presenter.stripByteCounts.first %></dd>
   <% end %>
   <% unless @presenter.software.blank? %>
     <dt>Software</dt>
-    <dd itemprop="software"><%= @presenter.software %></dd>
+    <dd itemprop="software"><%= @presenter.software.first %></dd>
   <% end %>
   <% unless @presenter.extraSamples.blank? %>
     <dt>Extra Samples</dt>
-    <dd itemprop="extraSamples"><%= @presenter.extraSamples %></dd>
+    <dd itemprop="extraSamples"><%= @presenter.extraSamples.first %></dd>
   <% end %>
 </dl>
