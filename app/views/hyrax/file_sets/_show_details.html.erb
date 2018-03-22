@@ -18,11 +18,11 @@
   </dd>
   <h3> EXIF Data </h3>
   <dt>Image Height</dt>
-  <dd itemprop="imageHeight"><%= @presenter.imageHeight %></dd>
+  <dd itemprop="imageHeight"><%= @presenter.exifImageHeight %></dd>
   <dt>Image Width</dt>
-  <dd itemprop="imageWidth"><%= @presenter.imageHeight %></dd>
+  <dd itemprop="imageWidth"><%= @presenter.exifImageHeight %></dd>
   <dt>Compression</dt>
-  <dd itemprop="compression"><%= @presenter.compression %></dd>
+  <dd itemprop="compression"><%= @presenter.exifCompression %></dd>
   <% unless @presenter.photometricInterpretation.blank? %>
     <dt>Photometric Interpretation</dt>
     <dd itemprop="photometricInterpretation"><%= @presenter.photometricInterpretation %></dd>
