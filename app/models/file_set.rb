@@ -5,7 +5,26 @@ class FileSet < ActiveFedora::Base
 
   def to_solr(solr_doc = {})
     super(solr_doc).tap do |doc|
+      doc[Solrizer.solr_name('exifImageWidth', :stored_searchable)] = technical_metadata.image_width
+      doc[Solrizer.solr_name('exifImageHeight', :stored_searchable)] = technical_metadata.image_height
+      doc[Solrizer.solr_name('exifCompression', :stored_searchable)] = technical_metadata.compression
+      doc[Solrizer.solr_name('photometricInterpretation', :stored_searchable)] = technical_metadata.photometric_interpretation
+      doc[Solrizer.solr_name('samplesPerPixel', :stored_searchable)] = technical_metadata.samples_per_pixel
+      doc[Solrizer.solr_name('xResolution', :stored_searchable)] = technical_metadata.x_resolution
+      doc[Solrizer.solr_name('yResolution', :stored_searchable)] = technical_metadata.y_resolution
+      doc[Solrizer.solr_name('resolutionUnit', :stored_searchable)] = technical_metadata.resolution_unit
+      doc[Solrizer.solr_name('dateTime', :stored_searchable)] = technical_metadata.date_time
+      doc[Solrizer.solr_name('bitsPerSample', :stored_searchable)] = technical_metadata.bits_per_sample
       doc[Solrizer.solr_name('make', :stored_searchable)] = technical_metadata.make
+      doc[Solrizer.solr_name('model', :stored_searchable)] = technical_metadata.model
+      doc[Solrizer.solr_name('stripOffsets', :stored_searchable)] = technical_metadata.strip_offsets
+      doc[Solrizer.solr_name('rowsPerStrip', :stored_searchable)] = technical_metadata.rows_per_strip
+      doc[Solrizer.solr_name('stripByteCounts', :stored_searchable)] = technical_metadata.stripByteCounts
+      doc[Solrizer.solr_name('software', :stored_searchable)] = technical_metadata.software
+      doc[Solrizer.solr_name('extraSamples', :stored_searchable)] = technical_metadata.extraSamples
+      doc[Solrizer.solr_name('exifToolVersion', :stored_searchable)] = technical_metadata.exif_tool_version
+      doc[Solrizer.solr_name('exifAllData', :stored_searchable)] = technical_metadata.exif_all_data
+
     end
   end
 
