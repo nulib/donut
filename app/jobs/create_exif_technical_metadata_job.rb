@@ -33,5 +33,6 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
       # fs.exif_all_data               = exif_data
       t.save
       fs.members << t
+      fs.update_index
     end
 end
