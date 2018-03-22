@@ -1,6 +1,7 @@
 if Settings.localstack
   # Use localstack for AWS services
-  require 'localstack_stub'
+  require 'docker/stack/localstack/endpoint_stub'
+  Docker::Stack::Localstack::EndpointStub.stub_endpoints!
   if Settings.localstack.sqs
     require 'active_job/queue_adapters/better_active_elastic_job_adapter'
     Rails.application.configure do
