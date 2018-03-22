@@ -133,6 +133,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('style_period_label', :stored_searchable), label: 'Style Period', link_to_search: solr_name('style_period_label', :facetable)
     config.add_index_field solr_name('genre_label', :stored_searchable), label: 'Genre', link_to_search: solr_name('genre_label', :facetable)
     config.add_index_field solr_name('technique_label', :stored_searchable), label: 'Technique', link_to_search: solr_name('technique_label', :facetable)
+    config.add_index_field solr_name('physical_description_material', :stored_searchable), label: 'Physical Description Material', link_to_search: solr_name('physical_description_material', :facetable)
     config.add_index_field solr_name('physical_description_size', :stored_searchable), label: 'Physical Description Size', link_to_search: solr_name('physical_description_size', :facetable)
     config.add_index_field solr_name('abstract', :stored_searchable), label: 'Abstract'
     config.add_index_field solr_name('box_name', :stored_searchable), label: 'Box Name'
@@ -198,6 +199,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('style_period_label', :stored_searchable), label: 'Style Period'
     config.add_show_field solr_name('genre_label', :stored_searchable), label: 'Genre'
     config.add_show_field solr_name('technique_label', :stored_searchable), label: 'Technique'
+    config.add_show_field solr_name('physical_description_material', :stored_searchable), label: 'Physical Description Material'
     config.add_show_field solr_name('physical_description_size', :stored_searchable), label: 'Physical Description Size'
     config.add_show_field solr_name('abstract', :stored_searchable)
     config.add_show_field solr_name('box_name', :stored_searchable), label: 'Box Name'
