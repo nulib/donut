@@ -1,0 +1,5 @@
+<%= f.input key,
+            label: t('hyrax.records.edit_fields.bibliographic_citation.label'),
+            hint: false,
+            as: :multi_value,
+            required: f.object.required?(key) %>

@@ -47,7 +47,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), label: 'NUL Subject', limit: 5
     config.add_facet_field solr_name('language_label', :facetable), label: 'Language', limit: 5
-    config.add_facet_field solr_name('based_near_label', :facetable), label: 'Location', limit: 5
+    config.add_facet_field solr_name('based_near_label', :facetable), label: 'Location (Place of Publication)', limit: 5
     config.add_facet_field solr_name('publisher', :facetable), limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('technique_label', :facetable), label: 'Technique', limit: 5
@@ -110,13 +110,14 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('proxy_depositor', :symbol), label: 'Depositor', helper_method: :link_to_profile
     config.add_index_field solr_name('depositor'), label: 'Owner', helper_method: :link_to_profile
     config.add_index_field solr_name('publisher', :stored_searchable), itemprop: 'publisher', link_to_search: solr_name('publisher', :facetable)
-    config.add_index_field solr_name('based_near_label', :stored_searchable), label: 'Location', itemprop: 'contentLocation', link_to_search: solr_name('based_near_label', :facetable)
+    config.add_index_field solr_name('based_near_label', :stored_searchable), label: 'Location (Place of Publication)', itemprop: 'contentLocation', link_to_search: solr_name('based_near_label', :facetable)
     config.add_index_field solr_name('language_label', :stored_searchable), label: 'Language', link_to_search: solr_name('language_label', :facetable)
     config.add_index_field solr_name('date_uploaded', :stored_sortable, type: :date), itemprop: 'datePublished', helper_method: :human_readable_date
     config.add_index_field solr_name('date_modified', :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date
     config.add_index_field solr_name('date_created', :stored_searchable), itemprop: 'dateCreated'
     config.add_index_field solr_name('rights', :stored_searchable), helper_method: :license_links
     config.add_index_field solr_name('resource_type', :stored_searchable), label: 'Resource Type', link_to_search: solr_name('resource_type', :facetable)
+    config.add_index_field solr_name('bibliographic_citation', :stored_searchable), label: 'Citation'
     config.add_index_field solr_name('file_format', :stored_searchable), link_to_search: solr_name('file_format', :facetable)
     config.add_index_field solr_name('identifier', :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'
     config.add_index_field solr_name('embargo_release_date', :stored_sortable, type: :date), label: 'Embargo release date', helper_method: :human_readable_date
@@ -129,7 +130,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('style_period_label', :stored_searchable), label: 'Style Period', link_to_search: solr_name('style_period_label', :facetable)
     config.add_index_field solr_name('genre_label', :stored_searchable), label: 'Genre', link_to_search: solr_name('genre_label', :facetable)
     config.add_index_field solr_name('technique_label', :stored_searchable), label: 'Technique', link_to_search: solr_name('technique_label', :facetable)
-    config.add_index_field solr_name('physical_description', :stored_searchable), label: 'Physical Description', link_to_search: solr_name('physical_description', :facetable)
+    config.add_index_field solr_name('physical_description_size', :stored_searchable), label: 'Physical Description Size', link_to_search: solr_name('physical_description_size', :facetable)
     config.add_index_field solr_name('abstract', :stored_searchable), label: 'Abstract'
     config.add_index_field solr_name('box_name', :stored_searchable), label: 'Box Name'
     config.add_index_field solr_name('box_number', :stored_searchable), label: 'Box Number'
@@ -169,10 +170,11 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('keyword', :stored_searchable)
     config.add_show_field solr_name('subject_topical_label', :stored_searchable), label: 'Subject Topical'
     config.add_show_field solr_name('subject', :stored_searchable), label: 'NUL Subject'
+    config.add_show_field solr_name('bibliographic_citation', :stored_searchable), label: 'Citation'
+    config.add_show_field solr_name('based_near_label', :stored_searchable), label: 'Location (Place of Publication)'
     config.add_show_field solr_name('creator', :stored_searchable)
     config.add_show_field solr_name('contributor', :stored_searchable)
     config.add_show_field solr_name('publisher', :stored_searchable)
-    config.add_show_field solr_name('based_near_label', :stored_searchable)
     config.add_show_field solr_name('language_label', :stored_searchable), label: 'Language'
     config.add_show_field solr_name('date_uploaded', :stored_searchable)
     config.add_show_field solr_name('date_modified', :stored_searchable)
@@ -192,7 +194,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('style_period_label', :stored_searchable), label: 'Style Period'
     config.add_show_field solr_name('genre_label', :stored_searchable), label: 'Genre'
     config.add_show_field solr_name('technique_label', :stored_searchable), label: 'Technique'
-    config.add_show_field solr_name('physical_description', :stored_searchable), label: 'Physical Description'
+    config.add_show_field solr_name('physical_description_size', :stored_searchable), label: 'Physical Description Size'
     config.add_show_field solr_name('abstract', :stored_searchable)
     config.add_show_field solr_name('box_name', :stored_searchable), label: 'Box Name'
     config.add_show_field solr_name('box_number', :stored_searchable), label: 'Box Number'

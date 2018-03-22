@@ -1,13 +1,13 @@
 <%= presenter.attribute_to_html(:abstract) %>
 <%= presenter.attribute_to_html(:accession_number) %>
 <%= presenter.attribute_to_html(:ark, label: 'ARK') %>
-<%= presenter.attribute_to_html(:based_near_label) %>
+<%= presenter.attribute_to_html(:based_near_label, label: 'Place of Publication') %>
+<%= presenter.attribute_to_html(:bibliographic_citation, label: 'Citation') %>
 <%= presenter.attribute_to_html(:box_name) %>
 <%= presenter.attribute_to_html(:box_number) %>
 <%= presenter.attribute_to_html(:call_number) %>
 <%= presenter.attribute_to_html(:caption) %>
 <%= presenter.attribute_to_html(:catalog_key) %>
-<%= presenter.attribute_to_html(:citation) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:creator, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:creator_attribution) %>
@@ -19,7 +19,7 @@
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim') %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:language_label, render_as: :faceted, label: 'Language') %>
-<%= presenter.attribute_to_html(:physical_description, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:physical_description_size, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:rights_holder) %>
