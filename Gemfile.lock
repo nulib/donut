@@ -784,7 +784,7 @@ GEM
       multi_json
     docker-compose (1.1.8)
       backticks (~> 1.0)
-    docker-stack (0.2.4)
+    docker-stack (0.2.5)
       docker-api
       docker-compose
       rails (~> 5.0)
@@ -1117,8 +1117,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_autolink (1.1.6)
       rails (> 3.1)
     railties (5.1.5)
