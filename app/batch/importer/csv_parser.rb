@@ -30,7 +30,9 @@ module Importer
     private
 
       def email_row?(row)
-        row.length == 1 && row.first.match?(/\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+        email_re = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+        filled = row.select(&:present?)
+        filled.length == 1 && filled.first.match?(email_re)
       end
 
       def read_email
