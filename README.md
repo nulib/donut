@@ -24,13 +24,8 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Install dependencies: `bundle install`
 * Setup the database: `rake db:migrate`
 * Generate roles: `rake generate_roles`
-* Run `rake donut:server:dev` in a separate tab to start solr, fedora, cantaloupe, and minio.
-* Create the default admin set: `rake hyrax:default_admin_set:create`
-* Load the workflows in `config/workflows`: `rake hyrax:workflow:load`
-
-### Create and populate bucket in minio
-
-Run `bundle exec rake s3:setup`, which creates a new bucket and populates it with our fixtures. If you already have the bucket, then run `bundle exec rake s3:populate_batch_bucket` to upload the fixture data to the bucket.
+* Run `rake docker:dev:up` in a separate tab to start solr, fedora, cantaloupe, and localstack
+* Run `rake donut:seed ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to initialize the stack
 
 ## Running the Tests
 
@@ -50,7 +45,7 @@ $ rake donut:ci:rspec
 You may also want to run the Fedora and Solr servers in one window with:
 
 ```sh
-$ rake donut:server:test
+$ rake docker:test:up
 ```
 
 And run the test suite in another window:
@@ -67,9 +62,15 @@ the active elastic job gem requires an environment variable to be set otherwise 
 $ export PROCESS_ACTIVE_ELASTIC_JOBS=true
 ```
 
+## Notes on the Docker stack
+
+* You can replace `up` with `daemon` in `docker:dev:up` and `docker:test:up` to run the Docker services in the background
+  instead of in a separate tab. To stop the stack, use (for example) `rake docker:dev:down`.
+* The test stack always cleans up its data when it comes down. To clean the dev stack, use `rake docker:dev:clean`.
+
 ## Adding an Admin user and assigning workflow roles
 
-1. Run the development servers with `rake hydra:server` (or run Rails and Solr/Fedora separately with `rails s` and `rake server:development`).
+1. Run the development servers with `rake docker:dev:up` (or `daemon`) and `rails s`
 1. Go to http://devbox.library.northwestern.edu/ and login with OpenAM
 1. To make the last user who logged in (you) and admin, run `rake add_admin_role`
 1. Go to http://devbox.library.northwestern.edu/admin/workflow_roles and grant workflow roles if needed
