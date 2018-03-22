@@ -34,6 +34,7 @@ class SolrDocument
   attribute :technique_label, Solr::Array, solr_name('technique_label')
   attribute :subject_topical_label, Solr::Array, solr_name('subject_topical_label')
 
+<<<<<<< HEAD
   # CommonMetadata attributes
   attribute :subject_geographical_label, Solr::Array, solr_name('subject_geographical_label')
   attribute :architect_label, Solr::Array, solr_name('architect_label')
@@ -59,6 +60,11 @@ class SolrDocument
   attribute :screenwriter_label, Solr::Array, solr_name('screenwriter_label')
   attribute :sculptor_label, Solr::Array, solr_name('sculptor_label')
   attribute :sponsor_label, Solr::Array, solr_name('sponsor_label')
+=======
+  def make
+    fetch(Solrizer.solr_name('make', :stored_searchable), [])
+  end
+>>>>>>> more in progress
 
   def abstract
     fetch(Solrizer.solr_name('abstract', :stored_searchable), [])

@@ -5,4 +5,16 @@ class FileSet < ActiveFedora::Base
   include MicroserviceMinter
 
   # apply_schema Schemas::Technical::Exif
+
+  def to_solr(solr_doc = {})
+    super(solr_doc).tap do |doc|
+      doc[Solrizer.solr_name('make', :stored_searchable)] = technical_metadata.make
+    end
+  end
+
+  private
+
+  def technical_metadata
+    @techmd || @techmd = self.members.first #@techmd = TechnicalMetadata.where(file_set_id: self.id)
+  end
 end
