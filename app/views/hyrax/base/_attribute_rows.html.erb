@@ -26,6 +26,8 @@
 <%= presenter.attribute_to_html(:rights_statement) %>
 <%= presenter.attribute_to_html(:style_period_label, render_as: :faceted, label: 'Style Period') %>
 <%= presenter.attribute_to_html(:source) %>
+<%= presenter.attribute_to_html(:subject_geographical_label, render_as: :faceted, label: 'Subject Geographical') %>
+<%= presenter.attribute_to_html(:subject_temporal, render_as: :faceted, label: 'Subject Temporal') %>
 <%= presenter.attribute_to_html(:subject_topical_label, render_as: :faceted, label: 'Subject Topical') %>
 <%= presenter.attribute_to_html(:technique_label, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:preservation_level, render_as: :faceted) %>
@@ -39,6 +41,7 @@
 <%= presenter.attribute_to_html(:nul_creator, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, label: 'NUL Subject') %>
 <%= presenter.attribute_to_html(:nul_contributor, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:nul_use_statement, label: 'NUL Use Statement') %>
 <!-- CoreMetadata attributes -->
 <%= presenter.attribute_to_html(:architect_label, render_as: :faceted, label: 'Architect') %>
 <%= presenter.attribute_to_html(:artist_label, render_as: :faceted, label: 'Artist') %>

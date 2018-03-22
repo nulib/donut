@@ -35,6 +35,9 @@ export default class Autocomplete {
       case 'technique':
         new LinkedData(element, url);
         break;
+      case 'subject_geographical':
+        new LinkedData(element, url);
+        break;
       case 'architect':
         new LinkedData(element, url);
         break;
