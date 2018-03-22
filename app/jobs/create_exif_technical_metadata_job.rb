@@ -1,11 +1,10 @@
 class CreateExifTechnicalMetadataJob < ApplicationJob
   def perform(file_set, file_path, strict: false)
 
-    byebug
     exif_data = Exiftool.new(file_path, '-a -u -g1').to_hash
     populate_fields(exif_data, file_set)
 
-    Rails.logger.info("done wow cool")
+    # Rails.logger.info("done wow cool")
   end
 
   private
