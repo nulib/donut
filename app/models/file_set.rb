@@ -24,7 +24,6 @@ class FileSet < ActiveFedora::Base
       doc[Solrizer.solr_name('extraSamples', :stored_searchable)] = technical_metadata.extraSamples
       doc[Solrizer.solr_name('exifToolVersion', :stored_searchable)] = technical_metadata.exif_tool_version
       doc[Solrizer.solr_name('exifAllData', :stored_searchable)] = technical_metadata.exif_all_data
-
     end
   end
 
