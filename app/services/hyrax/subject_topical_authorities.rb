@@ -1,8 +1,8 @@
 module Hyrax
   # Provide select options for the subject field
-  class SubjectAuthorities < QaSelectService
+  class SubjectTopicalAuthorities < QaSelectService
     def initialize
-      super('subjects')
+      super('subjects_topical')
     end
   end
 end
