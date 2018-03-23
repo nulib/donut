@@ -1,6 +1,6 @@
 solr:
   configset: donut
-  configset_source_path: <%= File.join(Rails.root, 'solr', 'config') %>
+  configset_source_path: <%= File.join(Rails.root, 'solr', 'conf') %>
   collection_options:
     async:
     auto_add_replicas:
