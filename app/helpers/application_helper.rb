@@ -25,6 +25,12 @@ module ApplicationHelper
     link_to(accession_number, batch_item_path(accession_number: accession_number))
   end
 
+  def item_linker(item)
+    return nil unless item.created_item.present?
+    type = item.attribute_hash[:type].underscore.pluralize
+    link_to(item.created_item, "/concern/#{type}/#{item.created_item}")
+  end
+
   private
 
     # rubocop:disable Metrics/CyclomaticComplexity

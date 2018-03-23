@@ -11,7 +11,8 @@ class BatchItem < ApplicationRecord
 
   def run
     if runnable_item?
-      factory.run(user: batch.deposit_user)
+      new_object = factory.run(user: batch.deposit_user)
+      self.created_item = new_object&.id
       complete!
     end
   rescue StandardError => e

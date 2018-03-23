@@ -7,6 +7,7 @@
         <th scope='col'>Status</th>
         <th scope='col'>Row Number</th>
         <th scope='col'>Accession Number</th>
+        <th scope='col'>Created Item</th>
       </tr>
     </thead>
     <tbody>
@@ -14,7 +15,8 @@
         <tr class="<%= status_context(item.status) %>">
           <td><span data-toggle="collapse" data-target="#error_<%= index %>" class="clickable <%= status_context(item.status) %>" style="cursor: pointer;"><%= status_label item.status %></span></td>
           <td><%= item.row_number %></td>
-          <td><%= accession_number_linker(item.accession_number) %></td>    
+          <td><%= accession_number_linker(item.accession_number) %></td>
+          <td><%= item_linker(item) %></td>
         </tr>
         <%= render partial: 'error_row', locals: { index: index, item: item } %>
       <% end %>
