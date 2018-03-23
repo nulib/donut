@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322175410) do
+ActiveRecord::Schema.define(version: 20180323144727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180322175410) do
     t.text "error"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "created_item"
   end
 
   create_table "batches", force: :cascade do |t|

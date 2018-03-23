@@ -8,6 +8,7 @@
         <th scope='col'>Job ID</th>
         <th scope='col'>Row Number</th>
         <th scope='col'>Submitted</th>
+        <th scope='col'>Created Item</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,7 @@
           <td><%= link_to(item.batch.job_id, url_for(item.batch)) %></td>
           <td><%= item.row_number %></td>
           <td><%= time_ago_in_words(item.created_at) %> ago</td>
+          <td><%= item_linker(item) %></td>
         </tr>
         <%= render partial: 'error_row', locals: { index: index, item: item } %>
       <% end %>
