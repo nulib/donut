@@ -1,4 +1,4 @@
-<% subject_authorities = Hyrax::SubjectAuthorities.new %>
+<% subject_topical_authorities = Hyrax::SubjectTopicalAuthorities.new %>
 <fieldset class="bordered form-group">
 <%= f.input key,
   as: :controlled_vocabulary,
@@ -21,9 +21,9 @@
 
   <label>Authority for Subject (Topical)</label>
 
-<%= select_tag "subject_authorities",
-        options_for_select(subject_authorities.select_active_options),
-        class: 'form-control image_subject',
+<%= select_tag "subject_topical_authorities",
+        options_for_select(subject_topical_authorities.select_active_options),
+        class: 'form-control image_subject_topical',
         data: {
           'authority-select' => "image_subject_topical",
           'uses-controlled-vocab' => true
