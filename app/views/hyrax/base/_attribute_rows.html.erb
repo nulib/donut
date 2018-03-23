@@ -24,7 +24,7 @@
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:rights_holder) %>
-<%= presenter.attribute_to_html(:rights_statement) %>
+<%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement) %>
 <%= presenter.attribute_to_html(:style_period_label, render_as: :faceted, label: 'Style Period') %>
 <%= presenter.attribute_to_html(:source) %>
 <%= presenter.attribute_to_html(:subject_geographical_label, render_as: :faceted, label: 'Subject Geographical') %>
