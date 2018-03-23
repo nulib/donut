@@ -21,11 +21,11 @@ RSpec.describe Importer::CSVParser do
       expect(first_record[:file]).to contain_exactly('files/coffee.jpg', 'files/nul.jpg')
       expect(first_record[:date_created]).to contain_exactly('2009-12')
       expect(first_record[:contributor]).to contain_exactly(
-        a_hash_including(name: ['Carter, Prudence L.']),
-        a_hash_including(name: ['Caruthers, Jakeya'])
+        an_instance_of(RDF::URI),
+        an_instance_of(RDF::URI)
       )
       expect(first_record.keys).to contain_exactly(:accession_number, :type, :title, :description,
-                                                   :subject, :resource_type, :contributor, :style_period,
+                                                   :subject, :resource_type, :contributor, :creator, :style_period,
                                                    :date_created, :file, :collection, :admin_set_id, :subject_topical,
                                                    :preservation_level, :rights_statement, :status)
     end

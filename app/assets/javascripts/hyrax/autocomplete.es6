@@ -17,6 +17,12 @@ export default class Autocomplete {
       case 'collection':
         new Resource(element, url);
         break;
+      case 'creator':
+        new LinkedData(element, url);
+        break;
+      case 'contributor':
+        new LinkedData(element, url);
+        break;
       case 'based_near':
         new LinkedData(element, url);
         break;

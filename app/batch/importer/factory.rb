@@ -10,7 +10,6 @@ module Importer
       autoload :CollectionFactory
       autoload :ImageFactory
       autoload :ObjectFactory
-      autoload :StringLiteralProcessor
       autoload :WithAssociatedCollection
     end
 

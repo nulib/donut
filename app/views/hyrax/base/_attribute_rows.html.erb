@@ -8,8 +8,8 @@
 <%= presenter.attribute_to_html(:call_number) %>
 <%= presenter.attribute_to_html(:caption) %>
 <%= presenter.attribute_to_html(:catalog_key) %>
-<%= presenter.attribute_to_html(:contributor, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:creator, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:contributor_label, render_as: :faceted, label: 'Contributor') %>
+<%= presenter.attribute_to_html(:creator_label, render_as: :faceted, label: 'Creator') %>
 <%= presenter.attribute_to_html(:creator_attribution) %>
 <%= presenter.attribute_to_html(:date_created, render_as: :linked, search_field: 'date_created_tesim') %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link) %>

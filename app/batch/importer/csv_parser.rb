@@ -76,7 +76,7 @@ module Importer
       def extract_field(header, val, processed)
         return unless val
         case header
-        when 'type', 'id', 'accession_number', 'ark', 'call_number', 'preservation_level'
+        when 'type', 'accession_number', 'id', 'ark', 'call_number', 'preservation_level'
           # type and id are singular
           processed[header.to_sym] = val
         when /^(created|issued|date_copyrighted|date_valid)_(.*)$/
@@ -84,8 +84,6 @@ module Importer
           # TODO: this only handles one date of each type
           processed[key] ||= [{}]
           update_date(processed[key].first, Regexp.last_match(2), val)
-        when /^contributor$/
-          update_contributor(header, val, processed)
         when /^collection_(.*)$/
           processed[:collection] ||= {}
           update_collection(processed[:collection], Regexp.last_match(1), val)
@@ -99,14 +97,6 @@ module Importer
         end
       end
       # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/AbcSize
-
-      # Faking a typed field for now.
-      # TODO: support other types of contributors
-      def update_contributor(header, val, processed)
-        key = header.to_sym
-        processed[key] ||= []
-        processed[key] << { name: [val.strip] }
-      end
 
       def extract_multi_value_field(header, val, processed, key = nil)
         key ||= header.to_sym
