@@ -10,4 +10,4 @@
 Metrics/AbcSize:
   Exclude:
     - 'app/jobs/import_url_job.rb'
-  Max: 18
+  Max: 20

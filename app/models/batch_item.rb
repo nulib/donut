@@ -10,11 +10,10 @@ class BatchItem < ApplicationRecord
   end
 
   def run
-    if runnable_item?
-      new_object = factory.run(user: batch.deposit_user)
-      self.created_item = new_object&.id
-      complete!
-    end
+    return unless runnable_item?
+    new_object = factory.run(user: batch.deposit_user)
+    self.created_item = new_object&.id
+    complete!
   rescue StandardError => e
     error!(e.class.name => [e.message])
     Rails.logger.info "Error for Batch Item: #{id}, from Batch #{batch.id}: #{e.message} \n#{e.backtrace}"
