@@ -26,10 +26,6 @@ RSpec.describe BatchItem, type: :model do
     }
   end
 
-  before do
-    Importer::Factory::ImageFactory.any_instance.stub(:run).and_return(true) # rubocop:disable RSpec/AnyInstance
-  end
-
   context 'no items' do
     it 'batch should be empty' do
       expect(batch.status).to eq('empty')

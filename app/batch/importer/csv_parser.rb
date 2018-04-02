@@ -7,7 +7,7 @@ module Importer
     attr_reader :email
 
     def initialize(content)
-      @content = content
+      @content = content.sub(/^\W+/, '')
       # Read email from first row
       read_email
     end
@@ -20,7 +20,6 @@ module Importer
           # we already have headers, so this is not the first row.
           yield attributes(headers, row)
         else
-          row.first.sub!(/^\W+/, '')
           # Read headers
           headers = validate_headers(row)
         end

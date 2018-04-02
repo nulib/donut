@@ -16,7 +16,7 @@ class BatchItem < ApplicationRecord
     complete!
   rescue StandardError => e
     error!(e.class.name => [e.message])
-    Rails.logger.info "Error for Batch Item: #{id}, from Batch #{batch.id}: #{e.message} \n#{e.backtrace}"
+    Rails.logger.info %(Error for Batch Item: #{id}, from Batch #{batch.id}: #{e.message} \n#{e.backtrace.join("\n")})
   end
 
   def complete!
