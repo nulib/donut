@@ -19,7 +19,6 @@ if Rails.env.development? || Rails.env.test?
         Rails.env = 'test'
         Docker::Stack::Controller.new(cleanup: true).with_containers do
           Rake::Task['db:setup'].invoke
-          Rake::Task['s3:setup'].invoke
           Rake::Task['donut:rspec'].invoke
         end
       end

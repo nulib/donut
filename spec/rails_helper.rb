@@ -69,6 +69,12 @@ RSpec.configure do |config|
     Warden.test_mode!
   end
 
+  config.before(:each) do
+    Hyrax::Workflow::WorkflowImporter.load_workflows
+    Sipity::Role.find_or_create_by(name: 'depositing')
+    AdminSet.find_or_create_default_admin_set_id
+  end
+
   config.before(:suite) do
     WebMock.allow_net_connect!
     Hyrax::CollectionType.find_or_create_default_collection_type

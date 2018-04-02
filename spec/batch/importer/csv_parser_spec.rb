@@ -5,12 +5,14 @@ require 'importer'
 RSpec.describe Importer::CSVParser do
   let(:parser) { described_class.new(File.read(file)) }
   let(:attributes) { parser.attributes }
+  let(:depositor) { 'depositor@example.edu' }
   let(:file) { "#{fixture_path}/csv/sample.csv" }
   let(:first_record) { parser.first }
 
   context 'Importing just images' do
     # rubocop:disable RSpec/ExampleLength
     it 'parses a record' do
+      expect(parser.email).to eq(depositor)
       # Title must be singular
       expect(first_record[:title]).to eq [
         'Knowing their lines: how social boundaries undermine equity-based integration policies in United States and South African schools'
