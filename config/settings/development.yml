@@ -1,11 +1,10 @@
-localstack:
-  sqs: false
-  port_offset: 100
-active_job_queue:
-  url: http://localhost:4676/queue/donut
+active_job:
+  queue_adapter: shoryuken
 aws:
   buckets:
     uploads: dev-uploads
     batch: dev-batch
+  queues:
+    ingest: donut
 iiif:
   endpoint: http://localhost:8183/iiif/2/

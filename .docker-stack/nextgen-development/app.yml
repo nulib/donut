@@ -1,0 +1,80 @@
+---
+version: '3.4'
+volumes:
+  derivatives:
+  working:
+services:
+  donut:
+    build: ../..
+    image: nulib/donut:latest
+    volumes:
+    - derivatives:/var/donut-derivatives
+    - working:/var/donut-working
+    depends_on:
+    - db
+    - fedora
+    - solr
+    - localstack
+    ports:
+    - "3000:3000"
+    environment: &donut_env
+      AWS_REGION: "us-east-1"
+      BUNDLE_WITH: aws:postgres
+      DATABASE_URL: "postgresql://docker:d0ck3r@db:5432/donut"
+      DISABLE_REDIS_CLUSTER: 'true'
+      FEDORA_BASE_PATH: "/donut"
+      FEDORA_URL: "http://fedora:8080/rest"
+      LOCALSTACK_ENDPOINT: 'http://localstack'
+      LOCALSTACK_OFFSET: 0
+      RAILS_ENV: 'development'
+      RAILS_GROUPS: 'aws'
+      RAILS_SERVE_STATIC_FILES: 'true'
+      REDIS_HOST: "redis"
+      REDIS_PORT: "6379"
+      SECRET_KEY_BASE: "2c3046494fdc0fa42c5b0941b0775e12a49292171ee3d88ce662eb4b2f749b68"
+      SETTINGS__ACTIVE_JOB__QUEUE_ADAPTER: shoryuken
+      SETTINGS__AWS__QUEUES__INGEST: donut
+      SETTINGS__AWS__BUCKETS__BATCH: 'donut-staging-batch'
+      SETTINGS__AWS__BUCKETS__DROPBOX: 'donut-staging-dropbox'
+      SETTINGS__AWS__BUCKETS__PYRAMIDS: 'donut-staging-pyramids'
+      SETTINGS__AWS__BUCKETS__UPLOADS: 'donut-staging-uploads'
+      SETTINGS__DERIVATIVES_PATH: /var/donut-derivatives
+      SETTINGS__DOMAIN__HOST: 'devbox.northwestern.edu'
+      SETTINGS__FFMPEG__PATH: "/usr/local/bin/ffmpeg"
+      SETTINGS__FITS__PATH: "/usr/local/fits-1.0.5/fits.sh"
+      SETTINGS__GEONAMES_USERNAME: 'nul_rdc'
+      SETTINGS__GROUPS__SYSTEM_GROUPS: administrator,group_manager,manager
+      SETTINGS__IIIF__ENDPOINT: 'http://localhost:8182/iiif/2/'
+      SETTINGS__NAME: donut
+      SETTINGS__S3__DROPBOX__BUCKET: 'donut-staging-dropbox'
+      SETTINGS__S3__UPLOAD_BUCKET: 'donut-uploads'
+      SETTINGS__SOLR__COLLECTION_OPTIONS__REPLICATION_FACTOR: '3'
+      SETTINGS__SOLR__COLLECTION_OPTIONS__RULE: 'shard:*,replica:<2,cores:<5~'
+      SETTINGS__SOLR__URL: 'http://solr:8983/solr/development-core'
+      SETTINGS__UPLOAD_PATH: /var/donut-working/temp
+      SETTINGS__WORKING_PATH: /var/donut-working/work
+      SOLR_URL: 'http://solr:8983/solr/development-core'
+      STAGING_ENV: "true"
+      TMPDIR: /var/donut-working/temp
+  donut_worker:
+    image: nulib/donut:latest
+    volumes:
+    - derivatives:/var/donut-derivatives
+    - working:/var/donut-working
+    depends_on:
+    - db
+    - fedora
+    - solr
+    - localstack
+    environment:
+      <<: *donut_env
+      WORKER: "yes"
+    command:
+    - bundle
+    - exec
+    - shoryuken
+    - -R
+    - -C
+    - config/shoryuken.yml
+    - -q
+    - donut
