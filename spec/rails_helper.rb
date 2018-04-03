@@ -24,6 +24,7 @@ require 'webmock/rspec'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+require Rails.root.join('spec', 'support', 'database_cleaner.rb')
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
@@ -67,12 +68,6 @@ RSpec.configure do |config|
 
   config.before(:each, type: :feature) do
     Warden.test_mode!
-  end
-
-  config.before do
-    Hyrax::Workflow::WorkflowImporter.load_workflows
-    Sipity::Role.find_or_create_by(name: 'depositing')
-    AdminSet.find_or_create_default_admin_set_id
   end
 
   config.before(:suite) do
