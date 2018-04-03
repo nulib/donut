@@ -1,5 +1,6 @@
 if Settings.localstack
   # Use localstack for AWS services
+  require 'aws-sdk-s3'
   require 'docker/stack/localstack/endpoint_stub'
   Docker::Stack::Localstack::EndpointStub.stub_endpoints!
   if Settings.active_job&.queue_adapter.to_s == 'shoryuken'

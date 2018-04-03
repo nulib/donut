@@ -1,3 +1,4 @@
+localstack: true
 active_job:
   queue_adapter: shoryuken
 aws:

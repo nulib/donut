@@ -19,14 +19,12 @@ services:
     - "3000:3000"
     environment: &donut_env
       AWS_REGION: "us-east-1"
-      BUNDLE_WITH: aws:postgres
       DATABASE_URL: "postgresql://docker:d0ck3r@db:5432/donut"
       DISABLE_REDIS_CLUSTER: 'true'
       FEDORA_BASE_PATH: "/donut"
       FEDORA_URL: "http://fedora:8080/rest"
       LOCALSTACK_ENDPOINT: 'http://localstack'
       LOCALSTACK_OFFSET: 0
-      RAILS_ENV: 'development'
       RAILS_GROUPS: 'aws'
       RAILS_SERVE_STATIC_FILES: 'true'
       REDIS_HOST: "redis"

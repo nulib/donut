@@ -35,9 +35,9 @@ ENV LANG='en_US.UTF-8'
 # Adding gems
 COPY --chown=app:app Gemfile /home/app/current/
 COPY --chown=app:app Gemfile.lock /home/app/current/
-RUN bundle install --jobs 20 --retry 5
+RUN bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test
 COPY --chown=app:app . /home/app/current
-RUN bundle exec rake assets:precompile RAILS_ENV=production SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
+RUN bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
 RUN rm -rf tmp/* log/*
 EXPOSE 3000
 CMD bin/boot_container

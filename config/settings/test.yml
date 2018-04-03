@@ -1,3 +1,4 @@
+localstack: true
 aws:
   buckets:
     batch:   test-batch
