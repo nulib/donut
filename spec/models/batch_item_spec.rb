@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BatchItem, type: :model do
+RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
   subject { batch.batch_items.create(accession_number: accession_number, attribute_hash: attributes, row_number: 1) }
 
   let(:batch_item) { subject }

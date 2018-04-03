@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'importer'
 
-RSpec.describe Importer::Factory::ImageFactory, :clean do
+RSpec.describe Importer::Factory::ImageFactory, :clean, admin_set: true do
   let(:factory) { described_class.new(attributes) }
   let(:actor) { instance_spy('actor') }
   let(:bucket) { Settings.aws.buckets.batch }
