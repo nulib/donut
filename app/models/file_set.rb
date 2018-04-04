@@ -36,9 +36,8 @@ class FileSet < ActiveFedora::Base
   private
 
   def technical_metadata
-    # TODO: For demo tomorrow
-    self.members.first
-    # TODO: Fixme, I return a relation, not the actual techmd
-    # @techmd || @techmd = TechnicalMetadata.where(file_set_id: self.id)
+    # we have to do a .first on the set resulting from this query since
+    # it returns a relation and not an instance of the TechMD class
+    @techmd || @techmd = TechnicalMetadata.where(file_set_id: self.id).first
   end
 end
