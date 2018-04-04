@@ -15,7 +15,7 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
       accession_number: accession_number,
       type: 'Image',
       title: ['Title'],
-      contributor: [{ name: ['Contributor, Prudence L.'] }],
+      contributor: ['http://id.worldcat.org/fast/1213442'],
       date_created: ['2018'],
       collection: { id: 'test-collection-id', title: ['Test Collection'] },
       admin_set_id: ['admin_set/default'],

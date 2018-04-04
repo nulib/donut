@@ -26,6 +26,8 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
+  attribute :contributor_label, Solr::Array, solr_name('contributor_label')
+  attribute :creator_label, Solr::Array, solr_name('creator_label')
   attribute :language_label, Solr::Array, solr_name('language_label')
   attribute :style_period_label, Solr::Array, solr_name('style_period_label')
   attribute :genre_label, Solr::Array, solr_name('genre_label')
@@ -96,6 +98,14 @@ class SolrDocument
 
   def catalog_key
     fetch(Solrizer.solr_name('catalog_key', :stored_searchable), [])
+  end
+
+  def contributor_label
+    fetch(Solrizer.solr_name('contributor_label', :stored_searchable), [])
+  end
+
+  def creator_label
+    fetch(Solrizer.solr_name('creator_label', :stored_searchable), [])
   end
 
   def folder_name

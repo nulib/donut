@@ -87,7 +87,7 @@ class Image < ActiveFedora::Base
   id_blank = proc { |attributes| attributes[:id].blank? }
 
   self.controlled_properties += [:architect, :artist, :author, :cartographer, :compiler, :composer,
-                                 :contributor, :designer, :director, :draftsman, :editor, :engraver,
+                                 :contributor, :creator, :designer, :director, :draftsman, :editor, :engraver,
                                  :genre, :illustrator, :language, :librettist, :performer, :photographer, :presenter,
                                  :printer, :printmaker, :producer, :production_manager, :screenwriter, :sculptor,
                                  :sponsor, :style_period, :subject_geographical, :subject_topical, :technique]

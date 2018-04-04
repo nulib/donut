@@ -17,6 +17,6 @@ RSpec.describe 'records/edit_fields/_contributor.html.erb', type: :view do
   end
 
   it 'has url for autocomplete service' do
-    expect(rendered).to have_selector('input[data-autocomplete-url="/authorities/search/loc/names"][data-autocomplete="contributor"]')
+    expect(rendered).to have_selector('input[data-autocomplete-url="/authorities/search/getty/ulan"][data-autocomplete="contributor"]')
   end
 end

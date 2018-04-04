@@ -106,8 +106,7 @@ module Importer
         # Override if we need to map the attributes from the parser in
         # a way that is compatible with how the factory needs them.
         def transform_attributes
-          StringLiteralProcessor.process(attributes.slice(*permitted_attributes))
-                                .merge(file_attributes)
+          attributes.slice(*permitted_attributes).merge(file_attributes)
         end
 
         # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:

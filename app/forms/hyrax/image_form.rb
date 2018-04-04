@@ -36,6 +36,8 @@ module Hyrax
           cartographer_attributes: [:id, :_destroy],
           compiler_attributes: [:id, :_destroy],
           composer_attributes: [:id, :_destroy],
+          contributor_attributes: [:id, :_destroy],
+          creator_attributes: [:id, :_destroy],
           designer_attributes: [:id, :_destroy],
           director_attributes: [:id, :_destroy],
           draftsman_attributes: [:id, :_destroy],

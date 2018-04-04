@@ -30,7 +30,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: 'search',
       rows: 10,
-      qf: 'title_tesim description_tesim creator_tesim keyword_tesim'
+      qf: 'title_tesim description_tesim keyword_tesim'
     }
 
     # solr field configuration for document/show views
@@ -42,8 +42,8 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_facet_field solr_name('human_readable_type', :facetable), label: 'Type', limit: 5
     config.add_facet_field solr_name('resource_type', :facetable), label: 'Resource Type', limit: 5
-    config.add_facet_field solr_name('creator', :facetable), limit: 5
-    config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
+    config.add_facet_field solr_name('creator_label', :facetable), label: 'Creator', limit: 5
+    config.add_facet_field solr_name('contributor_label', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), label: 'NUL Subject', limit: 5
     config.add_facet_field solr_name('language_label', :facetable), label: 'Language', limit: 5
@@ -108,8 +108,8 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('keyword', :stored_searchable), itemprop: 'keywords', link_to_search: solr_name('keyword', :facetable)
     config.add_index_field solr_name('subject_topical_label', :stored_searchable), link_to_search: solr_name('subject_topical_label', :facetable)
     config.add_index_field solr_name('subject', :stored_searchable), label: 'NUL Subject', itemprop: 'about', link_to_search: solr_name('subject', :facetable)
-    config.add_index_field solr_name('creator', :stored_searchable), itemprop: 'creator', link_to_search: solr_name('creator', :facetable)
-    config.add_index_field solr_name('contributor', :stored_searchable), itemprop: 'contributor', link_to_search: solr_name('contributor', :facetable)
+    config.add_index_field solr_name('creator_label', :stored_searchable), label: 'Creator', link_to_search: solr_name('creator_label', :facetable)
+    config.add_index_field solr_name('contributor_label', :stored_searchable), label: 'Contributor', link_to_search: solr_name('contributor_label', :facetable)
     config.add_index_field solr_name('proxy_depositor', :symbol), label: 'Depositor', helper_method: :link_to_profile
     config.add_index_field solr_name('depositor'), label: 'Owner', helper_method: :link_to_profile
     config.add_index_field solr_name('publisher', :stored_searchable), itemprop: 'publisher', link_to_search: solr_name('publisher', :facetable)
@@ -177,8 +177,8 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('subject', :stored_searchable), label: 'NUL Subject'
     config.add_show_field solr_name('bibliographic_citation', :stored_searchable), label: 'Citation'
     config.add_show_field solr_name('based_near_label', :stored_searchable), label: 'Location (Place of Publication)'
-    config.add_show_field solr_name('creator', :stored_searchable)
-    config.add_show_field solr_name('contributor', :stored_searchable)
+    config.add_show_field solr_name('creator_label', :stored_searchable), label: 'Creator'
+    config.add_show_field solr_name('contributor_label', :stored_searchable), label: 'Contributor'
     config.add_show_field solr_name('publisher', :stored_searchable)
     config.add_show_field solr_name('language_label', :stored_searchable), label: 'Language'
     config.add_show_field solr_name('date_uploaded', :stored_searchable)
@@ -267,13 +267,8 @@ class CatalogController < ApplicationController
     # creator, title, description, publisher, date_created,
     # subject, language, resource_type, format, identifier, based_near,
     config.add_search_field('contributor') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params.
-
-      # :solr_local_parameters will be sent using Solr LocalParams
-      # syntax, as eg {! qf=$title_qf }. This is neccesary to use
-      # Solr parameter de-referencing like $title_qf.
-      # See: http://wiki.apache.org/solr/LocalParams
-      solr_name = solr_name('contributor', :stored_searchable)
+      field.label = 'Contributor'
+      solr_name = solr_name('contributor_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -281,7 +276,8 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('creator') do |field|
-      solr_name = solr_name('creator', :stored_searchable)
+      field.label = 'Creator'
+      solr_name = solr_name('creator_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
