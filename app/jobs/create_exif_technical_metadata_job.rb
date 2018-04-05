@@ -7,7 +7,7 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
   private
 
     def populate_fields(exif_data, fs)
-      t = TechnicalMetadata.new
+      t = TechnicalMetadata.where(file_set_id: fs.id).first || TechnicalMetadata.new
       t.image_width                 = exif_data.dig(:ifd0, 'ImageWidth').to_s
       t.image_height                = exif_data.dig(:ifd0, 'ImageHeight').to_s
       t.compression                 = exif_data.dig(:ifd0, 'Compression').to_s
