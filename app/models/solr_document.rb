@@ -34,7 +34,6 @@ class SolrDocument
   attribute :technique_label, Solr::Array, solr_name('technique_label')
   attribute :subject_topical_label, Solr::Array, solr_name('subject_topical_label')
 
-
   # CommonMetadata attributes
   attribute :subject_geographical_label, Solr::Array, solr_name('subject_geographical_label')
   attribute :architect_label, Solr::Array, solr_name('architect_label')
@@ -201,7 +200,6 @@ class SolrDocument
     fetch(Solrizer.solr_name('technique', :stored_searchable), [])
   end
 
-<<<<<<< HEAD
   # CommonMetadata methods
   def architect_label
     fetch(Solrizer.solr_name('architect_label', :stored_searchable), [])
@@ -293,58 +291,74 @@ class SolrDocument
 
   def sponsor_label
     fetch(Solrizer.solr_name('sponsor_label', :stored_searchable), [])
-=======
+  end
+
   # Exif Fields from TechnicalMetadata
-  def exifImageHeight
-    fetch(Solrizer.solr_name('exifImageHeight', :stored_searchable), [])
+  def exif_image_height
+    fetch(Solrizer.solr_name('exif_image_height', :stored_searchable), [])
   end
-  def exifImageWidth
-    fetch(Solrizer.solr_name('exifImageWidth', :stored_searchable), [])
+
+  def exif_image_width
+    fetch(Solrizer.solr_name('exif_image_width', :stored_searchable), [])
   end
-  def exifCompression
-    fetch(Solrizer.solr_name('exifCompression', :stored_searchable), [])
+
+  def exif_compression
+    fetch(Solrizer.solr_name('exif_compression', :stored_searchable), [])
   end
-  def photometricInterpretation
-    fetch(Solrizer.solr_name('photometricInterpretation', :stored_searchable), [])
+
+  def photometric_interpretation
+    fetch(Solrizer.solr_name('photometric_interpretation', :stored_searchable), [])
   end
-  def samplesPerPixel
-    fetch(Solrizer.solr_name('samplesPerPixel', :stored_searchable), [])
+
+  def samples_per_pixel
+    fetch(Solrizer.solr_name('samples_per_pixel', :stored_searchable), [])
   end
-  def xResolution
-    fetch(Solrizer.solr_name('xResolution', :stored_searchable), [])
+
+  def x_resolution
+    fetch(Solrizer.solr_name('x_resolution', :stored_searchable), [])
   end
-  def yResolution
-    fetch(Solrizer.solr_name('yResolution', :stored_searchable), [])
+
+  def y_resolution
+    fetch(Solrizer.solr_name('y_resolution', :stored_searchable), [])
   end
-  def resolutionUnit
-    fetch(Solrizer.solr_name('resolutionUnit', :stored_searchable), [])
+
+  def resolution_unit
+    fetch(Solrizer.solr_name('resolution_unit', :stored_searchable), [])
   end
-  def dateTime
-    fetch(Solrizer.solr_name('dateTime', :stored_searchable), [])
+
+  def date_time
+    fetch(Solrizer.solr_name('date_time', :stored_searchable), [])
   end
-  def bitsPerSample
-    fetch(Solrizer.solr_name('bitsPerSample', :stored_searchable), [])
+
+  def bits_per_sample
+    fetch(Solrizer.solr_name('bits_per_sample', :stored_searchable), [])
   end
+
   def make
     fetch(Solrizer.solr_name('make', :stored_searchable), [])
   end
+
   def model
     fetch(Solrizer.solr_name('model', :stored_searchable), [])
   end
-  def stripOffsets
-    fetch(Solrizer.solr_name('stripOffsets', :stored_searchable), [])
+
+  def strip_off_sets
+    fetch(Solrizer.solr_name('strip_off_sets', :stored_searchable), [])
   end
-  def rowsPerStrip
-    fetch(Solrizer.solr_name('rowsPerStrip', :stored_searchable), [])
+
+  def rows_per_strip
+    fetch(Solrizer.solr_name('rows_per_strip', :stored_searchable), [])
   end
-  def stripByteCounts
-    fetch(Solrizer.solr_name('stripByteCounts', :stored_searchable), [])
+
+  def strip_byte_counts
+    fetch(Solrizer.solr_name('strip_byte_counts', :stored_searchable), [])
   end
+
   def software
     fetch(Solrizer.solr_name('software', :stored_searchable), [])
   end
-  def extraSamples
-    fetch(Solrizer.solr_name('extraSamples', :stored_searchable), [])
->>>>>>> prep for demo
+
+  def extra_samples
+    fetch(Solrizer.solr_name('extra_samples', :stored_searchable), [])
   end
 end

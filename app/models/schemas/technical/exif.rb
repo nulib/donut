@@ -4,6 +4,7 @@ module Schemas
     module Exif
       extend ActiveSupport::Concern
 
+      # rubocop:disable Metrics/BlockLength
       included do
         property :image_width, predicate: ::RDF::Vocab::EBUCore.width, multiple: false do |index|
           index.as :stored_searchable
@@ -13,12 +14,12 @@ module Schemas
           index.as :stored_searchable
         end
 
-        #TODO: Make my predicate ns012:compressionScheme
+        # TODO: Make my predicate ns012:compressionScheme
         property :compression, predicate: ::RDF::Vocab::EXIF.compression, multiple: false do |index|
           index.as :stored_searchable
         end
 
-        #TODO: Make my predicate ns010:colorSpace
+        # TODO: Make my predicate ns010:colorSpace
         property :photometric_interpretation, predicate: ::RDF::Vocab::EXIF.photometricInterpretation, multiple: false do |index|
           index.as :stored_searchable
         end
@@ -81,14 +82,14 @@ module Schemas
         end
 
         property :exif_tool_version, predicate: ::Vocab::Donut.exif_tool_version, multiple: false do |index|
-            index.as :stored_searchable
+          index.as :stored_searchable
         end
-
 
         property :exif_all_data, predicate: ::Vocab::Donut.exif_all_data, multiple: false do |index|
-            index.as :stored_searchable
+          index.as :stored_searchable
         end
       end
+      # rubocop:enable Metrics/BlockLength
     end
   end
 end

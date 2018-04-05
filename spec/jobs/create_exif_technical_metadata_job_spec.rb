@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe CreateExifTechnicalMetadataJob do
-  subject(:job) { CreateExifTechnicalMetadataJob.new }
+  subject(:job) { described_class.new }
 
   describe 'getting exif data' do
-
     it 'can run exif-tool against the tiff' do
-      expect((job.send :get_exif_data, "#{Rails.root}/spec/fixtures/images/exif_fixture.tif").class).to be(Hash)
+      expect((job.send :get_exif_data, Rails.root.join('spec', 'fixtures', 'images', 'exif_fixture.tif')).class).to be(Hash)
     end
 
     describe 'retrieving required values' do
-      let(:hash) {job.send :get_exif_data, "#{Rails.root}/spec/fixtures/images/exif_fixture.tif"}
+      let(:hash) { job.send :get_exif_data, Rails.root.join('spec', 'fixtures', 'images', 'exif_fixture.tif') }
 
       it 'gets the ifd0 exif values needed by the required fields' do
         expect(hash).to have_key(:ifd0)

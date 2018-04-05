@@ -19,7 +19,6 @@ FactoryBot.define do
     exif_tool_version '10.1'
     extra_samples 'uh sample data'
     exif_all_data '{ cool: \'hash\' }'
-    file_set_id = 'asfsdf'
 
     transient do
       file_set { FactoryBot.create(:file_set) }

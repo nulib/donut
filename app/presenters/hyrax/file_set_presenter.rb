@@ -40,7 +40,6 @@ module Hyrax
              :rowsPerStrip, :stripByteCounts, :software, :extraSamples,
              to: :solr_document
 
-
     def single_use_links
       @single_use_links ||= SingleUseLink.where(itemId: id).map { |link| link_presenter_class.new(link) }
     end

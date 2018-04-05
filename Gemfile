@@ -38,10 +38,10 @@ gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
+gem 'exiftool_vendored'
 gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
-gem 'exiftool_vendored'
 
 gem 'rubyzip', require: 'zip'
 

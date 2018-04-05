@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/AbcSize
 class CharacterizeJob < Hyrax::ApplicationJob
   queue_as Hyrax.config.ingest_queue_name
 
@@ -18,3 +19,4 @@ class CharacterizeJob < Hyrax::ApplicationJob
     CreateDerivativesJob.perform_later(file_set, file_id, filepath)
   end
 end
+# rubocop:enable Metrics/AbcSize

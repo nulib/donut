@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe FileSet do
   subject(:file_set) { FactoryBot.build(:file_set) }
+
   it 'has tests' do
     skip 'Add your tests here'
   end
