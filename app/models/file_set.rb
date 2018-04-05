@@ -33,8 +33,6 @@ class FileSet < ActiveFedora::Base
     end
   end
 
-  private
-
   def technical_metadata
     # we have to do a .first on the set resulting from this query since
     # it returns a relation and not an instance of the TechMD class
