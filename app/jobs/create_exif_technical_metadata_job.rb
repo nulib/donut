@@ -1,13 +1,18 @@
 class CreateExifTechnicalMetadataJob < ApplicationJob
   def perform(file_set, file_path, strict: false)
-    exif_data = Exiftool.new(file_path, '-a -u -g1').to_hash
+    exif_data = get_exif_data(file_path)
     populate_fields(exif_data, file_set)
   end
 
   private
 
+    # Calls the Vendored Exif Tool with appriorate arguments and returns the hash
+    def get_exif_data(file_path)
+      return Exiftool.new(file_path, '-a -u -g1').to_hash
+    end
+
     def populate_fields(exif_data, fs)
-      t = TechnicalMetadata.where(file_set_id: fs.id).first || TechnicalMetadata.new
+      t= TechnicalMetadata.where(file_set_id: fs.id).first || TechnicalMetadata.new
       t.image_width                 = exif_data.dig(:ifd0, 'ImageWidth').to_s
       t.image_height                = exif_data.dig(:ifd0, 'ImageHeight').to_s
       t.compression                 = exif_data.dig(:ifd0, 'Compression').to_s
