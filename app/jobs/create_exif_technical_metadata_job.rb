@@ -1,7 +1,7 @@
 class CreateExifTechnicalMetadataJob < ApplicationJob
   def perform(file_set, file_path, strict: false)
     exif_data = get_exif_data(file_path)
-    populate_fields(exif_data, file_set)
+    populate_techMD(exif_data, file_set)
   end
 
   private
@@ -11,8 +11,19 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
       return Exiftool.new(file_path, '-a -u -g1').to_hash
     end
 
-    def populate_fields(exif_data, fs)
-      t= TechnicalMetadata.where(file_set_id: fs.id).first || TechnicalMetadata.new
+    def populate_techMD(exif_data, fs)
+      made_new_techMD = false
+      t= fs.technical_metadata
+      if t.nil?
+        t = TechnicalMetadata.new
+        made_new_techMD= true
+      end
+      t = populate_fields(t, exif_data)
+      fs.members                    << t if made_new_techMD #if we made a new techMD add it as a member
+      fs.update_index
+    end
+
+    def populate_fields(t, exif_data)
       t.image_width                 = exif_data.dig(:ifd0, 'ImageWidth').to_s
       t.image_height                = exif_data.dig(:ifd0, 'ImageHeight').to_s
       t.compression                 = exif_data.dig(:ifd0, 'Compression').to_s
@@ -35,7 +46,6 @@ class CreateExifTechnicalMetadataJob < ApplicationJob
       t.exif_all_data               = exif_data.to_json
       t.file_set_id                 = fs.id
       t.save
-      fs.members                    << t
-      fs.update_index
+      t
     end
 end
