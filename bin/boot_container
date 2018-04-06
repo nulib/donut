@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [[ $WORKER == 'true' ]]; then
-  CMD="bundle exec shoryuken -R -C config/shoryuken.yml -q ${SETTINGS__AWS__QUEUES__INGEST:-donut}"
-else
-  CMD="bundle exec puma -C config/puma.rb"
-fi
-exec ${CMD}

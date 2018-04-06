@@ -1,24 +1,17 @@
 ---
 version: '3.4'
 volumes:
-  fedora:
-  db:
-  solr:
-  localstack:
+  fedora: 
+  db: 
+  solr: 
+  localstack: 
 services:
   fedora:
     image: nulib/fcrepo4
-    depends_on:
-    - db
     volumes:
     - fedora:/data
     ports:
     - 8984:8080
-    environment:
-      JAVA_OPTIONS: |
-        -Dfcrepo.postgresql.host=db -Dfcrepo.postgresql.port=5432 -Dfcrepo.postgresql.username=docker
-        -Dfcrepo.postgresql.password=d0ck3r
-      MODESHAPE_CONFIG: classpath:/config/jdbc-postgresql/repository.json
   db:
     image: healthcheck/postgres:alpine
     volumes:
@@ -27,7 +20,6 @@ services:
     - PGDATA=/data
     - POSTGRES_USER=docker
     - POSTGRES_PASSWORD=d0ck3r
-    - POSTGRES_DB=fcrepo
     ports:
     - 5433:5432
   solr:
@@ -71,11 +63,10 @@ services:
     image: localstack/localstack
     ports:
     - 4772:4572
-    - 4776:4576
     volumes:
     - localstack:/data
     environment:
-      SERVICES: s3,sqs
+      SERVICES: s3
       DATA_DIR: "/data"
     healthcheck:
       test:
@@ -98,3 +89,14 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+  sqsd:
+    image: nulib/sqsd
+    depends_on:
+    - localstack
+    environment:
+      SQSD_WORKER_HTTP_URL: http://docker.for.mac.host.internal:3000
+      SQSD_QUEUE_URL: http://localstack:4576/queue/donut
+      SQSD_SSL_ENABLED: 'false'
+      SQSD_RUN_DAEMONIZED: 'true'
+      AWS_ACCESS_KEY_ID: localstack-dev-key
+      AWS_SECRET_ACCESS_KEY: localstack-dev-secret
