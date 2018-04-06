@@ -8,10 +8,17 @@ volumes:
 services:
   fedora:
     image: nulib/fcrepo4
+    depends_on:
+    - db
     volumes:
     - fedora:/data
     ports:
     - 8984:8080
+    environment:
+      JAVA_OPTIONS: |
+        -Dfcrepo.postgresql.host=db -Dfcrepo.postgresql.port=5432 -Dfcrepo.postgresql.username=docker
+        -Dfcrepo.postgresql.password=d0ck3r
+      MODESHAPE_CONFIG: classpath:/config/jdbc-postgresql/repository.json
   db:
     image: healthcheck/postgres:alpine
     volumes:
@@ -20,6 +27,7 @@ services:
     - PGDATA=/data
     - POSTGRES_USER=docker
     - POSTGRES_PASSWORD=d0ck3r
+    - POSTGRES_DB=fcrepo
     ports:
     - 5433:5432
   solr:
