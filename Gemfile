@@ -88,7 +88,7 @@ gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
 
 group :aws, :test do
-  gem 'active_elastic_job', github: 'nulib/active-elastic-job', branch: 'latest-aws-sdk'
+  gem 'shoryuken'
 end
 
 group :aws do

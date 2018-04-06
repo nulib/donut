@@ -7,17 +7,29 @@ default: &default
   password: d0ck3r
 
 development:
+<% if ENV['DATABASE_URL'].present? %>
+  url: <%= ENV['DATABASE_URL'] %>
+<% else %>
   <<: *default
   port: 5433
   database: docker_dev
+<% end %>
 
 test:
+<% if ENV['DATABASE_URL'].present? %>
+  url: <%= ENV['DATABASE_URL'] %>
+<% else %>
   <<: *default
   port: <%= Rails.env.development? ? 5433 : 5434 %>
   database: docker_test
+<% end %>
 
 production:
+<% if ENV['DATABASE_URL'].present? %>
+  url: <%= ENV['DATABASE_URL'] %>
+<% else %>
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   database: db/production.sqlite3
+<% end %>
