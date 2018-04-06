@@ -1,6 +1,4 @@
-localstack:
-  sqs: false
-  port_offset: 200
+localstack: true
 aws:
   buckets:
     batch:   test-batch

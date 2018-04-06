@@ -30,6 +30,11 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
     * `ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add an admin user
     * `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets. There is a sample seed file in `spec/fixtures/files/test_seed.yml`
 
+## ActiveJob Workers
+
+* To run jobs inline, set `active_job.queue_adapter` to `inline` in `config/settings/development.local.yml`
+* To run jobs asynchronously, start a [shoryuken](https://github.com/phstc/shoryuken) worker in a separate tab with `bundle exec shoryuken -R -C config/shoryuken.yml -q donut`
+
 ## Running the Tests
 
 Run the test suite:

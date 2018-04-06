@@ -30,13 +30,5 @@ module Nextgen
         namespace: 'donut-cache'
       }
     end
-
-    config.before_initialize do
-      if defined? ActiveElasticJob
-        Rails.application.configure do
-          config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
-        end
-      end
-    end
   end
 end
