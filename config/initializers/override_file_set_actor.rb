@@ -7,6 +7,7 @@ Hyrax::Actors::FileSetActor.class_eval do
   # Locks to ensure that only one process is operating on the list at a time.
   def attach_to_work(work, file_set_params = {})
     acquire_lock_for(work.id) do
+      file_set.save unless file_set.persisted?
       file_set.reload
       # Ensure we have an up-to-date copy of the members association, so that we append to the end of the list.
       work.reload unless work.new_record?
