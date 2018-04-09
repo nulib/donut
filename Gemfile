@@ -38,6 +38,7 @@ gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
+gem 'exiftool_vendored'
 gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
@@ -61,6 +62,7 @@ group :development, :test do
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
+  gem 'sidekiq'
 end
 
 group :development, :aws do
