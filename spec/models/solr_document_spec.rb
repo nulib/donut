@@ -42,7 +42,20 @@ RSpec.describe SolrDocument do
       status_tesim: ['Reviewed'],
       nul_creator_tesim: ['Willie Wildcat'],
       subject_tesim: ['Just Northwestern Things'],
-      nul_contributor_tesim: ['ContribCat']
+      nul_contributor_tesim: ['ContribCat'],
+      photometric_interpretation_tesim: ['sample interpretation'],
+      samples_per_pixel_tesim: ['1'],
+      x_resolution_tesim: ['72'],
+      y_resolution_tesim: ['73'],
+      resolution_unit_tesim: ['inches'],
+      date_time_tesim: ['2018-01-01'],
+      bits_per_sample_tesim: ['1'],
+      make_tesim: ['nec scanner'],
+      strip_offsets_tesim: ['1'],
+      rows_per_strip_tesim: ['1'],
+      strip_byte_counts_tesim: ['1'],
+      donut_exif_version_tesim: ['10.00'],
+      exif_all_data_tesim: ['all the data']
     }
   end
 
@@ -67,6 +80,84 @@ RSpec.describe SolrDocument do
   describe '#date_created' do
     it 'returns date_created_tesim' do
       expect(solr_doc.date_created).to eq ['2017-06-23']
+    end
+  end
+
+  describe '#photometric_interpretation' do
+    it 'returns photometric_interpretation' do
+      expect(solr_doc.photometric_interpretation).to eq ['sample interpretation']
+    end
+  end
+
+  describe '#samples_per_pixel' do
+    it 'returns samples_per_pixel' do
+      expect(solr_doc.samples_per_pixel).to eq ['1']
+    end
+  end
+
+  describe '#x_resolution' do
+    it 'returns x_resolution' do
+      expect(solr_doc.x_resolution).to eq ['72']
+    end
+  end
+
+  describe '#y_resolution' do
+    it 'returns y_resolution' do
+      expect(solr_doc.y_resolution).to eq ['73']
+    end
+  end
+
+  describe '#resolution_unit' do
+    it 'returns resolution_unit' do
+      expect(solr_doc.resolution_unit).to eq ['inches']
+    end
+  end
+
+  describe '#date_time' do
+    it 'returns date_time' do
+      expect(solr_doc.date_time).to eq ['2018-01-01']
+    end
+  end
+
+  describe '#bits_per_sample' do
+    it 'returns bits_per_sample' do
+      expect(solr_doc.bits_per_sample).to eq ['1']
+    end
+  end
+
+  describe '#make' do
+    it 'returns make' do
+      expect(solr_doc.make).to eq ['nec scanner']
+    end
+  end
+
+  describe '#strip_offsets' do
+    it 'returns strip_offsets' do
+      expect(solr_doc.strip_offsets).to eq ['1']
+    end
+  end
+
+  describe '#rows_per_strip' do
+    it 'returns rows_per_strip' do
+      expect(solr_doc.rows_per_strip).to eq ['1']
+    end
+  end
+
+  describe '#strip_byte_counts' do
+    it 'returns strip_byte_counts' do
+      expect(solr_doc.strip_byte_counts).to eq ['1']
+    end
+  end
+
+  describe '#donut_exif_version' do
+    it 'returns donut_exif_version' do
+      expect(solr_doc.donut_exif_version).to eq ['10.00']
+    end
+  end
+
+  describe '#exif_all_data' do
+    it 'returns exif_all_data' do
+      expect(solr_doc.exif_all_data).to eq ['all the data']
     end
   end
 end

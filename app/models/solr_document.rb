@@ -292,4 +292,56 @@ class SolrDocument
   def sponsor_label
     fetch(Solrizer.solr_name('sponsor_label', :stored_searchable), [])
   end
+
+  def photometric_interpretation
+    fetch(Solrizer.solr_name('photometric_interpretation', :stored_searchable), [])
+  end
+
+  def samples_per_pixel
+    fetch(Solrizer.solr_name('samples_per_pixel', :stored_searchable), [])
+  end
+
+  def x_resolution
+    fetch(Solrizer.solr_name('x_resolution', :stored_searchable), [])
+  end
+
+  def y_resolution
+    fetch(Solrizer.solr_name('y_resolution', :stored_searchable), [])
+  end
+
+  def resolution_unit
+    fetch(Solrizer.solr_name('resolution_unit', :stored_searchable), [])
+  end
+
+  def date_time
+    fetch(Solrizer.solr_name('date_time', :stored_searchable), [])
+  end
+
+  def bits_per_sample
+    fetch(Solrizer.solr_name('bits_per_sample', :stored_searchable), [])
+  end
+
+  def make
+    fetch(Solrizer.solr_name('make', :stored_searchable), [])
+  end
+
+  def strip_offsets
+    fetch(Solrizer.solr_name('strip_offsets', :stored_searchable), [])
+  end
+
+  def rows_per_strip
+    fetch(Solrizer.solr_name('rows_per_strip', :stored_searchable), [])
+  end
+
+  def strip_byte_counts
+    fetch(Solrizer.solr_name('strip_byte_counts', :stored_searchable), [])
+  end
+
+  def donut_exif_version
+    fetch(Solrizer.solr_name('donut_exif_version', :stored_searchable), [])
+  end
+
+  def exif_all_data
+    fetch(Solrizer.solr_name('exif_all_data', :stored_searchable), [])
+  end
 end
