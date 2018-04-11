@@ -50,10 +50,17 @@ class BatchItem < ApplicationRecord
     end
 
     def unique?
-      dupes = BatchItem.find_by('accession_number = ? AND status IN (?) AND ID != ?', accession_number, DUPLICATE_STATUSES, id)
-      return true if dupes.nil?
+      return true unless dupes_in_batch? || dupes_in_solr?
       status!('skipped', accession_number: "An object with accession number '#{accession_number}' has already been imported.")
       false
+    end
+
+    def dupes_in_batch?
+      BatchItem.find_by('accession_number = ? AND status IN (?) AND ID != ?', accession_number, DUPLICATE_STATUSES, id).present?
+    end
+
+    def dupes_in_solr?
+      ActiveFedora::SolrService.query("has_model_ssim:\"Image\" AND accession_number_tesim:\"#{accession_number}*\"").any?
     end
 
     # Build a factory to create the objects in fedora.
