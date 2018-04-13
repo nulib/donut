@@ -38,6 +38,7 @@ Metrics/LineLength:
   Exclude:
     - 'spec/forms/hyrax/image_form_spec.rb'
     - 'spec/factories/images.rb'
+    - 'spec/support/stub_exif.rb'
 
 Metrics/MethodLength:
   Max: 14 # default is 10

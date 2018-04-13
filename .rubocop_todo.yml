@@ -11,3 +11,6 @@ Metrics/AbcSize:
   Exclude:
     - 'app/jobs/import_url_job.rb'
   Max: 20
+RSpec/MessageSpies:
+  Exclude:
+    - 'spec/jobs/characterize_job_spec.rb'

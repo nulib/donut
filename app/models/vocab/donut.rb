@@ -14,5 +14,7 @@ module Vocab
     term :status
     term :creator
     term :contributor
+    term :donut_exif_version
+    term :exif_all_data
   end
 end
