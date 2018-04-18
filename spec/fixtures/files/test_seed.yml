@@ -1,0 +1,482 @@
+---
+:users:
+- email: registered@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: registered
+  groups:
+  - registered
+- email: admin@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: admin
+  groups:
+  - admin
+  - registered
+- email: rdc_viewer@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: rdc_viewer
+  groups:
+  - rdc_viewers
+  - registered
+- email: rdc_depositor@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: rdc_depositor
+  groups:
+  - rdc_depositors
+  - registered
+- email: unit_viewer@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: unit_viewer
+  groups:
+  - unit_viewers
+  - registered
+- email: university_archives_restricted_viewer@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: university_archives_restricted_viewer
+  groups:
+  - university_archives_restricted_viewers
+  - registered
+- email: university_archives_restricted_managers@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: university_archives_restricted_managers
+  groups:
+  - university_archives_restricted_managers
+  - registered
+- email: admin_test_role@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: admin_test_role
+  groups:
+  - admin
+  - test-role
+  - registered
+- email: admin_manager_depositor@example.com
+  encrypted_password: ''
+  sign_in_count: 0
+  guest: false
+  username: admin_manager_depositor
+  groups:
+  - admin
+  - rdc_managers
+  - rdc_depositors
+  - registered
+:admin_sets:
+- title:
+  - Default Admin Set
+  description: []
+  creator: []
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: registered
+      access: deposit
+- title:
+  - Art Library
+  description:
+  - "Northwestern University’s Art Library holds over \uFEFF160,000 books and journals
+    about art, architecture, and design, with particular strength in 19th century
+    art and architecture. Other highlights include photography, early modern art,
+    fashion and a growing Asian collection. The Library serves the Northwestern community,
+    including departments of Art History, Art Theory and Practice, both staff and
+    patrons of the Mary & Leigh Block Museum of Art, as well as visiting scholars,
+    artists and researchers from around the world."
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - Charles Deering McCormick Library of Special Collections
+  description:
+  - The Charles Deering McCormick Library of Special Collections is home to many of
+    the Libraries’ rarest materials from incunabula to works of the present day. The
+    holdings include manuscripts, archives, broadsides, prints, photographs, artifacts,
+    ephemera and more.
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - Faculty Collections
+  description:
+  - 'Works managed by Faculty directly. '
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: user
+      agent_id: admin@example.com
+      access: manage
+    - agent_type: group
+      agent_id: test-role
+      access: manage
+    - agent_type: group
+      agent_id: something
+      access: manage
+    - agent_type: group
+      agent_id: something-else
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - Government & Geographic Information Collection  Edit
+  description:
+  - The Government and Geographic Information Collection contains materials produced
+    by the U.S. Federal government, the State of Illinois, the City of Chicago and
+    several international governmental organizations, including the United Nations.
+    Our extensive map collection is complemented by geospatial services supporting
+    the use of GIS software for data analysis and visualization.
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - Herskovits Library of African Studies
+  description:
+  - Established in 1954, the Melville J. Herskovits Library of African Studies at
+    Northwestern University is the largest separate Africana collection in existence.
+    Its scope is as wide as the continent of Africa itself; its subject matter ranges
+    from art, history, literature, music, science, technology and religion to communications,
+    engineering, management and cooking. The Africana collection is a resource for
+    the entire university, and most of Northwestern's disciplinary programs are reflected
+    in the collection. In addition to serving the NU community, the Herskovits Library
+    also serves regional, national and international scholars.
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - Music Library
+  description:
+  - "Among the largest music collections in the U.S., the Northwestern University
+    Music Library has an unmatched strength in 20th century and contemporary classical
+    music, and holds at least one copy of nearly every new score published since 1945.
+    Its more than 300,000 volumes of books, scores, sound recordings, and journals
+    also include collections of original manuscripts and correspondence, notably,
+    the John Cage collection, which documents the life and work of the 20th century’s
+    most revolutionary composer.\r\n"
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - Transportation Library
+  description:
+  - 'The Transportation Library was founded in 1958 to support the curricula and research
+    programs of the Transportation Center and the Center for Public Safety. Containing
+    more than 500,000 items, the Transportation Library of Northwestern University
+    is one of the largest transportation information centers in the world, encompassing
+    information on all transportation modalities, including: air, rail, highway, pipeline,
+    water, urban transport and logistics. It includes significant collections on law
+    enforcement, police management and traffic enforcement. Its collection of environmental
+    impact statements is one of the most complete in the world.'
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: user
+      agent_id: admin@example.com
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - University (MAIN) Library
+  description:
+  - University Library contains the bulk of the Library’s holdings and houses several
+    notable departments and collections.
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - University Archives
+  description:
+  - The Northwestern University Archives, established in 1935, houses records, publications,
+    photographs, and other materials pertaining to every aspect of Northwestern’s
+    history, including the papers of faculty, biographic information on Northwestern
+    alumni, a complete run of Daily Northwestern issues, a complete set of catalogs
+    and bulletins from each of the schools and 250,000 photographs. The Archives'
+    holdings are non-circulating and are open to the public for research and reference.
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility:
+    release_date:
+    release_period:
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: rdc_managers
+      access: manage
+    - agent_type: group
+      agent_id: rdc_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: rdc_viewers
+      access: view
+    - agent_type: group
+      agent_id: unit_managers
+      access: manage
+    - agent_type: group
+      agent_id: unit_depositors
+      access: deposit
+    - agent_type: group
+      agent_id: unit_viewers
+      access: view
+    - agent_type: group
+      agent_id: temp_access_viewers
+      access: view
+- title:
+  - University Archives -- Restricted
+  description:
+  - 'These are materials that are under HARD restriction and should always remain
+    dark. '
+  creator:
+  - admin@example.com
+  permission_template:
+    visibility: restricted
+    release_date:
+    release_period: now
+    grants:
+    - agent_type: group
+      agent_id: admin
+      access: manage
+    - agent_type: group
+      agent_id: university_archives_restricted_managers
+      access: manage
+    - agent_type: group
+      agent_id: university_archives_restricted_viewers
+      access: view
