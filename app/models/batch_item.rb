@@ -60,7 +60,7 @@ class BatchItem < ApplicationRecord
     end
 
     def dupes_in_solr?
-      ActiveFedora::SolrService.query("has_model_ssim:\"Image\" AND accession_number_tesim:\"#{accession_number}*\"").any?
+      Donut::DuplicateAccessionVerificationService.duplicate?(accession_number)
     end
 
     # Build a factory to create the objects in fedora.

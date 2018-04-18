@@ -10,7 +10,7 @@ class Image < ActiveFedora::Base
   self.indexer = ImageIndexer
 
   validates :title, presence: { message: 'Your work must have a title.' }
-  validates :accession_number, presence: { message: 'Your work must have an accession number.' }
+  validates :accession_number, presence: { message: 'Accession number is required.' }, accession_number: true, on: :create
 
   after_save do
     ArkMintingService.mint_identifier_for(self) if ark.nil?
