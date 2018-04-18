@@ -11,6 +11,7 @@ class Image < ActiveFedora::Base
 
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :accession_number, presence: { message: 'Accession number is required.' }, accession_number: true, on: :create
+  validates :resource_type, resource_type: true
 
   after_save do
     ArkMintingService.mint_identifier_for(self) if ark.nil?
