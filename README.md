@@ -25,7 +25,10 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Setup the database: `rake db:migrate`
 * Generate roles: `rake generate_roles`
 * Run `rake docker:dev:up` in a separate tab to start solr, fedora, cantaloupe, and localstack
-* Run `rake donut:seed ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to initialize the stack
+* Run `rake donut:seed` to initialize the stack.
+  * Optional arguments to `donut:seed` (may be used in combination):
+    * `ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add an admin user
+    * `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets.
 
 ## Running the Tests
 
@@ -70,7 +73,7 @@ $ export PROCESS_ACTIVE_ELASTIC_JOBS=true
 
 ## Adding an Admin user and assigning workflow roles
 
-1. Run the development servers with `rake docker:dev:up` (or `daemon`) and `rails s`
-1. Go to http://devbox.library.northwestern.edu/ and login with OpenAM
-1. To make the last user who logged in (you) and admin, run `rake add_admin_role`
-1. Go to http://devbox.library.northwestern.edu/admin/workflow_roles and grant workflow roles if needed
+1.  Run the development servers with `rake docker:dev:up` (or `daemon`) and `rails s`
+1.  Go to http://devbox.library.northwestern.edu/ and login with OpenAM
+1.  To make the last user who logged in (you) and admin, run `rake add_admin_role`
+1.  Go to http://devbox.library.northwestern.edu/admin/workflow_roles and grant workflow roles if needed
