@@ -7,7 +7,7 @@ module Importer
     attr_reader :email
 
     def initialize(content)
-      @content = content.sub(/^\W+/, '')
+      @content = content.sub(/\A\W+/, '')
       # Read email from first row
       read_email
     end
