@@ -28,7 +28,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Run `rake donut:seed` to initialize the stack.
   * Optional arguments to `donut:seed` (may be used in combination):
     * `ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add an admin user
-    * `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets.
+    * `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets. There is a sample seed file in `spec/fixtures/files/test_seed.yml`
 
 ## Running the Tests
 
