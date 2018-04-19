@@ -51,6 +51,12 @@ You may also want to run the Fedora and Solr servers in one window with:
 $ rake docker:test:up
 ```
 
+You'll need to run the SEED task for the test environment as well:
+
+```sh
+$ rake donut:seed RAILS_ENV=test
+```
+
 And run the test suite in another window:
 
 ```sh
