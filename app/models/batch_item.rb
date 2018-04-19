@@ -38,7 +38,7 @@ class BatchItem < ApplicationRecord
   private
 
     def runnable_item?
-      unique? && attributes_valid?
+      unique? && attributes_valid? && controlled_properties_valid?
     end
 
     def attributes_valid?
@@ -55,12 +55,34 @@ class BatchItem < ApplicationRecord
       false
     end
 
+    def controlled_properties_valid?
+      controlled_attributes = attribute_hash.select do |k, _v|
+        Image.controlled_properties.include?(k)
+      end
+
+      all_errors = uri_errors(controlled_attributes)
+      return true if all_errors.blank?
+      error!(all_errors)
+      false
+    end
+
     def dupes_in_batch?
       BatchItem.find_by('accession_number = ? AND status IN (?) AND ID != ?', accession_number, DUPLICATE_STATUSES, id).present?
     end
 
     def dupes_in_solr?
       ActiveFedora::SolrService.query("has_model_ssim:\"Image\" AND accession_number_tesim:\"#{accession_number}*\"").any?
+    end
+
+    def uri_errors(controlled_attributes)
+      controlled_attributes.each_with_object({}) do |(k, v), all_errors|
+        v.each do |uri|
+          next if uri.to_s.strip.empty?
+          unless uri.is_a? RDF::URI
+            all_errors.merge!(k => "Invalid format (URI expected): #{uri}. ") { |_k, o, n| o + n }
+          end
+        end
+      end
     end
 
     # Build a factory to create the objects in fedora.
