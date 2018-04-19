@@ -12,7 +12,7 @@ class BatchesController < Hyrax::MyController
   end
 
   def detail
-    @batch_items = BatchItem.where(accession_number: params[:accession_number]).order(:updated_at)
+    @batch_items = BatchItem.where(accession_number: params[:accession_number]).order(:row_number)
     add_breadcrumbs(label: t(:'hyrax.admin.sidebar.batch_item'), location: batch_item_path(accession_number: params[:accession_number]))
   end
 
