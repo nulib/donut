@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @batch.batch_items.each.with_index do |item, index| %>
+      <% @batch.batch_items.order(:row_number).each.with_index do |item, index| %>
         <tr class="<%= status_context(item.status) %>">
           <td><span data-toggle="collapse" data-target="#error_<%= index %>" class="clickable <%= status_context(item.status) %>" style="cursor: pointer;"><%= status_label item.status %></span></td>
           <td><%= item.row_number %></td>

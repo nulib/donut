@@ -3,7 +3,7 @@ class BatchesController < Hyrax::MyController
 
   def index
     add_breadcrumbs
-    @batches = Batch.all
+    @batches = Batch.all.order(updated_at: :desc)
   end
 
   def show
