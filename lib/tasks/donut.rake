@@ -8,11 +8,17 @@ unless Rails.env.production?
       t.rspec_opts = ['--color', '--backtrace']
     end
 
-    desc 'Add admin role to last user'
+    desc 'Add admin role to the ENV[\'ADMIN_USER\']'
     task add_admin_role: :environment do
-      u = User.last
-      puts "Adding admin role to user #{u}"
-      u.roles << Role.first_or_create(name: 'admin') unless u.admin?
+      if ENV['ADMIN_USER']
+        u = User.find_by(username: ENV['ADMIN_USER'])
+        if u.admin?
+          puts "#{u} already an admin"
+        else
+          puts "Adding admin role to user #{u}"
+          u.roles << Role.first_or_create(name: 'admin')
+        end
+      end
     end
 
     desc 'Seed the development environment'
