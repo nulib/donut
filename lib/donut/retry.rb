@@ -77,9 +77,12 @@ module Donut
       end
 
       def self.included(mod)
-        mod.alias_method :_execute, :execute
-        mod.define_method :execute do |*args|
-          Donut::Retry.with_retries(:solr) { _execute(*args) }
+        mod.module_eval do
+          alias_method :_execute, :execute
+
+          define_method :execute do |*args|
+            Donut::Retry.with_retries(:solr) { _execute(*args) }
+          end
         end
       end
     end
