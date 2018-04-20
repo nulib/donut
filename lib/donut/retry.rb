@@ -14,7 +14,7 @@ module Donut
         ->(n) { (n * 0.5) + (n * rand) }
       end
 
-      def retry(context)
+      def with_retries(context)
         Retryable.with_context(context) do |retries, last_exception|
           Retry.log_retries(context.to_s.upcase, retries, last_exception)
           yield
@@ -26,6 +26,7 @@ module Donut
           config.contexts[mod.name.split(/::/).last.underscore.to_sym] = {
             tries: 10,
             on: mod.errors,
+            not: mod.not_errors,
             sleep: backoff_handler
           }
         end
@@ -37,28 +38,32 @@ module Donut
         [::Ldp::Error, ::Ldp::HttpError]
       end
 
+      def self.not_errors
+        [::Ldp::NotFound, ::Ldp::Gone]
+      end
+
       def head(*args)
-        Donut::Retry.retry(:ldp)  { super(*args) }
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
       end
 
       def get(*args)
-        Donut::Retry.retry(:ldp)  { super(*args) }
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
       end
 
       def delete(*args)
-        Donut::Retry.retry(:ldp)  { super(*args) }
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
       end
 
       def post(*args)
-        Donut::Retry.retry(:ldp)  { super(*args) }
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
       end
 
       def put(*args)
-        Donut::Retry.retry(:ldp)  { super(*args) }
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
       end
 
       def patch(*args)
-        Donut::Retry.retry(:ldp)  { super(*args) }
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
       end
     end
 
@@ -67,8 +72,15 @@ module Donut
         [RSolr::Error::Http]
       end
 
-      def execute(*args)
-        Donut::Retry.retry(:solr) { super(*args) }
+      def self.not_errors
+        []
+      end
+
+      def self.included(mod)
+        mod.alias_method :_execute, :execute
+        mod.define_method :execute do |*args|
+          Donut::Retry.with_retries(:solr) { _execute(*args) }
+        end
       end
     end
   end
