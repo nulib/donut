@@ -43,6 +43,8 @@ gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 
+gem 'retryable'
+
 gem 'rubyzip', require: 'zip'
 
 group :test do
