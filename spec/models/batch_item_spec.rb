@@ -10,12 +10,15 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
   let(:batch_location) { "s3://test-bucket/#{original_filename}" }
   let(:batch) { Batch.create(submitter: submitter, job_id: job_id, original_filename: original_filename) }
   let(:accession_number) { SecureRandom.uuid }
+  let(:contributor) { [RDF::URI('http://id.worldcat.org/fast/1213442')] }
+  let(:creator) { [RDF::URI('http://id.worldcat.org/fast/1213442')] }
   let(:common_attributes) do
     {
       accession_number: accession_number,
       type: 'Image',
       title: ['Title'],
-      contributor: ['http://id.worldcat.org/fast/1213442'],
+      contributor: contributor,
+      creator: creator,
       date_created: ['2018'],
       collection: { id: 'test-collection-id', title: ['Test Collection'] },
       admin_set_id: ['admin_set/default'],
@@ -92,6 +95,52 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
     it 'is skipped' do
       prior_item.complete!
       expect { batch_item.run }.to change { batch_item.status }.from('initialized').to('skipped')
+    end
+  end
+
+  context 'controlled property with invalid value' do
+    let(:contributor) { ['Text M. Stringer'] }
+    let(:attributes)  { common_attributes }
+
+    it 'errors on the controlled property' do
+      batch_item.run
+      expect(batch_item.status).to eq('error')
+      expect(batch_item.error.keys).to eq([:contributor])
+      expect(batch_item.batch.status).to eq('error')
+    end
+  end
+
+  context 'controlled property with blank value' do
+    let(:contributor) { [''] }
+    let(:attributes)  { common_attributes }
+
+    it 'does not error on the controlled property' do
+      batch_item.run
+      expect(batch_item.status).to eq('complete')
+    end
+  end
+
+  context 'controlled property with multiple invalid values' do
+    let(:contributor) { ['Text M. Stringer', 'Ima Also Text'] }
+    let(:attributes)  { common_attributes }
+
+    it 'errors on the property and reports both failures in error' do
+      batch_item.run
+      expect(batch_item.status).to eq('error')
+      expect(batch_item.error.keys).to eq([:contributor])
+      expect(batch_item.error).to include(contributor: 'Invalid format (URI expected): Text M. Stringer. Invalid format (URI expected): Ima Also Text. ')
+    end
+  end
+
+  context 'two controlled properties with invalid values' do
+    let(:contributor) { ['Text M. Stringer'] }
+    let(:creator) { ['Not A. Uri'] }
+    let(:attributes) { common_attributes }
+
+    it 'errors on both properties' do
+      batch_item.run
+      expect(batch_item.status).to eq('error')
+      expect(batch_item.error.keys).to eq([:contributor, :creator])
     end
   end
 end
