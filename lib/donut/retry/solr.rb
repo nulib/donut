@@ -1,3 +1,5 @@
+require 'rsolr'
+
 module Donut
   module Retry
     module Solr

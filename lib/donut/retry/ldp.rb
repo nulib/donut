@@ -1,3 +1,5 @@
+require 'ldp'
+
 module Donut
   module Retry
     module Ldp

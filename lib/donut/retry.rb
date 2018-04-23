@@ -1,3 +1,6 @@
+require 'active_support/core_ext/string/inflections'
+require 'retryable'
+
 module Donut
   module Retry
     class << self
@@ -15,14 +18,14 @@ module Donut
       end
 
       def with_retries(context)
-        Retryable.with_context(context) do |retries, last_exception|
+        ::Retryable.with_context(context) do |retries, last_exception|
           Retry.log_retries(context.to_s.upcase, retries, last_exception)
           yield
         end
       end
 
       def configure(mod)
-        Retryable.configure do |config|
+        ::Retryable.configure do |config|
           config.contexts[mod.name.split(/::/).last.underscore.to_sym] = {
             tries: 10,
             on: mod.errors,
