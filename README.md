@@ -32,8 +32,9 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 ## ActiveJob Workers
 
+* Run the seed task first (see above)
 * To run jobs inline, set `active_job.queue_adapter` to `inline` in `config/settings/development.local.yml`
-* To run jobs asynchronously, start a [shoryuken](https://github.com/phstc/shoryuken) worker in a separate tab with `bundle exec shoryuken -R -C config/shoryuken.yml -q donut`
+* To run jobs asynchronously, start a [shoryuken](https://github.com/phstc/shoryuken) worker in a separate tab with `bundle exec shoryuken -R -C config/shoryuken.yml -q donut.fifo`
 
 ## Running the Tests
 

@@ -10,7 +10,7 @@ module Donut
       end
 
       def self.included(mod)
-        return mod.respond_to?(:_execute)
+        return if mod.respond_to?(:_execute)
 
         mod.module_eval do
           alias_method :_execute, :execute
