@@ -1,3 +1,5 @@
+require 'donut/retry'
+
 # Load the Rails application.
 require_relative 'application'
 
