@@ -1,0 +1,7 @@
+terms:
+  - id: 'Not started'
+    term: 'Not started'
+  - id: 'In progress'
+    term: 'In progress'
+  - id: 'Done'
+    term: 'Done'

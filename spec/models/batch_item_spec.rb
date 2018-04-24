@@ -24,7 +24,7 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
       admin_set_id: ['admin_set/default'],
       batch_location: batch_location,
       preservation_level: '2',
-      status: ['reviewed'],
+      status: Image::DEFAULT_STATUS,
       rights_statement: ['http://rights_statement']
     }
   end

@@ -8,10 +8,13 @@ class Image < ActiveFedora::Base
   include MicroserviceMinter
 
   self.indexer = ImageIndexer
+  DEFAULT_STATUS = 'Not started'.freeze
 
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :accession_number, presence: { message: 'Accession number is required.' }, accession_number: true, on: :create
   validates :resource_type, resource_type: true
+
+  after_initialize :default_values
 
   after_save do
     ArkMintingService.mint_identifier_for(self) if ark.nil?
@@ -95,6 +98,10 @@ class Image < ActiveFedora::Base
 
   self.controlled_properties.without(:based_near).each do |property|
     accepts_nested_attributes_for property, reject_if: id_blank, allow_destroy: true
+  end
+
+  def default_values
+    self.status ||= DEFAULT_STATUS
   end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
