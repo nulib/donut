@@ -1,21 +1,3 @@
-require 'aws-sdk-sqs'
-require 'aws-sdk-s3'
-
-def queue_exists?(queue_name)
-  Shoryuken.sqs_client.get_queue_url(queue_name: queue_name)
-  true
-rescue Aws::SQS::Errors::NonExistentQueue
-  false
-end
-
-namespace :sqs do
-  desc 'Create SQS queues'
-  task setup: :environment do
-    Settings.aws.queues.to_h.values.each do |queue_name|
-      Shoryuken.sqs_client.create_queue queue_name: queue_name unless queue_exists?(queue_name)
-    end
-  end
-end
 
 namespace :s3 do
   desc 'Create all configured S3 buckets'

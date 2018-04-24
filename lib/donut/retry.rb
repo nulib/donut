@@ -1,6 +1,3 @@
-require 'active_support/core_ext/string/inflections'
-require 'retryable'
-
 module Donut
   module Retry
     class << self
@@ -18,14 +15,14 @@ module Donut
       end
 
       def with_retries(context)
-        ::Retryable.with_context(context) do |retries, last_exception|
+        Retryable.with_context(context) do |retries, last_exception|
           Retry.log_retries(context.to_s.upcase, retries, last_exception)
           yield
         end
       end
 
       def configure(mod)
-        ::Retryable.configure do |config|
+        Retryable.configure do |config|
           config.contexts[mod.name.split(/::/).last.underscore.to_sym] = {
             tries: 10,
             on: mod.errors,
@@ -35,8 +32,62 @@ module Donut
         end
       end
     end
+
+    module Ldp
+      def self.errors
+        [::Ldp::Error, ::Ldp::HttpError]
+      end
+
+      def self.not_errors
+        [::Ldp::NotFound, ::Ldp::Gone]
+      end
+
+      def head(*args)
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
+      end
+
+      def get(*args)
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
+      end
+
+      def delete(*args)
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
+      end
+
+      def post(*args)
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
+      end
+
+      def put(*args)
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
+      end
+
+      def patch(*args)
+        Donut::Retry.with_retries(:ldp)  { super(*args) }
+      end
+    end
+
+    module Solr
+      def self.errors
+        [RSolr::Error::Http]
+      end
+
+      def self.not_errors
+        []
+      end
+
+      def self.included(mod)
+        mod.module_eval do
+          alias_method :_execute, :execute
+
+          define_method :execute do |*args|
+            Donut::Retry.with_retries(:solr) { _execute(*args) }
+          end
+        end
+      end
+    end
   end
 end
 
-require 'donut/retry/ldp'
-require 'donut/retry/solr'
+Donut::Retry.configure(Donut::Retry::Ldp)
+Donut::Retry.configure(Donut::Retry::Solr)

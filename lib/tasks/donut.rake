@@ -31,7 +31,6 @@ unless Rails.env.production?
       Hyrax::PermissionTemplate.create!(source_id: AdminSet::DEFAULT_ID) if Hyrax::PermissionTemplate.count.zero?
       Rake::Task['hyrax:workflow:load'].invoke
       Rake::Task['s3:setup'].invoke
-      Rake::Task['sqs:setup'].invoke
       # rubocop:disable Rails/SkipsModelValidations
       Sipity::Workflow.find_by(name: 'default').update_attribute :active, true
       Sipity::Workflow.find_by(name: 'one_step_mediated_deposit').update_attribute :active, false
