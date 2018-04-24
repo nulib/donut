@@ -13,6 +13,7 @@ module ActiveJob
                 id_argument = job['arguments'].find { |arg| arg.is_a?(Hash) && arg.keys.first == '_aj_globalid' }
                 group_id = id_argument.nil? ? job['arguments'].first.to_s : id_argument['_aj_globalid']
                 result[:message_group_id] = group_id
+                result[:message_deduplication_id] = job['job_id']
               end
             end
           end
