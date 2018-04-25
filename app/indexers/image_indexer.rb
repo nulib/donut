@@ -9,10 +9,10 @@ class ImageIndexer < Hyrax::WorkIndexer
   # this behavior
   include Hyrax::IndexesLinkedMetadata
 
-  # Uncomment this block if you want to add custom indexing behavior:
-  # def generate_solr_document
-  #  super.tap do |solr_doc|
-  #    solr_doc['my_custom_field_ssim'] = object.my_custom_property
-  #  end
-  # end
+  # Custom indexing behavior:
+  def generate_solr_document
+    super.tap do |solr_doc|
+      solr_doc['date_created_display_tesim'] = object.date_created.map { |d| Date.edtf(d).humanize }
+    end
+  end
 end

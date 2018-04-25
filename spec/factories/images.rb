@@ -11,6 +11,7 @@ FactoryBot.define do
     call_number 'W107.8:Am6'
     caption ['This is the caption seen on the image']
     catalog_key ['9943338434202441']
+    date_created ['197x']
     genre ['Postmodern']
     provenance ['The example provenance']
     physical_description_size ['Wood 6cm x 7cm']

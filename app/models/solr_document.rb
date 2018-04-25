@@ -60,6 +60,10 @@ class SolrDocument
   attribute :sculptor_label, Solr::Array, solr_name('sculptor_label')
   attribute :sponsor_label, Solr::Array, solr_name('sponsor_label')
 
+  def date_created_display
+    fetch(Solrizer.solr_name('date_created_display', :stored_searchable), [])
+  end
+
   def abstract
     fetch(Solrizer.solr_name('abstract', :stored_searchable), [])
   end

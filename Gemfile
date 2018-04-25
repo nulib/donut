@@ -45,6 +45,9 @@ gem 'omniauth-openam'
 
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
 
+gem 'edtf'
+gem 'edtf-humanize'
+
 gem 'rubyzip', require: 'zip'
 
 group :test do
