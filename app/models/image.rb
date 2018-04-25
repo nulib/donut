@@ -9,11 +9,13 @@ class Image < ActiveFedora::Base
 
   self.indexer = ImageIndexer
   DEFAULT_STATUS = 'Not started'.freeze
+  DEFAULT_PRESERVATION_LEVEL = '1'.freeze
 
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :accession_number, presence: { message: 'Accession number is required.' }, accession_number: true, on: :create
   validates :resource_type, resource_type: true
   validates :date_created, presence: { message: 'Date created is required' }, edtf_date: true
+  validates :preservation_level, preservation_level: true
 
   after_initialize :default_values
 
@@ -103,6 +105,7 @@ class Image < ActiveFedora::Base
 
   def default_values
     self.status ||= DEFAULT_STATUS
+    self.preservation_level ||= DEFAULT_PRESERVATION_LEVEL
   end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new

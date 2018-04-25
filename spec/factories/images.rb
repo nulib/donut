@@ -25,6 +25,7 @@ FactoryBot.define do
     box_number ['42']
     folder_name ['The folder name']
     folder_number ['99']
+    preservation_level '1'
 
     transient do
       user { FactoryBot.create(:user) }
