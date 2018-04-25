@@ -43,7 +43,7 @@ gem 'ezid-client'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 
-gem 'retryable'
+gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
 
 gem 'rubyzip', require: 'zip'
 

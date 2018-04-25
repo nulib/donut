@@ -8,6 +8,19 @@ GIT
       rails (>= 4.2)
 
 GIT
+  remote: https://github.com/nulib/donut-retry.git
+  revision: 628a9ad9cc4dea425530878e51034978d8199e60
+  branch: master
+  specs:
+    donut-retry (0.1.0)
+      active-fedora
+      activesupport
+      ldp
+      railties
+      retryable
+      rsolr
+
+GIT
   remote: https://github.com/nulib/hydra-derivatives.git
   revision: fbc325db8fa5f1e87172d7e83aa792ccf07b9ee4
   branch: vips
@@ -1403,6 +1416,7 @@ DEPENDENCIES
   docker-api
   docker-compose
   docker-stack
+  donut-retry!
   exiftool_vendored
   ezid-client
   factory_bot_rails
@@ -1422,7 +1436,6 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.1)
   redis-rails
-  retryable
   rsolr (>= 1.0)
   rspec-activemodel-mocks (~> 1.0)
   rspec-rails
