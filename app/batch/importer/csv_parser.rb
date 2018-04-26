@@ -104,7 +104,7 @@ module Importer
         val = val.strip
         # Workaround for https://jira.duraspace.org/browse/FCREPO-2038
         val.delete!("\r")
-        processed[key] << (looks_like_uri?(val) ? RDF::URI(val) : val)
+        processed[key] << (looks_like_uri?(val) && Image.controlled_properties.include?(header.to_sym) ? RDF::URI(val) : val)
       end
 
       def looks_like_uri?(str)
