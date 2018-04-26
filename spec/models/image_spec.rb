@@ -17,4 +17,10 @@ RSpec.describe Image do
     image_without_status = FactoryBot.build(:image, attributes)
     expect(image_without_status.status).to eq(Image::DEFAULT_STATUS)
   end
+
+  it 'defaults preservation_level to Image.DEFAULT_PRESERVATION_LEVEL' do
+    attributes = FactoryBot.attributes_for(:image).except(:preservation_level)
+    image_without_preservation_level = FactoryBot.build(:image, attributes)
+    expect(image_without_preservation_level.preservation_level).to eq(Image::DEFAULT_PRESERVATION_LEVEL)
+  end
 end
