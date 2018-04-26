@@ -1,0 +1,5 @@
+<% status = Hyrax::StatusAuthorities.new %>
+<%= f.input :status,
+    collection: status.select_active_options,
+    include_blank: true,
+    input_html: { class: 'form-control' } %>

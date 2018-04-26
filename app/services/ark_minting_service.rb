@@ -83,20 +83,26 @@ class ArkMintingService
     # rubocop:disable Metrics/MethodLength
     def ezid_map
       {
-        'Audio' =>          'Sound',
-        'Book' =>           'Text',
-        'Dataset' =>        'Dataset',
-        'Dissertation' =>   'Text',
-        'Image' =>          'Image',
-        'Article' =>        'Text',
-        'Masters Thesis' => 'Text',
-        'Part of Book' =>   'Text',
-        'Poster' =>         'Text',
-        'Project' =>        'Other',
-        'Report' =>         'Text',
-        'Research Paper' => 'Text',
-        'Video' =>          'Audiovisual',
-        'Other' =>          'Other'
+        'Audio' =>                        'Sound',
+        'Book' =>                         'Text',
+        'Dataset' =>                      'Dataset',
+        'Dissertation' =>                 'Text',
+        'Image' =>                        'Image',
+        'Article' =>                      'Text',
+        'Masters Thesis' =>               'Text',
+        'Part of Book' =>                 'Text',
+        'Poster' =>                       'Text',
+        'Project' =>                      'Other',
+        'Report' =>                       'Text',
+        'Research Paper' =>               'Text',
+        'Video' =>                        'Audiovisual',
+        'Other' =>                        'Other',
+        'Capstone Project' =>             'Text',
+        'Conference Proceeding' =>        'Text',
+        'Journal' =>                      'Text',
+        'Map or Cartographic Material' => 'Image',
+        'Software or Program Code' =>     'Software',
+        'Presentation' =>                 'Other'
       }
     end
     # rubocop:enable Metrics/MethodLength

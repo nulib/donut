@@ -17,7 +17,7 @@ module Schemas
   module Administrative
     extend ActiveSupport::Concern
 
-    REVIEWED_STATUS = 'Reviewed'
+    REVIEWED_STATUS = 'Done'
 
     included do
       property :project_name, predicate: ::Vocab::Donut.project_name do |index|
@@ -48,7 +48,7 @@ module Schemas
         index.as :stored_searchable, :facetable
       end
 
-      property :status, predicate: ::Vocab::Donut.status do |index|
+      property :status, predicate: ::Vocab::Donut.status, multiple: false do |index|
         index.as :stored_searchable, :facetable
       end
     end

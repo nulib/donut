@@ -74,10 +74,10 @@ module Importer
 
       # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/AbcSize
       def extract_field(header, val, processed)
-        return unless val
+        return if val.blank?
         case header
-        when 'type', 'accession_number', 'id', 'ark', 'call_number', 'preservation_level'
-          # type and id are singular
+        when 'type', 'accession_number', 'id', 'status', 'ark', 'call_number', 'preservation_level'
+          # single valued fields
           processed[header.to_sym] = val
         when /^(created|issued|date_copyrighted|date_valid)_(.*)$/
           key = "#{Regexp.last_match(1)}_attributes".to_sym
