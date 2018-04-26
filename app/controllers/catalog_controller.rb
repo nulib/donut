@@ -117,7 +117,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('language_label', :stored_searchable), label: 'Language', link_to_search: solr_name('language_label', :facetable)
     config.add_index_field solr_name('date_uploaded', :stored_sortable, type: :date), itemprop: 'datePublished', helper_method: :human_readable_date
     config.add_index_field solr_name('date_modified', :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date
-    config.add_index_field solr_name('date_created', :stored_searchable), itemprop: 'dateCreated'
+    config.add_index_field solr_name('date_created_display', :stored_searchable), itemprop: 'dateCreated', label: 'Date Created'
     config.add_index_field solr_name('rights', :stored_searchable), helper_method: :license_links
     config.add_index_field solr_name('resource_type', :stored_searchable), label: 'Resource Type', link_to_search: solr_name('resource_type', :facetable)
     config.add_index_field solr_name('bibliographic_citation', :stored_searchable), label: 'Citation'
@@ -183,7 +183,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('language_label', :stored_searchable), label: 'Language'
     config.add_show_field solr_name('date_uploaded', :stored_searchable)
     config.add_show_field solr_name('date_modified', :stored_searchable)
-    config.add_show_field solr_name('date_created', :stored_searchable)
+    config.add_show_field solr_name('date_created_display', :stored_searchable), label: 'Date Created Display'
     config.add_show_field solr_name('rights', :stored_searchable)
     config.add_show_field solr_name('resource_type', :stored_searchable), label: 'Resource Type'
     config.add_show_field solr_name('format', :stored_searchable)
@@ -311,6 +311,15 @@ class CatalogController < ApplicationController
 
     config.add_search_field('date_created') do |field|
       solr_name = solr_name('created', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('date_created_display') do |field|
+      field.label = 'Date Created Display'
+      solr_name = solr_name('date_created_display', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
