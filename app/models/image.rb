@@ -16,6 +16,9 @@ class Image < ActiveFedora::Base
   validates :resource_type, resource_type: true
   validates :date_created, presence: { message: 'Date created is required' }, edtf_date: true
   validates :preservation_level, preservation_level: true
+  validates :status, status: true
+  validates :license, license: true
+  validates :rights_statement, presence: { message: 'Rights statement is required' }, rights_statement: true
 
   after_initialize :default_values
 

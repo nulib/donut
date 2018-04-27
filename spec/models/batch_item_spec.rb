@@ -25,7 +25,7 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
       batch_location: batch_location,
       preservation_level: '2',
       status: Image::DEFAULT_STATUS,
-      rights_statement: ['http://rights_statement']
+      rights_statement: ['http://rightsstatements.org/vocab/InC-OW-EU/1.0/']
     }
   end
 
