@@ -1,6 +1,7 @@
 module ControlledVocabularies
   class Base < ActiveTriples::Resource
     include CachingFetcher
+    require 'rdf/rdfxml'
 
     def initialize(*args, &block)
       args[0] = correct_uri_for(args.first) unless args.first.is_a?(Hash)
@@ -29,8 +30,8 @@ module ControlledVocabularies
         return if id.nil?
         value = case id.to_s
                 when /^info:lc(.+)$/ then "http://id.loc.gov#{Regexp.last_match(1)}"
-                when /^fst(.+)$/ then "http://id.worldcat.org/fast/#{Regexp.last_match(1)}"
-                else id
+                when /^fst(.+)$/ then "http://id.worldcat.org/fast/#{Regexp.last_match(1).sub!(/0+([1-9]+)/,'\1')}"
+                else id.to_s
                 end
         ::RDF::URI(value)
       end
