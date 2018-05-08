@@ -63,6 +63,14 @@ And run the test suite in another window:
 $ rake spec
 ```
 
+### Running the Batch importer from the command line
+* Run the `rake donut:seed` or `rake s3:setup` rake task to create and populate the S3 bucket
+* Run the importer from the application root directory with the command:
+
+```sh
+$ bin/import_from_s3 dev-batch sample.csv
+```
+
 ### Running the tests for our new CSV importer work from hyrax
 
 the active elastic job gem requires an environment variable to be set otherwise all the specs fail. so run this first:
