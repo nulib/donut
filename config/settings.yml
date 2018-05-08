@@ -21,5 +21,8 @@ zookeeper:
 geonames_username: ''
 fits: {}
 microservices: {}
-aws: {}
+active_job: {}
+aws:
+  buckets: {}
+  queues: {}
 ffmpeg: {}
