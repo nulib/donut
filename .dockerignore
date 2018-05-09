@@ -1,4 +1,6 @@
-log/*
-tmp/*
-public/assets
+.docker-stack
+.ebextensions
 .git
+log/*
+public/assets
+tmp/*
