@@ -56,24 +56,26 @@ LABEL edu.northwestern.library.app=DONUT \
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app/current/vendor/gems" app
 
-ENV RUNTIME_DEPS="libpq5 libtiff5 libjpeg62-turbo libgsf-1-dev libgif-dev libpng3 tzdata locales nodejs openjdk-7-jre libreoffice-core" \
+ENV RUNTIME_DEPS="libpq5 libtiff5 libjpeg62-turbo libgsf-1-dev libgif-dev libpng3 tzdata locales nodejs openjdk-7-jre libreoffice-core yarn" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
     LANG="en_US.UTF-8"
 
-    
-RUN apt-get update -qq && \
-    apt-get install -y $RUNTIME_DEPS --no-install-recommends && \
-    apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/* && \
+
+RUN \
+    # Install NodeJS and Yarn package repos
     curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
-    apt-get install -y nodejs && \
-    apt-get install -y build-essential && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    alias nodejs=node && \
+    # Install runtime dependencies
     apt-get update -qq && \
-    apt-get install --no-install-recommends -y yarn 
+    apt-get install -y $RUNTIME_DEPS --no-install-recommends && \
+    # Clean up package cruft
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    # Install webpack
+    alias nodejs=node && \
+    yarn add webpack
 
 RUN \
     # Set locale
