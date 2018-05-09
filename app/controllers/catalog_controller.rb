@@ -67,29 +67,29 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('subject_geographical_label', :facetable), label: 'Subject Geographical', limit: 5
     config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject Temporal', limit: 5
 
-    config.add_facet_field solr_name('architect_label', :facetable), limit: 5
-    config.add_facet_field solr_name('artist_label', :facetable), limit: 5
-    config.add_facet_field solr_name('author_label', :facetable), limit: 5
-    config.add_facet_field solr_name('cartographer_label', :facetable), limit: 5
-    config.add_facet_field solr_name('compiler_label', :facetable), limit: 5
-    config.add_facet_field solr_name('composer_label', :facetable), limit: 5
-    config.add_facet_field solr_name('designer_label', :facetable), limit: 5
-    config.add_facet_field solr_name('director_label', :facetable), limit: 5
-    config.add_facet_field solr_name('draftsman_label', :facetable), limit: 5
-    config.add_facet_field solr_name('editor_label', :facetable), limit: 5
-    config.add_facet_field solr_name('engraver_label', :facetable), limit: 5
-    config.add_facet_field solr_name('illustrator_label', :facetable), limit: 5
-    config.add_facet_field solr_name('librettist_label', :facetable), limit: 5
-    config.add_facet_field solr_name('performer_label', :facetable), limit: 5
-    config.add_facet_field solr_name('photographer_label', :facetable), limit: 5
-    config.add_facet_field solr_name('presenter_label', :facetable), limit: 5
-    config.add_facet_field solr_name('printer_label', :facetable), limit: 5
-    config.add_facet_field solr_name('printmaker_label', :facetable), limit: 5
-    config.add_facet_field solr_name('producer_label', :facetable), limit: 5
-    config.add_facet_field solr_name('production_manager_label', :facetable), limit: 5
-    config.add_facet_field solr_name('screenwriter_label', :facetable), limit: 5
-    config.add_facet_field solr_name('sculptor_label', :facetable), limit: 5
-    config.add_facet_field solr_name('sponsor_label', :facetable), limit: 5
+    config.add_facet_field solr_name('architect_label', :facetable), label: 'Architect', limit: 5
+    config.add_facet_field solr_name('artist_label', :facetable), label: 'Artist', limit: 5
+    config.add_facet_field solr_name('author_label', :facetable), label: 'Author', limit: 5
+    config.add_facet_field solr_name('cartographer_label', :facetable), label: 'Cartographer', limit: 5
+    config.add_facet_field solr_name('compiler_label', :facetable), label: 'Compiler', limit: 5
+    config.add_facet_field solr_name('composer_label', :facetable), label: 'Composer', limit: 5
+    config.add_facet_field solr_name('designer_label', :facetable), label: 'Designer', limit: 5
+    config.add_facet_field solr_name('director_label', :facetable), label: 'Director', limit: 5
+    config.add_facet_field solr_name('draftsman_label', :facetable), label: 'Draftsman', limit: 5
+    config.add_facet_field solr_name('editor_label', :facetable), label: 'Editor', limit: 5
+    config.add_facet_field solr_name('engraver_label', :facetable), label: 'Engraver', limit: 5
+    config.add_facet_field solr_name('illustrator_label', :facetable), label: 'Illustrator', limit: 5
+    config.add_facet_field solr_name('librettist_label', :facetable), label: 'Librettist', limit: 5
+    config.add_facet_field solr_name('performer_label', :facetable), label: 'Performer', limit: 5
+    config.add_facet_field solr_name('photographer_label', :facetable), label: 'Photographer', limit: 5
+    config.add_facet_field solr_name('presenter_label', :facetable), label: 'Presenter', limit: 5
+    config.add_facet_field solr_name('printer_label', :facetable), label: 'Printer', limit: 5
+    config.add_facet_field solr_name('printmaker_label', :facetable), label: 'Printmaker', limit: 5
+    config.add_facet_field solr_name('producer_label', :facetable), label: 'Producer', limit: 5
+    config.add_facet_field solr_name('production_manager_label', :facetable), label: 'Production Manager', limit: 5
+    config.add_facet_field solr_name('screenwriter_label', :facetable), label: 'Screenwriter', limit: 5
+    config.add_facet_field solr_name('sculptor_label', :facetable), label: 'Sculptor', limit: 5
+    config.add_facet_field solr_name('sponsor_label', :facetable), label: 'Sponsor', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -140,33 +140,33 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('box_number', :stored_searchable), label: 'Box Number'
     config.add_index_field solr_name('folder_name', :stored_searchable), label: 'Folder Name'
     config.add_index_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
-    # rubocop:enable Metrics/LineLength
 
     # CommonMetadata fields to display in search results
     config.add_index_field solr_name('nul_use_statement', :stored_searchable), label: 'NUL Use Statement'
-    config.add_index_field solr_name('architect_label', :stored_searchable), link_to_search: solr_name('architect', :facetable)
-    config.add_index_field solr_name('artist_label', :stored_searchable), link_to_search: solr_name('artist', :facetable)
-    config.add_index_field solr_name('author_label', :stored_searchable), link_to_search: solr_name('author', :facetable)
-    config.add_index_field solr_name('cartographer_label', :stored_searchable), link_to_search: solr_name('cartographer', :facetable)
-    config.add_index_field solr_name('compiler_label', :stored_searchable), link_to_search: solr_name('compiler', :facetable)
-    config.add_index_field solr_name('composer_label', :stored_searchable), link_to_search: solr_name('composer', :facetable)
-    config.add_index_field solr_name('designer_label', :stored_searchable), link_to_search: solr_name('designer', :facetable)
-    config.add_index_field solr_name('director_label', :stored_searchable), link_to_search: solr_name('director', :facetable)
-    config.add_index_field solr_name('draftsman_label', :stored_searchable), link_to_search: solr_name('draftsman', :facetable)
-    config.add_index_field solr_name('editor_label', :stored_searchable), link_to_search: solr_name('editor', :facetable)
-    config.add_index_field solr_name('engraver_label', :stored_searchable), link_to_search: solr_name('engraver', :facetable)
-    config.add_index_field solr_name('illustrator_label', :stored_searchable), link_to_search: solr_name('illustrator', :facetable)
-    config.add_index_field solr_name('librettist_label', :stored_searchable), link_to_search: solr_name('librettist', :facetable)
-    config.add_index_field solr_name('performer_label', :stored_searchable), link_to_search: solr_name('performer', :facetable)
-    config.add_index_field solr_name('photographer_label', :stored_searchable), link_to_search: solr_name('photographer', :facetable)
-    config.add_index_field solr_name('presenter_label', :stored_searchable), link_to_search: solr_name('presenter', :facetable)
-    config.add_index_field solr_name('printer_label', :stored_searchable), link_to_search: solr_name('printer', :facetable)
-    config.add_index_field solr_name('printmaker_label', :stored_searchable), link_to_search: solr_name('printmaker', :facetable)
-    config.add_index_field solr_name('producer_label', :stored_searchable), link_to_search: solr_name('producer', :facetable)
-    config.add_index_field solr_name('production_manager_label', :stored_searchable), link_to_search: solr_name('production_manager', :facetable)
-    config.add_index_field solr_name('screenwriter_label', :stored_searchable), link_to_search: solr_name('screenwriter', :facetable)
-    config.add_index_field solr_name('sculptor_label', :stored_searchable), link_to_search: solr_name('sculptor', :facetable)
-    config.add_index_field solr_name('sponsor_label', :stored_searchable), link_to_search: solr_name('sponsor', :facetable)
+    config.add_index_field solr_name('architect_label', :stored_searchable), link_to_search: solr_name('architect', :facetable), label: 'Architect'
+    config.add_index_field solr_name('artist_label', :stored_searchable), link_to_search: solr_name('artist', :facetable), label: 'Artist'
+    config.add_index_field solr_name('author_label', :stored_searchable), link_to_search: solr_name('author', :facetable), label: 'Author'
+    config.add_index_field solr_name('cartographer_label', :stored_searchable), link_to_search: solr_name('cartographer', :facetable), label: 'Cartographer'
+    config.add_index_field solr_name('compiler_label', :stored_searchable), link_to_search: solr_name('compiler', :facetable), label: 'Compiler'
+    config.add_index_field solr_name('composer_label', :stored_searchable), link_to_search: solr_name('composer', :facetable), label: 'Composer'
+    config.add_index_field solr_name('designer_label', :stored_searchable), link_to_search: solr_name('designer', :facetable), label: 'Designer'
+    config.add_index_field solr_name('director_label', :stored_searchable), link_to_search: solr_name('director', :facetable), label: 'Director'
+    config.add_index_field solr_name('draftsman_label', :stored_searchable), link_to_search: solr_name('draftsman', :facetable), label: 'Draftsman'
+    config.add_index_field solr_name('editor_label', :stored_searchable), link_to_search: solr_name('editor', :facetable), label: 'Editor'
+    config.add_index_field solr_name('engraver_label', :stored_searchable), link_to_search: solr_name('engraver', :facetable), label: 'Engraver'
+    config.add_index_field solr_name('illustrator_label', :stored_searchable), link_to_search: solr_name('illustrator', :facetable), label: 'Illustrator'
+    config.add_index_field solr_name('librettist_label', :stored_searchable), link_to_search: solr_name('librettist', :facetable), label: 'Librettist'
+    config.add_index_field solr_name('performer_label', :stored_searchable), link_to_search: solr_name('performer', :facetable), label: 'Performer'
+    config.add_index_field solr_name('photographer_label', :stored_searchable), link_to_search: solr_name('photographer', :facetable), label: 'Photographer'
+    config.add_index_field solr_name('presenter_label', :stored_searchable), link_to_search: solr_name('presenter', :facetable), label: 'Presenter'
+    config.add_index_field solr_name('printer_label', :stored_searchable), link_to_search: solr_name('printer', :facetable), label: 'Printer'
+    config.add_index_field solr_name('printmaker_label', :stored_searchable), link_to_search: solr_name('printmaker', :facetable), label: 'Printmaker'
+    config.add_index_field solr_name('producer_label', :stored_searchable), link_to_search: solr_name('producer', :facetable), label: 'Producer'
+    config.add_index_field solr_name('production_manager_label', :stored_searchable), link_to_search: solr_name('production_manager', :facetable), label: 'Production Manager'
+    config.add_index_field solr_name('screenwriter_label', :stored_searchable), link_to_search: solr_name('screenwriter', :facetable), label: 'Screenwriter'
+    config.add_index_field solr_name('sculptor_label', :stored_searchable), link_to_search: solr_name('sculptor', :facetable), label: 'Sculptor'
+    config.add_index_field solr_name('sponsor_label', :stored_searchable), link_to_search: solr_name('sponsor', :facetable), label: 'Sponsor'
+    # rubocop:enable Metrics/LineLength
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display

@@ -7,7 +7,7 @@ module Hyrax
              :genre_label, :subject_geographical_label, :subject_topical_label, :subject_temporal, :language_label,
              :provenance, :physical_description_material, :physical_description_size, :rights_holder,
              :style_period_label, :technique_label, :nul_creator, :nul_contributor, :nul_use_statement,
-             :box_name, :box_number, :folder_name, :folder_number, :architect,
+             :box_name, :box_number, :folder_name, :folder_number, :architect_label,
              :artist_label, :author_label, :cartographer_label, :compiler_label, :composer_label, :designer_label,
              :director_label, :draftsman_label, :editor_label, :engraver_label, :illustrator_label, :librettist_label,
              :performer_label, :photographer_label, :presenter_label, :printer_label, :printmaker_label, :producer_label,

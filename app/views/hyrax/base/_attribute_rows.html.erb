@@ -1,4 +1,4 @@
-<%= presenter.attribute_to_html(:abstract) %>
+<%= presenter.attribute_to_html(:alternate_title) %>
 <%= presenter.attribute_to_html(:accession_number) %>
 <%= presenter.attribute_to_html(:ark, label: 'ARK') %>
 <%= presenter.attribute_to_html(:based_near_label, label: 'Place of Publication') %>
@@ -40,6 +40,8 @@
 <%= presenter.attribute_to_html(:task_number) %>
 <%= presenter.attribute_to_html(:project_cycle, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:nul_creator, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:subject, render_as: :faceted, label: 'NUL Subject') %>
+<%= presenter.attribute_to_html(:provenance) %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, label: 'NUL Subject') %>
 <%= presenter.attribute_to_html(:nul_contributor, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:nul_use_statement, label: 'NUL Use Statement') %>
