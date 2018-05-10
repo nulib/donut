@@ -7,13 +7,11 @@ LABEL edu.northwestern.library.app=DONUT \
 ENV BUILD_DEPS="build-essential libpq-dev tzdata locales unzip" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
-    LANG="en_US.UTF-8"
+    LANG="en_US.UTF-8" \
+    FITS_VERSION="1.0.5"
 
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app/current" app
-
-COPY --chown=app:app Gemfile /home/app/current/
-COPY --chown=app:app Gemfile.lock /home/app/current/
 
 RUN apt-get update -qq && \
     apt-get install -y $BUILD_DEPS --no-install-recommends
@@ -36,12 +34,15 @@ RUN \
     \
     # Install FITS
     cd /tmp && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/fits-1.0.5.zip && \
+    curl -O https://s3.amazonaws.com/nul-repo-deploy/fits-${FITS_VERSION}.zip && \
     cd /tmp/stage && \
-    unzip -o /tmp/fits-1.0.5.zip
+    unzip -o /tmp/fits-${FITS_VERSION}.zip
 
 USER app
 WORKDIR /home/app/current
+
+COPY --chown=app:app Gemfile /home/app/current/
+COPY --chown=app:app Gemfile.lock /home/app/current/
 
 RUN bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test --path vendor/gems && \
     rm -rf vendor/gems/ruby/*/cache/* vendor/gems/ruby/*/bundler/gems/*/.git
@@ -59,7 +60,8 @@ RUN useradd -m -U app && \
 ENV RUNTIME_DEPS="libpq5 libtiff5 libjpeg62-turbo libgsf-1-dev libgif-dev libpng3 tzdata locales nodejs openjdk-7-jre libreoffice-core yarn" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
-    LANG="en_US.UTF-8"
+    LANG="en_US.UTF-8" \
+    FITS_VERSION="1.0.5"
 
 
 RUN \
@@ -85,17 +87,17 @@ RUN \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
 
-COPY --from=base /tmp/stage/bin/* /usr/local/bin/
-COPY --from=base /tmp/stage/fits* /usr/local/
-COPY --chown=app:staff --from=base /usr/local/bundle /usr/local/bundle
-COPY --chown=app:app --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
-COPY --chown=app:app . /home/app/current/
-
 # Install VIPS
 RUN cd /tmp && \
     curl -O https://s3.amazonaws.com/nul-repo-deploy/donut-vips.deb && \
     dpkg -i /tmp/donut-vips.deb && \
     rm /tmp/donut-vips.deb
+
+COPY --from=base /tmp/stage/bin/* /usr/local/bin/
+COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
+COPY --chown=app:staff --from=base /usr/local/bundle /usr/local/bundle
+COPY --chown=app:app --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
+COPY --chown=app:app . /home/app/current/
 
 USER app
 WORKDIR /home/app/current
