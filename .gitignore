@@ -25,6 +25,9 @@
 # Ignore public uploads directory
 /public/uploads
 
+# Ignore branding directory
+/public/branding
+
 # MAC OS
 .DS_Store
 
