@@ -22,8 +22,14 @@ RSpec.describe LicenseValidator do
     expect(invalid_license_work).to be_invalid
   end
 
+  it 'fails when an inactive license is found' do
+    invalid_license_work = TestWork.create(license: ['http://creativecommons.org/licenses/by/3.0/us/'])
+
+    expect(invalid_license_work).to be_invalid
+  end
+
   it 'succeeds when valid license is found' do
-    valid_license_work = TestWork.create(license: ['http://creativecommons.org/licenses/by/3.0/us/'])
+    valid_license_work = TestWork.create(license: ['https://creativecommons.org/licenses/by-nc-sa/4.0/'])
 
     expect(valid_license_work).to be_valid
   end
