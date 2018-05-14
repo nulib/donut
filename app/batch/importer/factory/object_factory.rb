@@ -119,9 +119,9 @@ module Importer
         end
 
         def resolve_file(file_path)
-          target = Pathname.new(file_path)
           source = Pathname.new(s3_resource.key)
-          relative_key = target.relative_path_from(source).relative_path_from(Pathname.new('..'))
+          dir, _base = source.split
+          relative_key = dir + file_path
           s3_resource.bucket.object(relative_key.to_s)
         end
 
