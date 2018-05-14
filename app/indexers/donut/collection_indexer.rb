@@ -12,8 +12,7 @@ module Donut
 
       def thumbnail_iiif_url
         file_set = ::FileSet.find(object.thumbnail_id)
-        file_id = file_set.original_file.id.split(%r{/files/}).last
-        IiifDerivativeService.resolve(file_id).to_s
+        IiifDerivativeService.resolve(file_set.original_file.id).to_s
       end
   end
 end
