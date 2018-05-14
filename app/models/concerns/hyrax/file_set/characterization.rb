@@ -23,8 +23,8 @@ module Hyrax
           :duration, :sample_rate, :compression, :photometric_interpretation,
           :samples_per_pixel, :x_resolution, :y_resolution, :resolution_unit,
           :date_time, :bits_per_sample, :make, :strip_offsets,
-          :rows_per_strip, :strip_byte_counts, :donut_exif_version,
-          :exif_all_data
+          :rows_per_strip, :strip_byte_counts, :icc_profile_description,
+          :donut_exif_version, :exif_all_data
         ]
         self.characterization_proxy = :original_file
 

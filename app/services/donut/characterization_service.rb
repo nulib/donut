@@ -13,7 +13,8 @@ module Donut
       rows_per_strip:             [:ifd0, 'RowsPerStrip'],
       strip_byte_counts:          [:ifd0, 'StripByteCounts'],
       artist:                     [:ifd0, 'Artist'],
-      donut_exif_version:         [:exif_tool, 'ExifToolVersion']
+      donut_exif_version:         [:exif_tool, 'ExifToolVersion'],
+      icc_profile_description:    [:icc_profile, 'ProfileDescription']
     }.freeze
 
     def self.run(object, source)

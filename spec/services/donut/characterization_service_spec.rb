@@ -22,6 +22,7 @@ RSpec.describe Donut::CharacterizationService do
     expect(file.strip_offsets).to eq [34_612]
     expect(file.rows_per_strip).to eq [6212]
     expect(file.strip_byte_counts).to eq [102_125_280]
+    expect(file.icc_profile_description).to eq ['Adobe RGB (1998)']
     expect(file.donut_exif_version).to eq [10.65]
   end
   # rubocop:enable RSpec/ExampleLength

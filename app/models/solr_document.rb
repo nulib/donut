@@ -341,6 +341,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('strip_byte_counts', :stored_searchable), [])
   end
 
+  def icc_profile_description
+    fetch(Solrizer.solr_name('icc_profile_description', :stored_searchable), [])
+  end
+
   def donut_exif_version
     fetch(Solrizer.solr_name('donut_exif_version', :stored_searchable), [])
   end

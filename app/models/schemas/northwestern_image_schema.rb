@@ -12,6 +12,7 @@ module Schemas
     property :rows_per_strip, predicate: ::RDF::Vocab::EXIF.rowsPerStrip
     property :strip_byte_counts, predicate: ::RDF::Vocab::EXIF.stripByteCounts
     property :artist, predicate: ::RDF::Vocab::EXIF.artist
+    property :icc_profile_description, predicate: ::Vocab::Donut.icc_profile_description
     property :donut_exif_version, predicate: ::Vocab::Donut.donut_exif_version
     property :exif_all_data, predicate: ::Vocab::Donut.exif_all_dat
   end
