@@ -15,6 +15,7 @@ class ImageIndexer < Hyrax::WorkIndexer
       solr_doc['date_created_display_tesim'] = object.date_created.map { |d| Date.edtf(d).humanize }
       object.member_ids.each do |file_set_id|
         file_set = ::FileSet.find(file_set_id)
+        next if file_set.original_file.nil?
         (solr_doc['file_set_iiif_urls_ssim'] ||= []) << IiifDerivativeService.resolve(file_set.original_file.id).to_s
       end
     end
