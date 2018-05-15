@@ -10,6 +10,9 @@ ENV BUILD_DEPS="build-essential libpq-dev tzdata locales unzip" \
     LANG="en_US.UTF-8" \
     FITS_VERSION="1.0.5"
 
+ADD https://s3.amazonaws.com/nul-repo-deploy/ffmpeg-release-64bit-static.tar.xz /tmp
+ADD https://s3.amazonaws.com/nul-repo-deploy/fits-${FITS_VERSION}.zip /tmp
+
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app/current" app
 
@@ -29,12 +32,10 @@ RUN \
     # Install FFMPEG
     mkdir -p /tmp/ffmpeg && \
     cd /tmp/ffmpeg && \
-    curl https://s3.amazonaws.com/nul-repo-deploy/ffmpeg-release-64bit-static.tar.xz | tar xJ && \
+    tar xJf /tmp/ffmpeg-release-64bit-static.tar.xz && \
     cp `find . -type f -executable` /tmp/stage/bin/ && \
     \
     # Install FITS
-    cd /tmp && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/fits-${FITS_VERSION}.zip && \
     cd /tmp/stage && \
     unzip -o /tmp/fits-${FITS_VERSION}.zip
 
