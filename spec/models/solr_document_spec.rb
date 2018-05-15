@@ -54,6 +54,7 @@ RSpec.describe SolrDocument do
       strip_offsets_tesim: ['1'],
       rows_per_strip_tesim: ['1'],
       strip_byte_counts_tesim: ['1'],
+      icc_profile_description_tesim: ['Adobe RGB (1998)'],
       donut_exif_version_tesim: ['10.00'],
       exif_all_data_tesim: ['all the data']
     }
@@ -146,6 +147,12 @@ RSpec.describe SolrDocument do
   describe '#strip_byte_counts' do
     it 'returns strip_byte_counts' do
       expect(solr_doc.strip_byte_counts).to eq ['1']
+    end
+  end
+
+  describe '#icc_profile_description' do
+    it 'returns icc_profile_description' do
+      expect(solr_doc.icc_profile_description).to eq ['Adobe RGB (1998)']
     end
   end
 

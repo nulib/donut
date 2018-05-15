@@ -15,6 +15,7 @@ module Vocab
     term :creator
     term :contributor
     term :donut_exif_version
+    term :icc_profile_description
     term :exif_all_data
   end
 end

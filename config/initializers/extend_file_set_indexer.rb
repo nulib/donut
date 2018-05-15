@@ -37,6 +37,7 @@ Hyrax::FileSetIndexer.class_eval do
       solr_doc['strip_offsets_tesim'] = object.strip_offsets
       solr_doc['rows_per_strip_tesim'] = object.rows_per_strip
       solr_doc['strip_byte_counts_tesim'] = object.strip_byte_counts
+      solr_doc['icc_profile_description_tesim'] = object.icc_profile_description
       solr_doc['donut_exif_version_tesim'] = object.donut_exif_version
       solr_doc['exif_all_data_tesim'] = object.exif_all_data
     end
