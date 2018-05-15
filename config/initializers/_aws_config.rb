@@ -16,7 +16,7 @@ if ENV['SSM_PARAM_PATH']
     ssm = Aws::SSM::Client.new
     next_token = nil
     loop do
-      response = ssm.get_parameters_by_path(path: path, recursive: true, with_decryption: true, next_token: next_token)
+      response = ssm.get_parameters_by_path(path: path, recursive: true, max_results: 10, with_decryption: true, next_token: next_token)
       response.parameters.each do |param|
         add_param_to_hash(result, param, path)
       end

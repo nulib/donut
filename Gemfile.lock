@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/nulib/active-elastic-job.git
-  revision: 091d87d0151a68b99fb815a099089990cb3e532b
+  revision: 09f50bc0ab20d4a4dd0dd8ffb6e3d12f9a694bd8
   branch: latest-aws-sdk
   specs:
     active_elastic_job (2.0.1)
@@ -166,7 +166,7 @@ GEM
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
-    aws-partitions (1.83.0)
+    aws-partitions (1.87.0)
     aws-sdk (3.0.1)
       aws-sdk-resources (~> 3)
     aws-sdk-acm (1.2.0)

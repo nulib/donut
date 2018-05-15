@@ -6,6 +6,7 @@ class SolrCollectionCreator
   end
 
   def perform
+    return unless Settings.solrcloud
     client.get '/solr/admin/collections', params: collection_options.merge(action: 'CREATE', name: name) unless collection_exists? name
   end
 

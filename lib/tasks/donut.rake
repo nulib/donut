@@ -40,17 +40,7 @@ unless Rails.env.production?
         Rake::Task['donut:add_admin_role'].invoke
       end
 
-      if ENV['SEED_FILE']
-        yaml = YAML.safe_load(File.read(ENV['SEED_FILE']), [Symbol])
-        Donut::SeedDataService.load(yaml) do |klass, status|
-          puts "Loading #{klass} #{status}"
-        end
-      end
-    end
-
-    desc 'Dump admin sets and users to a file'
-    task dump: :environment do
-      puts YAML.dump Donut::SeedDataService.dump
+      Rake::Task['donut:load'].invoke if ENV['SEED_FILE']
     end
 
     desc 'Run all Continuous Integration tests'
