@@ -39,13 +39,13 @@ RUN \
     cd /tmp/stage && \
     unzip -o /tmp/fits-${FITS_VERSION}.zip
 
-USER app
 WORKDIR /home/app/current
 
-COPY --chown=app:app Gemfile /home/app/current/
-COPY --chown=app:app Gemfile.lock /home/app/current/
+COPY Gemfile /home/app/current/
+COPY Gemfile.lock /home/app/current/
 
-RUN bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test --path vendor/gems && \
+RUN chown -R app:app /home/app/current && \
+    su -c "bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test --path vendor/gems" app && \
     rm -rf vendor/gems/ruby/*/cache/* vendor/gems/ruby/*/bundler/gems/*/.git
 
 #################################
@@ -96,20 +96,19 @@ RUN cd /tmp && \
 
 COPY --from=base /tmp/stage/bin/* /usr/local/bin/
 COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
-COPY --chown=app:staff --from=base /usr/local/bundle /usr/local/bundle
-COPY --chown=app:app --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
-COPY --chown=app:app . /home/app/current/
+COPY --from=base /usr/local/bundle /usr/local/bundle
+COPY . /home/app/current/
 
-RUN mkdir /var/log/puma && \
-    chown root:app /var/log/puma && \
-    chmod 0775 /var/log/puma
-
-RUN mkdir /var/run/puma && \
-    chown root:app /var/run/puma && \
-    chmod 0775 /var/run/puma
+RUN chown -R app:staff /usr/local/bundle && \
+    chown -R app:app /home/app/current && \
+    mkdir /var/log/puma && chown root:app /var/log/puma && chmod 0775 /var/log/puma && \
+    mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
 
 USER app
 WORKDIR /home/app/current
+
+COPY --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
+
 RUN bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
 
 EXPOSE 3000
