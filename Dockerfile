@@ -99,6 +99,14 @@ COPY --chown=app:staff --from=base /usr/local/bundle /usr/local/bundle
 COPY --chown=app:app --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
 COPY --chown=app:app . /home/app/current/
 
+RUN mkdir /var/log/puma && \
+    chown root:app /var/log/puma && \
+    chmod 0775 /var/log/puma
+
+RUN mkdir /var/run/puma && \
+    chown root:app /var/run/puma && \
+    chmod 0775 /var/run/puma
+
 USER app
 WORKDIR /home/app/current
 RUN bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')

@@ -56,6 +56,7 @@ class SolrConfigUploader
     end
 
     def with_client(&block)
+      return unless Settings.solrcloud
       ensure_chroot!
 
       ZK.open(connection_str, &block)
