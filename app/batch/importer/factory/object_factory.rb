@@ -58,9 +58,11 @@ module Importer
       end
 
       def errors
-        t = trashable_instance
-        t.valid?
-        t.errors
+        Donut::ValidationService.errors(klass: klass, attributes: create_attributes.slice(*permitted_attributes))
+      end
+
+      def valid?
+        Donut::ValidationService.valid?(klass: klass, attributes: create_attributes.slice(*permitted_attributes))
       end
 
       def create
@@ -133,10 +135,6 @@ module Importer
 
         def permitted_attributes
           klass.properties.keys.map(&:to_sym) + [:admin_set_id, :id, :edit_users, :edit_groups, :read_groups, :visibility]
-        end
-
-        def trashable_instance
-          klass.new(create_attributes.slice(*permitted_attributes))
         end
     end
   end
