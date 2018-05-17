@@ -7,7 +7,7 @@ describe ImageIndexer do
     let(:solr_doc) { described_class.new(image).generate_solr_document }
 
     before do
-      allow(image).to receive(:member_ids).and_return([file_set.id])
+      allow(image).to receive(:file_set_ids).and_return([file_set.id])
       allow(FileSet).to receive(:find).with(file_set.id).and_return(file_set)
       allow(IiifDerivativeService).to receive(:resolve).with(file.id).and_return(iiif_url)
     end
