@@ -14,7 +14,7 @@ module Donut
     end
 
     def initialize(klass:, attributes:)
-      @trashable_instance = klass.new(attributes).tap { |t| t.valid? }
+      @trashable_instance = klass.new(attributes).tap(&:valid?)
     end
   end
 end

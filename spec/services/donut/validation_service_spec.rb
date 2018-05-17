@@ -22,11 +22,11 @@ RSpec.describe Donut::ValidationService do
   context 'valid item' do
     let(:attributes) { common_attributes }
 
-    it 'should be valid' do
-      expect(described_class.valid?(klass: klass, attributes: attributes)).to be_truthy
+    it 'is valid' do
+      expect(described_class).to be_valid(klass: klass, attributes: attributes)
     end
 
-    it 'should have no errors' do
+    it 'has no errors' do
       expect(described_class.errors(klass: klass, attributes: attributes)).to be_empty
     end
   end
@@ -34,11 +34,11 @@ RSpec.describe Donut::ValidationService do
   context 'item with missing attribute' do
     let(:attributes) { common_attributes.reject { |k, _v| k == :title } }
 
-    it 'should not be valid' do
-      expect(described_class.valid?(klass: klass, attributes: attributes)).to be_falsy
+    it 'is not valid' do
+      expect(described_class).not_to be_valid(klass: klass, attributes: attributes)
     end
 
-    it 'should have an error' do
+    it 'has an error' do
       described_class.errors(klass: klass, attributes: attributes).tap do |errors|
         expect(errors.count).to eq(1)
         expect(errors.messages[:title]).to eq(['Your work must have a title.'])
@@ -49,11 +49,11 @@ RSpec.describe Donut::ValidationService do
   context 'item with invalid attribute value' do
     let(:attributes) { common_attributes.merge(date_created: ['5/17/2018']) }
 
-    it 'should be valid' do
-      expect(described_class.valid?(klass: klass, attributes: attributes)).to be_falsy
+    it 'is valid' do
+      expect(described_class).not_to be_valid(klass: klass, attributes: attributes)
     end
 
-    it 'should have an error' do
+    it 'has an error' do
       described_class.errors(klass: klass, attributes: attributes).tap do |errors|
         expect(errors.count).to eq(1)
         expect(errors.messages[:date_created]).to eq(['Invalid EDTF date: 5/17/2018'])
