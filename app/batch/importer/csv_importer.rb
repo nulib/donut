@@ -13,6 +13,7 @@ module Importer
 
     # @return [Integer] count of objects created
     def import_all
+      return if parser.nil?
       @batch = Batch.create(
         submitter: parser.email,
         job_id: @job_id,
@@ -32,6 +33,14 @@ module Importer
 
       def parser
         @parser ||= CSVParser.new(@csv)
+      rescue CSV::MalformedCSVError => error
+        @batch = Batch.create(
+          submitter: 'unknown',
+          job_id: @job_id,
+          original_filename: @s3_resource.key
+        )
+        create_error_row(error)
+        return nil
       end
 
       def s3_url
