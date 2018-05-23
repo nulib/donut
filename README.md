@@ -63,6 +63,26 @@ And run the test suite in another window:
 $ rake spec
 ```
 
+#### Run the JavaScript tests
+
+Run Jasmine server:
+
+```sh
+$ rake jasmine
+```
+
+Run all tests:
+
+```sh
+$ http://localhost:8888
+```
+
+Run the javascript test suite:
+
+```sh
+$ rake jasmine:ci
+```
+
 ### Running the Batch importer from the command line
 * Run the `rake donut:seed` or `rake s3:setup` rake task to create and populate the S3 bucket
 * Run the importer from the application root directory with the command:

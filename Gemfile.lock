@@ -952,6 +952,12 @@ GEM
     iiif_manifest (0.4.0)
       activesupport (>= 4)
     inflecto (0.0.2)
+    jasmine (2.9.0)
+      jasmine-core (>= 2.9.0, < 3.0.0)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.9.1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -1100,6 +1106,7 @@ GEM
     parser (2.4.0.2)
       ast (~> 2.3)
     pg (0.21.0)
+    phantomjs (2.1.1.0)
     posix-spawn (0.3.13)
     power_converter (0.1.2)
     powerpack (0.1.1)
@@ -1432,6 +1439,7 @@ DEPENDENCIES
   hydra-role-management
   hyrax!
   hyrax-spec (~> 0.2)
+  jasmine
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

@@ -47,6 +47,7 @@ unless Rails.env.production?
     task :ci do
       Rake::Task['donut:ci:rubocop'].invoke
       Rake::Task['donut:ci:rspec'].invoke
+      Rake::Task['jasmine:ci'].invoke
     end
 
     namespace :ci do
