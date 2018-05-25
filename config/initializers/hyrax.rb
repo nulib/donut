@@ -229,8 +229,6 @@ Hyrax.config do |config|
   rescue Errno::ENOENT
     config.browse_everything = nil
   end
-
-  config.nested_relationship_reindexer = ->(id) { Rails.logger.info("Refusing to run nested indexer on #{id}.") }
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
