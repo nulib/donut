@@ -5,3 +5,4 @@ aws:
   buckets:
     batch:   test-batch
     uploads: test-uploads
+    branding: test-branding

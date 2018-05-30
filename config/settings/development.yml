@@ -5,6 +5,7 @@ aws:
   buckets:
     uploads: dev-uploads
     batch: dev-batch
+    branding: dev-branding
   queues:
     ingest: donut.fifo
 iiif:

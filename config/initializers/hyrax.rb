@@ -229,6 +229,8 @@ Hyrax.config do |config|
   rescue Errno::ENOENT
     config.browse_everything = nil
   end
+
+  config.branding_path = Aws::S3::Bucket.new(Settings.aws.buckets.branding).url
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
