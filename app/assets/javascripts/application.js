@@ -21,4 +21,5 @@
 //= require blacklight/blacklight
 
 //= require_directory .
+//= require nu-template/scripts.js
 //= require hyrax

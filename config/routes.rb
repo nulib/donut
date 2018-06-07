@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       format: false,
       constraints: { accession_number: /.+/ }
 
+  post '/validate_new', to: 'validation#validate_new', as: :validate_new
+  patch '/validate_edit', to: 'validation#validate_edit', as: :validate_edit
+
   mount BrowseEverything::Engine => '/browse'
   mount Blacklight::Engine => '/'
 
