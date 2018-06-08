@@ -17,7 +17,22 @@ class ImageIndexer < Hyrax::WorkIndexer
         file_set = ::FileSet.find(file_set_id)
         next if file_set.original_file.nil?
         (solr_doc['file_set_iiif_urls_ssim'] ||= []) << IiifDerivativeService.resolve(file_set.original_file.id).to_s
+        index_technical_metadata(solr_doc, file_set)
       end
     end
   end
+
+  # rubocop:disable Metrics/AbcSize
+  def index_technical_metadata(solr_doc, file_set)
+    (solr_doc['width_sim'] ||= []) << file_set.characterization_proxy.width.first
+    (solr_doc['height_sim'] ||= []) << file_set.characterization_proxy.height.first
+    (solr_doc['bits_per_sample_sim'] ||= []) << file_set.characterization_proxy.bits_per_sample.first
+    (solr_doc['compression_sim'] ||= []) << file_set.characterization_proxy.compression.first
+    (solr_doc['photometric_interpretation_sim'] ||= []) << file_set.characterization_proxy.photometric_interpretation.first
+    (solr_doc['make_sim'] ||= []) << file_set.characterization_proxy.make.first
+    (solr_doc['x_resolution_sim'] ||= []) << file_set.characterization_proxy.x_resolution.first
+    (solr_doc['y_resolution_sim'] ||= []) << file_set.characterization_proxy.y_resolution.first
+    (solr_doc['icc_profile_description_sim'] ||= []) << file_set.characterization_proxy.icc_profile_description.first
+  end
+  # rubocop:enable Metrics/AbcSize
 end
