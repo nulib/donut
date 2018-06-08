@@ -91,6 +91,17 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('sculptor_label', :facetable), label: 'Sculptor', limit: 5
     config.add_facet_field solr_name('sponsor_label', :facetable), label: 'Sponsor', limit: 5
 
+    # exif metadata
+    config.add_facet_field solr_name('height', :facetable), label: 'Height', limit: 5
+    config.add_facet_field solr_name('width', :facetable), label: 'Width', limit: 5
+    config.add_facet_field solr_name('bits_per_sample', :facetable), label: 'Bits Per Sample', limit: 5
+    config.add_facet_field solr_name('compression', :facetable), label: 'Compression', limit: 5
+    config.add_facet_field solr_name('photometric_interpretation', :facetable), label: 'Photometric Interpretation', limit: 5
+    config.add_facet_field solr_name('make', :facetable), label: 'Make', limit: 5
+    config.add_facet_field solr_name('x_resolution', :facetable), label: 'X Resolution', limit: 5
+    config.add_facet_field solr_name('y_resolution', :facetable), label: 'Y Resolution', limit: 5
+    config.add_facet_field solr_name('icc_profile_description', :facetable), label: 'Profile Description', limit: 5
+
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
     config.add_facet_field solr_name('generic_type', :facetable), if: false

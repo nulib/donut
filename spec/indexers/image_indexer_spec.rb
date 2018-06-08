@@ -14,7 +14,12 @@ describe ImageIndexer do
 
     context 'with an image' do
       let(:image) { FactoryBot.build(:image, date_created: ['1987~', 'uuuu']) }
-      let(:file_set) { FactoryBot.create(:file_set).tap { |fs| fs.original_file = file } }
+      let(:file_set) do
+        FactoryBot.create(:file_set).tap do |fs|
+          fs.original_file = file
+          fs.characterization_proxy.x_resolution = [600]
+        end
+      end
       let(:iiif_url) { 'http://thisistheiiifurl' }
 
       let(:file) do
@@ -31,6 +36,10 @@ describe ImageIndexer do
 
       it 'indexes the iiif url for the filesets' do
         expect(solr_doc['file_set_iiif_urls_ssim']).to match_array(iiif_url)
+      end
+
+      it 'indexes the exif metadata for the filesets' do
+        expect(solr_doc['x_resolution_sim']).to match_array([600])
       end
     end
   end
