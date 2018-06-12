@@ -102,6 +102,7 @@ group :aws do
   gem 'aws-sdk', '~> 3'
   gem 'aws-sdk-rails'
   gem 'carrierwave-aws'
+  gem 'clamav'
   gem 'cloudfront-signer'
   gem 'redis-rails'
   gem 'zk'

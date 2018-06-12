@@ -759,6 +759,7 @@ GEM
       carrierwave (>= 0.7, < 2.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    clamav (0.4.1)
     clipboard-rails (1.7.1)
     cloudfront-signer (3.0.2)
     coderay (1.1.2)
@@ -1421,6 +1422,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   carrierwave-aws
+  clamav
   cloudfront-signer
   coffee-rails (~> 4.2)
   config
@@ -1471,4 +1473,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
