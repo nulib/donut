@@ -4,7 +4,7 @@ FROM ruby:2.4.4-slim-jessie as base
 LABEL edu.northwestern.library.app=DONUT \
       edu.northwestern.library.role=support
 
-ENV BUILD_DEPS="build-essential libpq-dev libsqlite3-dev tzdata locales git curl unzip" \
+ENV BUILD_DEPS="build-essential libclamav-dev libpq-dev libsqlite3-dev tzdata locales git curl unzip" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
     LANG="en_US.UTF-8" \
