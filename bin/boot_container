@@ -1,4 +1,5 @@
 #!/bin/bash
 
+freshclam
 bundle exec rake db:migrate zookeeper:upload zookeeper:create
 exec bundle exec puma -C config/puma_container.rb
