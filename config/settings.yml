@@ -26,3 +26,4 @@ aws:
   buckets: {}
   queues: {}
 ffmpeg: {}
+system_user: 'repository@northwestern.edu'
