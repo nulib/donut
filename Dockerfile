@@ -95,6 +95,8 @@ RUN cd /tmp && \
     dpkg -i /tmp/vips_8.6.3-1_amd64.deb && \
     rm /tmp/vips_8.6.3-1_amd64.deb
 
+RUN freshclam
+
 COPY --from=base /tmp/stage/bin/* /usr/local/bin/
 COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
 COPY --from=base /usr/local/bundle /usr/local/bundle
