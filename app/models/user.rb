@@ -24,6 +24,10 @@ class User < ApplicationRecord
     email
   end
 
+  def self.find_or_create_system_user(user_key)
+    find_or_create_by(Hydra.config.user_key_field => user_key)
+  end
+
   def self.from_omniauth(auth)
     username = auth.uid
     email = auth.info.email
