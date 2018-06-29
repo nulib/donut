@@ -9,6 +9,7 @@ module Donut
       date_time:                  [:'xmp-xmp', 'CreateDate'],
       bits_per_sample:            [:ifd0, 'BitsPerSample'],
       make:                       [:ifd0, 'Make'],
+      model:                      [:ifd0, 'Model'],
       strip_offsets:              [:ifd0, 'StripOffsets'],
       rows_per_strip:             [:ifd0, 'RowsPerStrip'],
       strip_byte_counts:          [:ifd0, 'StripByteCounts'],

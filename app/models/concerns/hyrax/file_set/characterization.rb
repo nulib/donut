@@ -22,7 +22,7 @@ module Hyrax
           :page_count, :file_title, :last_modified, :original_checksum,
           :duration, :sample_rate, :compression, :photometric_interpretation,
           :samples_per_pixel, :x_resolution, :y_resolution, :resolution_unit,
-          :date_time, :bits_per_sample, :make, :strip_offsets,
+          :date_time, :bits_per_sample, :make, :model, :strip_offsets,
           :rows_per_strip, :strip_byte_counts, :icc_profile_description,
           :donut_exif_version, :exif_all_data
         ]

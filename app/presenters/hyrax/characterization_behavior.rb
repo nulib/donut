@@ -7,12 +7,12 @@ module Hyrax
         [
           :byte_order, :compression, :height, :width, :color_space,
           :profile_name, :profile_version, :orientation, :color_map, :image_producer,
-          :capture_device, :scanning_software, :gps_timestamp, :latitude, :longitude,
+          :scanning_software, :gps_timestamp, :latitude, :longitude,
           :file_format, :file_title, :page_count, :duration, :sample_rate,
           :format_label, :file_size, :filename, :well_formed, :last_modified,
           :original_checksum, :mime_type, :photometric_interpretation,
           :samples_per_pixel, :x_resolution, :y_resolution, :resolution_unit,
-          :date_time, :bits_per_sample, :make, :strip_offsets,
+          :date_time, :bits_per_sample, :make, :model, :strip_offsets,
           :rows_per_strip, :strip_byte_counts, :icc_profile_description,
           :donut_exif_version
         ]

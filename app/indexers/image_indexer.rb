@@ -30,6 +30,7 @@ class ImageIndexer < Hyrax::WorkIndexer
     (solr_doc['compression_sim'] ||= []) << file_set.characterization_proxy.compression.first
     (solr_doc['photometric_interpretation_sim'] ||= []) << file_set.characterization_proxy.photometric_interpretation.first
     (solr_doc['make_sim'] ||= []) << file_set.characterization_proxy.make.first
+    (solr_doc['model_sim'] ||= []) << file_set.characterization_proxy.model.first
     (solr_doc['x_resolution_sim'] ||= []) << file_set.characterization_proxy.x_resolution.first
     (solr_doc['y_resolution_sim'] ||= []) << file_set.characterization_proxy.y_resolution.first
     (solr_doc['icc_profile_description_sim'] ||= []) << file_set.characterization_proxy.icc_profile_description.first

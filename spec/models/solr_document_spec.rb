@@ -51,6 +51,7 @@ RSpec.describe SolrDocument do
       date_time_tesim: ['2018-01-01'],
       bits_per_sample_tesim: ['1'],
       make_tesim: ['nec scanner'],
+      model_tesim: ['SupraScanQuartzA1 [SN: 331001] - CamQuartzHD [SN: 331001]'],
       strip_offsets_tesim: ['1'],
       rows_per_strip_tesim: ['1'],
       strip_byte_counts_tesim: ['1'],
@@ -129,6 +130,12 @@ RSpec.describe SolrDocument do
   describe '#make' do
     it 'returns make' do
       expect(solr_doc.make).to eq ['nec scanner']
+    end
+  end
+
+  describe '#model' do
+    it 'returns model' do
+      expect(solr_doc.model).to eq ['SupraScanQuartzA1 [SN: 331001] - CamQuartzHD [SN: 331001]']
     end
   end
 

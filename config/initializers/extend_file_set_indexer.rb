@@ -34,6 +34,7 @@ Hyrax::FileSetIndexer.class_eval do
       solr_doc['date_time_tesim'] = object.date_time
       solr_doc['bits_per_sample_tesim'] = object.bits_per_sample
       solr_doc['make_tesim'] = object.make
+      solr_doc['model_tesim'] = object.model
       solr_doc['strip_offsets_tesim'] = object.strip_offsets
       solr_doc['rows_per_strip_tesim'] = object.rows_per_strip
       solr_doc['strip_byte_counts_tesim'] = object.strip_byte_counts
