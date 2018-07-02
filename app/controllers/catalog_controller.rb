@@ -98,6 +98,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('compression', :facetable), label: 'Compression', limit: 5
     config.add_facet_field solr_name('photometric_interpretation', :facetable), label: 'Photometric Interpretation', limit: 5
     config.add_facet_field solr_name('make', :facetable), label: 'Make', limit: 5
+    config.add_facet_field solr_name('model', :facetable), label: 'Model', limit: 5
     config.add_facet_field solr_name('x_resolution', :facetable), label: 'X Resolution', limit: 5
     config.add_facet_field solr_name('y_resolution', :facetable), label: 'Y Resolution', limit: 5
     config.add_facet_field solr_name('icc_profile_description', :facetable), label: 'Profile Description', limit: 5

@@ -329,6 +329,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('make', :stored_searchable), [])
   end
 
+  def model
+    fetch(Solrizer.solr_name('model', :stored_searchable), [])
+  end
+
   def strip_offsets
     fetch(Solrizer.solr_name('strip_offsets', :stored_searchable), [])
   end

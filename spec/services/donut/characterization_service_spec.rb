@@ -19,6 +19,7 @@ RSpec.describe Donut::CharacterizationService do
     expect(file.date_time).to eq ['2014:07:16 10:26:11']
     expect(file.bits_per_sample).to eq ['8 8 8']
     expect(file.make).to eq ['i2S, Corp.']
+    expect(file.model).to eq ['SupraScanQuartzA1 [SN: 331001] - CamQuartzHD [SN: 331001]']
     expect(file.strip_offsets).to eq [34_612]
     expect(file.rows_per_strip).to eq [6212]
     expect(file.strip_byte_counts).to eq [102_125_280]
