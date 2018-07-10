@@ -58,7 +58,7 @@ LABEL edu.northwestern.library.app=DONUT \
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app/current/vendor/gems" app
 
-ENV RUNTIME_DEPS="clamav imagemagick libexif12 libexpat1 libgif4 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng12-0 libpoppler-glib8 libpq5 libreoffice-core librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-7-jre tzdata yarn" \
+ENV RUNTIME_DEPS="clamav imagemagick libexif12 libexpat1 libgif4 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng12-0 libpoppler-glib8 libpq5 libreoffice librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-7-jre tzdata yarn" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
     LANG="en_US.UTF-8" \
@@ -94,6 +94,8 @@ RUN cd /tmp && \
     curl -O https://s3.amazonaws.com/nul-repo-deploy/vips_8.6.3-1_amd64.deb && \
     dpkg -i /tmp/vips_8.6.3-1_amd64.deb && \
     rm /tmp/vips_8.6.3-1_amd64.deb
+
+RUN freshclam
 
 COPY --from=base /tmp/stage/bin/* /usr/local/bin/
 COPY --from=base /tmp/stage/fits-${FITS_VERSION} /usr/local/fits
