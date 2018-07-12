@@ -91,7 +91,7 @@ module Importer
         # @param [Hash] attrs the attributes to put in the environment
         # @return [Hyrax::Actors::Environment]
         def environment(attrs)
-          attrs[:member_of_collections].each { |collection| collection.reindex_extent = Hyrax::Adapters::NestingIndexAdapter::LIMITED_REINDEX }
+          attrs[:member_of_collections]&.each { |collection| collection.reindex_extent = Hyrax::Adapters::NestingIndexAdapter::LIMITED_REINDEX }
           Hyrax::Actors::Environment.new(@object, Ability.new(@deposit_user), attrs)
         end
 
