@@ -57,7 +57,7 @@ module Importer
       end
 
       def valid_headers
-        Image.attribute_names + %w[id type file] + collection_headers
+        Image.attribute_names + %w[id type file visibility] + collection_headers
       end
 
       def collection_headers
@@ -76,7 +76,7 @@ module Importer
       def extract_field(header, val, processed)
         return if val.blank?
         case header
-        when 'type', 'accession_number', 'id', 'status', 'ark', 'call_number', 'preservation_level'
+        when 'type', 'accession_number', 'id', 'status', 'ark', 'call_number', 'preservation_level', 'visibility'
           # single valued fields
           processed[header.to_sym] = val
         when /^(created|issued|date_copyrighted|date_valid)_(.*)$/
