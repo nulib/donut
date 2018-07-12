@@ -36,7 +36,7 @@ RSpec.describe Importer::CSVParser do
     subject(:parsed_headers) { parser.send(:validate_headers, headers) }
 
     context 'with valid headers' do
-      let(:headers) { %w[id title accession_number date_created rights_statement preservation_level status file type] }
+      let(:headers) { %w[id title accession_number date_created rights_statement preservation_level status file type visibility] }
 
       it 'contains the correct headers' do
         expect(parsed_headers).to eq headers
