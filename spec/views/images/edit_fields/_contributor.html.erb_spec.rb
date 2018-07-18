@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'records/edit_fields/_style_period.html.erb', type: :view do
+RSpec.describe 'images/edit_fields/_contributor.html.erb', type: :view do
   let(:image) { Image.new }
   let(:form) { Hyrax::ImageForm.new(image, nil, controller) }
   let(:form_template) do
     %(
       <%= simple_form_for [main_app, @form] do |f| %>
-        <%= render "records/edit_fields/style_period", f: f, key: 'style_period' %>
+        <%= render "images/edit_fields/contributor", f: f, key: 'contributor' %>
       <% end %>
     )
   end
@@ -17,6 +17,6 @@ RSpec.describe 'records/edit_fields/_style_period.html.erb', type: :view do
   end
 
   it 'has url for autocomplete service' do
-    expect(rendered).to have_selector('input[data-autocomplete-url="/authorities/search/getty/aat"][data-autocomplete="style_period"]')
+    expect(rendered).to have_selector('input[data-autocomplete-url="/authorities/search/getty/ulan"][data-autocomplete="contributor"]')
   end
 end
