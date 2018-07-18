@@ -3,7 +3,7 @@ class ValidationController < ApplicationController
   before_action :transform_rights_statement
 
   def validate_new
-    validate(validation_params)
+    validate(transform_new_params)
   end
 
   def validate_edit
@@ -21,11 +21,15 @@ class ValidationController < ApplicationController
       render json: payload, status: 200
     end
 
+    def transform_new_params
+      validation_params.except(:member_of_collections_attributes)
+    end
+
     def transform_edit_params
       # give it a dummy accession_number
       # because 'edit' will find it's own asseccsion as duplicate
       # but needs a unique one to validate
-      validation_params.except(:accession_number, :permissions_attributes, :version).merge(accession_number: 'INVALID_ACCESSION')
+      validation_params.except(:accession_number, :permissions_attributes, :version, :member_of_collections_attributes).merge(accession_number: 'INVALID_ACCESSION')
     end
 
     def transform_rights_statement
