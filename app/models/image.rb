@@ -112,15 +112,9 @@ class Image < ActiveFedora::Base
     self.preservation_level ||= DEFAULT_PRESERVATION_LEVEL
   end
 
-  apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
-
   def to_common_index
-    {
-      admin_set: { id: admin_set&.id, title: admin_set&.title },
-      collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
-      title: title,
-      date: date_created,
-      permalink: ark
-    }
+    CommonIndexService.index(self)
   end
+
+  apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
 end
