@@ -6,6 +6,7 @@ class Image < ActiveFedora::Base
   include ::Schemas::Workflow
   include ::Schemas::CommonMetadata
   include MicroserviceMinter
+  include ::CommonIndexer::Base
 
   self.indexer = ImageIndexer
   DEFAULT_STATUS = 'Not started'.freeze
@@ -112,4 +113,8 @@ class Image < ActiveFedora::Base
   end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
+
+  def to_common_index
+    { title: title }
+  end
 end

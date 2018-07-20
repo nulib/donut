@@ -8,6 +8,17 @@ GIT
       rails (>= 4.2)
 
 GIT
+  remote: https://github.com/nulib/common-indexer.git
+  revision: d0f8728ae29bc6a474a937ecb08f6d0fbb1630a9
+  branch: master
+  specs:
+    common_indexer (0.1.0)
+      active-fedora
+      activesupport
+      elasticsearch
+      typhoeus
+
+GIT
   remote: https://github.com/nulib/donut-retry.git
   revision: 628a9ad9cc4dea425530878e51034978d8199e60
   branch: master
@@ -853,6 +864,14 @@ GEM
     edtf-humanize (0.0.7)
       activesupport (>= 4, < 6)
       edtf (>= 2.3, < 4)
+    elasticsearch (6.1.0)
+      elasticsearch-api (= 6.1.0)
+      elasticsearch-transport (= 6.1.0)
+    elasticsearch-api (6.1.0)
+      multi_json
+    elasticsearch-transport (6.1.0)
+      faraday
+      multi_json
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.7.1)
@@ -1430,6 +1449,7 @@ DEPENDENCIES
   carrierwave-aws
   cloudfront-signer
   coffee-rails (~> 4.2)
+  common_indexer!
   config
   database_cleaner
   devise
