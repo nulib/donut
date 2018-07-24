@@ -110,5 +110,5 @@ group :aws do
 end
 
 group :production do
-  gem 'clamav'
+  # gem 'clamav'
 end
