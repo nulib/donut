@@ -41,6 +41,7 @@ gem 'browse-everything', github: 'samvera/browse-everything', branch: 'no-more-p
 gem 'config'
 gem 'exiftool_vendored'
 gem 'ezid-client'
+gem 'httparty'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 

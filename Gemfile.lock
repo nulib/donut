@@ -916,6 +916,8 @@ GEM
     hiredis (0.6.1)
     htmlentities (4.3.4)
     http_logger (0.5.1)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     hydra-access-controls (10.5.1)
       active-fedora (>= 10.0.0, < 12)
@@ -1444,6 +1446,7 @@ DEPENDENCIES
   ezid-client
   factory_bot_rails
   fcrepo_wrapper
+  httparty
   hydra-derivatives!
   hydra-role-management
   hyrax!
