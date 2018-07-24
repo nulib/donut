@@ -37,6 +37,7 @@ gem 'hydra-derivatives', github: 'nulib/hydra-derivatives', branch: 'vips'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
+gem 'browse-everything', github: 'samvera/browse-everything', branch: 'no-more-parties'
 gem 'config'
 gem 'exiftool_vendored'
 gem 'ezid-client'
