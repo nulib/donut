@@ -116,7 +116,7 @@ class Image < ActiveFedora::Base
 
   def to_common_index
     {
-      admin_set: { id: admin_set.id, title: admin_set.title },
+      admin_set: { id: admin_set&.id, title: admin_set&.title },
       collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
       title: title,
       date: date_created,
