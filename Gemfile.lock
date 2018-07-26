@@ -776,6 +776,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    common_indexer (0.1.0)
+      active-fedora
+      activesupport
+      elasticsearch
+      typhoeus
     concurrent-ruby (1.0.5)
     config (1.6.1)
       activesupport (>= 3.0)
@@ -853,6 +858,14 @@ GEM
     edtf-humanize (0.0.7)
       activesupport (>= 4, < 6)
       edtf (>= 2.3, < 4)
+    elasticsearch (6.1.0)
+      elasticsearch-api (= 6.1.0)
+      elasticsearch-transport (= 6.1.0)
+    elasticsearch-api (6.1.0)
+      multi_json
+    elasticsearch-transport (6.1.0)
+      faraday
+      multi_json
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.7.1)
@@ -1430,6 +1443,7 @@ DEPENDENCIES
   carrierwave-aws
   cloudfront-signer
   coffee-rails (~> 4.2)
+  common_indexer (~> 0.1.0)
   config
   database_cleaner
   devise

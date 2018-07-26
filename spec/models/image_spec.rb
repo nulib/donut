@@ -23,4 +23,10 @@ RSpec.describe Image do
     image_without_preservation_level = FactoryBot.build(:image, attributes)
     expect(image_without_preservation_level.preservation_level).to eq(Image::DEFAULT_PRESERVATION_LEVEL)
   end
+
+  describe '#to_common_index' do
+    it 'maps metadata to a hash for indexing' do
+      expect(image.to_common_index[:title]).to eq(['Test title'])
+    end
+  end
 end

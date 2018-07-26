@@ -1,3 +1,10 @@
+common_indexer:
+  allowed_keys:
+    - admin_set
+    - collection
+    - title
+    - date
+    - permalink
 solr:
   configset: donut
   configset_source_path: <%= File.join(Rails.root, 'solr', 'conf') %>
