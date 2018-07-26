@@ -7,5 +7,3 @@ aws:
     uploads: test-uploads
 common_indexer:
   endpoint: http://localhost:9202/
-  allowed_keys:
-    - title

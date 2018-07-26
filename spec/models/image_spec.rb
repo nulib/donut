@@ -26,7 +26,7 @@ RSpec.describe Image do
 
   describe '#to_common_index' do
     it 'maps metadata to a hash for indexing' do
-      expect(image.to_common_index).to eq(title: ['Test title'])
+      expect(image.to_common_index[:title]).to eq(['Test title'])
     end
   end
 end

@@ -11,5 +11,3 @@ iiif:
   endpoint: http://localhost:8183/iiif/2/
 common_indexer:
   endpoint: http://localhost:9201/
-  allowed_keys:
-    - title

@@ -8,17 +8,6 @@ GIT
       rails (>= 4.2)
 
 GIT
-  remote: https://github.com/nulib/common-indexer.git
-  revision: d0f8728ae29bc6a474a937ecb08f6d0fbb1630a9
-  branch: master
-  specs:
-    common_indexer (0.1.0)
-      active-fedora
-      activesupport
-      elasticsearch
-      typhoeus
-
-GIT
   remote: https://github.com/nulib/donut-retry.git
   revision: 628a9ad9cc4dea425530878e51034978d8199e60
   branch: master
@@ -787,6 +776,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    common_indexer (0.1.0)
+      active-fedora
+      activesupport
+      elasticsearch
+      typhoeus
     concurrent-ruby (1.0.5)
     config (1.6.1)
       activesupport (>= 3.0)
@@ -1449,7 +1443,7 @@ DEPENDENCIES
   carrierwave-aws
   cloudfront-signer
   coffee-rails (~> 4.2)
-  common_indexer!
+  common_indexer (~> 0.1.0)
   config
   database_cleaner
   devise

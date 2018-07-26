@@ -45,7 +45,7 @@ gem 'httparty'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 
-gem 'common_indexer', github: 'nulib/common-indexer', branch: 'master'
+gem 'common_indexer', '~> 0.1.0'
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
 
 gem 'edtf'
