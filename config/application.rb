@@ -27,7 +27,8 @@ module Nextgen
         host: redis_host,
         port: redis_port,
         db: 0,
-        namespace: 'donut-cache'
+        namespace: "_#{Rails.application.class.parent_name.downcase}_cache",
+        expires_in: 30.days
       }
     end
 
