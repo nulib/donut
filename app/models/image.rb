@@ -7,6 +7,7 @@ class Image < ActiveFedora::Base
   include ::Schemas::CommonMetadata
   include MicroserviceMinter
   include ::CommonIndexer::Base
+  include ImageIndex
 
   self.indexer = ImageIndexer
   DEFAULT_STATUS = 'Not started'.freeze
@@ -113,14 +114,4 @@ class Image < ActiveFedora::Base
   end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
-
-  def to_common_index
-    {
-      admin_set: { id: admin_set&.id, title: admin_set&.title },
-      collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
-      title: title,
-      date: date_created,
-      permalink: ark
-    }
-  end
 end
