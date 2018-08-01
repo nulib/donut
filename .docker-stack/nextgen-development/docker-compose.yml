@@ -90,19 +90,8 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-  sqsd:
-    image: nulib/sqsd
-    depends_on:
-    - localstack
-    environment:
-      SQSD_WORKER_HTTP_URL: http://docker.for.mac.host.internal:3000
-      SQSD_QUEUE_URL: http://localstack:4576/queue/donut
-      SQSD_SSL_ENABLED: 'false'
-      SQSD_RUN_DAEMONIZED: 'true'
-      AWS_ACCESS_KEY_ID: localstack-dev-key
-      AWS_SECRET_ACCESS_KEY: localstack-dev-secret
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
     ports:
     - 9201:9200
     volumes:
@@ -115,6 +104,19 @@ services:
       - curl
       - "-f"
       - http://localhost:9200/
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.2
+    ports:
+    - 5602:5601
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "-f"
+      - http://localhost:5601/
       interval: 30s
       timeout: 5s
       retries: 3
