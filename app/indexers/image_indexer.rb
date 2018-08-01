@@ -10,9 +10,11 @@ class ImageIndexer < Hyrax::WorkIndexer
   include Hyrax::IndexesLinkedMetadata
 
   # Custom indexing behavior:
+  # rubocop:disable Metrics/AbcSize
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['date_created_display_tesim'] = object.date_created.map { |d| Date.edtf(d).humanize }
+      (solr_doc['rights_statement_label_tesim'] ||= []) << Hyrax::RightsStatementService.new.label(object.rights_statement.first)
       object.file_set_ids.each do |file_set_id|
         file_set = ::FileSet.find(file_set_id)
         next if file_set.original_file.nil?
@@ -22,7 +24,6 @@ class ImageIndexer < Hyrax::WorkIndexer
     end
   end
 
-  # rubocop:disable Metrics/AbcSize
   def index_technical_metadata(solr_doc, file_set)
     (solr_doc['width_sim'] ||= []) << file_set.characterization_proxy.width.first
     (solr_doc['height_sim'] ||= []) << file_set.characterization_proxy.height.first
