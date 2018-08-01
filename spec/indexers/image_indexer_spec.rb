@@ -38,6 +38,10 @@ describe ImageIndexer do
         expect(solr_doc['file_set_iiif_urls_ssim']).to match_array(iiif_url)
       end
 
+      it 'indexes the rights statement label' do
+        expect(solr_doc['rights_statement_label_tesim']).to match_array(['No Known Copyright'])
+      end
+
       it 'indexes the exif metadata for the filesets' do
         expect(solr_doc['x_resolution_sim']).to match_array([600])
       end
