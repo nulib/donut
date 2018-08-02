@@ -8,11 +8,21 @@ module ImageIndex
       common_index_values(:abstract, :caption, :description, :keyword, :provenance,
                           :publisher, :rights_holder, :source, :visibility)
     ).merge(
-      common_index_labels(:genre, :language, :style_period, :technique)
+      common_index_labels(:language)
+    ).merge(
+      common_index_extra_fields
     )
   end
 
   private
+    def common_index_autocomplete(*fields)
+    end
+
+    def common_index_date(edtf_date)
+      Array(edtf_date).collect do |date|
+        Array(Date.edtf(date)).map(&:iso8601)
+      end.flatten.sort.uniq
+    end
 
     def common_index_model
       {
@@ -20,6 +30,14 @@ module ImageIndex
           application: Rails.application.class.parent.name,
           name: self.class.name
         }
+      }
+    end
+
+    def common_index_extra_fields
+      {
+        extra_fields: common_index_labels(:genre, :style_period, :technique).merge({
+          physical_description: { material: physical_description_material, size: physical_description_size }
+        })
       }
     end
 
@@ -34,9 +52,8 @@ module ImageIndex
           :printer, :printmaker, :producer, :production_manager, :screenwriter, :sculptor,
           :sponsor
         ),
-        date: date_created,
+        date: common_index_date(date_created),
         permalink: ark,
-        physical_description: { material: physical_description_material, size: physical_description_size },
         subject: common_index_typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title }
       }
@@ -55,7 +72,7 @@ module ImageIndex
       {}.tap do |result|
         fields.each do |field|
           value = send(field)
-          result[field] = value.map { |v| v.fetch.preferred_label } unless value.empty?
+          result[field] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } unless value.empty?
         end
       end
     end
@@ -67,8 +84,9 @@ module ImageIndex
 
           next if self[name].empty?
           Array(self[name]).each do |value|
+            uri = value.is_a?(ControlledVocabularies::Base) ? value.id : nil
             label = value.is_a?(ControlledVocabularies::Base) ? value.fetch.preferred_label : value
-            result << { type: type, label: label }
+            result << { type: type, uri: uri, label: label }
           end
         end
       end
