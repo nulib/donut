@@ -7,7 +7,6 @@ class Image < ActiveFedora::Base
   include ::Schemas::CommonMetadata
   include MicroserviceMinter
   include ::CommonIndexer::Base
-  include ImageIndex
 
   self.indexer = ImageIndexer
   DEFAULT_STATUS = 'Not started'.freeze
@@ -113,5 +112,9 @@ class Image < ActiveFedora::Base
     self.preservation_level ||= DEFAULT_PRESERVATION_LEVEL
   end
 
+  def to_common_index
+    CommonIndexService.index(self)
+  end
+  
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
 end
