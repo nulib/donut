@@ -36,8 +36,27 @@ module CommonIndexers
         permalink: ark,
         subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },
+        thumbnail_url: thumbnail,
+        iiif_manifest: iiif_manifest,
         extra_fields: extra_fields
       }
+    end
+
+    private
+
+    def thumbnail
+      return nil if representative_file.nil?
+      IiifDerivativeService.resolve(representative_file).join('square/300,/0/default.jpg')
+    end
+
+    def iiif_manifest
+      return nil if representative_file.nil?
+      IiifDerivativeService.resolve(representative_file).join('info.json')
+    end
+
+    def representative_file
+      return nil if representative_id.nil?
+      FileSet.find(representative_id).files.first.id
     end
   end
 end
