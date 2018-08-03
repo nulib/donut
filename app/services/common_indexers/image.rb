@@ -1,7 +1,7 @@
 module CommonIndexers
   class Image < Base
-    def assemble_index
-      assemble(
+    def generate
+      multi_merge(
         model,
         fields,
         values(:abstract, :caption, :description, :keyword, :provenance, :publisher, :rights_holder, :source, :visibility),
@@ -25,13 +25,14 @@ module CommonIndexers
       }.merge(labels(:genre, :style_period, :technique))
     end
 
-    def fields
+    def fields # rubocop:disable Metrics/AbcSize
       {
         admin_set: { id: admin_set&.id, title: admin_set&.title },
         collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
         contributor: contributor,
         date: date_created,
         expanded_date: date(date_created),
+        year: extract_years(date_created),
         permalink: ark,
         subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },

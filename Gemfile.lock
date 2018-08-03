@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/nulib/common-indexer.git
-  revision: ad8bbb58cbbe6a7836f2d1f48f5eeb79617e8b18
+  revision: 779208d5a1a0cee9772f38b1df7c3adbc4930bcb
   branch: mappings
   specs:
     common_indexer (0.1.1)

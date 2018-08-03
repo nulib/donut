@@ -6,16 +6,24 @@ module CommonIndexers
       @source = source
     end
 
-    def assemble(*hashes)
+    def multi_merge(*hashes)
       {}.tap do |result|
         hashes.each { |hash| result.merge!(hash) }
       end
     end
 
-    def date(edtf_date)
-      Array(edtf_date).collect do |date|
-        Array(Date.edtf(date)).map(&:iso8601)
+    def all_dates(edtf_date)
+      Array(edtf_date).map do |date|
+        Array(Date.edtf(date))
       end.flatten.sort.uniq
+    end
+
+    def date(edtf_date)
+      all_dates(edtf_date).map(&:iso8601)
+    end
+
+    def extract_years(edtf_date)
+      all_dates(edtf_date).map(&:year).uniq
     end
 
     def model

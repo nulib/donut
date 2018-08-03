@@ -115,6 +115,6 @@ class Image < ActiveFedora::Base
   def to_common_index
     CommonIndexService.index(self)
   end
-  
+
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
 end
