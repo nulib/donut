@@ -5,7 +5,8 @@ module CommonIndexers
         model,
         fields,
         values(:abstract, :caption, :description, :keyword, :provenance, :publisher, :rights_holder, :source, :visibility),
-        labels(:language)
+        labels(:language),
+        location(:based_near)
       )
     end
 

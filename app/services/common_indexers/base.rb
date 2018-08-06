@@ -25,6 +25,13 @@ module CommonIndexers
     def extract_years(edtf_date)
       all_dates(edtf_date).map(&:year).uniq
     end
+    
+    def location(field)
+      {}.tap do |result|
+        value = source.send(field)
+        result[:location] = value.first.fetch.geo_point unless value.empty?
+      end
+    end
 
     def model
       {
