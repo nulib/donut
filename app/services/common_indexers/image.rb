@@ -37,7 +37,7 @@ module CommonIndexers
         subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
-        iiif_manifest: representative_file('info.json'),
+        iiif_manifest: representative_file('manifest.json'),
         extra_fields: extra_fields
       }
     end
