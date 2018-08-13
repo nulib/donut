@@ -5,6 +5,11 @@ module Hyrax
       include CachingFetcher
       require 'rdf/rdfxml'
 
+      def initialize(*args, &block)
+        args[0] = correct_uri_for(args.first) unless args.first.is_a?(Hash)
+        super(*args, &block)
+      end
+
       def geo_point
         cache_key = "fetch:#{rdf_subject}"
         cached_graph = Rails.cache.read(cache_key)
@@ -19,6 +24,17 @@ module Hyrax
       end
 
       private
+
+        def correct_uri_for(id)
+          return if id.nil?
+          value = case id.to_s
+                  when /^info:lc(.+)$/ then "http://id.loc.gov#{Regexp.last_match(1)}"
+                  when /^fst(.+)$/ then "http://id.worldcat.org/fast/#{Regexp.last_match(1).sub!(/0+([1-9]+)/, '\1')}"
+                  when /geonames.org/ then URI(id).tap { |uri| uri.host = 'sws.geonames.org' }.to_s
+                  else id.to_s
+                  end
+          ::RDF::URI(value)
+        end
 
         def latitude_and_longitude
           query = RDF::Query.new(location: {

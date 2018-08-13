@@ -31,6 +31,7 @@ module ControlledVocabularies
         value = case id.to_s
                 when /^info:lc(.+)$/ then "http://id.loc.gov#{Regexp.last_match(1)}"
                 when /^fst(.+)$/ then "http://id.worldcat.org/fast/#{Regexp.last_match(1).sub!(/0+([1-9]+)/, '\1')}"
+                when /geonames.org/ then URI(id).tap { |uri| uri.host = 'sws.geonames.org' }.to_s
                 else id.to_s
                 end
         ::RDF::URI(value)
