@@ -42,6 +42,8 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   Max: 14 # default is 10
+  Exclude:
+    - 'app/services/common_indexers/image.rb'
 
 Layout/IndentationConsistency:
   EnforcedStyle: rails

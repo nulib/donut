@@ -10,6 +10,7 @@
 Metrics/AbcSize:
   Exclude:
     - 'app/jobs/import_url_job.rb'
+    - 'app/services/common_indexers/image.rb'
   Max: 20
 RSpec/MessageSpies:
   Exclude:

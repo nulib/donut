@@ -42,6 +42,7 @@ module Hyrax
                                    RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#long') => :long
                                  })
           results = query.execute(graph)
+          return {} if results.empty?
           lat = results.first[:lat].to_s
           long = results.first[:long].to_s
           { lat: lat, lon: long }
