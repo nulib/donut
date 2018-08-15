@@ -1,5 +1,6 @@
 module ControlledVocabularies
   class Base < ActiveTriples::Resource
+    configure rdf_label: ::RDF::Vocab::GEONAMES.name
     include CachingFetcher
     require 'rdf/rdfxml'
 
