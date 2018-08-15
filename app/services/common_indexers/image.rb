@@ -26,8 +26,9 @@ module CommonIndexers
       }.merge(labels(:genre, :style_period, :technique))
     end
 
-    def fields # rubocop:disable Metrics/AbcSize
+    def fields
       {
+        id: id,
         admin_set: { id: admin_set&.id, title: admin_set&.title },
         collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
         contributor: contributor,
@@ -39,7 +40,10 @@ module CommonIndexers
         title: { primary: title, alternate: alternate_title },
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
         iiif_manifest: representative_file('manifest.json'),
-        extra_fields: extra_fields
+        fileset_iiif_urls: fileset_iiif_urls,
+        representative_file_url: representative_file(''),
+        extra_fields: extra_fields,
+        resource_type: resource_type
       }
     end
 
@@ -50,6 +54,16 @@ module CommonIndexers
         fs = FileSet.find(representative_id)
         return nil if fs.files.empty?
         IiifDerivativeService.resolve(fs.files.first.id).join(suffix)
+      end
+
+      def fileset_iiif_urls
+        [].tap do |result|
+          file_set_ids.each do |file_set_id|
+            file_set = ::FileSet.find(file_set_id)
+            next if file_set.original_file.nil?
+            result << IiifDerivativeService.resolve(file_set.original_file.id).to_s
+          end
+        end
       end
   end
 end
