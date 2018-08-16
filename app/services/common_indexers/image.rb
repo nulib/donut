@@ -21,9 +21,12 @@ module CommonIndexers
     end
 
     def extra_fields
-      {
-        physical_description: { material: physical_description_material, size: physical_description_size }
-      }.merge(labels(:genre, :style_period, :technique))
+      multi_merge(
+        { box: { name: box_name, number: box_number } },
+        { folder: { name: folder_name, number: folder_number } },
+        { physical_description: { material: physical_description_material, size: physical_description_size } },
+        labels(:genre, :style_period, :technique)
+      )
     end
 
     def fields
@@ -43,7 +46,16 @@ module CommonIndexers
         fileset_iiif_urls: fileset_iiif_urls,
         representative_file_url: representative_file(''),
         extra_fields: extra_fields,
-        resource_type: resource_type
+        resource_type: resource_type,
+        related_url: related_url,
+        rights_statement: rights_statement,
+        identifier: identifier,
+        license: license,
+        nul_use_statement: nul_use_statement,
+        accession_number: accession_number,
+        call_number: call_number,
+        catalog_key: catalog_key,
+        bibliographic_citation: bibliographic_citation
       }
     end
 
