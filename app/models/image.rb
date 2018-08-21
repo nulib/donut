@@ -32,7 +32,7 @@ class Image < ActiveFedora::Base
   end
 
   property :accession_number, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/subjectSchemes/local'), multiple: false do |index|
-    index.as :stored_searchable
+    index.as :symbol
   end
 
   property :ark, predicate: ::RDF::Vocab::DataCite.ark, multiple: false do |index|

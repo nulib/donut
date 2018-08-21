@@ -15,7 +15,7 @@ RSpec.describe SolrDocument do
       title_tesim: ['Test title'],
       alternate_title_tesim: ['Alternate Title 1'],
       abstract_tesim: ['Lemon drops donut gummi bears carrot cake dragée.'],
-      accession_number_tesim: ['Lgf0825'],
+      accession_number_ssim: ['Lgf0825'],
       box_name_tesim: ['A good box name'],
       box_number_tesim: ['42'],
       call_number_tesim: ['W107.8:Am6'],
