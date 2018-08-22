@@ -69,7 +69,7 @@ class SolrDocument
   end
 
   def accession_number
-    fetch(Solrizer.solr_name('accession_number', :stored_searchable), [])
+    fetch(Solrizer.solr_name('accession_number', :symbol), [])
   end
 
   def alternate_title
