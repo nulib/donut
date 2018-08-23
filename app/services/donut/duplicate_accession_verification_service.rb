@@ -20,7 +20,7 @@ module Donut
     # return [Array<String>] array of pids
     def duplicate_ids
       return [] if accession_number.nil?
-      Image.where(accession_number_tesim: @accession_number)
+      Image.where(accession_number_ssim: @accession_number)
     end
   end
 end

@@ -34,15 +34,17 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'hydra-derivatives', github: 'nulib/hydra-derivatives', branch: 'vips'
-gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'master'
+gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
 gem 'exiftool_vendored'
 gem 'ezid-client'
+gem 'httparty'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 
+gem 'common_indexer', '~> 0.1.0', github: 'nulib/common-indexer', branch: 'mappings'
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
 
 gem 'edtf'
@@ -108,5 +110,5 @@ group :aws do
 end
 
 group :production do
-  gem 'clamav'
+  # gem 'clamav'
 end

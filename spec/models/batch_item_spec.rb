@@ -98,6 +98,25 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
     end
   end
 
+  context 'partial duplicate of accession number' do
+    let(:accession_number) { '1234' }
+    let(:prior_accession_number) { '1234-5678' }
+
+    let(:attributes) { common_attributes.reject { |k, _v| k == :accession_number }.merge(accession_number: accession_number) }
+    let(:prior_attributes) { common_attributes.reject { |k, _v| k == :accession_number }.merge(accession_number: prior_accession_number) }
+    let(:prior_batch) { Batch.create(submitter: submitter, job_id: job_id.reverse, original_filename: original_filename) }
+    let(:prior_item) { prior_batch.batch_items.create(accession_number: prior_accession_number, attribute_hash: prior_attributes, row_number: 1) }
+
+    before do
+      prior_item.complete!
+      batch_item.run
+    end
+
+    it 'is not skipped' do
+      expect(batch_item.status).to eq('complete')
+    end
+  end
+
   context 'controlled property with invalid value' do
     let(:contributor) { ['Text M. Stringer'] }
     let(:attributes)  { common_attributes }

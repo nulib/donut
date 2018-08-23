@@ -6,6 +6,7 @@ class Image < ActiveFedora::Base
   include ::Schemas::Workflow
   include ::Schemas::CommonMetadata
   include MicroserviceMinter
+  include ::CommonIndexer::Base
 
   self.indexer = ImageIndexer
   DEFAULT_STATUS = 'Not started'.freeze
@@ -31,7 +32,7 @@ class Image < ActiveFedora::Base
   end
 
   property :accession_number, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/subjectSchemes/local'), multiple: false do |index|
-    index.as :stored_searchable
+    index.as :symbol
   end
 
   property :ark, predicate: ::RDF::Vocab::DataCite.ark, multiple: false do |index|
@@ -109,6 +110,10 @@ class Image < ActiveFedora::Base
   def default_values
     self.status ||= DEFAULT_STATUS
     self.preservation_level ||= DEFAULT_PRESERVATION_LEVEL
+  end
+
+  def to_common_index
+    CommonIndexService.index(self)
   end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new

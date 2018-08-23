@@ -9,7 +9,7 @@ describe Donut::DuplicateAccessionVerificationService do
   let(:service)              { described_class.new(accession_number) }
 
   context 'when no duplicate accession numbers exist' do
-    before { allow(Image).to receive(:where).with(accession_number_tesim: accession_number).and_return([]) }
+    before { allow(Image).to receive(:where).with(accession_number_ssim: accession_number).and_return([]) }
     it { is_expected.to be_empty }
   end
 
@@ -17,7 +17,7 @@ describe Donut::DuplicateAccessionVerificationService do
     let(:image) { FactoryBot.create(:image, accession_number: 'nul:999') }
 
     before do
-      allow(Image).to receive(:where).with(accession_number_tesim: accession_number).and_return([image.id])
+      allow(Image).to receive(:where).with(accession_number_ssim: accession_number).and_return([image.id])
     end
     it { is_expected.to contain_exactly(image.id) }
   end
@@ -26,7 +26,7 @@ describe Donut::DuplicateAccessionVerificationService do
     subject { described_class.unique?(accession_number) }
 
     context 'when no duplicate accession numbers exist' do
-      before { allow(Image).to receive(:where).with(accession_number_tesim: accession_number).and_return([]) }
+      before { allow(Image).to receive(:where).with(accession_number_ssim: accession_number).and_return([]) }
       it { is_expected.to be(true) }
     end
   end
@@ -38,7 +38,7 @@ describe Donut::DuplicateAccessionVerificationService do
       let(:image) { FactoryBot.create(:image, accession_number: 'nul:999') }
 
       before do
-        allow(Image).to receive(:where).with(accession_number_tesim: accession_number).and_return([image.id])
+        allow(Image).to receive(:where).with(accession_number_ssim: accession_number).and_return([image.id])
       end
       it { is_expected.to be(true) }
     end
