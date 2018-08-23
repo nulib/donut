@@ -25,6 +25,7 @@ unless Rails.env.production?
     task seed: :environment do
       Rake::Task['db:create'].invoke
       Rake::Task['db:migrate'].invoke
+      Rake::Task['elasticsearch:init'].invoke
       ActiveRecord::Base.descendants.each(&:reset_column_information)
       Rake::Task['hyrax:default_collection_types:create'].invoke
       Rake::Task['hyrax:default_admin_set:create'].invoke if AdminSet.count.zero?

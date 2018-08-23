@@ -121,16 +121,16 @@ services:
       API_TOKEN_SECRET: ab00ffc725da64fa07b20f42ed8bbcf0fda5779aa55c90cedf3a81e09e3a2b14
       OPENAM_SERVER: https://websso.it.northwestern.edu/amserver/
       OPENAM_COOKIE: openAMssoToken
-#  kibana:
-#    image: docker.elastic.co/kibana/kibana:6.3.2
-#    ports:
-#    - 5602:5601
-#    healthcheck:
-#      test:
-#      - CMD
-#      - curl
-#      - "-f"
-#      - http://localhost:5601/
-#      interval: 30s
-#      timeout: 5s
-#      retries: 3
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.2
+    ports:
+    - 5602:5601
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "-f"
+      - http://localhost:5601/
+      interval: 30s
+      timeout: 5s
+      retries: 3
