@@ -3,6 +3,8 @@ en:
     labels:
       defaults:
         description: Description
+        nul_creator: Uncontrolled Creator
+        nul_contributor: Uncontrolled Contributor
   blacklight:
     search:
       fields:
@@ -14,7 +16,7 @@ en:
           keyword_sim: Keyword
           language_sim: Language
           publisher_sim: Publisher
-          subject_sim: NUL Subject
+          subject_sim: Uncontrolled Subject
         index:
           based_near_label_tesim: Location (Place of Publication)
           bibliographic_citation_tesim: Citation
@@ -30,7 +32,7 @@ en:
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
-          subject_tesim: NUL Subject
+          subject_tesim: Uncontrolled Subject
         show:
           based_near_label_tesim: Location (Place of Publication)
           bibliographic_citation_tesim: Citation
@@ -46,7 +48,7 @@ en:
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
-          subject_tesim: NUL Subject
+          subject_tesim: Uncontrolled Subject
           title_tesim: Title
   hyrax:
     admin:
@@ -61,7 +63,7 @@ en:
         bibliographic_citation:
           label: "Citation"
         subject:
-          label: "NUL Subject"
+          label: "Uncontrolled Subject"
         subject_geographical:
           label: "Select Authority For Subject Geographical"
           prompt: "Choose authority"

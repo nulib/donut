@@ -40,10 +40,10 @@
 <%= presenter.attribute_to_html(:project_manager, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:task_number) %>
 <%= presenter.attribute_to_html(:project_cycle, render_as: :faceted) %>
-<%= presenter.attribute_to_html(:nul_creator, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:nul_creator, render_as: :faceted, label: 'Uncontrolled Creator') %>
 <%= presenter.attribute_to_html(:provenance) %>
-<%= presenter.attribute_to_html(:subject, render_as: :faceted, label: 'NUL Subject') %>
-<%= presenter.attribute_to_html(:nul_contributor, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:subject, render_as: :faceted, label: 'Uncontrolled Subject') %>
+<%= presenter.attribute_to_html(:nul_contributor, render_as: :faceted, label: 'Uncontrolled Contributor') %>
 <%= presenter.attribute_to_html(:nul_use_statement, label: 'NUL Use Statement') %>
 <!-- CoreMetadata attributes -->
 <%= presenter.attribute_to_html(:architect_label, render_as: :faceted, label: 'Architect') %>
