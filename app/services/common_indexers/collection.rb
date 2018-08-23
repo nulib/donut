@@ -4,7 +4,7 @@ module CommonIndexers
       multi_merge(
         model,
         fields,
-        values(:description, :visibility)
+        values(:description, :visibility, :keyword)
       )
     end
 
