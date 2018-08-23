@@ -1,4 +1,8 @@
 en:
+  simple_form:
+    labels:
+      defaults:
+        description: Description
   blacklight:
     search:
       fields:

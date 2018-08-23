@@ -29,7 +29,8 @@ class ValidationController < ApplicationController
       # give it a dummy accession_number
       # because 'edit' will find it's own asseccsion as duplicate
       # but needs a unique one to validate
-      validation_params.except(:accession_number, :permissions_attributes, :version, :member_of_collections_attributes).merge(accession_number: 'INVALID_ACCESSION')
+      validation_params.except(:accession_number, :permissions_attributes,
+                               :version, :work_members_attributes, :member_of_collections_attributes).merge(accession_number: 'INVALID_ACCESSION')
     end
 
     def transform_rights_statement
