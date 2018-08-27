@@ -26,6 +26,10 @@ module CommonIndexers
       all_dates(edtf_date).map(&:year).uniq
     end
 
+    def display_date(edtf_date)
+      edtf_date.map { |date| Date.edtf(date).humanize }
+    end
+
     def location(field)
       {}.tap do |result|
         value = source.send(field)
