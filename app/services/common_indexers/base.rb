@@ -60,6 +60,16 @@ module CommonIndexers
       end
     end
 
+    def facets(*fields)
+      {}.tap do |result|
+        fields.each do |field|
+          value = source.send(field)
+          key = (field.to_s + '_facet').to_sym
+          result[key] = value.map { |v| v.fetch.preferred_label } unless value.empty?
+        end
+      end
+    end
+
     def typed_values(*fields)
       [].tap do |result|
         fields.each do |field|
