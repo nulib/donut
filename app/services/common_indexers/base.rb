@@ -81,8 +81,22 @@ module CommonIndexers
 
           next if source[name].empty?
           Array(source[name]).each do |value|
-            (uri, label) = value.is_a?(ControlledVocabularies::Base) ? [value.id, value.fetch.preferred_label] : [nil, value]
+            (uri, label) = fetch_uri_and_label(value)
             result << { type: type, uri: uri, label: label }
+          end
+        end
+      end
+    end
+
+    def contributors(*fields)
+      [].tap do |result|
+        fields.each do |field|
+          (name, type) = field.is_a?(Array) ? field.map(&:to_s) : [field.to_s, field.to_s]
+
+          next if source[name].empty?
+          Array(source[name]).each do |value|
+            (uri, label) = fetch_uri_and_label(value)
+            result << { type: type, uri: uri, label: "#{label} (#{type.capitalize})" }
           end
         end
       end
@@ -95,5 +109,11 @@ module CommonIndexers
     def respond_to_missing?(sym)
       source.respond_to?(sym)
     end
+
+    private
+
+      def fetch_uri_and_label(value)
+        value.is_a?(ControlledVocabularies::Base) ? [value.id, value.fetch.preferred_label] : [nil, value]
+      end
   end
 end

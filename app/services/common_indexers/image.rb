@@ -12,10 +12,10 @@ module CommonIndexers
     end
 
     def contributor
-      typed_values(
+      contributors(
         :architect, :artist, :author, :cartographer, :compiler, :composer,
-        :contributor, :creator, :designer, :director, :draftsman, :editor, :engraver,
-        :illustrator, :librettist, :nul_creator, :performer, :photographer, :presenter,
+        :contributor, :designer, :director, :draftsman, :editor, :engraver,
+        :illustrator, :librettist, :nul_contributor, :performer, :photographer, :presenter,
         :printer, :printmaker, :producer, :production_manager, :screenwriter, :sculptor,
         :sponsor
       )
@@ -36,6 +36,7 @@ module CommonIndexers
         admin_set: { id: admin_set&.id, title: admin_set&.title },
         collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
         contributor: contributor,
+        creator: typed_values(:creator, :nul_creator),
         date: display_date(date_created),
         expanded_date: date(date_created),
         year: extract_years(date_created),
