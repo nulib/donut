@@ -6,6 +6,7 @@ module CommonIndexers
         fields,
         values(:abstract, :caption, :description, :keyword, :provenance, :publisher, :rights_holder, :source, :visibility),
         labels(:language),
+        facets(:genre),
         location(:based_near)
       )
     end
