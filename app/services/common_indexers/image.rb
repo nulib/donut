@@ -38,12 +38,12 @@ module CommonIndexers
         date: date_created,
         expanded_date: date(date_created),
         year: extract_years(date_created),
+        display_date: display_date(date_created),
         permalink: ark,
         subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
         iiif_manifest: representative_file('manifest.json'),
-        fileset_iiif_urls: fileset_iiif_urls,
         representative_file_url: representative_file(''),
         extra_fields: extra_fields,
         resource_type: resource_type,
@@ -66,16 +66,6 @@ module CommonIndexers
         fs = FileSet.find(representative_id)
         return nil if fs.files.empty?
         IiifDerivativeService.resolve(fs.files.first.id).join(suffix)
-      end
-
-      def fileset_iiif_urls
-        [].tap do |result|
-          file_set_ids.each do |file_set_id|
-            file_set = ::FileSet.find(file_set_id)
-            next if file_set.original_file.nil?
-            result << IiifDerivativeService.resolve(file_set.original_file.id).to_s
-          end
-        end
       end
   end
 end
