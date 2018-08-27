@@ -48,9 +48,9 @@ module CommonIndexers
         representative_file_url: representative_file(''),
         resource_type: resource_type,
         related_url: related_url_values,
-        rights_statement: rights_statement,
+        rights_statement: rights_statement_object,
         identifier: identifier,
-        license: license,
+        license: licenses,
         nul_use_statement: nul_use_statement,
         accession_number: accession_number,
         call_number: call_number,
@@ -64,6 +64,19 @@ module CommonIndexers
     end
 
     private
+
+      def licenses
+        [].tap do |obj|
+          license.each do |l|
+            obj << { uri: l, label: Hyrax::LicenseService.new.label(l) }
+          end
+        end
+      end
+
+      def rights_statement_object
+        return nil if rights_statement.blank?
+        { uri: rights_statement.first, label: Hyrax::RightsStatementService.new.label(rights_statement.first) }
+      end
 
       def representative_file(suffix)
         return nil if representative_id.nil?
