@@ -20,18 +20,22 @@ module CommonIndexers
       )
     end
 
+    def full_text_values
+      [abstract, caption, description, keyword, publisher].collect(&:to_a).flatten.compact
+    end
+
     def fields
       {
         id: id,
-        admin_set_idd: { id: admin_set&.id, title: admin_set&.title },
-        collection_idd: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
-        contributor_ldr: contributor,
-        creator_ldr: typed_values(:creator, :nul_creator),
+        admin_set: { id: admin_set&.id, title: admin_set&.title },
+        collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
+        contributor: contributor,
+        creator: typed_values(:creator, :nul_creator),
         date: display_date(date_created),
-        expanded_date_dt: date(date_created),
-        year_i: extract_years(date_created),
+        expanded_date: date(date_created),
+        year: extract_years(date_created),
         permalink: ark,
-        subject_ldr: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
+        subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
         iiif_manifest: representative_file('manifest.json'),
@@ -48,7 +52,8 @@ module CommonIndexers
         bibliographic_citation: bibliographic_citation,
         box: { name: box_name, number: box_number },
         folder: { name: folder_name, number: folder_number },
-        physical_description: { material: physical_description_material, size: physical_description_size }
+        physical_description: { material: physical_description_material, size: physical_description_size },
+        full_text: full_text_values
       }
     end
 

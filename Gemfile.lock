@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/nulib/common-indexer.git
-  revision: 681fe02d4da822a7f5ce5dae048c95c733935d73
+  revision: 0f762c719e784a3de85a468efc6144a86f85f250
   branch: master
   specs:
     common_indexer (0.2.0)
@@ -1514,7 +1514,7 @@ DEPENDENCIES
   carrierwave-aws
   cloudfront-signer
   coffee-rails (~> 4.2)
-  common_indexer (~> 0.2.0)!
+  common_indexer!
   config
   database_cleaner
   devise
