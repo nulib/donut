@@ -59,7 +59,7 @@ module CommonIndexers
       {}.tap do |result|
         fields.each do |field|
           value = source.send(field)
-          result["#{field}"] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } unless value.empty?
+          result[field] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } unless value.empty?
         end
       end
     end
