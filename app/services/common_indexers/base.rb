@@ -33,7 +33,7 @@ module CommonIndexers
     def location(field)
       {}.tap do |result|
         value = source.send(field)
-        result[:location] = value.first.fetch.geo_point unless value.empty?
+        result[:location_geo] = value.first.fetch.geo_point unless value.empty?
       end
     end
 
@@ -59,7 +59,7 @@ module CommonIndexers
       {}.tap do |result|
         fields.each do |field|
           value = source.send(field)
-          result[field] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } unless value.empty?
+          result["#{field}_ld"] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } unless value.empty?
         end
       end
     end
@@ -82,7 +82,7 @@ module CommonIndexers
           next if source[name].empty?
           Array(source[name]).each do |value|
             (uri, label) = fetch_uri_and_label(value)
-            result << { type: type, uri: uri, label: label }
+            result << { role: type, uri: uri, label: label }
           end
         end
       end
@@ -96,7 +96,7 @@ module CommonIndexers
           next if source[name].empty?
           Array(source[name]).each do |value|
             (uri, label) = fetch_uri_and_label(value)
-            result << { type: type, uri: uri, label: "#{label} (#{type.capitalize})" }
+            result << { role: type, uri: uri, label: "#{label} (#{type.capitalize})" }
           end
         end
       end

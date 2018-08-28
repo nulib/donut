@@ -1514,7 +1514,7 @@ DEPENDENCIES
   carrierwave-aws
   cloudfront-signer
   coffee-rails (~> 4.2)
-  common_indexer!
+  common_indexer (~> 0.2.0)!
   config
   database_cleaner
   devise

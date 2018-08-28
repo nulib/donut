@@ -5,8 +5,7 @@ module CommonIndexers
         model,
         fields,
         values(:abstract, :caption, :description, :keyword, :provenance, :publisher, :rights_holder, :source, :visibility),
-        labels(:language),
-        facets(:genre),
+        labels(:language, :genre, :style_period, :technique),
         location(:based_near)
       )
     end
@@ -21,32 +20,22 @@ module CommonIndexers
       )
     end
 
-    def extra_fields
-      multi_merge(
-        { box: { name: box_name, number: box_number } },
-        { folder: { name: folder_name, number: folder_number } },
-        { physical_description: { material: physical_description_material, size: physical_description_size } },
-        labels(:genre, :style_period, :technique)
-      )
-    end
-
     def fields
       {
         id: id,
-        admin_set: { id: admin_set&.id, title: admin_set&.title },
-        collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
-        contributor: contributor,
-        creator: typed_values(:creator, :nul_creator),
+        admin_set_idd: { id: admin_set&.id, title: admin_set&.title },
+        collection_idd: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
+        contributor_ldr: contributor,
+        creator_ldr: typed_values(:creator, :nul_creator),
         date: display_date(date_created),
-        expanded_date: date(date_created),
-        year: extract_years(date_created),
+        expanded_date_dt: date(date_created),
+        year_i: extract_years(date_created),
         permalink: ark,
-        subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
+        subject_ldr: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
         iiif_manifest: representative_file('manifest.json'),
         representative_file_url: representative_file(''),
-        extra_fields: extra_fields,
         resource_type: resource_type,
         related_url: related_url,
         rights_statement: rights_statement,
@@ -56,7 +45,10 @@ module CommonIndexers
         accession_number: accession_number,
         call_number: call_number,
         catalog_key: catalog_key,
-        bibliographic_citation: bibliographic_citation
+        bibliographic_citation: bibliographic_citation,
+        box: { name: box_name, number: box_number },
+        folder: { name: folder_name, number: folder_number },
+        physical_description: { material: physical_description_material, size: physical_description_size }
       }
     end
 

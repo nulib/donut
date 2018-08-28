@@ -13,7 +13,7 @@ module CommonIndexers
         id: id,
         title: { primary: title },
         thumbnail_iiif_url: thumbnail_iiif_url,
-        collection_type: type_of_collection
+        collection_type_idd: type_of_collection
       }
     end
 
