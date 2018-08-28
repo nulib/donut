@@ -24,6 +24,12 @@ module CommonIndexers
       [abstract, caption, description, keyword, publisher].collect(&:to_a).flatten.compact
     end
 
+    def related_url_values
+      related_url.collect do |entry|
+        entry.is_a?(ActiveTriples::Resource) ? entry.id : entry
+      end
+    end
+
     def fields
       {
         id: id,
@@ -41,7 +47,7 @@ module CommonIndexers
         iiif_manifest: representative_file('manifest.json'),
         representative_file_url: representative_file(''),
         resource_type: resource_type,
-        related_url: related_url,
+        related_url: related_url_values,
         rights_statement: rights_statement,
         identifier: identifier,
         license: license,
