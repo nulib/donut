@@ -91,6 +91,15 @@ $ rake jasmine:ci
 $ bin/import_from_s3 dev-batch sample.csv
 ```
 
+### Seed Data
+* Run the batch importer with the `seed-data.csv` file to load 30 sample records (this will take some time)
+* Make sure you have first run `bundle exec rake s3:setup` to populate the s3 bucket
+* Then run:
+
+```sh
+$ bin/import_from_s3 dev-batch seed-data.csv
+```
+
 ### Running the tests for our new CSV importer work from hyrax
 
 the active elastic job gem requires an environment variable to be set otherwise all the specs fail. so run this first:
