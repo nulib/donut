@@ -27,14 +27,9 @@ services:
     image: solr:7.2-alpine
     ports:
     - 8983:8983
+    - 9985:9983
     volumes:
     - solr:/opt/solr/server/solr/mycores
-    - "../../solr:/solr_config"
-    entrypoint:
-    - docker-entrypoint.sh
-    - solr-precreate
-    - development-core
-    - "/solr_config/conf"
     healthcheck:
       test:
       - CMD
