@@ -8,6 +8,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 * [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
 * Docker (we're using docker for mac: https://www.docker.com/docker-mac)
+* Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
 * [Geonames user registration](http://www.geonames.org/manageaccount)
   * For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
 * Add local fits path to `/config/settings/local.yml`
@@ -21,7 +22,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 * Clone the Donut GitHub repository
 * Install dependencies: `bundle install`
-* Run `rake docker:dev:up` in a separate tab to start solr, fedora, cantaloupe, and localstack
+* Run `devstack up donut` in a separate tab to start dependency services
 * Setup the database: `rake db:setup`
 * Generate roles: `rake generate_roles`
 
