@@ -9,12 +9,12 @@ default: &default
 development:
   <<: *default
   port: 5433
-  database: docker_dev
+  database: donut_dev
 
 test:
   <<: *default
   port: <%= Rails.env.development? ? 5433 : 5434 %>
-  database: docker_test
+  database: donut_test
 
 production:
   adapter: sqlite3
