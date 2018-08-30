@@ -2,6 +2,7 @@ localstack:
   sqs: false
   port_offset: 200
 aws:
+  endpoint: http://localhost:9002
   buckets:
     batch:   test-batch
     uploads: test-uploads

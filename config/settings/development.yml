@@ -1,7 +1,9 @@
+derivatives_path: <%= File.join(ENV['HOME'], '.nuldata', 'derivatives') %>
 localstack:
   sqs: false
   port_offset: 100
 aws:
+  endpoint: http://localhost:9001
   buckets:
     uploads: dev-uploads
     batch: dev-batch
