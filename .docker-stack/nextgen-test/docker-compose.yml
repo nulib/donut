@@ -4,7 +4,7 @@ volumes:
   fedora:
   db:
   solr:
-  localstack:
+  minio:
   es:
 services:
   fedora:
@@ -27,14 +27,10 @@ services:
     image: solr:7.2-alpine
     ports:
     - 8985:8983
+    - 9985:9983
     volumes:
     - solr:/opt/solr/server/solr/mycores
-    - "../../solr:/solr_config"
-    entrypoint:
-    - docker-entrypoint.sh
-    - solr-precreate
-    - test-core
-    - "/solr_config/conf"
+    command: solr -f -cloud
     healthcheck:
       test:
       - CMD
@@ -45,21 +41,27 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-  localstack:
-    image: localstack/localstack
-    ports:
-    - 4972:4572
+  minio:
+    image: minio/minio
     volumes:
-    - localstack:/data
+      - minio:/data
+    ports:
+      - "9002:9000"
     environment:
-      SERVICES: s3
-      DATA_DIR: "/data"
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command:
+      - minio
+      - server
+      - /data
     healthcheck:
       test:
       - CMD
-      - curl
-      - "-f"
-      - http://localhost:4572/
+      - wget
+      - "--quiet"
+      - "--tries=1"
+      - "--spider"
+      - http://localhost:9000/minio/health/live
       interval: 30s
       timeout: 5s
       retries: 3

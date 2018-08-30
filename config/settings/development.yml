@@ -1,7 +1,9 @@
+derivatives_path: <%= File.join(ENV['HOME'], '.nuldata', 'derivatives') %>
 localstack:
   sqs: false
   port_offset: 100
 aws:
+  endpoint: http://localhost:9001
   buckets:
     uploads: dev-uploads
     batch: dev-batch
@@ -11,3 +13,4 @@ iiif:
   endpoint: http://localhost:8183/iiif/2/
 common_indexer:
   endpoint: http://localhost:9201/
+solrcloud: true

@@ -2,8 +2,12 @@ localstack:
   sqs: false
   port_offset: 200
 aws:
+  endpoint: http://localhost:9002
   buckets:
     batch:   test-batch
     uploads: test-uploads
 common_indexer:
   endpoint: http://localhost:9202/
+solrcloud: true
+zookeeper:
+  connection_str: "localhost:9985/configs"
