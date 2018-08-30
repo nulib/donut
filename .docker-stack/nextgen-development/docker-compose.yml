@@ -4,7 +4,7 @@ volumes:
   fedora:
   db:
   solr:
-  localstack:
+  minio:
   es:
 services:
   fedora:

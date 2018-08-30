@@ -8,3 +8,6 @@ aws:
     uploads: test-uploads
 common_indexer:
   endpoint: http://localhost:9202/
+solrcloud: true
+zookeeper:
+  connection_str: "localhost:9985/configs"

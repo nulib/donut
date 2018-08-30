@@ -52,6 +52,8 @@ gem 'edtf-humanize'
 
 gem 'rubyzip', require: 'zip'
 
+gem 'zk'
+
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
@@ -106,7 +108,6 @@ group :aws do
   gem 'carrierwave-aws'
   gem 'cloudfront-signer'
   gem 'redis-rails'
-  gem 'zk'
 end
 
 group :production do

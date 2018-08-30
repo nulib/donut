@@ -4,7 +4,7 @@ volumes:
   fedora:
   db:
   solr:
-  localstack:
+  minio:
   es:
 services:
   fedora:
@@ -27,14 +27,10 @@ services:
     image: solr:7.2-alpine
     ports:
     - 8985:8983
+    - 9985:9983
     volumes:
     - solr:/opt/solr/server/solr/mycores
-    - "../../solr:/solr_config"
-    entrypoint:
-    - docker-entrypoint.sh
-    - solr-precreate
-    - test-core
-    - "/solr_config/conf"
+    command: solr -f -cloud
     healthcheck:
       test:
       - CMD
