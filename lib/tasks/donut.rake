@@ -8,6 +8,31 @@ unless Rails.env.production?
       t.rspec_opts = ['--color', '--backtrace']
     end
 
+    desc 'Load test config'
+    task :load_test_config do
+      Rails.env = 'test'
+      Settings.reload_from_files(
+        Rails.root.join("config", "settings.yml").to_s,
+        Rails.root.join("config", "settings.local.yml").to_s,
+        Rails.root.join("config", "settings", "test.yml").to_s,
+        Rails.root.join("config", "environments", "test.yml").to_s,
+        Rails.root.join("config", "settings", "test.local.yml").to_s,
+        Rails.root.join("config", "environments", "test.local.yml").to_s
+      )
+    end
+
+    desc 'Seed the test environment and run specs'
+    task :setup_and_specs do
+      %w[
+        donut:load_test_config
+        db:setup
+        zookeeper:upload
+        zookeeper:create
+        elasticsearch:init
+        donut:rspec
+      ].each { |task| Rake::Task[task].invoke }
+    end
+
     desc 'Add admin role to the ENV[\'ADMIN_USER\']'
     task add_admin_role: :environment do
       if ENV['ADMIN_USER']

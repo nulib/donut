@@ -30,6 +30,7 @@ services:
     - 9985:9983
     volumes:
     - solr:/opt/solr/server/solr/mycores
+    command: solr -f -cloud
     healthcheck:
       test:
       - CMD

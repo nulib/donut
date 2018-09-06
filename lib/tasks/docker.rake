@@ -16,13 +16,9 @@ if Rails.env.development? || Rails.env.test?
 
       desc 'Spin up test stack and run specs'
       task :spec do
-        Rails.env = 'test'
+        Rake::Task['donut:load_test_config'].invoke
         Docker::Stack::Controller.new(cleanup: true).with_containers do
-          Rake::Task['db:setup'].invoke
-          Rake::Task['zookeeper:upload'].invoke
-          Rake::Task['zookeeper:create'].invoke
-          Rake::Task['elasticsearch:init'].invoke
-          Rake::Task['donut:rspec'].invoke
+          Rake::Task['donut:setup_and_specs'].invoke
         end
       end
     end
