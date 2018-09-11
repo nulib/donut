@@ -12,12 +12,12 @@ unless Rails.env.production?
     task :load_test_config do
       Rails.env = 'test'
       Settings.reload_from_files(
-        Rails.root.join("config", "settings.yml").to_s,
-        Rails.root.join("config", "settings.local.yml").to_s,
-        Rails.root.join("config", "settings", "test.yml").to_s,
-        Rails.root.join("config", "environments", "test.yml").to_s,
-        Rails.root.join("config", "settings", "test.local.yml").to_s,
-        Rails.root.join("config", "environments", "test.local.yml").to_s
+        Rails.root.join('config', 'settings.yml').to_s,
+        Rails.root.join('config', 'settings.local.yml').to_s,
+        Rails.root.join('config', 'settings', 'test.yml').to_s,
+        Rails.root.join('config', 'environments', 'test.yml').to_s,
+        Rails.root.join('config', 'settings', 'test.local.yml').to_s,
+        Rails.root.join('config', 'environments', 'test.local.yml').to_s
       )
     end
 
