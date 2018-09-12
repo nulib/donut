@@ -55,6 +55,10 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  property :notes, predicate: ::RDF::Vocab::SKOS.note, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
   property :physical_description_material, predicate: ::RDF::Vocab::DC.medium, multiple: true do |index|
     index.as :stored_searchable
   end
@@ -67,12 +71,28 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :related_material, predicate: ::RDF::Vocab::DC.relation, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
   property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :scope_and_contents, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :series, predicate: ::RDF::Vocab::Bibframe.series, multiple: true do |index|
     index.as :stored_searchable
   end
 
   property :style_period, predicate: ::RDF::URI('http://purl.org/vra/StylePeriod'), class_name: ControlledVocabularies::Base, multiple: true do |index|
     index.as :stored_searchable, :facetable
+  end
+
+  property :table_of_contents, predicate: ::RDF::Vocab::DC.tableOfContents, multiple: true do |index|
+    index.as :stored_searchable
   end
 
   property :technique, predicate: ::RDF::URI('http://purl.org/vra/Technique'), class_name: ControlledVocabularies::Base, multiple: true do |index|
