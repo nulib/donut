@@ -1,0 +1,33 @@
+<% musician_authorities = Hyrax::MusicianAuthorities.new %>
+<fieldset class="bordered form-group">
+<%= f.input key,
+  as: :controlled_vocabulary,
+  placeholder: 'Search for a musician',
+  input_html: {
+    class: 'form-control',
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'autocomplete' => key
+    }
+  },
+  ### Required for the ControlledVocabulary javascript:
+  wrapper_html: {
+    data: {
+      'autocomplete-url' => "/authorities/search/getty/ulan",
+      'field-name' => key
+    }
+  },
+  required: f.object.required?(key) %>
+
+  <label>Authority for Musician</label>
+
+<%= select_tag "musician_authorities",
+        options_for_select(musician_authorities.select_active_options),
+        class: 'form-control image_musician',
+        data: {
+          'authority-select' => "image_musician",
+          'uses-controlled-vocab' => true
+        },
+        prompt: t('hyrax.records.edit_fields.musician.prompt')
+  %>
+</fieldset>

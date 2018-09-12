@@ -56,6 +56,9 @@ export default class Autocomplete {
       case 'cartographer':
         new LinkedData(element, url);
         break;
+      case 'collector':
+        new LinkedData(element, url);
+        break;
       case 'compiler':
         new LinkedData(element, url);
         break;
@@ -66,6 +69,12 @@ export default class Autocomplete {
         new LinkedData(element, url);
         break;
       case 'director':
+        new LinkedData(element, url);
+        break;
+      case 'distributor':
+        new LinkedData(element, url);
+        break;
+      case 'donor':
         new LinkedData(element, url);
         break;
       case 'draftsman':
@@ -81,6 +90,9 @@ export default class Autocomplete {
         new LinkedData(element, url);
         break;
       case 'librettist':
+        new LinkedData(element, url);
+        break;
+      case 'musician':
         new LinkedData(element, url);
         break;
       case 'performer':
@@ -111,6 +123,9 @@ export default class Autocomplete {
         new LinkedData(element, url);
         break;
       case 'sponsor':
+        new LinkedData(element, url);
+        break;
+      case 'transcriber':
         new LinkedData(element, url);
         break;
       default:

@@ -59,7 +59,12 @@ module Hyrax
       :subject_temporal,
       :subject_topical_label,
       :table_of_contents,
-      :technique_label
+      :technique_label,
+      :musician_label,
+      :transcriber_label,
+      :distributor_label,
+      :donor_label,
+      :collector_label
     ].freeze
 
     ADMIN_TERMS = [

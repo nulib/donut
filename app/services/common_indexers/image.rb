@@ -16,7 +16,7 @@ module CommonIndexers
         :contributor, :designer, :director, :draftsman, :editor, :engraver,
         :illustrator, :librettist, :nul_contributor, :performer, :photographer, :presenter,
         :printer, :printmaker, :producer, :production_manager, :screenwriter, :sculptor,
-        :sponsor
+        :sponsor, :musician, :transcriber, :distributor, :donor, :collector
       )
     end
 
