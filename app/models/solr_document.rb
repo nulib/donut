@@ -257,6 +257,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('librettist_label', :stored_searchable), [])
   end
 
+  def notes
+    fetch(Solrizer.solr_name('notes', :stored_searchable), [])
+  end
+
   def performer_label
     fetch(Solrizer.solr_name('performer_label', :stored_searchable), [])
   end
@@ -285,6 +289,14 @@ class SolrDocument
     fetch(Solrizer.solr_name('production_manager_label', :stored_searchable), [])
   end
 
+  def related_material
+    fetch(Solrizer.solr_name('related_material', :stored_searchable), [])
+  end
+
+  def scope_and_contents
+    fetch(Solrizer.solr_name('scope_and_contents', :stored_searchable), [])
+  end
+
   def screenwriter_label
     fetch(Solrizer.solr_name('screenwriter_label', :stored_searchable), [])
   end
@@ -295,6 +307,14 @@ class SolrDocument
 
   def sponsor_label
     fetch(Solrizer.solr_name('sponsor_label', :stored_searchable), [])
+  end
+
+  def series
+    fetch(Solrizer.solr_name('series', :stored_searchable), [])
+  end
+
+  def table_of_contents
+    fetch(Solrizer.solr_name('table_of_contents', :stored_searchable), [])
   end
 
   def photometric_interpretation
