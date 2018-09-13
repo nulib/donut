@@ -25,4 +25,9 @@ RSpec.shared_examples 'a model with common metadata' do
   it { is_expected.to have_editable_property(:screenwriter, RDF::Vocab::MARCRelators.aus) }
   it { is_expected.to have_editable_property(:sculptor, RDF::Vocab::MARCRelators.scl) }
   it { is_expected.to have_editable_property(:sponsor, RDF::Vocab::MARCRelators.spn) }
+  it { is_expected.to have_editable_property(:musician, RDF::Vocab::MARCRelators.mus) }
+  it { is_expected.to have_editable_property(:transcriber, RDF::Vocab::MARCRelators.trc) }
+  it { is_expected.to have_editable_property(:distributor, RDF::Vocab::MARCRelators.dst) }
+  it { is_expected.to have_editable_property(:donor, RDF::Vocab::MARCRelators.dnr) }
+  it { is_expected.to have_editable_property(:collector, RDF::Vocab::MARCRelators.col) }
 end

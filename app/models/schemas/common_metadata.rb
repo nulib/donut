@@ -49,6 +49,10 @@ module Schemas
         index.as :stored_searchable, :facetable
       end
 
+      property :collector, predicate: ::RDF::Vocab::MARCRelators.col, class_name: ControlledVocabularies::Base do |index|
+        index.as :stored_searchable, :facetable
+      end
+
       property :compiler, predicate: ::RDF::Vocab::MARCRelators.com, class_name: ControlledVocabularies::Base do |index|
         index.as :stored_searchable, :facetable
       end
@@ -62,6 +66,14 @@ module Schemas
       end
 
       property :director, predicate: ::RDF::Vocab::MARCRelators.drt, class_name: ControlledVocabularies::Base do |index|
+        index.as :stored_searchable, :facetable
+      end
+
+      property :distributor, predicate: ::RDF::Vocab::MARCRelators.dst, class_name: ControlledVocabularies::Base do |index|
+        index.as :stored_searchable, :facetable
+      end
+
+      property :donor, predicate: ::RDF::Vocab::MARCRelators.dnr, class_name: ControlledVocabularies::Base do |index|
         index.as :stored_searchable, :facetable
       end
 
@@ -82,6 +94,10 @@ module Schemas
       end
 
       property :librettist, predicate: ::RDF::Vocab::MARCRelators.lbt, class_name: ControlledVocabularies::Base do |index|
+        index.as :stored_searchable, :facetable
+      end
+
+      property :musician, predicate: ::RDF::Vocab::MARCRelators.mus, class_name: ControlledVocabularies::Base do |index|
         index.as :stored_searchable, :facetable
       end
 
@@ -113,6 +129,10 @@ module Schemas
         index.as :stored_searchable, :facetable
       end
 
+      property :publisher, predicate: ::RDF::Vocab::MARCRelators.pbl, class_name: ControlledVocabularies::Base do |index|
+        index.as :stored_searchable, :facetable
+      end
+
       property :screenwriter, predicate: ::RDF::Vocab::MARCRelators.aus, class_name: ControlledVocabularies::Base do |index|
         index.as :stored_searchable, :facetable
       end
@@ -122,6 +142,10 @@ module Schemas
       end
 
       property :sponsor, predicate: ::RDF::Vocab::MARCRelators.spn, class_name: ControlledVocabularies::Base do |index|
+        index.as :stored_searchable, :facetable
+      end
+
+      property :transcriber, predicate: ::RDF::Vocab::MARCRelators.trc, class_name: ControlledVocabularies::Base do |index|
         index.as :stored_searchable, :facetable
       end
     end

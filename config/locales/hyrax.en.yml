@@ -70,6 +70,9 @@ en:
         subject_topical:
           label: "Select Authority For Subject Topical"
           prompt: "Choose authority"
+        collector:
+          label: "Select Authority For Collector"
+          prompt: "Choose authority"
         contributor:
           label: "Select Authority For Contributor"
           prompt: "Choose authority"
@@ -100,6 +103,12 @@ en:
         director:
           label: "Select Authority For Director"
           prompt: "Choose authority"
+        distributor:
+          label: "Select Authority For Distributor"
+          prompt: "Choose authority"
+        donor:
+          label: "Select Authority For Donor"
+          prompt: "Choose authority"
         draftsman:
           label: "Select Authority For Draftsman"
           prompt: "Choose authority"
@@ -114,6 +123,9 @@ en:
           prompt: "Choose authority"
         librettist:
           label: "Select Authority For Librettist"
+          prompt: "Choose authority"
+        musician:
+          label: "Select Authority For Musician"
           prompt: "Choose authority"
         performer:
           label: "Select Authority For Performer"
@@ -144,6 +156,9 @@ en:
           prompt: "Choose authority"
         sponsor:
           label: "Select Authority For Sponsor"
+          prompt: "Choose authority"
+        transcriber:
+          label: "Select Authority For Transcriber"
           prompt: "Choose authority"
     product_name:           "Hyrax"
     product_twitter_handle: "@HydraSphere"

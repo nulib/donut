@@ -3,6 +3,7 @@
 module Hyrax
   class ImageForm < Hyrax::Forms::WorkForm
     self.model_class = ::Image
+
     self.terms += [
       :abstract,
       :accession_number,
@@ -16,11 +17,14 @@ module Hyrax
       :call_number,
       :caption,
       :cartographer,
+      :collector,
       :catalog_key,
       :compiler,
       :composer,
       :designer,
       :director,
+      :distributor,
+      :donor,
       :draftsman,
       :editor,
       :engraver,
@@ -29,6 +33,7 @@ module Hyrax
       :genre,
       :illustrator,
       :librettist,
+      :musician,
       :notes,
       :nul_contributor,
       :nul_creator,
@@ -64,7 +69,8 @@ module Hyrax
       :subject_topical,
       :table_of_contents,
       :task_number,
-      :technique
+      :technique,
+      :transcriber
     ]
 
     self.required_fields = [:accession_number, :title, :date_created, :rights_statement, :preservation_level, :status]
@@ -87,17 +93,21 @@ module Hyrax
           artist_attributes: [:id, :_destroy],
           author_attributes: [:id, :_destroy],
           cartographer_attributes: [:id, :_destroy],
+          collector_attributes: [:id, :_destroy],
           compiler_attributes: [:id, :_destroy],
           composer_attributes: [:id, :_destroy],
           contributor_attributes: [:id, :_destroy],
           creator_attributes: [:id, :_destroy],
           designer_attributes: [:id, :_destroy],
           director_attributes: [:id, :_destroy],
+          distributor_attributes: [:id, :_destroy],
+          donor_attributes: [:id, :_destroy],
           draftsman_attributes: [:id, :_destroy],
           editor_attributes: [:id, :_destroy],
           engraver_attributes: [:id, :_destroy],
           illustrator_attributes: [:id, :_destroy],
           librettist_attributes: [:id, :_destroy],
+          musician_attributes: [:id, :_destroy],
           performer_attributes: [:id, :_destroy],
           photographer_attributes: [:id, :_destroy],
           presenter_attributes: [:id, :_destroy],
@@ -107,7 +117,8 @@ module Hyrax
           production_manager_attributes: [:id, :_destroy],
           screenwriter_attributes: [:id, :_destroy],
           sculptor_attributes: [:id, :_destroy],
-          sponsor_attributes: [:id, :_destroy]
+          sponsor_attributes: [:id, :_destroy],
+          transcriber_attributes: [:id, :_destroy]
         }
       ]
     end

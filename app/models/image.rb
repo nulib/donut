@@ -117,11 +117,12 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:architect, :artist, :author, :cartographer, :compiler, :composer,
-                                 :contributor, :creator, :designer, :director, :draftsman, :editor, :engraver,
-                                 :genre, :illustrator, :language, :librettist, :performer, :photographer, :presenter,
-                                 :printer, :printmaker, :producer, :production_manager, :screenwriter, :sculptor,
-                                 :sponsor, :style_period, :subject_geographical, :subject_topical, :technique]
+  self.controlled_properties += [:architect, :artist, :author, :cartographer, :collector, :compiler, :composer,
+                                 :contributor, :creator, :designer, :director, :distributor, :donor, :draftsman,
+                                 :editor, :engraver, :genre, :illustrator, :language, :librettist, :musician,
+                                 :performer, :photographer, :presenter, :printer, :printmaker, :producer,
+                                 :production_manager, :screenwriter, :sculptor, :sponsor, :style_period,
+                                 :subject_geographical, :subject_topical, :technique, :transcriber]
 
   self.controlled_properties.without(:based_near).each do |property|
     accepts_nested_attributes_for property, reject_if: id_blank, allow_destroy: true
