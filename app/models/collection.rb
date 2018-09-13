@@ -4,6 +4,11 @@ class Collection < ActiveFedora::Base
   # You can replace these metadata if they're not suitable
   include Hyrax::BasicMetadata
   include MicroserviceMinter
+  include ::CommonIndexer::Base
 
   self.indexer = Hyrax::CollectionWithBasicMetadataIndexer
+
+  def to_common_index
+    CommonIndexService.index(self)
+  end
 end

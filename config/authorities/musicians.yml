@@ -1,0 +1,7 @@
+terms:
+  - id: /authorities/search/getty/ulan
+    term: ULAN
+    active: true
+  - id: /authorities/search/loc/names
+    term: LCNAF
+    active: true

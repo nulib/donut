@@ -1,10 +1,11 @@
 ---
 version: '3.4'
 volumes:
-  fedora: 
-  db: 
-  solr: 
-  localstack: 
+  fedora:
+  db:
+  solr:
+  minio:
+  es:
 services:
   fedora:
     image: nulib/fcrepo4
@@ -26,14 +27,10 @@ services:
     image: solr:7.2-alpine
     ports:
     - 8983:8983
+    - 9985:9983
     volumes:
     - solr:/opt/solr/server/solr/mycores
-    - "../../solr:/solr_config"
-    entrypoint:
-    - docker-entrypoint.sh
-    - solr-precreate
-    - development-core
-    - "/solr_config/conf"
+    command: solr -f -cloud
     healthcheck:
       test:
       - CMD
@@ -49,7 +46,7 @@ services:
     ports:
     - 8183:8182
     volumes:
-    - "../../tmp/derivatives:/var/lib/cantaloupe/images"
+    - ${HOME}/.nuldata/derivatives:/var/lib/cantaloupe/images"
     healthcheck:
       test:
       - CMD
@@ -59,21 +56,27 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-  localstack:
-    image: localstack/localstack
-    ports:
-    - 4772:4572
+  minio:
+    image: minio/minio
     volumes:
-    - localstack:/data
+      - minio:/data
+    ports:
+      - "9001:9000"
     environment:
-      SERVICES: s3
-      DATA_DIR: "/data"
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command:
+      - minio
+      - server
+      - /data
     healthcheck:
       test:
       - CMD
-      - curl
-      - "-f"
-      - http://localhost:4572/
+      - wget
+      - "--quiet"
+      - "--tries=1"
+      - "--spider"
+      - http://localhost:9000/minio/health/live
       interval: 30s
       timeout: 5s
       retries: 3
@@ -89,14 +92,24 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-  sqsd:
-    image: nulib/sqsd
-    depends_on:
-    - localstack
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    ports:
+    - 9201:9200
+    volumes:
+    - es:/usr/share/elasticsearch/data
     environment:
-      SQSD_WORKER_HTTP_URL: http://docker.for.mac.host.internal:3000
-      SQSD_QUEUE_URL: http://localstack:4576/queue/donut
-      SQSD_SSL_ENABLED: 'false'
-      SQSD_RUN_DAEMONIZED: 'true'
-      AWS_ACCESS_KEY_ID: localstack-dev-key
-      AWS_SECRET_ACCESS_KEY: localstack-dev-secret
+      discovery.type: single-node
+      http.cors.enabled: "true"
+      http.cors.allow-origin: "*"
+      http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
+      http.cors.allow-headers: "X-Requested-With,X-Auth-Token,Content-Type, Content-Length, Authorization"
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "-f"
+      - http://localhost:9200/
+      interval: 30s
+      timeout: 5s
+      retries: 3

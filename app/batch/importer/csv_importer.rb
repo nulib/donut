@@ -33,7 +33,7 @@ module Importer
 
       def parser
         @parser ||= CSVParser.new(@csv)
-      rescue CSV::MalformedCSVError => error
+      rescue CSV::MalformedCSVError, ArgumentError => error
         @batch = Batch.create(
           submitter: 'unknown',
           job_id: @job_id,

@@ -40,15 +40,19 @@ class SolrDocument
   attribute :artist_label, Solr::Array, solr_name('artist_label')
   attribute :author_label, Solr::Array, solr_name('author_label')
   attribute :cartographer_label, Solr::Array, solr_name('cartographer_label')
+  attribute :collector_label, Solr::Array, solr_name('collector_label')
   attribute :compiler_label, Solr::Array, solr_name('compiler_label')
   attribute :composer_label, Solr::Array, solr_name('composer_label')
   attribute :designer_label, Solr::Array, solr_name('designer_label')
   attribute :director_label, Solr::Array, solr_name('director_label')
+  attribute :distributor_label, Solr::Array, solr_name('distributor_label')
+  attribute :donor_label, Solr::Array, solr_name('donor_label')
   attribute :draftsman_label, Solr::Array, solr_name('draftsman_label')
   attribute :editor_label, Solr::Array, solr_name('editor_label')
   attribute :engraver_label, Solr::Array, solr_name('engraver_label')
   attribute :illustrator_label, Solr::Array, solr_name('illustrator_label')
   attribute :librettist_label, Solr::Array, solr_name('librettist_label')
+  attribute :musician_label, Solr::Array, solr_name('musician_label')
   attribute :performer_label, Solr::Array, solr_name('performer_label')
   attribute :photographer_label, Solr::Array, solr_name('photographer_label')
   attribute :presenter_label, Solr::Array, solr_name('presenter_label')
@@ -56,9 +60,11 @@ class SolrDocument
   attribute :printmaker_label, Solr::Array, solr_name('printmaker_label')
   attribute :producer_label, Solr::Array, solr_name('producer_label')
   attribute :production_manager_label, Solr::Array, solr_name('production_manager_label')
+  attribute :publisher_label, Solr::Array, solr_name('publisher_label')
   attribute :screenwriter_label, Solr::Array, solr_name('screenwriter_label')
   attribute :sculptor_label, Solr::Array, solr_name('sculptor_label')
   attribute :sponsor_label, Solr::Array, solr_name('sponsor_label')
+  attribute :transcriber_label, Solr::Array, solr_name('transcriber_label')
 
   def date_created_display
     fetch(Solrizer.solr_name('date_created_display', :stored_searchable), [])
@@ -69,7 +75,7 @@ class SolrDocument
   end
 
   def accession_number
-    fetch(Solrizer.solr_name('accession_number', :stored_searchable), [])
+    fetch(Solrizer.solr_name('accession_number', :symbol), [])
   end
 
   def alternate_title
@@ -221,6 +227,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('cartographer_label', :stored_searchable), [])
   end
 
+  def collector_label
+    fetch(Solrizer.solr_name('collector_label', :stored_searchable), [])
+  end
+
   def compiler_label
     fetch(Solrizer.solr_name('compiler_label', :stored_searchable), [])
   end
@@ -235,6 +245,14 @@ class SolrDocument
 
   def director_label
     fetch(Solrizer.solr_name('director_label', :stored_searchable), [])
+  end
+
+  def distributor_label
+    fetch(Solrizer.solr_name('distributor_label', :stored_searchable), [])
+  end
+
+  def donor_label
+    fetch(Solrizer.solr_name('donor_label', :stored_searchable), [])
   end
 
   def draftsman_label
@@ -255,6 +273,14 @@ class SolrDocument
 
   def librettist_label
     fetch(Solrizer.solr_name('librettist_label', :stored_searchable), [])
+  end
+
+  def notes
+    fetch(Solrizer.solr_name('notes', :stored_searchable), [])
+  end
+
+  def musician_label
+    fetch(Solrizer.solr_name('musician_label', :stored_searchable), [])
   end
 
   def performer_label
@@ -285,6 +311,14 @@ class SolrDocument
     fetch(Solrizer.solr_name('production_manager_label', :stored_searchable), [])
   end
 
+  def related_material
+    fetch(Solrizer.solr_name('related_material', :stored_searchable), [])
+  end
+
+  def scope_and_contents
+    fetch(Solrizer.solr_name('scope_and_contents', :stored_searchable), [])
+  end
+
   def screenwriter_label
     fetch(Solrizer.solr_name('screenwriter_label', :stored_searchable), [])
   end
@@ -296,6 +330,20 @@ class SolrDocument
   def sponsor_label
     fetch(Solrizer.solr_name('sponsor_label', :stored_searchable), [])
   end
+
+  def series
+    fetch(Solrizer.solr_name('series', :stored_searchable), [])
+  end
+
+  def table_of_contents
+    fetch(Solrizer.solr_name('table_of_contents', :stored_searchable), [])
+  end
+
+  def transcriber_label
+    fetch(Solrizer.solr_name('transcriber_label', :stored_searchable), [])
+  end
+
+  ### Technical Metadata
 
   def photometric_interpretation
     fetch(Solrizer.solr_name('photometric_interpretation', :stored_searchable), [])

@@ -8,6 +8,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 * [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
 * Docker (we're using docker for mac: https://www.docker.com/docker-mac)
+* Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
 * [Geonames user registration](http://www.geonames.org/manageaccount)
   * For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
 * Fits > 1.0.5 `brew install fits`
@@ -18,7 +19,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 * Clone the Donut GitHub repository
 * Install dependencies: `bundle install`
-* Run `rake docker:dev:up` in a separate tab to start solr, fedora, cantaloupe, and localstack
+* Run `devstack up donut` in a separate tab to start dependency services
 * Setup the database: `rake db:setup`
 * Generate roles: `rake generate_roles`
 
@@ -86,6 +87,15 @@ $ rake jasmine:ci
 
 ```sh
 $ bin/import_from_s3 dev-batch sample.csv
+```
+
+### Seed Data
+* Run the batch importer with the `seed-data.csv` file to load 30 sample records (this will take some time)
+* Make sure you have first run `bundle exec rake s3:setup` to populate the s3 bucket
+* Then run:
+
+```sh
+$ bin/import_from_s3 dev-batch seed-data.csv
 ```
 
 ### Running the tests for our new CSV importer work from hyrax

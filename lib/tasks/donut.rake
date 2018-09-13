@@ -8,6 +8,31 @@ unless Rails.env.production?
       t.rspec_opts = ['--color', '--backtrace']
     end
 
+    desc 'Load test config'
+    task :load_test_config do
+      Rails.env = 'test'
+      Settings.reload_from_files(
+        Rails.root.join('config', 'settings.yml').to_s,
+        Rails.root.join('config', 'settings.local.yml').to_s,
+        Rails.root.join('config', 'settings', 'test.yml').to_s,
+        Rails.root.join('config', 'environments', 'test.yml').to_s,
+        Rails.root.join('config', 'settings', 'test.local.yml').to_s,
+        Rails.root.join('config', 'environments', 'test.local.yml').to_s
+      )
+    end
+
+    desc 'Seed the test environment and run specs'
+    task :setup_and_specs do
+      %w[
+        donut:load_test_config
+        db:setup
+        zookeeper:upload
+        zookeeper:create
+        elasticsearch:init
+        donut:rspec
+      ].each { |task| Rake::Task[task].invoke }
+    end
+
     desc 'Add admin role to the ENV[\'ADMIN_USER\']'
     task add_admin_role: :environment do
       if ENV['ADMIN_USER']
@@ -25,6 +50,9 @@ unless Rails.env.production?
     task seed: :environment do
       Rake::Task['db:create'].invoke
       Rake::Task['db:migrate'].invoke
+      Rake::Task['zookeeper:upload'].invoke
+      Rake::Task['zookeeper:create'].invoke
+      Rake::Task['elasticsearch:init'].invoke
       ActiveRecord::Base.descendants.each(&:reset_column_information)
       Rake::Task['hyrax:default_collection_types:create'].invoke
       Rake::Task['hyrax:default_admin_set:create'].invoke if AdminSet.count.zero?

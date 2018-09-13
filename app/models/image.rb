@@ -6,6 +6,7 @@ class Image < ActiveFedora::Base
   include ::Schemas::Workflow
   include ::Schemas::CommonMetadata
   include MicroserviceMinter
+  include ::CommonIndexer::Base
 
   self.indexer = ImageIndexer
   DEFAULT_STATUS = 'Not started'.freeze
@@ -31,7 +32,7 @@ class Image < ActiveFedora::Base
   end
 
   property :accession_number, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/subjectSchemes/local'), multiple: false do |index|
-    index.as :stored_searchable
+    index.as :symbol
   end
 
   property :ark, predicate: ::RDF::Vocab::DataCite.ark, multiple: false do |index|
@@ -54,6 +55,10 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  property :notes, predicate: ::RDF::Vocab::SKOS.note, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
   property :physical_description_material, predicate: ::RDF::Vocab::DC.medium, multiple: true do |index|
     index.as :stored_searchable
   end
@@ -66,12 +71,28 @@ class Image < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :related_material, predicate: ::RDF::Vocab::DC.relation, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
   property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :scope_and_contents, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: true do |index|
+    index.as :stored_searchable
+  end
+
+  property :series, predicate: ::RDF::Vocab::Bibframe.series, multiple: true do |index|
     index.as :stored_searchable
   end
 
   property :style_period, predicate: ::RDF::URI('http://purl.org/vra/StylePeriod'), class_name: ControlledVocabularies::Base, multiple: true do |index|
     index.as :stored_searchable, :facetable
+  end
+
+  property :table_of_contents, predicate: ::RDF::Vocab::DC.tableOfContents, multiple: true do |index|
+    index.as :stored_searchable
   end
 
   property :technique, predicate: ::RDF::URI('http://purl.org/vra/Technique'), class_name: ControlledVocabularies::Base, multiple: true do |index|
@@ -96,11 +117,12 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:architect, :artist, :author, :cartographer, :compiler, :composer,
-                                 :contributor, :creator, :designer, :director, :draftsman, :editor, :engraver,
-                                 :genre, :illustrator, :language, :librettist, :performer, :photographer, :presenter,
-                                 :printer, :printmaker, :producer, :production_manager, :screenwriter, :sculptor,
-                                 :sponsor, :style_period, :subject_geographical, :subject_topical, :technique]
+  self.controlled_properties += [:architect, :artist, :author, :cartographer, :collector, :compiler, :composer,
+                                 :contributor, :creator, :designer, :director, :distributor, :donor, :draftsman,
+                                 :editor, :engraver, :genre, :illustrator, :language, :librettist, :musician,
+                                 :performer, :photographer, :presenter, :printer, :printmaker, :producer,
+                                 :production_manager, :screenwriter, :sculptor, :sponsor, :style_period,
+                                 :subject_geographical, :subject_topical, :technique, :transcriber]
 
   self.controlled_properties.without(:based_near).each do |property|
     accepts_nested_attributes_for property, reject_if: id_blank, allow_destroy: true
@@ -109,6 +131,10 @@ class Image < ActiveFedora::Base
   def default_values
     self.status ||= DEFAULT_STATUS
     self.preservation_level ||= DEFAULT_PRESERVATION_LEVEL
+  end
+
+  def to_common_index
+    CommonIndexService.index(self)
   end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new

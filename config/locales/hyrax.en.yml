@@ -1,4 +1,10 @@
 en:
+  simple_form:
+    labels:
+      defaults:
+        description: Description
+        nul_creator: Uncontrolled Creator
+        nul_contributor: Uncontrolled Contributor
   blacklight:
     search:
       fields:
@@ -10,7 +16,7 @@ en:
           keyword_sim: Keyword
           language_sim: Language
           publisher_sim: Publisher
-          subject_sim: NUL Subject
+          subject_sim: Uncontrolled Subject
         index:
           based_near_label_tesim: Location (Place of Publication)
           bibliographic_citation_tesim: Citation
@@ -26,7 +32,7 @@ en:
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
-          subject_tesim: NUL Subject
+          subject_tesim: Uncontrolled Subject
         show:
           based_near_label_tesim: Location (Place of Publication)
           bibliographic_citation_tesim: Citation
@@ -42,7 +48,7 @@ en:
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
-          subject_tesim: NUL Subject
+          subject_tesim: Uncontrolled Subject
           title_tesim: Title
   hyrax:
     admin:
@@ -57,12 +63,15 @@ en:
         bibliographic_citation:
           label: "Citation"
         subject:
-          label: "NUL Subject"
+          label: "Uncontrolled Subject"
         subject_geographical:
           label: "Select Authority For Subject Geographical"
           prompt: "Choose authority"
         subject_topical:
           label: "Select Authority For Subject Topical"
+          prompt: "Choose authority"
+        collector:
+          label: "Select Authority For Collector"
           prompt: "Choose authority"
         contributor:
           label: "Select Authority For Contributor"
@@ -94,6 +103,12 @@ en:
         director:
           label: "Select Authority For Director"
           prompt: "Choose authority"
+        distributor:
+          label: "Select Authority For Distributor"
+          prompt: "Choose authority"
+        donor:
+          label: "Select Authority For Donor"
+          prompt: "Choose authority"
         draftsman:
           label: "Select Authority For Draftsman"
           prompt: "Choose authority"
@@ -108,6 +123,9 @@ en:
           prompt: "Choose authority"
         librettist:
           label: "Select Authority For Librettist"
+          prompt: "Choose authority"
+        musician:
+          label: "Select Authority For Musician"
           prompt: "Choose authority"
         performer:
           label: "Select Authority For Performer"
@@ -138,6 +156,9 @@ en:
           prompt: "Choose authority"
         sponsor:
           label: "Select Authority For Sponsor"
+          prompt: "Choose authority"
+        transcriber:
+          label: "Select Authority For Transcriber"
           prompt: "Choose authority"
     product_name:           "Hyrax"
     product_twitter_handle: "@HydraSphere"

@@ -32,6 +32,8 @@ Metrics/ClassLength:
     - 'app/controllers/catalog_controller.rb'
     - 'app/batch/importer/factory/object_factory.rb'
     - 'app/models/solr_document.rb'
+    - 'app/models/image.rb'
+    - 'app/forms/hyrax/image_form.rb'
 
 Metrics/LineLength:
   Max: 164 # default is 80
@@ -42,6 +44,8 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   Max: 14 # default is 10
+  Exclude:
+    - 'app/services/common_indexers/image.rb'
 
 Layout/IndentationConsistency:
   EnforcedStyle: rails

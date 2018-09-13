@@ -45,7 +45,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('creator_label', :facetable), label: 'Creator', limit: 5
     config.add_facet_field solr_name('contributor_label', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
-    config.add_facet_field solr_name('subject', :facetable), label: 'NUL Subject', limit: 5
+    config.add_facet_field solr_name('subject', :facetable), label: 'Uncontrolled Subject', limit: 5
     config.add_facet_field solr_name('language_label', :facetable), label: 'Language', limit: 5
     config.add_facet_field solr_name('based_near_label', :facetable), label: 'Location (Place of Publication)', limit: 5
     config.add_facet_field solr_name('publisher', :facetable), limit: 5
@@ -59,9 +59,9 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('status', :facetable), label: 'Status', limit: 5
     config.add_facet_field solr_name('style_period_label', :facetable), label: 'Style Period', limit: 5
     config.add_facet_field solr_name('genre_label', :facetable), label: 'Genre', limit: 5
-    config.add_facet_field solr_name('nul_creator', :facetable), label: 'NUL Creator', limit: 5
+    config.add_facet_field solr_name('nul_creator', :facetable), label: 'Uncontrolled Creator', limit: 5
     config.add_facet_field solr_name('subject_topical_label', :facetable), label: 'Subject Topical', limit: 5
-    config.add_facet_field solr_name('nul_contributor', :facetable), label: 'NUL Contributor', limit: 5
+    config.add_facet_field solr_name('nul_contributor', :facetable), label: 'Uncontrolled Contributor', limit: 5
 
     # CommonMetadata facet fields
     config.add_facet_field solr_name('subject_geographical_label', :facetable), label: 'Subject Geographical', limit: 5
@@ -71,15 +71,19 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('artist_label', :facetable), label: 'Artist', limit: 5
     config.add_facet_field solr_name('author_label', :facetable), label: 'Author', limit: 5
     config.add_facet_field solr_name('cartographer_label', :facetable), label: 'Cartographer', limit: 5
+    config.add_facet_field solr_name('collector_label', :facetable), label: 'Collector', limit: 5
     config.add_facet_field solr_name('compiler_label', :facetable), label: 'Compiler', limit: 5
     config.add_facet_field solr_name('composer_label', :facetable), label: 'Composer', limit: 5
     config.add_facet_field solr_name('designer_label', :facetable), label: 'Designer', limit: 5
     config.add_facet_field solr_name('director_label', :facetable), label: 'Director', limit: 5
+    config.add_facet_field solr_name('distributor_label', :facetable), label: 'Distributor', limit: 5
+    config.add_facet_field solr_name('donor_label', :facetable), label: 'Donor', limit: 5
     config.add_facet_field solr_name('draftsman_label', :facetable), label: 'Draftsman', limit: 5
     config.add_facet_field solr_name('editor_label', :facetable), label: 'Editor', limit: 5
     config.add_facet_field solr_name('engraver_label', :facetable), label: 'Engraver', limit: 5
     config.add_facet_field solr_name('illustrator_label', :facetable), label: 'Illustrator', limit: 5
     config.add_facet_field solr_name('librettist_label', :facetable), label: 'Librettist', limit: 5
+    config.add_facet_field solr_name('musician_label', :facetable), label: 'Musician', limit: 5
     config.add_facet_field solr_name('performer_label', :facetable), label: 'Performer', limit: 5
     config.add_facet_field solr_name('photographer_label', :facetable), label: 'Photographer', limit: 5
     config.add_facet_field solr_name('presenter_label', :facetable), label: 'Presenter', limit: 5
@@ -90,6 +94,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('screenwriter_label', :facetable), label: 'Screenwriter', limit: 5
     config.add_facet_field solr_name('sculptor_label', :facetable), label: 'Sculptor', limit: 5
     config.add_facet_field solr_name('sponsor_label', :facetable), label: 'Sponsor', limit: 5
+    config.add_facet_field solr_name('transcriber_label', :facetable), label: 'Transcriber', limit: 5
 
     # exif metadata
     config.add_facet_field solr_name('height', :facetable), label: 'Height', limit: 5
@@ -119,7 +124,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('description', :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
     config.add_index_field solr_name('keyword', :stored_searchable), itemprop: 'keywords', link_to_search: solr_name('keyword', :facetable)
     config.add_index_field solr_name('subject_topical_label', :stored_searchable), link_to_search: solr_name('subject_topical_label', :facetable)
-    config.add_index_field solr_name('subject', :stored_searchable), label: 'NUL Subject', itemprop: 'about', link_to_search: solr_name('subject', :facetable)
+    config.add_index_field solr_name('subject', :stored_searchable), label: 'Uncontrolled Subject', itemprop: 'about', link_to_search: solr_name('subject', :facetable)
     config.add_index_field solr_name('creator_label', :stored_searchable), label: 'Creator', link_to_search: solr_name('creator_label', :facetable)
     config.add_index_field solr_name('contributor_label', :stored_searchable), label: 'Contributor', link_to_search: solr_name('contributor_label', :facetable)
     config.add_index_field solr_name('proxy_depositor', :symbol), label: 'Depositor', helper_method: :link_to_profile
@@ -152,6 +157,11 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('box_number', :stored_searchable), label: 'Box Number'
     config.add_index_field solr_name('folder_name', :stored_searchable), label: 'Folder Name'
     config.add_index_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
+    config.add_index_field solr_name('notes', :stored_searchable), label: 'Notes'
+    config.add_index_field solr_name('related_material', :stored_searchable), label: 'Related Material'
+    config.add_index_field solr_name('scope_and_contents', :stored_searchable), label: 'Scope and Contents'
+    config.add_index_field solr_name('series', :stored_searchable), label: 'Series'
+    config.add_index_field solr_name('table_of_contents', :stored_searchable), label: 'Table of Contents'
 
     # CommonMetadata fields to display in search results
     config.add_index_field solr_name('nul_use_statement', :stored_searchable), label: 'NUL Use Statement'
@@ -159,15 +169,19 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('artist_label', :stored_searchable), link_to_search: solr_name('artist', :facetable), label: 'Artist'
     config.add_index_field solr_name('author_label', :stored_searchable), link_to_search: solr_name('author', :facetable), label: 'Author'
     config.add_index_field solr_name('cartographer_label', :stored_searchable), link_to_search: solr_name('cartographer', :facetable), label: 'Cartographer'
+    config.add_index_field solr_name('collector_label', :stored_searchable), link_to_search: solr_name('collector', :facetable), label: 'Collector'
     config.add_index_field solr_name('compiler_label', :stored_searchable), link_to_search: solr_name('compiler', :facetable), label: 'Compiler'
     config.add_index_field solr_name('composer_label', :stored_searchable), link_to_search: solr_name('composer', :facetable), label: 'Composer'
     config.add_index_field solr_name('designer_label', :stored_searchable), link_to_search: solr_name('designer', :facetable), label: 'Designer'
     config.add_index_field solr_name('director_label', :stored_searchable), link_to_search: solr_name('director', :facetable), label: 'Director'
+    config.add_index_field solr_name('distributor_label', :stored_searchable), link_to_search: solr_name('distributor', :facetable), label: 'Distributor'
+    config.add_index_field solr_name('donor_label', :stored_searchable), link_to_search: solr_name('donor', :facetable), label: 'Donor'
     config.add_index_field solr_name('draftsman_label', :stored_searchable), link_to_search: solr_name('draftsman', :facetable), label: 'Draftsman'
     config.add_index_field solr_name('editor_label', :stored_searchable), link_to_search: solr_name('editor', :facetable), label: 'Editor'
     config.add_index_field solr_name('engraver_label', :stored_searchable), link_to_search: solr_name('engraver', :facetable), label: 'Engraver'
     config.add_index_field solr_name('illustrator_label', :stored_searchable), link_to_search: solr_name('illustrator', :facetable), label: 'Illustrator'
     config.add_index_field solr_name('librettist_label', :stored_searchable), link_to_search: solr_name('librettist', :facetable), label: 'Librettist'
+    config.add_index_field solr_name('musician_label', :stored_searchable), link_to_search: solr_name('musician', :facetable), label: 'Musician'
     config.add_index_field solr_name('performer_label', :stored_searchable), link_to_search: solr_name('performer', :facetable), label: 'Performer'
     config.add_index_field solr_name('photographer_label', :stored_searchable), link_to_search: solr_name('photographer', :facetable), label: 'Photographer'
     config.add_index_field solr_name('presenter_label', :stored_searchable), link_to_search: solr_name('presenter', :facetable), label: 'Presenter'
@@ -178,6 +192,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('screenwriter_label', :stored_searchable), link_to_search: solr_name('screenwriter', :facetable), label: 'Screenwriter'
     config.add_index_field solr_name('sculptor_label', :stored_searchable), link_to_search: solr_name('sculptor', :facetable), label: 'Sculptor'
     config.add_index_field solr_name('sponsor_label', :stored_searchable), link_to_search: solr_name('sponsor', :facetable), label: 'Sponsor'
+    config.add_index_field solr_name('transcriber_label', :stored_searchable), link_to_search: solr_name('transcriber', :facetable), label: 'Transcriber'
     # rubocop:enable Metrics/LineLength
 
     # solr fields to be displayed in the show (single result) view
@@ -186,7 +201,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('description', :stored_searchable)
     config.add_show_field solr_name('keyword', :stored_searchable)
     config.add_show_field solr_name('subject_topical_label', :stored_searchable), label: 'Subject Topical'
-    config.add_show_field solr_name('subject', :stored_searchable), label: 'NUL Subject'
+    config.add_show_field solr_name('subject', :stored_searchable), label: 'Uncontrolled Subject'
     config.add_show_field solr_name('bibliographic_citation', :stored_searchable), label: 'Citation'
     config.add_show_field solr_name('based_near_label', :stored_searchable), label: 'Location (Place of Publication)'
     config.add_show_field solr_name('creator_label', :stored_searchable), label: 'Creator'
@@ -227,15 +242,19 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('artist_label', :stored_searchable)
     config.add_show_field solr_name('author_label', :stored_searchable)
     config.add_show_field solr_name('cartographer_label', :stored_searchable)
+    config.add_show_field solr_name('collector_label', :stored_searchable)
     config.add_show_field solr_name('compiler_label', :stored_searchable)
     config.add_show_field solr_name('composer_label', :stored_searchable)
     config.add_show_field solr_name('designer_label', :stored_searchable)
     config.add_show_field solr_name('director_label', :stored_searchable)
+    config.add_show_field solr_name('distributor_label', :stored_searchable)
+    config.add_show_field solr_name('donor_label', :stored_searchable)
     config.add_show_field solr_name('draftsman_label', :stored_searchable)
     config.add_show_field solr_name('editor_label', :stored_searchable)
     config.add_show_field solr_name('engraver_label', :stored_searchable)
     config.add_show_field solr_name('illustrator_label', :stored_searchable)
     config.add_show_field solr_name('librettist_label', :stored_searchable)
+    config.add_show_field solr_name('musician_label', :stored_searchable)
     config.add_show_field solr_name('performer_label', :stored_searchable)
     config.add_show_field solr_name('photographer_label', :stored_searchable)
     config.add_show_field solr_name('presenter_label', :stored_searchable)
@@ -246,6 +265,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('screenwriter_label', :stored_searchable)
     config.add_show_field solr_name('sculptor_label', :stored_searchable)
     config.add_show_field solr_name('sponsor_label', :stored_searchable)
+    config.add_show_field solr_name('transcriber_label', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -268,7 +288,7 @@ class CatalogController < ApplicationController
       all_names = config.show_fields.values.map(&:field).join(' ')
       title_name = solr_name('title', :stored_searchable)
       field.solr_parameters = {
-        qf: "#{all_names} file_format_tesim all_text_timv accession_number_tesim id",
+        qf: "#{all_names} file_format_tesim all_text_timv accession_number_ssim id",
         pf: title_name.to_s
       }
     end
@@ -503,6 +523,15 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('collector') do |field|
+      field.label = 'Collector'
+      solr_name = solr_name('collector_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('compiler') do |field|
       field.label = 'Compiler'
       solr_name = solr_name('compiler_label', :stored_searchable)
@@ -533,6 +562,24 @@ class CatalogController < ApplicationController
     config.add_search_field('director') do |field|
       field.label = 'Director'
       solr_name = solr_name('director_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('distributor') do |field|
+      field.label = 'Distributor'
+      solr_name = solr_name('distributor_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('donor') do |field|
+      field.label = 'Donor'
+      solr_name = solr_name('donor_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -578,6 +625,15 @@ class CatalogController < ApplicationController
     config.add_search_field('librettist') do |field|
       field.label = 'Librettist'
       solr_name = solr_name('librettist_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('musician') do |field|
+      field.label = 'Musician'
+      solr_name = solr_name('musician_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -668,6 +724,15 @@ class CatalogController < ApplicationController
     config.add_search_field('sponsor') do |field|
       field.label = 'Sponsor'
       solr_name = solr_name('sponsor_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('transcriber') do |field|
+      field.label = 'Transcriber'
+      solr_name = solr_name('transcriber_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
