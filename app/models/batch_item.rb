@@ -9,6 +9,12 @@ class BatchItem < ApplicationRecord
     obj.status ||= 'initialized'
   end
 
+  def log_and_notify(e)
+    message = %(Error for Batch Item: #{id}, from Batch #{batch.id})
+    Honeybadger.notify(message, error_class: e.class.name, backtrace: e.backtrace, tags: 'batch')
+    Rails.logger.info %(#{message}: #{e.message} \n#{e.backtrace.join("\n")})
+  end
+
   def run
     return unless runnable_item?
     new_object = factory.run(user: batch.deposit_user)
@@ -16,7 +22,7 @@ class BatchItem < ApplicationRecord
     complete!
   rescue StandardError => e
     error!(e.class.name => [e.message])
-    Rails.logger.info %(Error for Batch Item: #{id}, from Batch #{batch.id}: #{e.message} \n#{e.backtrace.join("\n")})
+    log_and_notify(e)
   end
 
   def complete!

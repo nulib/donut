@@ -40,6 +40,7 @@ gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 gem 'config'
 gem 'exiftool_vendored'
 gem 'ezid-client'
+gem 'honeybadger', '~> 4.0'
 gem 'httparty'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
@@ -50,7 +51,7 @@ gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
 gem 'edtf'
 gem 'edtf-humanize'
 
-gem 'rubyzip', require: 'zip'
+gem 'rubyzip', '~> 1.2.2', require: 'zip'
 
 gem 'zk'
 
