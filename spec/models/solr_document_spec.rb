@@ -24,6 +24,7 @@ RSpec.describe SolrDocument do
       folder_name_tesim: ['The folder name'],
       folder_number_tesim: ['99'],
       genre_tesim: ['Postmodern'],
+      legacy_identifier_tesim: ['old_images_pid', 'another_pid'],
       provenance: ['The example provenance'],
       physical_description_size_tesim: ['Wood 6cm x 7cm'],
       rights_holder_tesim: ['Northwestern University Libraries'],

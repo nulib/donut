@@ -20,6 +20,7 @@
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim') %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:language_label, render_as: :faceted, label: 'Language') %>
+<%= presenter.attribute_to_html(:legacy_identifier) %>
 <%= presenter.attribute_to_html(:notes) %>
 <%= presenter.attribute_to_html(:physical_description_material, label: 'Physical Description Material') %>
 <%= presenter.attribute_to_html(:physical_description_size, render_as: :faceted) %>

@@ -130,6 +130,10 @@ class SolrDocument
     fetch(Solrizer.solr_name('genre', :stored_searchable), [])
   end
 
+  def legacy_identifier
+    fetch(Solrizer.solr_name('legacy_identifier', :stored_searchable), [])
+  end
+
   def nul_contributor
     fetch(Solrizer.solr_name('nul_contributor', :stored_searchable), [])
   end

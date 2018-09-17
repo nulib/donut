@@ -32,6 +32,7 @@ module Hyrax
       :folder_number,
       :genre,
       :illustrator,
+      :legacy_identifier,
       :librettist,
       :musician,
       :notes,

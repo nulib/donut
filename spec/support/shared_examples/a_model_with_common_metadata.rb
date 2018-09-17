@@ -14,6 +14,7 @@ RSpec.shared_examples 'a model with common metadata' do
   it { is_expected.to have_editable_property(:editor, RDF::Vocab::MARCRelators.edt) }
   it { is_expected.to have_editable_property(:engraver, RDF::Vocab::MARCRelators.egr) }
   it { is_expected.to have_editable_property(:illustrator, RDF::Vocab::MARCRelators.ill) }
+  it { is_expected.to have_editable_property(:legacy_identifier, Vocab::Donut.legacy_identifier) }
   it { is_expected.to have_editable_property(:librettist, RDF::Vocab::MARCRelators.lbt) }
   it { is_expected.to have_editable_property(:performer, RDF::Vocab::MARCRelators.prf) }
   it { is_expected.to have_editable_property(:photographer, RDF::Vocab::MARCRelators.pht) }

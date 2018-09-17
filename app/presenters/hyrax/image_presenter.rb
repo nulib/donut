@@ -32,6 +32,7 @@ module Hyrax
       :genre_label,
       :illustrator_label,
       :language_label,
+      :legacy_identifier,
       :librettist_label,
       :notes,
       :nul_contributor,

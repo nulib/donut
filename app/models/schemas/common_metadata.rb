@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ModuleLength
 module Schemas
   ##
   # Schema for metadata shared among Work types
@@ -19,6 +20,10 @@ module Schemas
 
     # rubocop:disable Metrics/BlockLength
     included do
+      property :legacy_identifier, predicate: ::Vocab::Donut.legacy_identifier do |index|
+        index.as :stored_searchable
+      end
+
       property :nul_use_statement, predicate: ::RDF::Vocab::DC.accessRights do |index|
         index.as :stored_searchable
       end
@@ -151,4 +156,5 @@ module Schemas
     end
     # rubocop:enable Metrics/BlockLength
   end
+  # rubocop:enable Metrics/ModuleLength
 end
