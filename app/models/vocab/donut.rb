@@ -17,5 +17,6 @@ module Vocab
     term :donut_exif_version
     term :icc_profile_description
     term :exif_all_data
+    term :legacy_identifier
   end
 end
