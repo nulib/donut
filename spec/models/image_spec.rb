@@ -10,7 +10,7 @@ RSpec.describe Image do
   it_behaves_like 'a model with image metadata'
   it_behaves_like 'a model with common metadata'
   it_behaves_like 'a model with nul core metadata'
-  it_behaves_like 'a model with hyrax basic metadata', except: [:contributor, :creator, :keyword, :language]
+  it_behaves_like 'a model with hyrax basic metadata', except: [:contributor, :creator, :keyword, :language, :license]
 
   it 'defaults status to Image.DEFAULT_STATUS' do
     attributes = FactoryBot.attributes_for(:image).except(:status)
