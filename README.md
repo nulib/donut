@@ -33,35 +33,36 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 ## Running the Tests
 
-Run the test suite:
+
+Bring up the test stack in one window with:
 
 ```sh
-$ rake donut:ci
+$ devstack -t up donut
 ```
 
-You can run rubocop and the specs independently with:
-
-```sh
-$ rake donut:ci:rubocop
-$ rake donut:ci:rspec
-```
-
-You may also want to run the Fedora and Solr servers in one window with:
-
-```sh
-$ rake docker:test:up
-```
-
-You'll need to run the SEED task for the test environment as well:
+Run the SEED task for the test environment:
 
 ```sh
 $ rake donut:seed RAILS_ENV=test
 ```
 
-And run the test suite in another window:
+Run the test suite in another window:
 
 ```sh
 $ rake spec
+```
+
+Or, you can run the test suite:
+
+```sh
+$ rake donut:ci
+```
+
+You can alternatively run rubocop and the specs independently with:
+
+```sh
+$ rake donut:ci:rubocop
+$ rake donut:ci:rspec
 ```
 
 #### Run the JavaScript tests

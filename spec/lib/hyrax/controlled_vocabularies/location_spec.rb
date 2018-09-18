@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Hyrax::ControlledVocabularies::Location do
   let(:resource) {  described_class.new(RDF::URI(uri)) }
-  let(:cache_key) { 'fetch:http://sws.geonames.org/5099836' }
+  let(:cache_key) { 'fetch:http://sws.geonames.org/5099836/' }
   let(:cache) { instance_double(ActiveSupport::Cache::Store) }
   let(:geo_triple) { file_fixture('5746545.ntz').read }
 
@@ -26,7 +26,7 @@ RSpec.describe Hyrax::ControlledVocabularies::Location do
   end
 
   describe '.geo_point' do
-    let(:uri) { 'http://sws.geonames.org/5099836' }
+    let(:uri) { 'http://sws.geonames.org/5099836/' }
 
     before do
       allow(cache).to receive(:read).with(cache_key).and_return(geo_triple)
