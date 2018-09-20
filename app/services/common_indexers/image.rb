@@ -50,6 +50,7 @@ module CommonIndexers
         related_url: related_url_values,
         rights_statement: rights_statement_object,
         identifier: identifier,
+        legacy_identifier: legacy_identifier,
         license: licenses,
         nul_use_statement: nul_use_statement,
         accession_number: accession_number,

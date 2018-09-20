@@ -19,6 +19,7 @@ FactoryBot.define do
     nul_contributor ['ContribCat']
     box_name ['A good box name']
     box_number ['42']
+    legacy_identifier ['old_images_pid', 'another pid']
     folder_name ['The folder name']
     folder_number ['99']
     preservation_level '1'

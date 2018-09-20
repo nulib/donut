@@ -162,6 +162,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('scope_and_contents', :stored_searchable), label: 'Scope and Contents'
     config.add_index_field solr_name('series', :stored_searchable), label: 'Series'
     config.add_index_field solr_name('table_of_contents', :stored_searchable), label: 'Table of Contents'
+    config.add_index_field solr_name('legacy_identifier', :stored_searchable), label: 'Legacy Identifier'
 
     # CommonMetadata fields to display in search results
     config.add_index_field solr_name('nul_use_statement', :stored_searchable), label: 'NUL Use Statement'
@@ -233,6 +234,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('box_number', :stored_searchable), label: 'Box Number'
     config.add_show_field solr_name('folder_name', :stored_searchable), label: 'Folder Name'
     config.add_show_field solr_name('folder_number', :stored_searchable), label: 'Folder Number'
+    config.add_show_field solr_name('legacy_identifier', :stored_searchable), label: 'Legacy Identifiers'
 
     # CommonMetadata fields for the single result view
     config.add_show_field solr_name('nul_use_statement', :stored_searchable)

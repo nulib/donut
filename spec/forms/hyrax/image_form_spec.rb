@@ -23,6 +23,7 @@ RSpec.describe Hyrax::ImageForm do
         :folder_name,
         :folder_number,
         :genre,
+        :legacy_identifier,
         :notes,
         :nul_contributor,
         :nul_creator,
