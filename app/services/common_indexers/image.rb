@@ -44,7 +44,7 @@ module CommonIndexers
         subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
-        iiif_manifest: representative_file('manifest.json'),
+        iiif_manifest: IiifManifestService.manifest_url(id),
         representative_file_url: representative_file(''),
         resource_type: resource_type,
         related_url: related_url_values,

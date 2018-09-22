@@ -31,6 +31,10 @@ module ApplicationHelper
     link_to(item.created_item, "/concern/#{type}/#{item.created_item}")
   end
 
+  def public_iiif_manifest_linker(id)
+    link_to('Public IIIF Manifest', IiifManifestService.manifest_url(id).to_s, class: 'btn btn-default')
+  end
+
   private
 
     # rubocop:disable Metrics/CyclomaticComplexity
