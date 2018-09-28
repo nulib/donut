@@ -87,13 +87,13 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
     end
   end
 
-  context 'duplicate of already completed item' do
+  context 'duplicate of already initialized item' do
     let(:attributes) { common_attributes }
     let(:prior_batch) { Batch.create(submitter: submitter, job_id: job_id.reverse, original_filename: original_filename) }
     let(:prior_item) { prior_batch.batch_items.create(accession_number: accession_number, attribute_hash: attributes, row_number: 1) }
 
     it 'is skipped' do
-      prior_item.complete!
+      prior_item.status = 'initialized'
       expect { batch_item.run }.to change { batch_item.status }.from('initialized').to('skipped')
     end
   end
