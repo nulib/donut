@@ -1,5 +1,5 @@
 class BatchItem < ApplicationRecord
-  DUPLICATE_STATUSES = ['complete', 'initialized'].freeze
+  DUPLICATE_STATUSES = ['initialized'].freeze
 
   belongs_to :batch
   serialize :attribute_hash, Hash
