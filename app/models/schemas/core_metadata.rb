@@ -7,7 +7,7 @@ module Schemas
       index.as :stored_searchable, :facetable
     end
     property :keyword, predicate: ::RDF::Vocab::SCHEMA.keywords
-    property :language, predicate: ::RDF::Vocab::DC11.language, class_name: ControlledVocabularies::Base
+    property :language, predicate: ::RDF::Vocab::DC.language, class_name: ControlledVocabularies::Base
     property :license, predicate: ::RDF::Vocab::DC.license
   end
 end
