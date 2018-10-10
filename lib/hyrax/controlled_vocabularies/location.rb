@@ -2,7 +2,6 @@ module Hyrax
   module ControlledVocabularies
     class Location < ActiveTriples::Resource
       configure rdf_label: ::RDF::Vocab::GEONAMES.name
-      include CachingFetcher
       require 'rdf/rdfxml'
 
       def initialize(*args, &block)
