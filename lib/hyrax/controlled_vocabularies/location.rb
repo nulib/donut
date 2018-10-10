@@ -2,7 +2,6 @@ module Hyrax
   module ControlledVocabularies
     class Location < ActiveTriples::Resource
       configure rdf_label: ::RDF::Vocab::GEONAMES.name
-      include CachingFetcher
       require 'rdf/rdfxml'
 
       def initialize(*args, &block)
@@ -11,9 +10,7 @@ module Hyrax
       end
 
       def geo_point
-        cache_key = "fetch:#{rdf_subject}"
-        cached_graph = Rails.cache.read(cache_key)
-        load_graph_from_cache(cached_graph)
+        fetch
         latitude_and_longitude
       end
 
