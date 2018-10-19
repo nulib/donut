@@ -81,7 +81,7 @@ module CommonIndexers
 
       def representative_file(suffix)
         return nil if representative_id.nil?
-        fs = FileSet.find(representative_id)
+        fs = ::FileSet.find(representative_id)
         return nil if fs.files.empty?
         IiifDerivativeService.resolve(fs.files.first.id).join(suffix)
       end
