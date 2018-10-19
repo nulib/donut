@@ -2,4 +2,9 @@
 class FileSet < ActiveFedora::Base
   include ::Hyrax::FileSetBehavior
   include MicroserviceMinter
+  include ::CommonIndexer::Base
+
+  def to_common_index
+    CommonIndexService.index(self)
+  end
 end
