@@ -1,0 +1,67 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@type": "sc:Manifest",
+  "@id": "http://localhost:9001/minio/dev-manifests/public/bd/5e/d5/15/-4/2b/5-/42/dd/-9/eb/7-/a6/aa/1e/0e/51/34-manifest.json",
+  "label": "Test Image Title a5a01b46-5399-45cc-bad7-b96ca26a200c",
+  "metadata": [
+    {
+      "label": "Title",
+      "value": [
+        "Test Image Title a5a01b46-5399-45cc-bad7-b96ca26a200c"
+      ]
+    },
+    {
+      "label": "Accession Number",
+      "value": [
+        "a5a01b46-5399-45cc-bad7-b96ca26a200c"
+      ]
+    },
+    {
+      "label": "Date Created",
+      "value": [
+        "1983"
+      ]
+    },
+    {
+      "label": "Rights Statement",
+      "value": [
+        "http://rightsstatements.org/vocab/NKC/1.0/"
+      ]
+    }
+  ],
+  "sequences": [
+    {
+      "@type": "sc:Sequence",
+      "@id": "/sequence/normal",
+      "rendering": [],
+      "canvases": [
+        {
+          "@type": "sc:Canvas",
+          "@id": "http://localhost:9001/minio/dev-manifests/public/bd/5e/d5/15/-4/2b/5-/42/dd/-9/eb/7-/a6/aa/1e/0e/51/34-manifest.json/canvas/7dda3297-106a-4bef-a61a-659708028d86",
+          "label": "IMG_1432.JPG",
+          "width": 640,
+          "height": 480,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@type": "dctypes:Image",
+                "@id": "http://localhost:8183/iiif/2/18%2F3a%2F83%2Fb7%2F-f%2F12%2Fb-%2F45%2Fe4%2F-8%2F03%2F4-%2Fdd%2F69%2Fe7%2F9f%2F3b%2Fca/full/600,/0/default.jpg",
+                "height": 480,
+                "width": 640,
+                "format": null,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://localhost:8183/iiif/2/18%2F3a%2F83%2Fb7%2F-f%2F12%2Fb-%2F45%2Fe4%2F-8%2F03%2F4-%2Fdd%2F69%2Fe7%2F9f%2F3b%2Fca",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://localhost:9001/minio/dev-manifests/public/bd/5e/d5/15/-4/2b/5-/42/dd/-9/eb/7-/a6/aa/1e/0e/51/34-manifest.json/canvas/7dda3297-106a-4bef-a61a-659708028d86"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

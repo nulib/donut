@@ -116,7 +116,7 @@ Hyrax.config do |config|
 
   # Returns a URL that resolves to an image provided by a IIIF image server
   config.iiif_image_url_builder = lambda do |file_id, _base_url, size|
-    IiifDerivativeService.resolve(file_id, extra_path: "/full/#{size}/0/default.jpg")
+    IiifDerivativeService.resolve(file_id, extra_path: "full/#{size}/0/default.jpg")
   end
   # config.iiif_image_url_builder = lambda do |file_id, base_url, size|
   #   "#{base_url}/downloads/#{file_id.split('/').first}"
@@ -126,6 +126,7 @@ Hyrax.config do |config|
   config.iiif_info_url_builder = lambda do |file_id, _base_url|
     IiifDerivativeService.resolve(file_id)
   end
+
   # config.iiif_info_url_builder = lambda do |_, _|
   #   ""
   # end
