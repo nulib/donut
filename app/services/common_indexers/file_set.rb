@@ -3,7 +3,8 @@ module CommonIndexers
     def generate
       multi_merge(
         model,
-        values(:id, :label, :description, :visibility)
+        { id: files.first.id.split(%r{/}).last },
+        values(:label, :description, :visibility)
       )
     end
   end
