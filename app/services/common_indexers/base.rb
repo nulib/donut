@@ -30,13 +30,6 @@ module CommonIndexers
       edtf_date.map { |date| Date.edtf(date).humanize }
     end
 
-    def location(field)
-      {}.tap do |result|
-        value = source.send(field)
-        result[:location_geo] = value.first.fetch.geo_point if value.present?
-      end
-    end
-
     def model
       {
         model: {
