@@ -18,3 +18,5 @@ metadata:
 common_indexer:
   endpoint: http://localhost:9201/
 solrcloud: true
+zookeeper:
+  connection_str: "localhost:9983/configs"

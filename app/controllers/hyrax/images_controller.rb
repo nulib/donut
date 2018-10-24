@@ -10,5 +10,9 @@ module Hyrax
 
     # Use this line if you want to use a custom presenter
     self.show_presenter = Hyrax::ImagePresenter
+
+    def status
+      render json: CrappyStateMachine.work_status(params[:id])
+    end
   end
 end

@@ -149,5 +149,11 @@ class Image < ActiveFedora::Base
     end
   end
 
+  def processed?
+    work_jobs = ['AttachFilesToWorkJob', 'ImportUrlJob']
+    return false if CrappyStateMachine.where(job_class: work_jobs, target_id: id, state: 'performed').length.zero?
+    file_sets.all?(&:processed?)
+  end
+
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
 end

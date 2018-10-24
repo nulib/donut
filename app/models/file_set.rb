@@ -7,4 +7,9 @@ class FileSet < ActiveFedora::Base
   def to_common_index
     CommonIndexService.index(self)
   end
+
+  def processed?
+    file_set_jobs = ['CharacterizeJob', 'CreateDerivativesJob', 'CreatePyramidTiffJob', 'IngestJob']
+    CrappyStateMachine.where(job_class: file_set_jobs, target_id: id, state: 'performed').length == file_set_jobs.length
+  end
 end

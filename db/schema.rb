@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181024175237) do
+ActiveRecord::Schema.define(version: 20181101111812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,16 @@ ActiveRecord::Schema.define(version: 20181024175237) do
   create_table "hyrax_features", id: :serial, force: :cascade do |t|
     t.string "key", null: false
     t.boolean "enabled", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "crappy_state_machines", force: :cascade do |t|
+    t.string "job_class", null: false
+    t.string "job_id", null: false
+    t.string "target_id", null: false
+    t.string "work_id"
+    t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
