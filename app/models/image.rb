@@ -23,6 +23,8 @@ class Image < ActiveFedora::Base
 
   after_initialize :default_values
 
+  before_save :fetch_missing_labels
+
   after_save do
     ArkMintingService.mint_identifier_for(self) if ark.nil?
   end
@@ -117,14 +119,14 @@ class Image < ActiveFedora::Base
 
   id_blank = proc { |attributes| attributes[:id].blank? }
 
-  self.controlled_properties += [:architect, :artist, :author, :cartographer, :collector, :compiler, :composer,
-                                 :contributor, :creator, :designer, :director, :distributor, :donor, :draftsman,
-                                 :editor, :engraver, :genre, :illustrator, :language, :librettist, :musician,
-                                 :performer, :photographer, :presenter, :printer, :printmaker, :producer,
+  self.controlled_properties += [:architect, :artist, :author, :based_near, :cartographer, :collector, :compiler,
+                                 :composer, :contributor, :creator, :designer, :director, :distributor, :donor,
+                                 :draftsman, :editor, :engraver, :genre, :illustrator, :language, :librettist,
+                                 :musician, :performer, :photographer, :presenter, :printer, :printmaker, :producer,
                                  :production_manager, :screenwriter, :sculptor, :sponsor, :style_period,
                                  :subject_geographical, :subject_topical, :technique, :transcriber]
 
-  self.controlled_properties.without(:based_near).each do |property|
+  self.controlled_properties.each do |property|
     accepts_nested_attributes_for property, reject_if: id_blank, allow_destroy: true
   end
 
@@ -135,6 +137,16 @@ class Image < ActiveFedora::Base
 
   def to_common_index
     CommonIndexService.index(self)
+  end
+
+  def fetch_missing_labels
+    tap do |i|
+      i.attributes.each_pair do |_name, values|
+        Array(values).each do |val|
+          val.fetch if val.is_a?(ControlledVocabularies::Base) && !val.label_present
+        end
+      end
+    end
   end
 
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
