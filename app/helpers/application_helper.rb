@@ -28,7 +28,15 @@ module ApplicationHelper
   def item_linker(item)
     return nil if item.created_item.blank?
     type = item.attribute_hash[:type].underscore.pluralize
-    link_to(item.created_item, "/concern/#{type}/#{item.created_item}")
+    if item.attribute_hash[:type].constantize.where(id: item.created_item).present?
+      link_to(item.created_item, "/concern/#{type}/#{item.created_item}")
+    else
+      content_tag(:strike, item.created_item.to_s)
+    end
+  end
+
+  def public_iiif_manifest_linker(id)
+    link_to('Public IIIF Manifest', IiifManifestService.manifest_url(id).to_s, class: 'btn btn-default')
   end
 
   private

@@ -30,13 +30,6 @@ module CommonIndexers
       edtf_date.map { |date| Date.edtf(date).humanize }
     end
 
-    def location(field)
-      {}.tap do |result|
-        value = source.send(field)
-        result[:location_geo] = value.first.fetch.geo_point unless value.empty?
-      end
-    end
-
     def model
       {
         model: {
@@ -50,7 +43,7 @@ module CommonIndexers
       {}.tap do |result|
         fields.each do |field|
           value = source.send(field)
-          result[field] = value unless value.empty?
+          result[field] = value if value.present?
         end
       end
     end
@@ -59,7 +52,7 @@ module CommonIndexers
       {}.tap do |result|
         fields.each do |field|
           value = source.send(field)
-          result[field] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } unless value.empty?
+          result[field] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } if value.present?
         end
       end
     end
@@ -69,7 +62,7 @@ module CommonIndexers
         fields.each do |field|
           value = source.send(field)
           key = (field.to_s + '_facet').to_sym
-          result[key] = value.map { |v| v.fetch.preferred_label } unless value.empty?
+          result[key] = value.map { |v| v.fetch.preferred_label } if value.present?
         end
       end
     end
@@ -79,7 +72,7 @@ module CommonIndexers
         fields.each do |field|
           (name, type) = field.is_a?(Array) ? field.map(&:to_s) : [field.to_s, field.to_s]
 
-          next if source[name].empty?
+          next if source[name].blank?
           Array(source[name]).each do |value|
             (uri, label) = fetch_uri_and_label(value)
             result << { role: type, uri: uri, label: label }
@@ -93,7 +86,7 @@ module CommonIndexers
         fields.each do |field|
           (name, type) = field.is_a?(Array) ? field.map(&:to_s) : [field.to_s, field.to_s]
 
-          next if source[name].empty?
+          next if source[name].blank?
           Array(source[name]).each do |value|
             (uri, label) = fetch_uri_and_label(value)
             result << { role: type, uri: uri, label: "#{label} (#{type.capitalize})" }

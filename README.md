@@ -20,8 +20,6 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Clone the Donut GitHub repository
 * Install dependencies: `bundle install`
 * Run `devstack up donut` in a separate tab to start dependency services
-* Setup the database: `rake db:setup`
-* Generate roles: `rake generate_roles`
 
 * Run `rake donut:seed` to initialize the stack.
   * Optional arguments to `donut:seed` (may be used in combination):

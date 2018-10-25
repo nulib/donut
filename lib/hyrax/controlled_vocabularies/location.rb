@@ -2,19 +2,11 @@ module Hyrax
   module ControlledVocabularies
     class Location < ActiveTriples::Resource
       configure rdf_label: ::RDF::Vocab::GEONAMES.name
-      include CachingFetcher
       require 'rdf/rdfxml'
 
       def initialize(*args, &block)
         args[0] = correct_uri_for(args.first) unless args.first.is_a?(Hash)
         super(*args, &block)
-      end
-
-      def geo_point
-        cache_key = "fetch:#{rdf_subject}"
-        cached_graph = Rails.cache.read(cache_key)
-        load_graph_from_cache(cached_graph)
-        latitude_and_longitude
       end
 
       # Return a tuple of url & label
@@ -39,18 +31,6 @@ module Hyrax
         def fixup_geonames_uri(id)
           path = URI(id).tap { |uri| uri.host = 'sws.geonames.org' }.to_s
           path.end_with?('/') ? path : "#{path}/"
-        end
-
-        def latitude_and_longitude
-          query = RDF::Query.new(location: {
-                                   RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#lat') => :lat,
-                                   RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#long') => :long
-                                 })
-          results = query.execute(graph)
-          return {} if results.empty?
-          lat = results.first[:lat].to_s
-          long = results.first[:long].to_s
-          { lat: lat, lon: long }
         end
     end
   end

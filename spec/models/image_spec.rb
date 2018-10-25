@@ -26,7 +26,8 @@ RSpec.describe Image do
 
   describe '#to_common_index' do
     it 'maps metadata to a hash for indexing' do
-      expect(image.to_common_index).to be_kind_of(Hash)
+      image_with_id = FactoryBot.build(:image, id: 'abc124')
+      expect(image_with_id.to_common_index).to be_kind_of(Hash)
     end
   end
 end

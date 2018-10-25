@@ -5,8 +5,7 @@ module CommonIndexers
         model,
         fields,
         values(:abstract, :caption, :description, :keyword, :provenance, :publisher, :rights_holder, :source, :visibility),
-        labels(:language, :genre, :style_period, :technique),
-        location(:based_near)
+        labels(:language, :genre, :style_period, :technique)
       )
     end
 
@@ -44,7 +43,7 @@ module CommonIndexers
         subject: typed_values(:subject, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         title: { primary: title, alternate: alternate_title },
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
-        iiif_manifest: representative_file('manifest.json'),
+        iiif_manifest: IiifManifestService.manifest_url(id),
         representative_file_url: representative_file(''),
         resource_type: resource_type,
         related_url: related_url_values,
@@ -81,7 +80,7 @@ module CommonIndexers
 
       def representative_file(suffix)
         return nil if representative_id.nil?
-        fs = FileSet.find(representative_id)
+        fs = ::FileSet.find(representative_id)
         return nil if fs.files.empty?
         IiifDerivativeService.resolve(fs.files.first.id).join(suffix)
       end

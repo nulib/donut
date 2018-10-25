@@ -1,3 +1,4 @@
+derivatives_path: <%= File.join(ENV['HOME'], '.nuldata', 'derivatives') %>
 localstack:
   sqs: false
   port_offset: 200
@@ -6,8 +7,11 @@ aws:
   buckets:
     batch:   test-batch
     uploads: test-uploads
+    manifests: test-manifests
 common_indexer:
   endpoint: http://localhost:9202/
+metadata:
+  endpoint: http://localhost:9002/test-manifests/
 solrcloud: true
 zookeeper:
   connection_str: "localhost:9985/configs"
