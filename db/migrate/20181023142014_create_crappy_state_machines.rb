@@ -1,6 +1,6 @@
 class CreateCrappyStateMachines < ActiveRecord::Migration[5.1]
   def change
-    create_table :crappy_state_machine do |t|
+    create_table :crappy_state_machines do |t|
       t.string   :job_class, null: false
       t.string   :job_id, null: false
       t.string   :target_id, null: false
