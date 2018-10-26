@@ -1,7 +1,7 @@
 class ApplicationJob < ActiveJob::Base
   queue_as Hyrax.config.ingest_queue_name
 
-  after_enqueue  { |job| job.transition_state('enqueued')   }
+  before_enqueue  { |job| job.transition_state('queued')   }
   before_perform { |job| job.transition_state('performing') }
   after_perform  { |job| job.transition_state('performed')  }
 
