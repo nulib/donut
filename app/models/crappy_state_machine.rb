@@ -1,6 +1,16 @@
 class CrappyStateMachine < ApplicationRecord
   class << self
+    def trace(job_class:, job_id:, target_id:, work_id:)
+      transition(job_class: job_class, job_id: job_id, target_id: target_id, work_id: work_id, state: 'performing')
+      yield
+      transition(job_class: job_class, job_id: job_id, target_id: target_id, work_id: work_id, state: 'performed')
+    rescue StandardError
+      transition(job_class: job_class, job_id: job_id, target_id: target_id, work_id: work_id, state: 'exception')
+      raise
+    end
+
     def transition(job_class:, job_id:, target_id:, work_id:, state:)
+      Rails.logger.debug "CSM: (#{job_class.inspect}, #{target_id.inspect}) -> #{state}"
       return if work_id.nil?
       csm = where(job_class: job_class, target_id: target_id).first_or_initialize
       csm.update_attributes(job_id: job_id, work_id: work_id, state: state)

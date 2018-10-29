@@ -46,19 +46,20 @@ module Hyrax
         # @param [HashWithIndifferentAccess] remote_files
         # @return [TrueClass]
         def attach_files(env, remote_files)
-          return true unless remote_files
-          remote_files.each do |file_info|
-            next if file_info.blank? || file_info[:url].blank?
-            # Escape any space characters, so that this is a legal URI
-            uri = URI.parse(file_info[:url])
-            unless validate_remote_url(uri)
-              Rails.logger.error "User #{env.user.user_key} attempted to ingest file from url #{file_info[:url]}, which doesn't pass validation"
-              return false
+          CrappyStateMachine.trace(job_class: self.class.name, job_id: env.object_id, target_id: env.curation_concern.id, work_id: env.curation_concern.id) do
+            Array(remote_files).each do |file_info|
+              next if file_info.blank? || file_info[:url].blank?
+              # Escape any space characters, so that this is a legal URI
+              uri = URI.parse(file_info[:url])
+              unless validate_remote_url(uri)
+                Rails.logger.error "User #{env.user.user_key} attempted to ingest file from url #{file_info[:url]}, which doesn't pass validation"
+                return false
+              end
+              auth_header = file_info.fetch(:auth_header, {})
+              create_file_from_url(env, uri, file_info[:file_name], auth_header)
             end
-            auth_header = file_info.fetch(:auth_header, {})
-            create_file_from_url(env, uri, file_info[:file_name], auth_header)
+            true
           end
-          true
         end
 
         # Generic utility for creating FileSet from a URL

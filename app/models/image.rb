@@ -150,7 +150,7 @@ class Image < ActiveFedora::Base
   end
 
   def processed?
-    work_jobs = ['AttachFilesToWorkJob', 'ImportUrlJob']
+    work_jobs = ['Hyrax::Actors::CreateWithFilesActor']
     return false if CrappyStateMachine.where(job_class: work_jobs, target_id: id, state: 'performed').length.zero?
     file_sets.all?(&:processed?)
   end

@@ -90,6 +90,16 @@ ActiveRecord::Schema.define(version: 20181101111812) do
     t.string "external_key"
   end
 
+  create_table "crappy_state_machines", force: :cascade do |t|
+    t.string "job_class", null: false
+    t.string "job_id", null: false
+    t.string "target_id", null: false
+    t.string "work_id"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "curation_concerns_operations", id: :serial, force: :cascade do |t|
     t.string "status"
     t.string "operation_type"
@@ -162,16 +172,6 @@ ActiveRecord::Schema.define(version: 20181101111812) do
   create_table "hyrax_features", id: :serial, force: :cascade do |t|
     t.string "key", null: false
     t.boolean "enabled", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "crappy_state_machines", force: :cascade do |t|
-    t.string "job_class", null: false
-    t.string "job_id", null: false
-    t.string "target_id", null: false
-    t.string "work_id"
-    t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
