@@ -52,7 +52,7 @@ module CommonIndexers
       {}.tap do |result|
         fields.each do |field|
           value = source.send(field)
-          result[field] = value.map { |v| { uri: v.id, label: v.fetch.preferred_label } } if value.present?
+          result[field] = value.map { |v| { uri: v.id, label: fetch_label(v) } } if value.present?
         end
       end
     end
@@ -62,7 +62,7 @@ module CommonIndexers
         fields.each do |field|
           value = source.send(field)
           key = (field.to_s + '_facet').to_sym
-          result[key] = value.map { |v| v.fetch.preferred_label } if value.present?
+          result[key] = value.map { |v| fetch_label(v) } if value.present?
         end
       end
     end
@@ -105,8 +105,12 @@ module CommonIndexers
 
     private
 
+      def fetch_label(value)
+        value.preferred_label
+      end
+
       def fetch_uri_and_label(value)
-        value.is_a?(ControlledVocabularies::Base) ? [value.id, value.fetch.preferred_label] : [nil, value]
+        value.is_a?(ControlledVocabularies::Base) ? [value.id, value.preferred_label] : [nil, value]
       end
   end
 end

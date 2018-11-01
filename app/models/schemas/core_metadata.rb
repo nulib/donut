@@ -1,5 +1,6 @@
 module Schemas
   class CoreMetadata < ActiveTriples::Schema
+    property :based_near, predicate: ::RDF::Vocab::FOAF.based_near, class_name: ControlledVocabularies::Base
     property :contributor, predicate: ::RDF::Vocab::DC11.contributor, class_name: ControlledVocabularies::Base do |index|
       index.as :stored_searchable, :facetable
     end

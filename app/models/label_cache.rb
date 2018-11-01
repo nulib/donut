@@ -1,0 +1,2 @@
+class LabelCache < ApplicationRecord
+end
