@@ -1,5 +1,3 @@
-require 'ruby-vips'
-
 class CreatePyramidTiffJob < ApplicationJob
   # @param [FileSet] file_set
   # @param [String] file_id identifier for a Hydra::PCDM::File

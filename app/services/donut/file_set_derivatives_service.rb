@@ -1,5 +1,3 @@
-require 'ruby-vips'
-
 module Donut
   class FileSetDerivativesService < Hyrax::FileSetDerivativesService
     def create_derivatives(filename)

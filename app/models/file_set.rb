@@ -6,7 +6,16 @@ class FileSet < ActiveFedora::Base
   include MicroserviceMinter
   include ::CommonIndexer::Base
 
+  before_save :impute_area_of_interest
+
   def to_common_index
     CommonIndexService.index(self)
+  end
+
+  def impute_area_of_interest
+    return if area_of_interest.present? || label.blank?
+    file_id = File.basename(label, '.*')
+    area = AreaOfInterest.find_by(file_id: file_id)
+    self.area_of_interest = area.to_a.join(',') unless area.nil?
   end
 end
