@@ -56,7 +56,7 @@ module CommonIndexers
         physical_description: { material: physical_description_material, size: physical_description_size },
         related_material: related_material,
         related_url: related_url_values,
-        representative_file_url: representative_file(''),
+        representative_file_url: representative_file,
         resource_type: resource_type,
         rights_statement: rights_statement_object,
         scope_and_contents: scope_and_contents,
@@ -85,7 +85,7 @@ module CommonIndexers
         { uri: rights_statement.first, label: Hyrax::RightsStatementService.new.label(rights_statement.first) }
       end
 
-      def representative_file(suffix)
+      def representative_file(suffix = '')
         return nil if representative_id.nil?
         fs = ::FileSet.find(representative_id)
         return nil if fs.files.empty?
