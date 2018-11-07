@@ -30,6 +30,14 @@ module CommonIndexers
       edtf_date.map { |date| Date.edtf(date).humanize }
     end
 
+    def sortable_date(date_field)
+      if date_field.respond_to?(:iso8601)
+        date_field.iso8601
+      else
+        DateTime.parse(date_field).iso8601
+      end
+    end
+
     def model
       {
         model: {
