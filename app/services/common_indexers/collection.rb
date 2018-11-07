@@ -13,7 +13,8 @@ module CommonIndexers
         id: id,
         title: { primary: title },
         thumbnail_iiif_url: thumbnail_iiif_url,
-        collection_type_idd: type_of_collection
+        collection_type_idd: type_of_collection,
+        modified_date: Hyrax::TimeService.time_in_utc.iso8601
       }
     end
 

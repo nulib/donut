@@ -11,7 +11,8 @@ module CommonIndexers
     def fields
       {
         id: id,
-        title: { primary: title }
+        title: { primary: title },
+        modified_date: Hyrax::TimeService.time_in_utc.iso8601
       }
     end
   end
