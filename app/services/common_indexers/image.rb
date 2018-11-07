@@ -49,7 +49,7 @@ module CommonIndexers
         iiif_manifest: IiifManifestService.manifest_url(id),
         legacy_identifier: legacy_identifier,
         license: licenses,
-        modified_date: date_modified&.iso8601,
+        modified_date: sortable_date(date_modified),
         notes: notes,
         nul_use_statement: nul_use_statement,
         permalink: ark,
@@ -65,7 +65,7 @@ module CommonIndexers
         table_of_contents: table_of_contents,
         thumbnail_url: representative_file('square/300,/0/default.jpg'),
         title: { primary: title, alternate: alternate_title },
-        uploaded_date: date_uploaded&.iso8601,
+        uploaded_date: sortable_date(date_uploaded),
         year: extract_years(date_created)
       }
     end
