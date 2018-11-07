@@ -11,7 +11,9 @@ module CommonIndexers
     def fields
       {
         id: id,
-        title: { primary: title }
+        title: { primary: title },
+        modified_date: sortable_date(modified_date),
+        create_date: sortable_date(create_date)
       }
     end
   end
