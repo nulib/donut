@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406202557) do
+ActiveRecord::Schema.define(version: 20181101194412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "areas_of_interest", force: :cascade do |t|
+    t.string "file_id", null: false
+    t.integer "x", default: 0, null: false
+    t.integer "y", default: 0, null: false
+    t.integer "width", null: false
+    t.integer "height", null: false
+    t.integer "rotation", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["file_id"], name: "index_areas_of_interest_on_file_id"
+  end
 
   create_table "batch_items", force: :cascade do |t|
     t.integer "batch_id"
@@ -178,6 +190,13 @@ ActiveRecord::Schema.define(version: 20180406202557) do
     t.datetime "updated_at", null: false
     t.index ["uploaded_file_id"], name: "index_job_io_wrappers_on_uploaded_file_id"
     t.index ["user_id"], name: "index_job_io_wrappers_on_user_id"
+  end
+
+  create_table "label_caches", force: :cascade do |t|
+    t.string "uri", null: false
+    t.string "label", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|

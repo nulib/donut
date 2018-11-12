@@ -1,11 +1,10 @@
-require 'ruby-vips'
-
 class CreatePyramidTiffJob < ApplicationJob
   # @param [FileSet] file_set
   # @param [String] file_id identifier for a Hydra::PCDM::File
   # @param [String, NilClass] filepath the cached file within the Hyrax.config.working_path
   def perform(file_set, file_id, filepath = nil)
-    filename = Hyrax::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath)
+    service = Hyrax::DerivativeService.for(file_set)
+    filename = service.prepare_file(Hyrax::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath))
 
     image = Vips::Image.new_from_file(filename)
     write_tiff(image, file_id)

@@ -23,6 +23,8 @@ FactoryBot.define do
     folder_name ['The folder name']
     folder_number ['99']
     preservation_level '1'
+    date_modified { Hyrax::TimeService.time_in_utc }
+    date_uploaded { Time.current.ctime }
 
     transient do
       user { FactoryBot.create(:user) }

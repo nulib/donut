@@ -5,9 +5,15 @@ class ImageIndexer < Hyrax::WorkIndexer
   # provide your own metadata and indexing.
   include Hyrax::IndexesBasicMetadata
 
-  # Fetch remote labels for based_near. You can remove this if you don't want
-  # this behavior
-  include Hyrax::IndexesLinkedMetadata
+  def rdf_service
+    Class.new(Hyrax::DeepIndexingService) do
+      def add_assertions(*args)
+        object.fetch_missing_labels
+        # Skip all intermediate ancestors and call the base IndexingService's add_assertions method
+        ActiveFedora::RDF::IndexingService.instance_method(:add_assertions).bind(self).call(*args)
+      end
+    end
+  end
 
   # Custom indexing behavior:
   def generate_solr_document
@@ -22,18 +28,11 @@ class ImageIndexer < Hyrax::WorkIndexer
     end
   end
 
-  # rubocop:disable Metrics/AbcSize
   def index_technical_metadata(solr_doc, file_set)
-    (solr_doc['width_sim'] ||= []) << file_set.characterization_proxy.width.first
-    (solr_doc['height_sim'] ||= []) << file_set.characterization_proxy.height.first
-    (solr_doc['bits_per_sample_sim'] ||= []) << file_set.characterization_proxy.bits_per_sample.first
-    (solr_doc['compression_sim'] ||= []) << file_set.characterization_proxy.compression.first
-    (solr_doc['photometric_interpretation_sim'] ||= []) << file_set.characterization_proxy.photometric_interpretation.first
-    (solr_doc['make_sim'] ||= []) << file_set.characterization_proxy.make.first
-    (solr_doc['model_sim'] ||= []) << file_set.characterization_proxy.model.first
-    (solr_doc['x_resolution_sim'] ||= []) << file_set.characterization_proxy.x_resolution.first
-    (solr_doc['y_resolution_sim'] ||= []) << file_set.characterization_proxy.y_resolution.first
-    (solr_doc['icc_profile_description_sim'] ||= []) << file_set.characterization_proxy.icc_profile_description.first
+    [:width, :height, :bits_per_sample, :compression, :photometric_interpretation,
+     :make, :model, :x_resolution, :y_resolution, :icc_profile_description].each do |attribute|
+      (solr_doc["#{attribute}_sim"] ||= []) << file_set.characterization_proxy.send(attribute).first
+    end
   end
   # rubocop:enable Metrics/AbcSize
 end
