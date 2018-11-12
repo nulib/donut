@@ -1,6 +1,9 @@
+
 module CommonIndexers
   class Base
     attr_reader :source
+
+    EXPLICIT_TYPES = { 'nul_contributor' => 'Contributor' }.freeze
 
     def initialize(source)
       @source = source
@@ -97,7 +100,7 @@ module CommonIndexers
           next if source[name].blank?
           Array(source[name]).each do |value|
             (uri, label) = fetch_uri_and_label(value)
-            result << { role: type, uri: uri, label: "#{label} (#{type.capitalize})" }
+            result << { role: type, uri: uri, label: "#{label} (#{label_qualifier(type)})" }
           end
         end
       end
@@ -112,6 +115,10 @@ module CommonIndexers
     end
 
     private
+
+      def label_qualifier(type)
+        EXPLICIT_TYPES[type] || type.capitalize
+      end
 
       def fetch_label(value)
         value.preferred_label
