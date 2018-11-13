@@ -34,6 +34,7 @@ Metrics/ClassLength:
     - 'app/models/solr_document.rb'
     - 'app/models/image.rb'
     - 'app/forms/hyrax/image_form.rb'
+    - 'app/services/common_indexers/base.rb'
 
 Metrics/LineLength:
   Max: 164 # default is 80
