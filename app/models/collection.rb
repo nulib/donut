@@ -6,7 +6,7 @@ class Collection < ActiveFedora::Base
   include MicroserviceMinter
   include ::CommonIndexer::Base
 
-  self.indexer = Hyrax::CollectionWithBasicMetadataIndexer
+  self.indexer = Donut::CollectionIndexer
 
   def to_common_index
     CommonIndexService.index(self)
