@@ -56,14 +56,14 @@ module CommonIndexers
         physical_description: { material: physical_description_material, size: physical_description_size },
         related_material: related_material,
         related_url: related_url_values,
-        representative_file_url: representative_file,
+        representative_file_url: representative_file(representative_id),
         resource_type: resource_type,
         rights_statement: rights_statement_object,
         scope_and_contents: scope_and_contents,
         series: series,
         subject: typed_values(:subject, :subject_temporal, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         table_of_contents: table_of_contents,
-        thumbnail_url: representative_file('square/300,/0/default.jpg'),
+        thumbnail_url: representative_file(representative_id, 'square/300,/0/default.jpg'),
         title: { primary: title, alternate: alternate_title },
         uploaded_date: sortable_date(date_uploaded),
         year: extract_years(date_created)
@@ -85,11 +85,15 @@ module CommonIndexers
         { uri: rights_statement.first, label: Hyrax::RightsStatementService.new.label(rights_statement.first) }
       end
 
-      def representative_file(suffix = '')
+      def representative_file(representative_id, suffix = '')
         return nil if representative_id.nil?
-        fs = ::FileSet.find(representative_id)
-        return nil if fs.files.empty?
-        IiifDerivativeService.resolve(fs.files.first.id).join(suffix)
+        object = ActiveFedora::Base.find(representative_id)
+        if object.is_a?(::Image)
+          representative_file(object.representative_id, suffix)
+        else
+          return nil if object.files.empty?
+          IiifDerivativeService.resolve(object.original_file.id).join(suffix)
+        end
       end
   end
 end

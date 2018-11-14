@@ -11,9 +11,7 @@ RSpec.describe Donut::CollectionIndexer do
   end
 
   before do
-    class TestIndexer < Hydra::PCDM::CollectionIndexer
-      include Donut::CollectionIndexer
-
+    class TestIndexer < Donut::CollectionIndexer
       attr_reader :object
 
       def initialize(collection)

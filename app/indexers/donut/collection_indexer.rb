@@ -1,5 +1,5 @@
 module Donut
-  module CollectionIndexer
+  class CollectionIndexer < Hyrax::CollectionIndexer
     def generate_solr_document
       super.tap do |solr_doc|
         if object.thumbnail_id.present?
