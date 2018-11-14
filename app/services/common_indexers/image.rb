@@ -92,7 +92,7 @@ module CommonIndexers
           representative_file(object.representative_id, suffix)
         else
           return nil if object.files.empty?
-          IiifDerivativeService.resolve(object.files.first.id).join(suffix)
+          IiifDerivativeService.resolve(object.original_file.id).join(suffix)
         end
       end
   end
