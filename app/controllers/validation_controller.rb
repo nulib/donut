@@ -22,7 +22,7 @@ class ValidationController < ApplicationController
     end
 
     def transform_new_params
-      validation_params.except(:member_of_collections_attributes)
+      validation_params.except(:member_of_collections_attributes, :in_works_ids)
     end
 
     def transform_edit_params
