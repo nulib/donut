@@ -10,7 +10,9 @@ class IiifManifestService
     end
 
     def write_manifest(work_id)
-      presenter = S3IiifManifestPresenter.new(SolrDocument.find(work_id), S3ManifestAbility.new)
+      doc = SolrDocument.find(work_id)
+      return if doc['visibility_ssi'] == 'restricted'
+      presenter = S3IiifManifestPresenter.new(doc, S3ManifestAbility.new)
       manifest_json = JSON.pretty_generate(::IIIFManifest::ManifestFactory.new(presenter).to_h)
       destination = Aws::S3::Object.new(Settings.aws.buckets.manifests, s3_key_for(work_id))
       destination.put(body: manifest_json, acl: 'public-read')
