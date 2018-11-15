@@ -63,7 +63,7 @@ module CommonIndexers
         series: series,
         subject: typed_values(:subject, :subject_temporal, [:subject_geographical, 'geographical'], [:subject_topical, 'topical']),
         table_of_contents: table_of_contents,
-        thumbnail_url: representative_file(representative_id, 'square/300,/0/default.jpg'),
+        thumbnail_url: thumbnail(thumbnail_id),
         title: { primary: title, alternate: alternate_title },
         uploaded_date: sortable_date(date_uploaded),
         year: extract_years(date_created)
@@ -85,14 +85,25 @@ module CommonIndexers
         { uri: rights_statement.first, label: Hyrax::RightsStatementService.new.label(rights_statement.first) }
       end
 
-      def representative_file(representative_id, suffix = '')
+      def representative_file(representative_id)
         return nil if representative_id.nil?
         object = ActiveFedora::Base.find(representative_id)
         if object.is_a?(::Image)
-          representative_file(object.representative_id, suffix)
+          representative_file(object.representative_id)
         else
           return nil if object.files.empty?
-          IiifDerivativeService.resolve(object.original_file.id).join(suffix)
+          IiifDerivativeService.resolve(object.original_file.id)
+        end
+      end
+
+      def thumbnail(thumbnail_id)
+        return nil if thumbnail_id.nil?
+        object = ActiveFedora::Base.find(thumbnail_id)
+        if object.is_a?(::Image)
+          thumbnail(object.thumbnail_id)
+        else
+          return nil if object.files.empty?
+          IiifDerivativeService.resolve(object.original_file.id)
         end
       end
   end
