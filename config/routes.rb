@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     concerns :exportable
   end
 
+  get '/concern/images/:id/public_manifest(.:format)', to: 'hyrax/images#public_manifest', as: :hyrax_image_public_manifest
+
   resources :bookmarks do
     concerns :exportable
 

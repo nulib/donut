@@ -46,7 +46,7 @@ module CommonIndexers
         full_text: full_text_values,
         id: id,
         identifier: identifier,
-        iiif_manifest: IiifManifestService.manifest_url(id),
+        iiif_manifest: "/concern/images/#{id}/public_manifest.json",
         legacy_identifier: legacy_identifier,
         license: licenses,
         modified_date: sortable_date(date_modified),
