@@ -7,7 +7,7 @@ class CreatePyramidTiffJob < ApplicationJob
     filename = service.prepare_file(Hyrax::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath))
 
     image = Vips::Image.new_from_file(filename)
-    write_tiff(image, file_id)
+    write_tiff(image, file_set.id)
   end
 
   private
