@@ -34,6 +34,7 @@ module CommonIndexers
     end
 
     def sortable_date(date_field)
+      return if date_field.nil?
       if date_field.respond_to?(:iso8601)
         date_field.iso8601
       else
