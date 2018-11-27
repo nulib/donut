@@ -11,7 +11,7 @@ module Hyrax
     # Use this line if you want to use a custom presenter
     self.show_presenter = Hyrax::ImagePresenter
 
-    prepend_before_action { params[:id].delete!('/') }
+    prepend_before_action only: [:public_manifest] { params[:id].delete!('/') }
 
     def public_manifest
       headers['Access-Control-Allow-Origin'] = '*'
