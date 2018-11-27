@@ -14,7 +14,7 @@ class S3IiifManifestPresenter < Hyrax::ImagePresenter
   #
   # @return [Array] array of metadata hashes
   def manifest_metadata
-    metadata_fields = [:title, :accession_number, :date_created, :abstract, :creator_label, :subject_topical_label, :rights_statement]
+    metadata_fields = [:ark, :date_created, :creator_label, :rights_statement]
     metadata = []
     metadata_fields.each do |field|
       values = Array.wrap(send(field))

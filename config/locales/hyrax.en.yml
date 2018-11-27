@@ -5,7 +5,7 @@ en:
         alternate_title: Alternate Title
         accession_number: Accession Number
         abstract: Abstract
-        ark: ARK
+        ark: Permalink
         based_near_label: Location (Place of Publication) 
         bibliographic_citation: Citation
         box_name: Box Name
@@ -15,7 +15,7 @@ en:
         catalog_key: Catalog Key
         contributor_label: Contributor
         creator_label: Creator
-        date_created_display: Date Created
+        date_created: Date Created
         related_url: Related URL
         rights_statement: Rights Statement
         folder_name: Folder Name
