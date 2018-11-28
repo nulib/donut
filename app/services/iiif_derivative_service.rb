@@ -20,7 +20,7 @@ class IiifDerivativeService
     private
 
       def file_part_of(id)
-        id.split(%r{/files/}).last
+        id.split(%r{/files/}).first
       end
   end
 end

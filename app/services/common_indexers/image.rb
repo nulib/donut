@@ -86,26 +86,22 @@ module CommonIndexers
         { uri: rights_statement.first, label: Hyrax::RightsStatementService.new.label(rights_statement.first) }
       end
 
-      def representative_file(representative_id)
-        return nil if representative_id.nil?
-        object = ActiveFedora::Base.find(representative_id)
+      def target_file(id, path:)
+        return nil if id.nil?
+        object = ActiveFedora::Base.find(id)
         if object.is_a?(::Image)
-          representative_file(object.representative_id)
+          target_file(object.send(path))
         else
-          return nil if object.files.empty?
-          IiifDerivativeService.resolve(object.original_file.id)
+          IiifDerivativeService.resolve(object.id)
         end
       end
 
-      def thumbnail(thumbnail_id)
-        return nil if thumbnail_id.nil?
-        object = ActiveFedora::Base.find(thumbnail_id)
-        if object.is_a?(::Image)
-          thumbnail(object.thumbnail_id)
-        else
-          return nil if object.files.empty?
-          IiifDerivativeService.resolve(object.original_file.id)
-        end
+      def representative_file(id)
+        target_file(id, path: :representative_id)
+      end
+
+      def thumbnail(id)
+        target_file(id, path: :thumbnail_id)
       end
   end
 end
