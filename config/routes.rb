@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     concerns :exportable
   end
 
-  get '/public/:id-manifest.json', to: 'hyrax/images#public_manifest', as: :hyrax_image_public_manifest, constraints: { id: %r{[0-9a-zA-Z/-]+} }
+  get '/public/:id-manifest.json', to: 'manifest#public_manifest', as: :public_manifest, constraints: { id: %r{[0-9a-zA-Z/-]+} }
 
   resources :bookmarks do
     concerns :exportable
