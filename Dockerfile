@@ -107,7 +107,6 @@ RUN chown -R app:staff /usr/local/bundle && \
     chown -R app:staff /var/log/clamav && \
     chown -R app:staff /var/lib/clamav && \
     chown -R app:staff /etc/clamav && \
-    mkdir /var/log/puma && chown root:app /var/log/puma && chmod 0775 /var/log/puma && \
     mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
 
 USER app
