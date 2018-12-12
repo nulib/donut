@@ -115,6 +115,8 @@ WORKDIR /home/app/current
 COPY --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
 
 RUN bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
+RUN ln -fs /dev/null /var/run/puma/puma.log && \
+    ln -fs /dev/null /home/app/current/fits.log
 
 EXPOSE 3000
 CMD bin/boot_container
