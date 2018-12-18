@@ -239,3 +239,13 @@ Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Loca
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
 
 Hyrax::DerivativeService.services = [Donut::FileSetDerivativesService]
+
+Hyrax::CurationConcern.actor_factory.swap(
+  Hyrax::Actors::CreateWithFilesActor,
+  Hyrax::Actors::CreateWithFilesOrderedMembersActor
+)
+
+Hyrax::CurationConcern.actor_factory.swap(
+  Hyrax::Actors::CreateWithRemoteFilesActor,
+  Hyrax::Actors::CreateWithRemoteFilesOrderedMembersActor
+)
