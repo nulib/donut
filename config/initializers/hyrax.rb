@@ -1,3 +1,5 @@
+require 'solrizer'
+
 Hyrax.config do |config|
   # Injected via `rails g hyrax:work Image`
   config.register_curation_concern :image
