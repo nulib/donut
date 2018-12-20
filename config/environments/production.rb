@@ -97,5 +97,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   require 'active_elastic_job'
-  config.active_job.queue_adapter = Settings.active_job.queue_adapter || :resque
+  config.active_job.queue_adapter = Settings.active_job.queue_adapter || :sidekiq
 end
