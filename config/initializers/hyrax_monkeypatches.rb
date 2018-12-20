@@ -1,7 +1,7 @@
 BrowseEverything::Retriever.class_eval do
   class << self
     alias_method :_can_retrieve?, :can_retrieve?
-    def can_retrieve?(uri, _headers={})
+    def can_retrieve?(uri, _headers = {})
       _can_retrieve?(uri)
     end
   end
@@ -24,5 +24,15 @@ FileSet.class_eval do
   def ensure_label_present
     return if label.present? || import_url.nil?
     self.label = File.basename(URI(import_url).path)
+  end
+end
+
+[InheritPermissionsJob, VisibilityCopyJob].each do |job_klass|
+  job_klass.class_eval do
+    alias_method :_perform, :perform
+    def perform(work)
+      return if work.nil?
+      _perform(work)
+    end
   end
 end
