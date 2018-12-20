@@ -5,8 +5,7 @@ class IiifManifestService
     end
 
     def remove_manifest(work_id)
-      obj = Aws::S3::Object.new(Settings.aws.buckets.manifests, s3_key_for(work_id))
-      obj.delete
+      s3_object_for(work_id).tap(&:delete)
     end
 
     def write_manifest(work_id)
@@ -14,8 +13,13 @@ class IiifManifestService
       return if doc['visibility_ssi'] == 'restricted'
       presenter = S3IiifManifestPresenter.new(doc, S3ManifestAbility.new)
       manifest_json = JSON.pretty_generate(::IIIFManifest::ManifestFactory.new(presenter).to_h)
-      destination = Aws::S3::Object.new(Settings.aws.buckets.manifests, s3_key_for(work_id))
-      destination.put(body: manifest_json, acl: 'public-read')
+      s3_object_for(work_id).tap do |destination|
+        destination.put(body: manifest_json, acl: 'public-read')
+      end
+    end
+
+    def s3_object_for(work_id)
+      Aws::S3::Object.new(Settings.aws.buckets.manifests, s3_key_for(work_id))
     end
 
     private
