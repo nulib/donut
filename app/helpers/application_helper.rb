@@ -25,10 +25,16 @@ module ApplicationHelper
     link_to(accession_number, batch_item_path(accession_number: accession_number))
   end
 
+  def item_exists?(item_id)
+    ::SolrDocument.find(item_id).present?
+  rescue
+    false
+  end
+
   def item_linker(item)
     return nil if item.created_item.blank?
-    type = item.attribute_hash[:type].underscore.pluralize
-    if item.attribute_hash[:type].constantize.where(id: item.created_item).present?
+    if item_exists?(item.created_item)
+      type = item.attribute_hash[:type].underscore.pluralize
       link_to(item.created_item, "/concern/#{type}/#{item.created_item}")
     else
       content_tag(:strike, item.created_item.to_s)
