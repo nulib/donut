@@ -107,7 +107,6 @@ RUN chown -R app:staff /usr/local/bundle && \
     chown -R app:staff /var/log/clamav && \
     chown -R app:staff /var/lib/clamav && \
     chown -R app:staff /etc/clamav && \
-    mkdir /var/log/puma && chown root:app /var/log/puma && chmod 0775 /var/log/puma && \
     mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
 
 USER app
@@ -116,6 +115,8 @@ WORKDIR /home/app/current
 COPY --from=base /home/app/current/vendor/gems/ /home/app/current/vendor/gems/
 
 RUN bundle exec rake assets:precompile SECRET_KEY_BASE=$(ruby -r 'securerandom' -e 'puts SecureRandom.hex(64)')
+RUN ln -fs /dev/null /var/run/puma/puma.log && \
+    ln -fs /dev/null /home/app/current/fits.log
 
 EXPOSE 3000
 CMD bin/boot_container

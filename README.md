@@ -105,6 +105,23 @@ the active elastic job gem requires an environment variable to be set otherwise 
 $ export PROCESS_ACTIVE_ELASTIC_JOBS=true
 ```
 
+### Jobs
+
+By default, in development, jobs will run inline. To run jobs async, you can use Sidekiq.
+
+In `development.local.yml` add/change the ActiveJob queue adapter `queue_adapter: :inline` to `queue_adapter: :sidekiq`
+
+```sh
+active_job:
+  queue_adapter: :sidekiq
+```
+
+In a separate terminal tab, start Sidekiq:
+
+```sh
+bundle exec sidekiq
+```
+
 ## Notes on the Docker stack
 
 * You can replace `up` with `daemon` in `docker:dev:up` and `docker:test:up` to run the Docker services in the background

@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'hydra-derivatives', github: 'nulib/hydra-derivatives', branch: 'vips'
-gem 'hyrax', github: 'samvera/hyrax', branch: 'master'
+gem 'hyrax', github: 'nulib/hyrax', branch: '2.4.1-plus-be'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
@@ -90,6 +90,7 @@ group :development, :test do
   gem 'docker-stack'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+  gem 'sidekiq'
   gem 'solr_wrapper', '>= 0.3'
   gem 'webmock'
 end

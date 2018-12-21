@@ -40,6 +40,7 @@ module CommonIndexers
         collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
         contributor: contributor,
         creator: typed_values(:creator, :nul_creator),
+        create_date: sortable_date(create_date),
         date: display_date(date_created),
         expanded_date: date(date_created),
         folder: { name: folder_name, number: folder_number },
@@ -49,7 +50,7 @@ module CommonIndexers
         iiif_manifest: IiifManifestService.manifest_url(id),
         legacy_identifier: legacy_identifier,
         license: licenses,
-        modified_date: sortable_date(date_modified),
+        modified_date: sortable_date(modified_date),
         notes: notes,
         nul_use_statement: nul_use_statement,
         permalink: ark,
@@ -85,26 +86,22 @@ module CommonIndexers
         { uri: rights_statement.first, label: Hyrax::RightsStatementService.new.label(rights_statement.first) }
       end
 
-      def representative_file(representative_id)
-        return nil if representative_id.nil?
-        object = ActiveFedora::Base.find(representative_id)
+      def target_file(id, path:)
+        return nil if id.nil?
+        object = ActiveFedora::Base.find(id)
         if object.is_a?(::Image)
-          representative_file(object.representative_id)
+          target_file(object.send(path))
         else
-          return nil if object.files.empty?
-          IiifDerivativeService.resolve(object.original_file.id)
+          IiifDerivativeService.resolve(object.id)
         end
       end
 
-      def thumbnail(thumbnail_id)
-        return nil if thumbnail_id.nil?
-        object = ActiveFedora::Base.find(thumbnail_id)
-        if object.is_a?(::Image)
-          thumbnail(object.thumbnail_id)
-        else
-          return nil if object.files.empty?
-          IiifDerivativeService.resolve(object.original_file.id)
-        end
+      def representative_file(id)
+        target_file(id, path: :representative_id)
+      end
+
+      def thumbnail(id)
+        target_file(id, path: :thumbnail_id)
       end
   end
 end
