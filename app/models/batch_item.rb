@@ -41,6 +41,11 @@ class BatchItem < ApplicationRecord
     end
   end
 
+  def work
+    return nil if created_item.nil?
+    ActiveFedora::Base.find(created_item)
+  end
+
   private
 
     def runnable_item?
