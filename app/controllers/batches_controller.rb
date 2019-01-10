@@ -1,5 +1,6 @@
 class BatchesController < Hyrax::MyController
   include Hyrax::Breadcrumbs
+  authorize_resource
 
   def index
     add_breadcrumbs
