@@ -90,7 +90,7 @@ module CommonIndexers
         return nil if id.nil?
         object = ActiveFedora::Base.find(id)
         if object.is_a?(::Image)
-          target_file(object.send(path))
+          target_file(object.send(path), path: path)
         else
           IiifDerivativeService.resolve(object.id)
         end
