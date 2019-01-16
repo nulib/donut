@@ -8,7 +8,7 @@ volumes:
   es:
 services:
   fedora:
-    image: nulib/fcrepo4
+    image: nulib/fcrepo4:4.7.5
     volumes:
     - fedora:/data
     ports:

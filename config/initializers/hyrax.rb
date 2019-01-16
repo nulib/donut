@@ -251,3 +251,8 @@ Hyrax::CurationConcern.actor_factory.swap(
   Hyrax::Actors::CreateWithRemoteFilesActor,
   Hyrax::Actors::CreateWithRemoteFilesOrderedMembersActor
 )
+
+Hyrax::CurationConcern.actor_factory.insert_before(
+  Hyrax::Actors::CreateWithRemoteFilesOrderedMembersActor,
+  DefaultRepresentativeFileActor
+)

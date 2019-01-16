@@ -16,7 +16,9 @@
   <span class="fa fa-file"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
 <% end %>
 
-<%= menu.nav_link(main_app.batches_path,
-                  data: { turbolinks: false }) do %>
-  <span class="fa fa-copy"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.batches') %></span>
+<% if can? :read, Batch %>
+  <%= menu.nav_link(main_app.batches_path,
+                    data: { turbolinks: false }) do %>
+    <span class="fa fa-copy"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.batches') %></span>
+  <% end %>
 <% end %>
