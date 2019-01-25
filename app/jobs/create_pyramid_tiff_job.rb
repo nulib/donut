@@ -2,11 +2,15 @@ class CreatePyramidTiffJob < ApplicationJob
   # @param [FileSet] file_set
   # @param [String] file_id identifier for a Hydra::PCDM::File
   # @param [String, NilClass] filepath the cached file within the Hyrax.config.working_path
+
+  MAX_PIXELS = 0x3FFF**2
+
   def perform(file_set, file_id, filepath = nil)
     service = Hyrax::DerivativeService.for(file_set)
     filename = service.prepare_file(Hyrax::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath))
-
     image = Vips::Image.new_from_file(filename)
+    scale_factor = MAX_PIXELS / (image.width * image.height).to_f
+    image = image.resize(scale_factor) if scale_factor < 1.0
     write_tiff(image, file_set.id)
   end
 
