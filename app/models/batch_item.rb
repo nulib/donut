@@ -89,8 +89,8 @@ class BatchItem < ApplicationRecord
       controlled_attributes.each_with_object({}) do |(k, v), all_errors|
         v.each do |uri|
           next if uri.to_s.strip.empty?
-          unless uri.is_a? RDF::URI
-            all_errors.merge!(k => "Invalid format (URI expected): #{uri}. ") { |_k, o, n| o + n }
+          unless uri.is_a?(RDF::URI) && Donut::VocabularyValidationService.valid?(uri.to_s.strip)
+            all_errors.merge!(k => "Vocabulary uri format not valid: #{uri}. ") { |_k, o, n| o + n }
           end
         end
       end
