@@ -28,7 +28,7 @@ RSpec.describe Donut::VocabularyValidationService do
       it { is_expected.to be(true) }
     end
 
-    context 'with valid LCNAF uri - id starts with no|nr' do
+    context 'with valid LCNAF uri - id starts with no|nr|nb' do
       let(:uri) { 'http://id.loc.gov/authorities/names/no2017161213' }
 
       it { is_expected.to be(true) }
@@ -82,8 +82,8 @@ RSpec.describe Donut::VocabularyValidationService do
       it { is_expected.to be(false) }
     end
 
-    context 'with an invalid LCNAF uri - id does not have n, nr, or no' do
-      let(:uri) { 'http://id.loc.gov/authorities/names/nb78086005' }
+    context 'with an invalid LCNAF uri - id does not start with n, nr, no, or nb' do
+      let(:uri) { 'http://id.loc.gov/authorities/names/nx78086005' }
 
       it { is_expected.to be(false) }
     end
