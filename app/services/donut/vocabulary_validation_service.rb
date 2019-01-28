@@ -7,8 +7,8 @@ module Donut
       %r{^http://vocab.getty.edu/aat/[0-9]+/?$},
       %r{^http://id.worldcat.org/fast/[1-9]{1}[0-9]+/?$},
       %r{^http://sws.geonames.org/[0-9]+/?$},
-      %r{^http://id.loc.gov/authorities/names/n{1}[0-9]+/?$},
-      %r{^http://id.loc.gov/authorities/subjects/sh{1}[0-9]+/?$}
+      %r{^http://id.loc.gov/authorities/names/n[0-9]+/?$},
+      %r{^http://id.loc.gov/authorities/subjects/sh[0-9]+/?$}
     ].freeze
 
     def self.valid?(uri)

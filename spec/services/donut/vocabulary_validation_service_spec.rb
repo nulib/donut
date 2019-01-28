@@ -46,6 +46,12 @@ RSpec.describe Donut::VocabularyValidationService do
       it { is_expected.to be(false) }
     end
 
+    context 'with an invalid uri - names authroity heading id missing n' do
+      let(:uri) { 'http://id.loc.gov/authorities/names/78086005' }
+
+      it { is_expected.to be(false) }
+    end
+
     context 'with an invalid uri - wrong fast format - just fst + id' do
       let(:uri) { 'fst001234' }
 
