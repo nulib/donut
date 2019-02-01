@@ -147,7 +147,7 @@ RSpec.describe BatchItem, :clean, type: :model, admin_set: true do
       batch_item.run
       expect(batch_item.status).to eq('error')
       expect(batch_item.error.keys).to eq([:contributor])
-      expect(batch_item.error).to include(contributor: 'Invalid format (URI expected): Text M. Stringer. Invalid format (URI expected): Ima Also Text. ')
+      expect(batch_item.error).to include(contributor: 'Vocabulary uri format not valid: Text M. Stringer. Vocabulary uri format not valid: Ima Also Text. ')
     end
   end
 
