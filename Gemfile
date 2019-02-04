@@ -114,4 +114,5 @@ end
 
 group :production do
   # gem 'clamav'
+  gem 'lograge'
 end
