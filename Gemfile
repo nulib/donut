@@ -45,7 +45,7 @@ gem 'httparty'
 gem 'hydra-role-management'
 gem 'omniauth-openam'
 
-gem 'common_indexer', '~> 0.3.0'
+gem 'common_indexer', '~> 0.3'
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
 
 gem 'edtf'
@@ -114,4 +114,5 @@ end
 
 group :production do
   # gem 'clamav'
+  gem 'lograge'
 end
