@@ -922,7 +922,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    common_indexer (0.3.0)
+    common_indexer (0.3.1)
       active-fedora
       activesupport
       dry-configurable
@@ -1622,7 +1622,7 @@ DEPENDENCIES
   carrierwave-aws
   cloudfront-signer
   coffee-rails (~> 4.2)
-  common_indexer (~> 0.3.0)
+  common_indexer (~> 0.3)
   config
   database_cleaner
   devise
