@@ -922,7 +922,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    common_indexer (0.3.1)
+    common_indexer (0.3.2)
       active-fedora
       activesupport
       dry-configurable
@@ -1675,4 +1675,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
