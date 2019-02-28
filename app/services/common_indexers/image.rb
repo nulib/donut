@@ -44,7 +44,6 @@ module CommonIndexers
         date: display_date(date_created),
         expanded_date: date(date_created),
         folder: { name: folder_name, number: folder_number },
-        full_text: full_text_values,
         id: id,
         identifier: identifier,
         iiif_manifest: IiifManifestService.manifest_url(id),
