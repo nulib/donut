@@ -12,5 +12,4 @@ Ezid::Client.configure do |conf|
   conf.password = 'apitest' unless ENV['EZID_PASSWORD']
   conf.host = 'ezid.lib.purdue.edu' unless ENV['EZID_HOST']
   conf.port = 443 unless ENV['EZID_PORT']
-  conf.use_ssl = true unless ENV['EZID_USE_SSL']
 end
