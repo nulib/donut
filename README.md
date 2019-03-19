@@ -29,6 +29,16 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
     * `ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add an admin user
     * `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets. There is a sample seed file in `spec/fixtures/files/test_seed.yml`
 
+* Create a fake AWS profile:
+```sh
+$ aws --profile fake configure
+# enter dummy values for "AWS Access Key ID" and "AWS Secret Access Key".
+# Set the "Default region name" to "us-east-1"
+
+$ export AWS_PROFILE=fake
+# Alternatively, add this to your .zshrc, .bashrc, etc.
+```
+
 ## Running the Tests
 
 
@@ -106,23 +116,6 @@ the active elastic job gem requires an environment variable to be set otherwise 
 
 ```sh
 $ export PROCESS_ACTIVE_ELASTIC_JOBS=true
-```
-
-### Jobs
-
-By default, in development, jobs will run inline. To run jobs async, you can use Sidekiq.
-
-In `development.local.yml` add/change the ActiveJob queue adapter `queue_adapter: :inline` to `queue_adapter: :sidekiq`
-
-```sh
-active_job:
-  queue_adapter: :sidekiq
-```
-
-In a separate terminal tab, start Sidekiq:
-
-```sh
-bundle exec sidekiq
 ```
 
 ## Notes on the Docker stack
