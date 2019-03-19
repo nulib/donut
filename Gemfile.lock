@@ -1052,8 +1052,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
       faraday
-    fcrepo_wrapper (0.9.0)
-      ruby-progressbar
     ffi (1.10.0)
     flipflop (2.4.0)
       activesupport (>= 4.0)
@@ -1322,8 +1320,6 @@ GEM
       rails (~> 5.0)
       rdf
     rack (2.0.6)
-    rack-protection (2.0.4)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.6.2)
@@ -1521,10 +1517,6 @@ GEM
       rdf-xsd (>= 2.2, < 4.0)
       sparql (>= 2.2, < 4.0)
       sxp (~> 1.0)
-    sidekiq (5.2.3)
-      connection_pool (~> 2.2, >= 2.2.2)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -1534,11 +1526,6 @@ GEM
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
     slop (4.6.2)
-    solr_wrapper (2.1.0)
-      faraday
-      retriable
-      ruby-progressbar
-      rubyzip
     solrizer (3.4.1)
       activesupport
       daemons
@@ -1640,7 +1627,6 @@ DEPENDENCIES
   exiftool_vendored
   ezid-client
   factory_bot_rails
-  fcrepo_wrapper
   honeybadger (~> 4.0)
   httparty
   hydra-derivatives!
@@ -1668,8 +1654,6 @@ DEPENDENCIES
   rubyzip (~> 1.2.2)
   sass-rails (~> 5.0)
   selenium-webdriver
-  sidekiq
-  solr_wrapper (>= 0.3)
   sqlite3
   turbolinks (~> 5)
   tzinfo-data

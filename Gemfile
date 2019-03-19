@@ -89,10 +89,7 @@ group :development, :test do
   gem 'docker-api'
   gem 'docker-compose'
   gem 'docker-stack'
-  gem 'fcrepo_wrapper'
   gem 'rspec-rails'
-  gem 'sidekiq'
-  gem 'solr_wrapper', '>= 0.3'
   gem 'webmock'
 end
 
