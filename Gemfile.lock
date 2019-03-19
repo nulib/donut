@@ -922,7 +922,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    common_indexer (0.3.3)
+    common_indexer (0.3.4)
       active-fedora
       activesupport
       dry-configurable
@@ -1021,12 +1021,12 @@ GEM
     edtf-humanize (0.0.7)
       activesupport (>= 4, < 6)
       edtf (>= 2.3, < 4)
-    elasticsearch (6.1.0)
-      elasticsearch-api (= 6.1.0)
-      elasticsearch-transport (= 6.1.0)
-    elasticsearch-api (6.1.0)
+    elasticsearch (6.2.0)
+      elasticsearch-api (= 6.2.0)
+      elasticsearch-transport (= 6.2.0)
+    elasticsearch-api (6.2.0)
       multi_json
-    elasticsearch-transport (6.1.0)
+    elasticsearch-transport (6.2.0)
       faraday
       multi_json
     equivalent-xml (0.6.0)
@@ -1052,6 +1052,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
       faraday
+    faraday_middleware-aws-sigv4 (0.2.4)
+      aws-sigv4 (~> 1.0)
+      faraday (>= 0.9)
     ffi (1.10.0)
     flipflop (2.4.0)
       activesupport (>= 4.0)
@@ -1627,6 +1630,7 @@ DEPENDENCIES
   exiftool_vendored
   ezid-client
   factory_bot_rails
+  faraday_middleware-aws-sigv4
   honeybadger (~> 4.0)
   httparty
   hydra-derivatives!
@@ -1663,4 +1667,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.17.3
+   2.0.1

@@ -15,3 +15,4 @@ metadata:
 solrcloud: true
 zookeeper:
   connection_str: "localhost:9985/configs"
+aws_region: us-east-1
