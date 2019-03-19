@@ -1,6 +1,6 @@
 #################################
 # Build the support container
-FROM ruby:2.4.4-slim-jessie as base
+FROM ruby:2.6.2-slim-stretch as base
 LABEL edu.northwestern.library.app=DONUT \
       edu.northwestern.library.role=support
 
@@ -44,13 +44,15 @@ WORKDIR /home/app/current
 COPY Gemfile /home/app/current/
 COPY Gemfile.lock /home/app/current/
 
-RUN chown -R app:app /home/app/current && \
+RUN chown -R app:app /home/app/current &&  \
+    gem update --system && \
+    gem update bundler && \
     su -c "bundle install --jobs 20 --retry 5 --with aws:postgres --without development:test --path vendor/gems" app && \
     rm -rf vendor/gems/ruby/*/cache/* vendor/gems/ruby/*/bundler/gems/*/.git
 
 #################################
 # Build the Application container
-FROM ruby:2.4.4-slim-jessie as app
+FROM ruby:2.6.2-slim-stretch as app
 LABEL edu.northwestern.library.app=DONUT \
       edu.northwestern.library.role=app
 
@@ -58,13 +60,13 @@ LABEL edu.northwestern.library.app=DONUT \
 RUN useradd -m -U app && \
     su -s /bin/bash -c "mkdir -p /home/app/current/vendor/gems" app
 
-ENV RUNTIME_DEPS="clamav imagemagick libexif12 libexpat1 libgif4 glib-2.0 libgsf-1-114 libjpeg62-turbo libpng12-0 libpoppler-glib8 libpq5 libreoffice librsvg2-2 libsqlite3-0 libtiff5 locales nodejs openjdk-7-jre tzdata yarn" \
+ENV RUNTIME_DEPS="clamav imagemagick libexpat1 libpq5 libreoffice libsqlite3-0 libvips-dev libvips-tools locales nodejs openjdk-8-jre tzdata yarn" \
     DEBIAN_FRONTEND="noninteractive" \
     RAILS_ENV="production" \
     LANG="en_US.UTF-8" \
     FITS_VERSION="1.0.5"
 
-RUN \
+RUN mkdir -p /usr/share/man/man1 && \
     apt-get update -qq && \
     apt-get install -y curl gnupg2 --no-install-recommends && \
     # Install NodeJS and Yarn package repos
@@ -89,11 +91,9 @@ RUN \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
 
-# Install VIPS
-RUN cd /tmp && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/vips_8.6.3-1_amd64.deb && \
-    dpkg -i /tmp/vips_8.6.3-1_amd64.deb && \
-    rm /tmp/vips_8.6.3-1_amd64.deb
+# Update Bundler
+RUN gem update --system && \
+    gem update bundler
 
 RUN freshclam
 
