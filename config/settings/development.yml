@@ -9,6 +9,7 @@ aws:
     batch: dev-batch
     pyramids: dev-pyramids
     manifests: dev-manifests
+    dropbox: dev-dropbox
   queues:
     ingest: donut.fifo
 iiif:
