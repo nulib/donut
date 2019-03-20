@@ -48,6 +48,7 @@ gem 'omniauth-openam'
 
 gem 'common_indexer', '~> 0.3'
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
+gem 'faraday_middleware-aws-sigv4'
 
 gem 'edtf'
 gem 'edtf-humanize'
@@ -89,10 +90,7 @@ group :development, :test do
   gem 'docker-api'
   gem 'docker-compose'
   gem 'docker-stack'
-  gem 'fcrepo_wrapper'
   gem 'rspec-rails'
-  gem 'sidekiq'
-  gem 'solr_wrapper', '>= 0.3'
   gem 'webmock'
 end
 

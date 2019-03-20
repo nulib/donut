@@ -15,6 +15,9 @@ before_install:
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - AWS_ACCESS_KEY_ID=akid
+    - AWS_SECRET_ACCESS_KEY=secret
+    - AWS_SESSION_TOKEN=session
   matrix:
     - TEST_SUITE=rspec
     - TEST_SUITE=rubocop

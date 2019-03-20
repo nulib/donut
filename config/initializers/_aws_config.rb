@@ -1,3 +1,5 @@
+require 'aws-sdk-core'
+
 if ENV['SSM_PARAM_PATH']
   require 'aws-sdk-ssm'
 
@@ -27,5 +29,19 @@ if ENV['SSM_PARAM_PATH']
   end
 
   Settings.add_source!(aws_param_hash(path: "#{ENV['SSM_PARAM_PATH']}/Settings"))
-  Settings.reload!
 end
+
+def aws_region
+  region = Settings.aws_region || Aws.config[:region] || ENV['AWS_REGION'] || ENV['AWS_DEFAULT_REGION']
+  if ENV['AWS_EXECUTION_ENV'] == 'AWS_ECS_EC2'
+    response = Typhoeus.get('http://169.254.169.254/latest/dynamic/instance-identity/document')
+    if response.code == 200
+      doc = JSON.parse(response.body)
+      region = doc['region']
+    end
+  end
+  region
+end
+
+Settings.add_source!(aws_region: aws_region)
+Settings.reload!
