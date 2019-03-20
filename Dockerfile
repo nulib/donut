@@ -78,10 +78,10 @@ RUN mkdir -p /usr/share/man/man1 && \
     apt-get install -y $RUNTIME_DEPS --no-install-recommends && \
     # Install VIPS
     cd /tmp && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-tools_8.7.4-1_amd64.deb && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-dev_8.7.4-1_amd64.deb && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/packages/libvips42_8.7.4-1_amd64.deb && \
-    curl -O https://s3.amazonaws.com/nul-repo-deploy/packages/gir1.2-vips-8.0_8.7.4-1_amd64.deb && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-tools_8.7.4-1_amd64.deb && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips-dev_8.7.4-1_amd64.deb && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/libvips42_8.7.4-1_amd64.deb && \
+    curl -sO https://s3.amazonaws.com/nul-repo-deploy/packages/gir1.2-vips-8.0_8.7.4-1_amd64.deb && \
     apt-get install -y $(find . -name '*.deb') && \
     # Clean up package cruft
     apt-get clean -y && \
