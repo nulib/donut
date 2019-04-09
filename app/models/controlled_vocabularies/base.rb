@@ -45,7 +45,7 @@ module ControlledVocabularies
 
       def _preferred_label
         return rdf_label.first if rdf_label.first.is_a? String
-        english_label = rdf_label.select { |label| label.language == :en }.first.to_s
+        english_label = rdf_label.select { |label| [:en, :"en-us"].include? label.language }.first.to_s
         english_label.present? ? english_label : rdf_label.first.to_s
       end
 
