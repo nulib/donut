@@ -20,7 +20,7 @@ class CreatePyramidTiffJob < ApplicationJob
       filename = service.prepare_file(Hyrax::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath))
       basename = File.basename(filename, File.extname(filename))
       (File.join(File.dirname(filename), basename) + '.v').tap do |vips_filename|
-        unless File.exists?(vips_filename)
+        unless File.exist?(vips_filename)
           Vips::Image.new_from_file(filename).vipssave(vips_filename, strip: true)
         end
       end
