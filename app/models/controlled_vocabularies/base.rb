@@ -26,13 +26,10 @@ module ControlledVocabularies
       @default_labels ||= super + [::RDF::Vocab::GEONAMES.name]
     end
 
-    def fetch(*args)
+    def fetch(*)
       tries = 3
       begin
-        super(*args).tap do
-          LabelCache.where(uri: rdf_subject.to_s).first_or_create { |record| record.label = _preferred_label }
-          @preferred_label = nil
-        end
+        refresh_label_from(correct_fetch_url_for(rdf_subject))
       rescue StandardError => e
         Rails.logger.warn("FETCH OF <#{rdf_subject}>FAILED: #{e.message}. Retries remaining: #{tries -= 1}")
         return self if tries.zero?
@@ -43,10 +40,27 @@ module ControlledVocabularies
 
     private
 
+      def refresh_label_from(url)
+        if graph.is_a?(RDF::Graph)
+          graph.load(url)
+        else
+          RDF::Graph.load(url) do |fetched|
+            fetched.query(subject: rdf_subject).each { |statement| graph.insert_statement(statement) }
+          end
+        end
+        LabelCache.where(uri: rdf_subject.to_s).first_or_create { |record| record.label = _preferred_label }
+        @preferred_label = nil
+        self
+      end
+
       def _preferred_label
-        return rdf_label.first if rdf_label.first.is_a? String
-        english_label = rdf_label.select { |label| [:en, :"en-us"].include? label.language }.first.to_s
-        english_label.present? ? english_label : rdf_label.first.to_s
+        [
+          rdf_label.find { |label| label.respond_to?(:language) && label.language == :'en-us' },
+          rdf_label.find { |label| label.respond_to?(:language) && label.language == :en },
+          rdf_label.find { |label| label.is_a?(String) },
+          rdf_label.first,
+          rdf_subject
+        ].compact.first.to_s
       end
 
       def correct_uri_for(id)
@@ -58,6 +72,15 @@ module ControlledVocabularies
                 else id.to_s
                 end
         ::RDF::URI(value)
+      end
+
+      def correct_fetch_url_for(id)
+        case id.to_s
+        when %r{id\.worldcat\.org/fast}
+          "#{id}.rdf.xml"
+        else
+          id
+        end
       end
 
       def fixup_geonames_uri(id)
