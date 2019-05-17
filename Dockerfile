@@ -114,7 +114,9 @@ RUN chown -R app:staff /usr/local/bundle && \
     chown -R app:staff /var/log/clamav && \
     chown -R app:staff /var/lib/clamav && \
     chown -R app:staff /etc/clamav && \
-    mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma
+    mkdir /var/run/puma && chown root:app /var/run/puma && chmod 0775 /var/run/puma && \
+    echo "/usr/local/fits/tools/mediainfo/linux" >> /etc/ld.so.conf.d/fits.conf && \
+    ldconfig
 
 USER app
 WORKDIR /home/app/current
