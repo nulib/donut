@@ -8,8 +8,8 @@ class CreatePyramidTiffJob < ApplicationJob
   def perform(file_set, file_id, filepath = nil)
     filename = vips_file(file_set, file_id, filepath)
     image = Vips::Image.new_from_file(filename)
-    scale_factor = MAX_PIXELS / (image.width * image.height).to_f
-    filename = shrink_file(filename, scale_factor) if scale_factor < 1.0
+    scale_factor = (MAX_PIXELS / (image.width * image.height).to_f) * 100
+    filename = shrink_file(filename, scale_factor) if scale_factor < 100
     write_tiff(Vips::Image.new_from_file(filename), file_set.id)
   end
 
