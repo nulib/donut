@@ -9,8 +9,8 @@ class CreatePyramidTiffJob < ApplicationJob
     filename = vips_file(file_set, file_id, filepath)
     image = Vips::Image.new_from_file(filename)
     scale_factor = MAX_PIXELS / (image.width * image.height).to_f
-    image = image.resize(scale_factor) if scale_factor < 1.0
-    write_tiff(image, file_set.id)
+    filename = shrink_file(filename, scale_factor) if scale_factor < 1.0
+    write_tiff(Vips::Image.new_from_file(filename), file_set.id)
   end
 
   private
@@ -34,10 +34,21 @@ class CreatePyramidTiffJob < ApplicationJob
       service = Hyrax::DerivativeService.for(file_set)
       filename = service.prepare_file(Hyrax::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath))
       basename = File.basename(filename, File.extname(filename))
-      (File.join(File.dirname(filename), basename) + '.v').tap do |vips_filename|
-        unless valid_vips_file?(vips_filename)
-          system('vips', 'vipssave', filename, vips_filename)
-          raise Vips::Error, "Failed to convert #{filename} to #{vips_filename}: Exited with status #{$CHILD_STATUS.exitstatus}" unless $CHILD_STATUS.success?
+      (File.join(File.dirname(filename), basename) + '.v').tap do |result|
+        unless valid_vips_file?(result)
+          system('vips', 'vipssave', filename, result)
+          raise Vips::Error, "Failed to convert #{filename} to #{result}: Exited with status #{$CHILD_STATUS.exitstatus}" unless $CHILD_STATUS.success?
+        end
+      end
+    end
+
+    def shrink_file(filename, scale_factor)
+      basename = File.basename(filename, '.v')
+      (File.join(File.dirname(filename), basename) + '.resized.v').tap do |result|
+        unless valid_vips_file?(result)
+          scale_arg = format('%.2f', scale_factor)
+          system('vips', 'im_shrink', filename, result, scale_arg, scale_arg)
+          raise Vips::Error, "Failed to shrink #{filename} to #{scale_factor}: Exited with status #{$CHILD_STATUS.exitstatus}" unless $CHILD_STATUS.success?
         end
       end
     end
