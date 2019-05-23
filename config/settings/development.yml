@@ -5,11 +5,14 @@ localstack:
 aws:
   endpoint: http://localhost:9001
   buckets:
-    uploads: dev-uploads
     batch: dev-batch
-    pyramids: dev-pyramids
-    manifests: dev-manifests
     dropbox: dev-dropbox
+    fedora: dev-fedora-binaries
+    manifests: dev-manifests
+    pyramids: dev-pyramids
+    uploads: dev-uploads
+  lambdas:
+    pyramid: dev-create-pyramid-tiffs
   queues:
     ingest: donut.fifo
 iiif:
