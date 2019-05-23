@@ -5,7 +5,7 @@ class CreatePyramidTiffJob < ApplicationJob
 
   def perform(file_set) # rubocop:disable Metrics/AbcSize
     payload = JSON.generate(source: fedora_binary_s3_uri_for(file_set),
-                            target: IiifDerivativeService.derivative_path_for(file_set.id))
+                            target: pyramid_uri_for(file_set))
 
     resp = lambda_client.invoke(function_name: Settings.aws.lambdas.pyramid,
                                 payload: payload)
@@ -25,6 +25,10 @@ class CreatePyramidTiffJob < ApplicationJob
 
     def lambda_client
       @lambda_client ||= Aws::Lambda::Client.new(region: Settings.aws_region)
+    end
+
+    def pyramid_uri_for(file_set)
+      "s3://#{Settings.aws.buckets.pyramids}/#{IiifDerivativeService.s3_key_for(file_set.id)}"
     end
 
     def fedora_binary_s3_uri_for(file_set)
