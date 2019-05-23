@@ -12,7 +12,7 @@ class CreatePyramidTiffJob < ApplicationJob
 
     resp_payload = JSON.parse(resp.payload.string)
     case resp_payload['statusCode']
-    when 200
+    when 201
       Rails.logger.info("#{file_set.id} received by #{Settings.aws.lambdas.pyramid}")
     when 304
       Rails.logger.info("#{file_set.id} skipped by #{Settings.aws.lambdas.pyramid}")
