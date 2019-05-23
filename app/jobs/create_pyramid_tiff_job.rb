@@ -7,9 +7,9 @@ class CreatePyramidTiffJob < ApplicationJob
     payload = JSON.generate(source: fedora_binary_s3_uri_for(file_set),
                             target: IiifDerivativeService.derivative_path_for(file_set.id))
 
-    lambda_client.invoke(function_name: Settings.aws.lambdas.pyramid,
-                         invocation_type: 'Event',
-                         payload: payload)
+    resp = lambda_client.invoke(function_name: Settings.aws.lambdas.pyramid,
+                                invocation_type: 'Event',
+                                payload: payload)
 
     resp_payload = JSON.parse(resp.payload.string)
     case resp_payload.status_code
