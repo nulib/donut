@@ -3,11 +3,7 @@ module Donut
     def create_derivatives(filename)
       prepped_file = prepare_file(filename)
       super(prepped_file).tap do
-        if file_set.class.image_mime_types.include?(mime_type)
-          file = file_for(filename)
-          file_id = file.id
-          CreatePyramidTiffJob.perform_later(file_set, file_id)
-        end
+        CreatePyramidTiffJob.perform_later(file_set) if file_set.class.image_mime_types.include?(mime_type)
       end
     end
 
@@ -27,10 +23,6 @@ module Donut
         image = Vips::Image.new_from_file(source).extract_area(x, y, width, height).rot(:"d#{rotation}")
         savetype = mime_type.split(%r{/}).last
         image.send("#{savetype}save", target)
-      end
-
-      def file_for(filename)
-        file_set.files.to_a.find { |f| f.original_name == filename } || file_set.original_file
       end
   end
 end
