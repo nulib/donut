@@ -8,7 +8,6 @@ class CreatePyramidTiffJob < ApplicationJob
                             target: IiifDerivativeService.derivative_path_for(file_set.id))
 
     resp = lambda_client.invoke(function_name: Settings.aws.lambdas.pyramid,
-                                invocation_type: 'Event',
                                 payload: payload)
 
     resp_payload = JSON.parse(resp.payload.string)
