@@ -14,6 +14,9 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    config.index.thumbnail_method = :render_thumbnail
+    config.show.thumbnail_method = :render_thumbnail
+    config.index.thumbnail_field = 'file_set_iiif_urls_ssim'
     config.http_method = :post
     config.view.gallery.partials = %i[index_header index]
     config.view.masonry.partials = [:index]
@@ -37,7 +40,6 @@ class CatalogController < ApplicationController
     # solr field configuration for document/show views
     config.index.title_field = solr_name('title', :stored_searchable)
     config.index.display_type_field = solr_name('has_model', :symbol)
-    config.index.thumbnail_field = 'thumbnail_path_ss'
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
