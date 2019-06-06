@@ -32,11 +32,8 @@ class CreatePyramidTiffJob < ApplicationJob
     end
 
     def fedora_binary_s3_uri_for(file_set)
-      "s3://#{Settings.aws.buckets.fedora}/#{premis_digest(file_set.original_file.uri.to_s).sub('urn:sha1:', '')}"
-    end
-
-    def premis_digest(uri)
-      ActiveFedora::FixityService.new(uri).expected_message_digest
+      premis_digest = file_set.original_file.file_hash.first.id.split(':').last
+      "s3://#{Settings.aws.buckets.fedora}/#{premis_digest}"
     rescue Ldp::NotFound
       raise "CreatePyramidTiffJob error: No original file for was found for #{file_set.id}"
     end
