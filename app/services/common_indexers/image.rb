@@ -49,6 +49,7 @@ module CommonIndexers
         iiif_manifest: IiifManifestService.manifest_url(id),
         legacy_identifier: legacy_identifier,
         license: licenses,
+        member_ids: member_ids,
         modified_date: sortable_date(modified_date),
         notes: notes,
         nul_use_statement: nul_use_statement,

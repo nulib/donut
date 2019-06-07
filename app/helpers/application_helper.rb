@@ -45,9 +45,34 @@ module ApplicationHelper
     link_to('Public IIIF Manifest', IiifManifestService.manifest_url(id).to_s, class: 'btn btn-default')
   end
 
+  ##
+  # Render the thumbnail, if available, for a document and
+  # link it to the document record.
+  #
+  # @param [SolrDocument] document
+  # @param [Hash] image_options to pass to the image tag
+  # @param [Hash] url_options to pass to #link_to_document
+  # @return [String]
+  def render_thumbnail(document, _image_options = {}, _url_options = {})
+    return default_image if document.nil?
+    object = ActiveFedora::Base.find(document.id)
+    if object.is_a?(::AdminSet)
+      default_image
+    elsif object.is_a?(::Collection)
+      render_thumbnail(object.send(:thumbnail))
+    elsif object.is_a?(::Image)
+      render_thumbnail(object.send(:thumbnail))
+    else
+      image_tag("#{IiifDerivativeService.resolve(object.id)}/full/200,/0/default.jpg")
+    end
+  end
+
   private
 
-    # rubocop:disable Metrics/CyclomaticComplexity
+    def default_image
+      image_tag(ActionController::Base.helpers.image_path('default.png'), size: '200')
+    end
+
     def status_span_generator(status)
       fa_class = case status
                  when 'complete' then 'fa fa-check-circle'

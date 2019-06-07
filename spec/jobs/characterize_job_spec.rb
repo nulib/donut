@@ -7,6 +7,7 @@ RSpec.describe CharacterizeJob do
     FileSet.new(id: file_set_id).tap do |fs|
       allow(fs).to receive(:original_file).and_return(file)
       allow(fs).to receive(:update_index)
+      allow(fs).to receive(:mime_type).and_return('image/png')
     end
   end
   let(:file) do
@@ -22,7 +23,7 @@ RSpec.describe CharacterizeJob do
     allow(FileSet).to receive(:find).with(file_set_id).and_return(file_set)
     allow(Hydra::Works::CharacterizationService).to receive(:run).with(file, filename)
     allow(Donut::CharacterizationService).to receive(:run).with(file, filename)
-    allow(CreateDerivativesJob).to receive(:perform_later).with(file_set, file.id, filename)
+    allow(CreatePyramidTiffJob).to receive(:perform_now).with(file_set)
   end
 
   context 'with valid filepath param' do
@@ -43,7 +44,7 @@ RSpec.describe CharacterizeJob do
       expect(Donut::CharacterizationService).to receive(:run).with(file, filename)
       expect(file).to receive(:save!)
       expect(file_set).to receive(:update_index)
-      expect(CreateDerivativesJob).to receive(:perform_later).with(file_set, file.id, filename)
+      expect(CreatePyramidTiffJob).to receive(:perform_now).with(file_set)
       described_class.perform_now(file_set, file.id)
     end
     # rubocop:enable RSpec/ExampleLength
