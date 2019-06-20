@@ -34,3 +34,4 @@ aws:
   queues: {}
 ffmpeg: {}
 system_user: 'repository@northwestern.edu'
+ark: {}
