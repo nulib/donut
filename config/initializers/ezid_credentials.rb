@@ -7,9 +7,10 @@
 # EZID_USE_SSL: true
 
 Ezid::Client.configure do |conf|
-  conf.default_shoulder = 'ark:/99999/fk4' unless ENV['EZID_DEFAULT_SHOULDER']
-  conf.user = 'apitest' unless ENV['EZID_USER']
-  conf.password = 'apitest' unless ENV['EZID_PASSWORD']
-  conf.host = 'ezid.lib.purdue.edu' unless ENV['EZID_HOST']
-  conf.port = 443 unless ENV['EZID_PORT']
+  conf.default_shoulder = Settings.ark.default_shoulder
+  conf.user = Settings.ark.user
+  conf.password = Settings.ark.password
+  conf.host = Settings.ark.host
+  conf.port = Settings.ark.port
+  conf.use_ssl = [true, 'true', 1, '1'].include?(Settings.ark.use_ssl)
 end
