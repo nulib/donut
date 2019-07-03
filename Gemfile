@@ -36,7 +36,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'hydra-derivatives', github: 'nulib/hydra-derivatives', branch: 'vips'
 gem 'hyrax', github: 'nulib/hyrax', branch: '2.4.1-plus-be'
-gem 'nulib_microservices', github: 'nulib/nulib_microservices'
 
 gem 'config'
 gem 'exiftool_vendored'

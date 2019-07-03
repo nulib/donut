@@ -89,14 +89,6 @@ GIT
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
 
-GIT
-  remote: https://github.com/nulib/nulib_microservices.git
-  revision: 1a73884ecd1417efe13e7855b80967ef0d88f470
-  specs:
-    nulib_microservices (0.0.1)
-      json (~> 2.1, >= 2.1.0)
-      typhoeus (~> 1.0, >= 1.0.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1634,7 +1626,6 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   lograge
-  nulib_microservices!
   omniauth-openam
   pg
   pry-byebug

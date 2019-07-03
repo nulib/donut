@@ -27,7 +27,6 @@ zookeeper:
   connection_str: "localhost:9983/configs"
 geonames_username: ''
 fits: {}
-microservices: {}
 active_job: {}
 aws:
   buckets: {}
