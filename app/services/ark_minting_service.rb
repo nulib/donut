@@ -26,11 +26,17 @@ class ArkMintingService
     def update_metadata
       return if minter_user == 'apitest'
       minter.modify(work.ark, metadata)
+    rescue => err
+      Rails.warn("Unable to update metadata for ARK #{work.ark} for work #{work.id}: #{err.message}")
+      Honeybadger.notify(err)
     end
 
     def mint_ark
       work.ark = minter.mint(metadata).id
       work.save
+    rescue => err
+      Rails.warn("Unable to mint ARK for work #{work.id}: #{err.message}")
+      Honeybadger.notify(err)
     end
 
     def minter_user
