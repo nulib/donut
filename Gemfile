@@ -94,7 +94,7 @@ group :development, :test do
 end
 
 gem 'devise'
-gem 'devise-guests', '~> 0.6'
+gem 'devise-guests', '~> 0.7'
 gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
 
