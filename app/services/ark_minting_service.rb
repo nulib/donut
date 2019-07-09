@@ -14,11 +14,7 @@ class ArkMintingService
 
   def run
     return unless identifier_server_reachable?
-    if work.ark.present?
-      update_metadata
-    else
-      mint_ark
-    end
+    work.ark.present? ? update_metadata : mint_ark
   end
 
   private
@@ -26,11 +22,17 @@ class ArkMintingService
     def update_metadata
       return if minter_user == 'apitest'
       minter.modify(work.ark, metadata)
+    rescue => err
+      Rails.warn("Unable to update metadata for ARK #{work.ark} for work #{work.id}: #{err.message}")
+      Honeybadger.notify(err)
     end
 
     def mint_ark
       work.ark = minter.mint(metadata).id
       work.save
+    rescue => err
+      Rails.warn("Unable to mint ARK for work #{work.id}: #{err.message}")
+      Honeybadger.notify(err)
     end
 
     def minter_user
@@ -59,24 +61,24 @@ class ArkMintingService
       }
     end
 
+    def value_or_unknown(v)
+      v.empty? ? 'Unknown' : v.join('; ')
+    end
+
     def creator
-      return 'Unknown' if work.creator.empty?
-      work.creator.join('; ')
+      value_or_unknown(work.creator)
     end
 
     def title
-      return 'Unknown' if work.title.empty?
-      work.title.join('; ')
+      value_or_unknown(work.title)
     end
 
     def publisher
-      return 'Unknown' if work.publisher.empty?
-      work.publisher.join('; ')
+      value_or_unknown(work.publisher)
     end
 
     def date_created
-      return 'Unknown' if work.date_created.empty?
-      work.date_created.join('; ')
+      value_or_unknown(work.date_created)
     end
 
     # We need to map the available options in the resource_types.yml file to what ezid expects.
