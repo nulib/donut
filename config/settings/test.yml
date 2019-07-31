@@ -16,3 +16,4 @@ solrcloud: true
 zookeeper:
   connection_str: "localhost:9985/configs"
 aws_region: us-east-1
+nul_collection_type: gid://nextgen/hyrax-collectiontype/1
