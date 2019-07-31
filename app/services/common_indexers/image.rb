@@ -37,7 +37,7 @@ module CommonIndexers
         box: { name: box_name, number: box_number },
         call_number: call_number,
         catalog_key: catalog_key,
-        collection: member_of_collections.map { |c| { id: c.id, title: c.title.to_a } }.flatten,
+        collection: nul_collections,
         contributor: contributor,
         creator: typed_values(:creator, :nul_creator),
         create_date: sortable_date(create_date),
@@ -72,6 +72,10 @@ module CommonIndexers
     end
 
     private
+
+      def nul_collections
+        member_of_collections.select { |c| c.collection_type_gid == Settings.nul_collection_type }.map { |c| { id: c.id, title: c.title.to_a } }
+      end
 
       def licenses
         [].tap do |obj|
