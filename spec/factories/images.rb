@@ -6,7 +6,7 @@ FactoryBot.define do
     description { ['Test description'] }
     visibility  { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
     abstract { ['Lemon drops donut gummi bears carrot cake.'] }
-    accession_number { 'Lgf0825' }
+    sequence(:accession_number) { |n| "accession_#{n}" }
     ark { 'ark:/12345/12345' }
     call_number { 'W107.8:Am6' }
     caption { ['This is the caption seen on the image'] }
