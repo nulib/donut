@@ -9,6 +9,6 @@ class Collection < ActiveFedora::Base
   self.indexer = Donut::CollectionIndexer
 
   def to_common_index
-    CommonIndexService.index(self) if collection_type_gid == Settings.nul_collection_type
+    CommonIndexService.index(self)
   end
 end
