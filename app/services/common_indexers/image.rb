@@ -74,7 +74,8 @@ module CommonIndexers
     private
 
       def nul_collections
-        member_of_collections.select { |c| c.collection_type_gid == Settings.nul_collection_type }.map { |c| { id: c.id, title: c.title.to_a } }
+        member_of_collections.select { |c| c.collection_type_gid == Settings.nul_collection_type }
+                             .map { |c| { id: c.id, title: c.title.to_a, top_level: top_level_in_collection?(c) } }
       end
 
       def licenses
