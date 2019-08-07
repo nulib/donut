@@ -1,5 +1,4 @@
 module Importer
-  # rubocop:disable Metrics/ClassLength
   class CSVParser
     class ParserError < StandardError
     end
@@ -61,7 +60,7 @@ module Importer
       end
 
       def collection_headers
-        %w[collection_id collection_title collection_accession_number]
+        %w[collection_id]
       end
 
       def attributes(headers, row)
@@ -84,9 +83,9 @@ module Importer
           # TODO: this only handles one date of each type
           processed[key] ||= [{}]
           update_date(processed[key].first, Regexp.last_match(2), val)
-        when /^collection_(.*)$/
-          processed[:collection] ||= {}
-          update_collection(processed[:collection], Regexp.last_match(1), val)
+        when 'collection_id'
+          processed[:collections] ||= []
+          processed[:collections] << { id: val }
         else
           last_entry = Array(processed[header.to_sym]).last
           if last_entry.is_a?(Hash) && !last_entry[:name]
@@ -123,15 +122,9 @@ module Importer
         end
       end
 
-      def update_collection(collection, field, val)
-        val = [val] unless %w[admin_policy_id id].include? field
-        collection[field.to_sym] = val
-      end
-
       def update_date(date, field, val)
         date[field.to_sym] ||= []
         date[field.to_sym] << val
       end
   end
-  # rubocop:enable Metrics/ClassLength
 end
