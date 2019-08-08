@@ -9,7 +9,7 @@ RSpec.describe Importer::Factory::ImageFactory, :clean, admin_set: true do
   let(:csv_resource) { Aws::S3::Object.new(client: Aws::S3::Client.new, bucket_name: bucket, key: csv_file_key) }
   let(:attributes) do
     {
-      collection: { id: coll.id },
+      collections: [{ id: coll.id }],
       file: ['files/coffee.jpg'],
       identifier: ['123'],
       title: ['Test image']
