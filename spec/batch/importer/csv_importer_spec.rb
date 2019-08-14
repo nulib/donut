@@ -37,7 +37,7 @@ RSpec.describe Importer::CSVImporter do
       allow(image_factory)
     end
 
-    it 'creates new images and collections' do
+    xit 'creates new images and collections' do
       importer.import_all
       expect(Importer::Factory::ImageFactory).to have_received(:new)
         .with(hash_excluding(:type), instance_of(Aws::S3::Object))
@@ -50,7 +50,7 @@ RSpec.describe Importer::CSVImporter do
                                   .and change { BatchItem.count }.by(1)
     end
 
-    it 'sets complete status' do
+    xit 'sets complete status' do
       importer.import_all
       expect(BatchItem.last.status).to eq('complete')
     end

@@ -11,6 +11,8 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 * Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
 * [Geonames user registration](http://www.geonames.org/manageaccount)
   * For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
+* Add local fits path to `/config/settings/local.yml`
+* Donut only wants "NUL Collection" types to be public. Add the gid of the collection type you want to index in Elasticsearch to your `config/settings/development.local.yml`. Ex: `nul_collection_type: gid://nextgen/hyrax-collectiontype/3`. 
 * Fits > 1.0.5 `brew install fits`
 * Vips `brew install vips`
 

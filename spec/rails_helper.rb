@@ -10,6 +10,7 @@ require 'rake'
 require 'hyrax/spec/matchers'
 require 'hyrax/spec/shared_examples'
 require 'webmock/rspec'
+require 'devise'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -88,4 +89,6 @@ RSpec.configure do |config|
   config.after(:each, type: :feature) do
     Warden.test_reset!
   end
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
