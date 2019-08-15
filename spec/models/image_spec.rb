@@ -30,4 +30,25 @@ RSpec.describe Image do
       expect(image_with_id.to_common_index).to be_kind_of(Hash)
     end
   end
+
+  describe '#top_level_in_collection?' do
+    let(:parent_image) { FactoryBot.build(:image) }
+    let(:child_image) { FactoryBot.build(:image) }
+    let(:collection) { FactoryBot.build(:collection) }
+
+    before do
+      parent_image.ordered_members << child_image
+      parent_image.save!
+
+      [parent_image, child_image].each do |asset|
+        asset.member_of_collections << collection
+        asset.save!
+      end
+    end
+
+    it 'knows when an image is top-level in a collection (no parent image)' do
+      expect(parent_image.top_level_in_collection?(collection)).to be true
+      expect(child_image.top_level_in_collection?(collection)).to be false
+    end
+  end
 end
