@@ -32,6 +32,9 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "Gemfile" }}-{{ checksum "Gemfile.lock" }}
       - run:
+          name: Install bundler
+          command: gem install --no-doc bundler
+      - run:
           name: Install Dependencies
           command: bundle install --path=vendor/bundle
       - save_cache:
