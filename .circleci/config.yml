@@ -1,0 +1,99 @@
+---
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1
+  docker-cache: nulib/docker-cache@0.3
+jobs:
+  test:
+    working_directory: ~/meadow
+    docker:
+      - image: circleci/ruby:2.6.3-node
+        environment:
+          DATABASE_URL: postgresql://root@localhost:5432/donut_test
+          FEDORA_URL: http://fedoraAdmin:fedoraAdmin@localhost:8080/rest/test
+          RAILS_ENV: test
+          SETTINGS__AWS__ENDPOINT: http://localhost:9000
+          SETTINGS__COMMON_INDEXER__ENDPOINT: http://localhost:9200
+          SETTINGS__METADATA__ENDPOINT: http://localhost:9000/test-manifests/
+          SETTINGS__ZOOKEEPER__CONNECTION_STR: "localhost:9983/configs"
+          SOLR_URL: http://localhost:8983/solr/donut-test
+      - image: circleci/postgres:10-alpine
+      - image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+      - image: samvera/fcrepo4:4.7.5
+      - image: minio/minio
+        environment:
+          MINIO_ACCESS_KEY: minio
+          MINIO_SECRET_KEY: minio123
+      - image: circleci/redis:alpine
+      - image: solr:7.2-alpine
+        command: solr -f -cloud
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "Gemfile" }}-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Install Dependencies
+          command: bundle install --path=vendor/bundle
+      - save_cache:
+          key: dependency-cache-{{ checksum "Gemfile" }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/donut/vendor/bundle
+      - run:
+          name: Run Static Analysis Tests
+          command: bundle exec rubocop
+      - run:
+          name: Setup
+          command: bundle exec rake donut:seed
+      - run:
+          name: Run Spec Tests
+          command: bundle exec rspec -cf doc spec
+      - run:
+          name: Run Jasmine Tests
+          command: bundle exec rake jasmine:ci
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: tests
+  deploy:
+    docker: 
+      - image: circleci/python:3.7.1
+    steps:
+    - docker-cache/set-deploy-tag
+    - run:
+        command: |
+          echo "export AWS_ACCESS_KEY_ID=\$${DEPLOY_TAG}_AWS_ACCESS_KEY_ID" >> $BASH_ENV
+          echo "export AWS_SECRET_ACCESS_KEY=\$${DEPLOY_TAG}_AWS_SECRET_ACCESS_KEY" >> $BASH_ENV
+    - aws-cli/install
+    - aws-cli/configure
+    - run:
+        name: Restart Elastic Beanstalk app server
+        environment:
+          APP_NAME: donut
+        command: |
+          APP_VERSION=$(aws elasticbeanstalk describe-application-versions --application-name ${APP_NAME} | jq -r '.ApplicationVersions[0].VersionLabel')
+          for environ in $(aws elasticbeanstalk describe-environments --application-name ${APP_NAME} | jq -r '.Environments[].EnvironmentName'); do
+            echo -n "Redeploying ${APP_NAME}/${APP_VERSION} to ${environ}..."
+            aws elasticbeanstalk update-environment --application-name ${APP_NAME} --environment-name ${environ} --version-label=${APP_VERSION} > /dev/null
+            echo ""
+          done
+workflows:
+  ci:
+    jobs:
+      - test
+      - docker-cache/publish:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+                - /^deploy\/.+/
+          cache-key: docker-stages
+          cache-stages: base
+      - deploy:
+          requires:
+            - docker-cache/publish
+          filters:
+            branches:
+              only:
+                - master
+                - /^deploy\/.+/
