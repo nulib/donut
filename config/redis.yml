@@ -3,7 +3,7 @@ development:
   port: 6380
 test:
   host: localhost
-  port: 6381
+  port: <%= ENV['CI'] ? 6379 : 6381 %>
 production:
   host: <%= ENV['REDIS_HOST'] || 'localhost' %>
   port: <%= ENV['REDIS_PORT'] || 6379 %>

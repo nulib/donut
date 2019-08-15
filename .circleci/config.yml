@@ -5,12 +5,16 @@ orbs:
   docker-cache: nulib/docker-cache@0.3
 jobs:
   test:
-    working_directory: ~/meadow
+    working_directory: ~/donut
     docker:
       - image: circleci/ruby:2.6.3-node
         environment:
-          DATABASE_URL: postgresql://root@localhost:5432/donut_test
-          FEDORA_URL: http://fedoraAdmin:fedoraAdmin@localhost:8080/rest/test
+          AWS_ACCESS_KEY_ID: minio
+          AWS_SECRET_ACCESS_KEY: minio123
+          CFLAGS: -Wno-error=format-overflow
+          DATABASE_URL: postgresql://postgres@localhost:5432/donut_test
+          FEDORA_BASE_PATH: /test
+          FEDORA_URL: http://fedoraAdmin:fedoraAdmin@localhost:8080/rest
           RAILS_ENV: test
           SETTINGS__AWS__ENDPOINT: http://localhost:9000
           SETTINGS__COMMON_INDEXER__ENDPOINT: http://localhost:9200
@@ -20,39 +24,38 @@ jobs:
       - image: circleci/postgres:10-alpine
       - image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
       - image: samvera/fcrepo4:4.7.5
+        environment:
+          JAVA_OPTIONS: -Xmx3G
       - image: minio/minio
         environment:
           MINIO_ACCESS_KEY: minio
           MINIO_SECRET_KEY: minio123
+        command: server /home/shared
       - image: circleci/redis:alpine
       - image: solr:7.2-alpine
+        environment:
+          JAVA_OPTIONS: -Xmx3G
         command: solr -f -cloud
     steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "Gemfile" }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install bundler
           command: gem install --no-doc bundler
+      - checkout
+      - restore_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install Dependencies
-          command: bundle install --path=vendor/bundle
+          command: bundle install --jobs 20 --retry 5 --with aws:postgres --without production --path vendor/bundle
       - save_cache:
-          key: dependency-cache-{{ checksum "Gemfile" }}-{{ checksum "Gemfile.lock" }}
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/donut/vendor/bundle
       - run:
           name: Run Static Analysis Tests
           command: bundle exec rubocop
       - run:
-          name: Setup
-          command: bundle exec rake donut:seed
-      - run:
           name: Run Spec Tests
-          command: bundle exec rspec -cf doc spec
-      - run:
-          name: Run Jasmine Tests
-          command: bundle exec rake jasmine:ci
+          command: bundle exec rake donut:setup_and_specs
       - store_artifacts:
           path: /tmp/test-results
           destination: tests
