@@ -75,10 +75,12 @@ jobs:
         environment:
           APP_NAME: donut
         command: |
-          APP_VERSION=$(aws elasticbeanstalk describe-application-versions --application-name ${APP_NAME} | jq -r '.ApplicationVersions[0].VersionLabel')
-          for environ in $(aws elasticbeanstalk describe-environments --application-name ${APP_NAME} | jq -r '.Environments[].EnvironmentName'); do
-            echo -n "Redeploying ${APP_NAME}/${APP_VERSION} to ${environ}..."
-            aws elasticbeanstalk update-environment --application-name ${APP_NAME} --environment-name ${environ} --version-label=${APP_VERSION} > /dev/null
+          APP_PREFIX=$(echo $DEPLOY_TAG | cut -b 1-1)
+          APP_FULL_NAME=stack-${APP_PREFIX}-${APP_NAME}
+          APP_VERSION=$(aws elasticbeanstalk describe-application-versions --application-name ${APP_FULL_NAME} | jq -r '.ApplicationVersions[0].VersionLabel')
+          for environ in $(aws elasticbeanstalk describe-environments --application-name ${APP_FULL_NAME} | jq -r '.Environments[].EnvironmentName'); do
+            echo -n "Redeploying ${APP_FULL_NAME}/${APP_VERSION} to ${environ}..."
+            aws elasticbeanstalk update-environment --application-name ${APP_FULL_NAME} --environment-name ${environ} --version-label=${APP_VERSION} > /dev/null
             echo ""
           done
 workflows:
