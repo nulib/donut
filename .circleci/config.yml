@@ -94,7 +94,7 @@ workflows:
                 - master
                 - /^deploy\/.+/
           cache-key: docker-stages
-          cache-stages: base
+          cache-stages: build run
       - deploy:
           requires:
             - docker-cache/publish
