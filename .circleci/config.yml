@@ -1,0 +1,109 @@
+---
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1
+  docker-cache: nulib/docker-cache@0.3
+jobs:
+  test:
+    working_directory: ~/donut
+    docker:
+      - image: circleci/ruby:2.6.3-node
+        environment:
+          AWS_ACCESS_KEY_ID: minio
+          AWS_SECRET_ACCESS_KEY: minio123
+          CFLAGS: -Wno-error=format-overflow
+          DATABASE_URL: postgresql://postgres@localhost:5432/donut_test
+          FEDORA_BASE_PATH: /test
+          FEDORA_URL: http://fedoraAdmin:fedoraAdmin@localhost:8080/rest
+          RAILS_ENV: test
+          SETTINGS__AWS__ENDPOINT: http://localhost:9000
+          SETTINGS__COMMON_INDEXER__ENDPOINT: http://localhost:9200
+          SETTINGS__METADATA__ENDPOINT: http://localhost:9000/test-manifests/
+          SETTINGS__ZOOKEEPER__CONNECTION_STR: "localhost:9983/configs"
+          SOLR_URL: http://localhost:8983/solr/donut-test
+      - image: circleci/postgres:10-alpine
+      - image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+      - image: samvera/fcrepo4:4.7.5
+        environment:
+          JAVA_OPTIONS: -Xmx3G
+      - image: minio/minio
+        environment:
+          MINIO_ACCESS_KEY: minio
+          MINIO_SECRET_KEY: minio123
+        command: server /home/shared
+      - image: circleci/redis:alpine
+      - image: solr:7.2-alpine
+        environment:
+          JAVA_OPTIONS: -Xmx3G
+        command: solr -f -cloud
+    steps:
+      - run:
+          name: Install bundler
+          command: gem install --no-doc bundler
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-bundle-{{ checksum "Gemfile.lock" }}
+          - v1-bundle-
+      - run:
+          name: Install Dependencies
+          command: bundle install --jobs 20 --retry 5 --with aws:postgres --without production --path vendor/bundle
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/donut/vendor/bundle
+      - run:
+          name: Run Static Analysis Tests
+          command: bundle exec rubocop
+      - run:
+          name: Run Spec Tests
+          command: bundle exec rake donut:setup_and_specs
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: tests
+  deploy:
+    docker: 
+      - image: circleci/python:3.7.1
+    steps:
+    - docker-cache/set-deploy-tag
+    - run:
+        command: |
+          echo "export AWS_ACCESS_KEY_ID=\$${DEPLOY_TAG}_AWS_ACCESS_KEY_ID" >> $BASH_ENV
+          echo "export AWS_SECRET_ACCESS_KEY=\$${DEPLOY_TAG}_AWS_SECRET_ACCESS_KEY" >> $BASH_ENV
+    - aws-cli/install
+    - aws-cli/configure
+    - run:
+        name: Restart Elastic Beanstalk app server
+        environment:
+          APP_NAME: donut
+        command: |
+          APP_PREFIX=$(echo $DEPLOY_TAG | cut -b 1-1)
+          APP_FULL_NAME=stack-${APP_PREFIX}-${APP_NAME}
+          APP_VERSION=$(aws elasticbeanstalk describe-application-versions --application-name ${APP_FULL_NAME} | jq -r '.ApplicationVersions[0].VersionLabel')
+          for environ in $(aws elasticbeanstalk describe-environments --application-name ${APP_FULL_NAME} | jq -r '.Environments[].EnvironmentName'); do
+            echo -n "Redeploying ${APP_FULL_NAME}/${APP_VERSION} to ${environ}..."
+            aws elasticbeanstalk update-environment --application-name ${APP_FULL_NAME} --environment-name ${environ} --version-label=${APP_VERSION} > /dev/null
+            echo ""
+          done
+workflows:
+  ci:
+    jobs:
+      - test
+      - docker-cache/publish:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+                - /^deploy\/.+/
+          cache-key: docker-stages
+          cache-stages: build run
+      - deploy:
+          requires:
+            - docker-cache/publish
+          filters:
+            branches:
+              only:
+                - master
+                - /^deploy\/.+/

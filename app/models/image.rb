@@ -149,5 +149,10 @@ class Image < ActiveFedora::Base
     end
   end
 
+  def top_level_in_collection?(collection)
+    return false unless member_of_collections.include?(collection)
+    in_works.none? { |parent| parent.member_of_collections.include?(collection) }
+  end
+
   apply_schema Schemas::CoreMetadata, Schemas::GeneratedResourceSchemaStrategy.new
 end

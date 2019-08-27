@@ -2,6 +2,7 @@
 # Build the support container
 FROM ruby:2.6.2-slim-stretch as base
 LABEL edu.northwestern.library.app=DONUT \
+      edu.northwestern.library.stage=build \
       edu.northwestern.library.role=support
 
 ENV BUILD_DEPS="build-essential libclamav-dev libpq-dev libsqlite3-dev tzdata locales git curl unzip" \
@@ -54,6 +55,7 @@ RUN chown -R app:app /home/app/current &&  \
 # Build the Application container
 FROM ruby:2.6.2-slim-stretch as app
 LABEL edu.northwestern.library.app=DONUT \
+      edu.northwestern.library.stage=run \
       edu.northwestern.library.role=app
 
 
