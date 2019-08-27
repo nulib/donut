@@ -42,7 +42,9 @@ jobs:
           command: gem install --no-doc bundler
       - checkout
       - restore_cache:
-          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          keys:
+          - v1-bundle-{{ checksum "Gemfile.lock" }}
+          - v1-bundle-
       - run:
           name: Install Dependencies
           command: bundle install --jobs 20 --retry 5 --with aws:postgres --without production --path vendor/bundle

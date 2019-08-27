@@ -20,6 +20,6 @@ class Batch < ApplicationRecord
   private
 
     def statuses
-      batch_items.collect(&:status).sort.uniq
+      batch_items.distinct.pluck(:status).sort
     end
 end
