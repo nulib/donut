@@ -56,6 +56,8 @@ Donut only wants "NUL Collection" types to be public. In order to make these ava
 
 **Note**: Only Donut collections of the collection type "NUL Collection" will appear in the front-end application.
 
+More detailed information on Collection/Indexing setup here: [Collection Type Indexing](https://github.com/nulib/repodev_planning_and_docs/wiki/Collection-Type---Indexing)
+
 ## Running the Tests
 
 Bring up the test stack in one window with:
