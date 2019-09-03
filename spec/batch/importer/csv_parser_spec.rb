@@ -26,7 +26,7 @@ RSpec.describe Importer::CSVParser do
       )
       expect(first_record.keys).to contain_exactly(:accession_number, :type, :title, :description,
                                                    :subject, :resource_type, :contributor, :creator, :style_period,
-                                                   :date_created, :file, :collections, :admin_set_id, :subject_topical,
+                                                   :date_created, :file, :admin_set_id, :subject_topical,
                                                    :preservation_level, :rights_statement, :status, :based_near)
     end
     # rubocop:enable RSpec/ExampleLength
