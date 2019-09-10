@@ -2,12 +2,9 @@
 <div class="text-right">
   <% if can? :deposit, presenter.solr_document %>
     <div>
-      <%= link_to "Make Images Public", main_app.publicize_images_path(presenter.id), 
-        method: :post, 
-        class: 'btn btn-primary', 
-        data: { 
-          confirm: "You are about to change the visibility on all items in this collection. This may take several hours depending on the size of the collection. Please wait until the process finishes before clicking this button again." 
-        }
+      <%= link_to "Change Image Visibility", main_app.manage_visiblity_path(presenter.id), 
+        method: :get, 
+        class: 'btn btn-primary'
       %>
     </div>
     <br/>

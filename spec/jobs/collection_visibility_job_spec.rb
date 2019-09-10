@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PublicCollectionJob do
+RSpec.describe CollectionVisibilityJob do
   let(:open_image) { FactoryBot.create(:image) }
   let(:restricted_image) { FactoryBot.create(:image, visibility: 'restricted') }
   let(:authenticated_image) { FactoryBot.create(:image, visibility: 'authenticated') }
@@ -11,8 +11,8 @@ RSpec.describe PublicCollectionJob do
     collection.save!
   end
 
-  it 'enqueues PublicImageJob jobs for restricted and authenticated images' do
+  it 'enqueues ImageVisibilityJob jobs for restricted and authenticated images' do
     ActiveJob::Base.queue_adapter = :test
-    expect { described_class.perform_now(collection.id) }.to enqueue_job(PublicImageJob).twice
+    expect { described_class.perform_now(collection.id, 'open') }.to enqueue_job(ImageVisibilityJob).twice
   end
 end
