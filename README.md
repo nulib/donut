@@ -6,29 +6,29 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 ## Dependencies
 
-* [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
-* Docker (we're using docker for mac: https://www.docker.com/docker-mac)
-* Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
-* [Geonames user registration](http://www.geonames.org/manageaccount)
-  * For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
-* Add local fits path to `/config/settings/local.yml`
-* Donut only wants "NUL Collection" types to be public. Add the gid of the collection type you want to index in Elasticsearch to your `config/settings/development.local.yml`. Ex: `nul_collection_type: gid://nextgen/hyrax-collectiontype/3`. 
-* Fits > 1.0.5 `brew install fits`
-* Vips `brew install vips`
-
+- [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
+- Docker (we're using docker for mac: https://www.docker.com/docker-mac)
+- Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
+- [Geonames user registration](http://www.geonames.org/manageaccount)
+  - For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
+- Add local fits path to `/config/settings/local.yml`
+- Fits > 1.0.5 `brew install fits`
+- Vips `brew install vips`
 
 ## Initial Setup
 
-* Clone the Donut GitHub repository
-* Install dependencies: `bundle install`
-* Run `devstack up donut` in a separate tab to start dependency services
+- Clone the Donut GitHub repository
+- Install dependencies: `bundle install`
+- Run `devstack up donut` in a separate tab to start dependency services
 
-* Run `rake donut:seed` to initialize the stack.
-  * Optional arguments to `donut:seed` (may be used in combination):
-    * `ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add an admin user
-    * `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets. There is a sample seed file in `spec/fixtures/files/test_seed.yml`
+- Run `rake donut:seed` to initialize the stack.
 
-* Create a fake AWS profile:
+  - Optional arguments to `donut:seed` (may be used in combination):
+    - `ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add an admin user
+    - `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets. There is a sample seed file in `spec/fixtures/files/test_seed.yml`
+
+- Create a fake AWS profile:
+
 ```sh
 $ aws --profile fake configure
 # enter dummy values for "AWS Access Key ID" and "AWS Secret Access Key".
@@ -38,8 +38,27 @@ $ export AWS_PROFILE=fake
 # Alternatively, add this to your .zshrc, .bashrc, etc.
 ```
 
-## Running the Tests
+## Running the App
 
+```
+bundle exec rails s
+```
+
+Donut should be live at: http://devbox.library.northwestern.edu/
+
+### Set up an "NUL Collection" Collection Type
+
+Donut only wants "NUL Collection" types to be public. In order to make these available to the front-end React app:
+
+1. Go to `Dashboard > Settings > Collection Type` and add a "NUL Collection" collection type.
+2. In `config/settings/development.local.yml`, add the gid of the "NUL Collection" collection type (or one you want to index in Elasticsearch). Ex: `nul_collection_type: gid://nextgen/hyrax-collectiontype/3`.
+3. Re-start the Rails server
+
+**Note**: Only Donut collections of the collection type "NUL Collection" will appear in the front-end application.
+
+More detailed information on Collection/Indexing setup here: [Collection Type Indexing](https://github.com/nulib/repodev_planning_and_docs/wiki/Collection-Type---Indexing)
+
+## Running the Tests
 
 Bring up the test stack in one window with:
 
@@ -93,17 +112,19 @@ $ rake jasmine:ci
 ```
 
 ### Running the Batch importer from the command line
-* Run the `rake donut:seed` or `rake s3:setup` rake task to create and populate the S3 bucket
-* Run the importer from the application root directory with the command:
+
+- Run the `rake donut:seed` or `rake s3:setup` rake task to create and populate the S3 bucket
+- Run the importer from the application root directory with the command:
 
 ```sh
 $ bin/import_from_s3 dev-batch sample.csv
 ```
 
 ### Seed Data
-* Run the batch importer with the `seed-data.csv` file to load 30 sample records (this will take some time)
-* Make sure you have first run `bundle exec rake s3:setup` to populate the s3 bucket
-* Then run:
+
+- Run the batch importer with the `seed-data.csv` file to load 30 sample records (this will take some time)
+- Make sure you have first run `bundle exec rake s3:setup` to populate the s3 bucket
+- Then run:
 
 ```sh
 $ bin/import_from_s3 dev-batch seed-data.csv
@@ -119,9 +140,9 @@ $ export PROCESS_ACTIVE_ELASTIC_JOBS=true
 
 ## Notes on the Docker stack
 
-* You can replace `up` with `daemon` in `docker:dev:up` and `docker:test:up` to run the Docker services in the background
+- You can replace `up` with `daemon` in `docker:dev:up` and `docker:test:up` to run the Docker services in the background
   instead of in a separate tab. To stop the stack, use (for example) `rake docker:dev:down`.
-* The test stack always cleans up its data when it comes down. To clean the dev stack, use `rake docker:dev:clean`.
+- The test stack always cleans up its data when it comes down. To clean the dev stack, use `rake docker:dev:clean`.
 
 ## Adding an Admin user and assigning workflow roles
 

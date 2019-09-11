@@ -47,5 +47,6 @@ Rails.application.routes.draw do
     end
   end
 
-  post '/publicize_images/:id', to: 'visibility#make_public', as: :publicize_images
+  get '/visibility/:id/', to: 'visibility#manage', as: :manage_visiblity
+  post '/visibility_change/:id/:visibility', to: 'visibility#change', as: :visiblity_change
 end

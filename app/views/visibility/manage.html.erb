@@ -1,0 +1,39 @@
+<h1>Manage '<%= @collection.title.first %>' member visibility</h1>
+<div class="alert alert-danger">
+<h4 class="alert-heading">Please Read</h4>Visibility changes take considerable time to complete - depending on the size of the collection it may take several hours. Do not change the visibility on members of a collection until you have checked that a previous visiblity change has finished updating all members. Begininng another visibility change job before the previous one has completed may produce unexpected results or complications.<hr>The table below is provided to help you determine whether previous visibility changes have completed.</div>
+
+<% visibilities = 
+      {
+        'open' => 'Make Images Public', 
+        'authenticated' => 'Make Images NetId',
+        'restricted' => 'Make Images Private'
+      } %>
+    <% visibilities.each_pair do |key, value|  %>
+        <%= link_to value, main_app.visiblity_change_path(@collection.id, key), 
+        method: :post, 
+        class: 'btn btn-primary', 
+        data: { 
+          confirm: "You are about to change the visibility on all items in this collection. This may take several hours depending on the size of the collection. Please wait until the process finishes before clicking this button again." 
+        }%>
+      <% end %>
+<div class='table-responsive'>
+  <h3>Recent visiblity change history for collection:</h3>
+  <table class='table table-condensed'>
+    <thead>
+      <tr>
+        <th scope='col'>Submitted By</th>
+        <th scope='col'>Visibility Changed To</th>
+        <th scope='col'>Started</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each.with_index do |job, index| %>
+        <tr>
+          <td><%= job.submitter %></td>
+          <td><%= visibility_badge(job.visibility).html_safe %></td>
+          <td><%= time_ago_in_words(job.created_at) %> ago</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

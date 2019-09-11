@@ -12,7 +12,7 @@ RSpec.describe VisibilityController, type: :controller do
       end
 
       it 'returns a success message' do
-        post :make_public, params: { id: collection.id }
+        post :change, params: { id: collection.id, visibility: 'open' }
         expect(response.status).to equal(302)
         expect(flash[:notice]).to include('Job submitted.')
       end
@@ -24,7 +24,7 @@ RSpec.describe VisibilityController, type: :controller do
       end
 
       it 'returns an unauthorized message' do
-        post :make_public, params: { id: collection.id }
+        post :change, params: { id: collection.id, visibility: 'open' }
         expect(response.status).to equal(401)
       end
     end
