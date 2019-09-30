@@ -53,7 +53,7 @@ gem 'faraday_middleware-aws-sigv4'
 gem 'edtf'
 gem 'edtf-humanize'
 
-gem 'rubyzip', '~> 1.2.2', require: 'zip'
+gem 'rubyzip', '~> 1.3.0', require: 'zip'
 
 gem 'zk'
 
