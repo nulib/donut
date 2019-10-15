@@ -119,6 +119,6 @@ class ArkMintingService
     end
 
     def url
-      polymorphic_url(work, host: Rails.application.secrets.host || 'localhost:3000')
+      URI.parse(Settings.ark.target_prefix).merge(work.id).to_s
     end
 end
