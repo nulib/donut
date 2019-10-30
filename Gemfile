@@ -53,7 +53,7 @@ gem 'faraday_middleware-aws-sigv4'
 gem 'edtf'
 gem 'edtf-humanize'
 
-gem 'rubyzip', '~> 1.2.2', require: 'zip'
+gem 'rubyzip', '~> 1.3.0', require: 'zip'
 
 gem 'zk'
 
@@ -68,7 +68,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '~> 3.25'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop', '~> 0.49.1', require: false
@@ -94,7 +94,7 @@ group :development, :test do
 end
 
 gem 'devise'
-gem 'devise-guests', '~> 0.6'
+gem 'devise-guests', '~> 0.7'
 gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
 
