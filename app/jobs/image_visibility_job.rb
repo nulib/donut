@@ -3,6 +3,7 @@ class ImageVisibilityJob < ApplicationJob
     return if image.visibility == visibility
 
     image.visibility = visibility
+    image.date_modified = Hyrax::TimeService.time_in_utc
     image.save
     image.file_sets.each do |fs|
       next if fs.visibility == visibility
