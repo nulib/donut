@@ -1308,7 +1308,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.1.1)
     pul_uv_rails (2.0.1)
-    puma (3.12.0)
+    puma (3.12.2)
     qa (3.0.0)
       activerecord-import
       deprecation
@@ -1641,7 +1641,7 @@ DEPENDENCIES
   pg
   pry-byebug
   pry-rails
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.1)
   redis-rails
   rsolr (>= 1.0)
