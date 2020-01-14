@@ -14,4 +14,10 @@ RSpec.describe ImageVisibilityJob do
     expect(image.visibility).to eq 'open'
     expect(file_set.visibility).to eq 'open'
   end
+
+  it 'changes `date_modified` of an image' do
+    previous_date_modified = image.date_modified
+    described_class.perform_now(image, 'authenticated')
+    expect(image.date_modified).not_to eq previous_date_modified
+  end
 end
