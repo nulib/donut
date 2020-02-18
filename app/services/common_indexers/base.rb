@@ -16,8 +16,8 @@ module CommonIndexers
 
     def all_dates(edtf_date)
       Array(edtf_date).map do |date|
-        Array(Date.edtf(date))
-      end.flatten.sort.uniq
+        Array(Date.edtf(date)) unless date == 'uuuu'
+      end.flatten.compact.sort.uniq
     end
 
     def date(edtf_date)
