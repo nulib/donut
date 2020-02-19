@@ -19,13 +19,13 @@ class ImportUrlJob < Hyrax::ApplicationJob
   # @param [Hyrax::BatchCreateOperation] operation
   def perform(file_set, operation, headers = {})
     operation.performing!
-    user = User.find_by_user_key(file_set.depositor)
+    user = User.find_by_user_key(file_set.depositor) # rubocop:disable Rails/DynamicFindBy
     uri = URI(file_set.import_url)
     name = file_set.label
     @file_set = file_set
     @operation = operation
 
-    unless BrowseEverything::Retriever.can_retrieve?(uri, headers)
+    unless can_retrieve?(uri, headers)
       send_error('Expired URL')
       return false
     end
@@ -44,6 +44,20 @@ class ImportUrlJob < Hyrax::ApplicationJob
   end
 
   private
+
+    def can_retrieve?(uri, headers)
+      case uri.scheme
+      when /^s3$/ then s3_object_for(uri).exists?
+      when /^https?$/ then BrowseEverything::Retriever.can_retrieve?(uri, headers)
+      end
+    end
+
+    def s3_object_for(uri)
+      Aws::S3::Object.new(
+        bucket_name: uri.host,
+        key: uri.path.sub(%r{^/}, '')
+      )
+    end
 
     # Download file from uri, yields a block with a file in a temporary directory.
     # It is important that the file on disk has the same file name as the URL,
@@ -73,20 +87,39 @@ class ImportUrlJob < Hyrax::ApplicationJob
     # @param filename [String] the filename of the file to download
     # @param error_message [String] the download error message
     def send_error(error_message)
-      user = User.find_by_user_key(file_set.depositor)
+      user = User.find_by_user_key(file_set.depositor) # rubocop:disable Rails/DynamicFindBy
       @file_set.errors.add('Error:', error_message)
       Hyrax.config.callback.run(:after_import_url_failure, @file_set, user)
       @operation.fail!(@file_set.errors.full_messages.join(' '))
     end
 
+    def write_file(uri, f, headers)
+      case uri.scheme
+      when /^s3$/ then write_s3_file(uri, f)
+      when /^https?$/ then write_http_file(uri, f, headers)
+      else raise "Unknown protocol: #{uri.scheme}"
+      end
+    end
+
     # Write file to the stream
     # @param uri [URI] the uri of the file to download
     # @param f [IO] the stream to write to
-    def write_file(uri, f, headers)
+    def write_http_file(uri, f, headers)
       retriever = BrowseEverything::Retriever.new
       uri_spec = ActiveSupport::HashWithIndifferentAccess.new(url: uri, headers: headers)
 
       retriever.retrieve(uri_spec) do |chunk|
+        f.write(chunk)
+      end
+      f.rewind
+    end
+
+    # Write file to the stream
+    # @param bucket [String] the S3 bucket containing the file to download
+    # @param key [String] the S3 key of the file to download
+    # @param f [IO] the stream to write to
+    def write_s3_file(uri, f)
+      s3_object_for(uri).get do |chunk|
         f.write(chunk)
       end
       f.rewind
