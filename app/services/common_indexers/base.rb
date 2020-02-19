@@ -1,4 +1,3 @@
-
 module CommonIndexers
   class Base
     attr_reader :source
@@ -17,16 +16,20 @@ module CommonIndexers
 
     def all_dates(edtf_date)
       Array(edtf_date).map do |date|
-        Array(Date.edtf(date))
-      end.flatten.sort.uniq
+        Array(Date.edtf(date)) unless date == 'uuuu'
+      end.flatten.compact.sort.uniq
     end
 
     def date(edtf_date)
-      all_dates(edtf_date).map(&:iso8601)
+      all_dates(edtf_date).map do |date|
+        date.iso8601 if date.respond_to?(:iso8601)
+      end.uniq.compact
     end
 
     def extract_years(edtf_date)
-      all_dates(edtf_date).map(&:year).uniq
+      all_dates(edtf_date).map do |date|
+        date.year if date.respond_to?(:year)
+      end.uniq.compact
     end
 
     def display_date(edtf_date)
@@ -35,6 +38,7 @@ module CommonIndexers
 
     def sortable_date(date_field)
       return if date_field.nil?
+
       if date_field.respond_to?(:iso8601)
         date_field.iso8601
       else
@@ -85,6 +89,7 @@ module CommonIndexers
           (name, type) = field.is_a?(Array) ? field.map(&:to_s) : [field.to_s, field.to_s]
 
           next if source[name].blank?
+
           Array(source[name]).each do |value|
             (uri, label) = fetch_uri_and_label(value)
             result << { role: type, uri: uri, label: label }
@@ -99,6 +104,7 @@ module CommonIndexers
           (name, type) = field.is_a?(Array) ? field.map(&:to_s) : [field.to_s, field.to_s]
 
           next if source[name].blank?
+
           Array(source[name]).each do |value|
             (uri, label) = fetch_uri_and_label(value)
             result << { role: type, uri: uri, label: "#{label} (#{label_qualifier(type)})" }

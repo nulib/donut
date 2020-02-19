@@ -6,36 +6,40 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 ## Dependencies
 
+- Ruby (version `2.0.4` is known to work)
+  - you can use [`rbenv`](https://github.com/rbenv/rbenv) or [`rvm`](https://rvm.io/) to install Ruby
 - [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
 - Docker (we're using docker for mac: https://www.docker.com/docker-mac)
 - Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
 - [Geonames user registration](http://www.geonames.org/manageaccount)
   - For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
 - Add local fits path to `/config/settings/local.yml`
+- Obtain a `config/settings/development.local.yml` file from another NU Dev
 - Fits > 1.0.5 `brew install fits`
 - Vips `brew install vips`
 
 ## Initial Setup
 
 - Clone the Donut GitHub repository
+- Install Bundler (version that's in the [`Gemfile.lock`](https://github.com/nulib/donut/blob/master/Gemfile.lock#L1663)) if it's not installed already `gem install bundler -v "~>2.0.1"`]
 - Install dependencies: `bundle install`
 - Run `devstack up donut` in a separate tab to start dependency services
 
 - Run `rake donut:seed` to initialize the stack.
 
   - Optional arguments to `donut:seed` (may be used in combination):
-    - `ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add an admin user
-    - `SEED_FILE=[path to YAML file]` to automatically add users and admin_sets. There is a sample seed file in `spec/fixtures/files/test_seed.yml`
+    - `bundle exec rake donut:seed ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email]` to automatically add yourself an admin user
+    - `bundle exec rake donut:seed ADMIN_USER=[your NetID] ADMIN_EMAIL=[your email] SEED_FILE=[path to YAML file]` to automatically add users and admin_sets. There is a sample seed file in `spec/fixtures/files/test_seed.yml`
 
 - Create a fake AWS profile:
 
 ```sh
 $ aws --profile fake configure
 # enter dummy values for "AWS Access Key ID" and "AWS Secret Access Key".
-# Set the "Default region name" to "us-east-1"
+# Set the "Default region name" to "us-east-1", use default[None] for format
 
-$ export AWS_PROFILE=fake
-# Alternatively, add this to your .zshrc, .bashrc, etc.
+# add this to your .zshrc, .bashrc, etc.
+export AWS_PROFILE=fake
 ```
 
 ## Running the App
@@ -45,6 +49,18 @@ bundle exec rails s
 ```
 
 Donut should be live at: http://devbox.library.northwestern.edu/
+
+## Stopping the application
+
+You can stop the Phoneix server with `Ctrl + C`
+
+You can stop devstack by running `devstack down`. You local data (from the database, ldap, etc) will persist after devstack shuts down.
+
+If you need to clear your data and reset the entire development environment, run `devstack down -v`
+
+After initial setup, you don't need to run `rake donut:seed...` again unless you've run `devstack down -v`.
+
+Read more about [Devstack](https://github.com/nulib/devstack) commands here.
 
 ### Set up an "NUL Collection" Collection Type
 
