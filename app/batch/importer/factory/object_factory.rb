@@ -130,7 +130,7 @@ module Importer
 
         def file_spec(file_path)
           s3_object = resolve_file(file_path)
-          url = s3_object.presigned_url(:get, expires_in: 604_800)
+          url = "s3://#{s3_object.bucket_name}/#{s3_object.key}"
           { url: url, file_size: s3_object.size }
         end
 
