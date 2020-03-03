@@ -1281,8 +1281,8 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
-    omniauth (1.9.0)
-      hashie (>= 3.4.6, < 3.7.0)
+    omniauth (1.9.1)
+      hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
     omniauth-openam (1.1.0)
       faraday
@@ -1316,7 +1316,7 @@ GEM
       nokogiri (~> 1.6)
       rails (~> 5.0)
       rdf
-    rack (2.0.8)
+    rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.6.2)
