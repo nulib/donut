@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.1'
 gem 'pg'
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '>= 3.4.1'
 gem 'sass-rails', '~> 5.0'
@@ -44,7 +44,7 @@ gem 'ezid-client'
 gem 'honeybadger', '~> 4.0'
 gem 'httparty'
 gem 'hydra-role-management'
-gem 'omniauth-openam'
+gem 'omniauth-nusso', '>= 0.1.1'
 
 gem 'common_indexer', '~> 0.3'
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
