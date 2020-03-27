@@ -44,7 +44,7 @@ gem 'ezid-client'
 gem 'honeybadger', '~> 4.0'
 gem 'httparty'
 gem 'hydra-role-management'
-gem 'omniauth-nusso', '>= 0.1.1'
+gem 'omniauth-nusso', '>= 0.1.2'
 
 gem 'common_indexer', '~> 0.3'
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
