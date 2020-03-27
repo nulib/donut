@@ -5,7 +5,7 @@ localstack:
 aws:
   endpoint: http://localhost:9002
   buckets:
-    batch:   test-batch
+    batch: test-batch
     uploads: test-uploads
     manifests: test-manifests
 common_indexer:
@@ -17,3 +17,5 @@ zookeeper:
   connection_str: "localhost:9985/configs"
 aws_region: us-east-1
 nul_collection_type: gid://nextgen/hyrax-collectiontype/1
+nusso:
+  consumer_key: test-key
