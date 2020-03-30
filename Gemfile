@@ -46,8 +46,9 @@ gem 'httparty'
 gem 'hydra-role-management'
 gem 'omniauth-nusso', '>= 0.1.2'
 
-gem 'common_indexer', '~> 0.3'
+gem 'common_indexer', '~> 0.5'
 gem 'donut-retry', github: 'nulib/donut-retry', branch: 'master'
+gem 'elasticsearch', '~> 6.2'
 gem 'faraday_middleware-aws-sigv4'
 
 gem 'edtf'
