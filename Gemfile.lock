@@ -923,7 +923,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    common_indexer (0.5.0)
+    common_indexer (0.5.1)
       active-fedora
       activesupport
       dry-configurable
