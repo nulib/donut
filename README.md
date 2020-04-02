@@ -8,13 +8,11 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 - Ruby (version `2.0.4` is known to work)
   - you can use [`rbenv`](https://github.com/rbenv/rbenv) or [`rvm`](https://rvm.io/) to install Ruby
-- [Local authentication configuration](https://github.com/nulib/donut/wiki/Authentication-setup-for-dev-environment)
+- Follow the [Dev Environment Setup](http://docs.rdc.library.northwestern.edu/2._Developer_Guides/Environment_and_Tools/Developer-Tools---Dev-Environment-Setup/#setup) instructions
 - Docker (we're using docker for mac: https://www.docker.com/docker-mac)
 - Install [`devstack`](https://github.com/nulib/devstack) according to the instructions in the README
 - [Geonames user registration](http://www.geonames.org/manageaccount)
-  - For local development, add the registered user to `settings.local.yml` with the `geonames_username` key, e.g. `geonames_username: geonames_test_user`
-- Add local fits path to `/config/settings/local.yml`
-- Obtain a `config/settings/development.local.yml` file from another NU Dev
+  - The `geonames_username` key is defined in our shared configuration file.
 - Fits > 1.0.5 `brew install fits`
 - Vips `brew install vips`
 
@@ -48,7 +46,7 @@ export AWS_PROFILE=fake
 bundle exec rails s
 ```
 
-Donut should be live at: http://devbox.library.northwestern.edu/
+Donut should be live at: https://devbox.library.northwestern.edu:3000/
 
 ## Stopping the application
 
@@ -163,6 +161,6 @@ $ export PROCESS_ACTIVE_ELASTIC_JOBS=true
 ## Adding an Admin user and assigning workflow roles
 
 1.  Run the development servers with `rake docker:dev:up` (or `daemon`) and `rails s`
-1.  Go to http://devbox.library.northwestern.edu/ and login with OpenAM
-1.  To make the user who logged in an admin, run `rake donut:add_admin_role ADMIN_USER[your NetID]`
-1.  Go to http://devbox.library.northwestern.edu/admin/workflow_roles and grant workflow roles if needed
+2.  Go to https://devbox.library.northwestern.edu:3000/ and login
+3.  To make the user who logged in an admin, run `rake donut:add_admin_role ADMIN_USER[your NetID]`
+4.  Go to https://devbox.library.northwestern.edu:3000/admin/workflow_roles and grant workflow roles if needed

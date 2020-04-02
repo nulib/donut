@@ -25,7 +25,7 @@ solr:
     snitch:
 zookeeper:
   connection_str: "localhost:9983/configs"
-geonames_username: ''
+geonames_username: ""
 fits: {}
 microservices: {}
 active_job: {}
@@ -33,5 +33,7 @@ aws:
   buckets: {}
   queues: {}
 ffmpeg: {}
-system_user: 'repository@northwestern.edu'
+system_user: "repository@northwestern.edu"
 ark: {}
+nusso:
+  consumer_key:

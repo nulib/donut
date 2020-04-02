@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_in', to: 'users/sessions#new', as: :new_user_session
     delete '/users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
-    match '/users/auth/:provider', to: 'users/omniauth_callbacks#user', as: :user_omniauth_authorize, via: [:get, :post]
-    match '/users/auth/openam/callback', controller: 'users/omniauth_callbacks', as: :user_omniauth_callback, via: [:get, :post]
+    get '/users/auth/:provider', to: 'users/omniauth_callbacks#user', as: :user_omniauth_authorize
+    get '/users/auth/nusso/callback', controller: 'users/omniauth_callbacks', as: :user_omniauth_callback
   end
   mount Hydra::RoleManagement::Engine => '/'
   mount Qa::Engine => '/authorities'
