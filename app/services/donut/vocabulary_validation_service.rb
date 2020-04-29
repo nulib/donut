@@ -6,7 +6,7 @@ module Donut
       %r{^http://vocab.getty.edu/ulan/[0-9]+/?$},
       %r{^http://vocab.getty.edu/aat/[0-9]+/?$},
       %r{^http://id.worldcat.org/fast/[1-9]{1}[0-9]+/?$},
-      %r{^http://sws.geonames.org/[0-9]+/?$},
+      %r{^https://sws.geonames.org/[0-9]+/?$},
       %r{^http://id.loc.gov/authorities/names/n(o|r|b)?[0-9]+/?$},
       %r{^http://id.loc.gov/authorities/subjects/sh[0-9]+/?$},
       %r{^http://id.loc.gov/vocabulary/languages/[a-z]{3}/?$}
