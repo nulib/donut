@@ -40,6 +40,18 @@ RSpec.describe Donut::VocabularyValidationService do
       it { is_expected.to be(true) }
     end
 
+    context 'with a valid https geonames uri' do
+      let(:uri) { 'https://sws.geonames.org/4889676' }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'with an invalid http geonames uri' do
+      let(:uri) { 'http://sws.geonames.org/4889676' }
+
+      it { is_expected.to be(false) }
+    end
+
     context 'with an invalid uri' do
       let(:uri) { 'http://vocab.get.edu/ulan/500180874' }
 
