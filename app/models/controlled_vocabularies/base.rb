@@ -84,7 +84,10 @@ module ControlledVocabularies
       end
 
       def fixup_geonames_uri(id)
-        path = URI(id).tap { |uri| uri.host = 'sws.geonames.org' }.to_s
+        path = URI(id).tap do |uri|
+          uri.scheme = 'https'
+          uri.host = 'sws.geonames.org'
+        end.to_s
         path.end_with?('/') ? path : "#{path}/"
       end
   end
