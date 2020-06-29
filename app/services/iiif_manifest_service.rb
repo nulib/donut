@@ -1,7 +1,7 @@
 class IiifManifestService
   class << self
     def manifest_url(work_id)
-      Pathname.new(Settings.metadata.endpoint).join(s3_key_for(work_id))
+      Pathname.new(Settings.metadata.endpoint).join(s3_key_for(work_id)).to_s
     end
 
     def remove_manifest(work_id)
