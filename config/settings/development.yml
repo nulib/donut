@@ -3,7 +3,7 @@ localstack:
   sqs: false
   port_offset: 100
 aws:
-  endpoint: http://localhost:9001
+  endpoint: https://devbox.library.northwestern.edu:9001/
   buckets:
     batch: dev-batch
     dropbox: dev-dropbox
