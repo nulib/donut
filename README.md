@@ -6,7 +6,7 @@ Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax
 
 ## Dependencies
 
-- Ruby (version `2.0.4` is known to work)
+- Ruby >= 2.6
   - you can use [`rbenv`](https://github.com/rbenv/rbenv) or [`rvm`](https://rvm.io/) to install Ruby
 - Follow the [Dev Environment Setup](http://docs.rdc.library.northwestern.edu/2._Developer_Guides/Environment_and_Tools/Developer-Tools---Dev-Environment-Setup/#setup) instructions
 - Docker (we're using docker for mac: https://www.docker.com/docker-mac)
