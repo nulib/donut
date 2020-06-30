@@ -18,7 +18,7 @@ aws:
 iiif:
   endpoint: http://localhost:8183/iiif/2/
 metadata:
-  endpoint: http://devbox.library.northwestern.edu/
+  endpoint: https://devbox.library.northwestern.edu:3000/
 common_indexer:
   endpoint: http://localhost:9201/
 solrcloud: true
