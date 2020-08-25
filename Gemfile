@@ -37,7 +37,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'hydra-derivatives', github: 'nulib/hydra-derivatives', branch: 'vips'
 gem 'hyrax', github: 'nulib/hyrax', branch: '2.4.1-plus-be'
 gem 'nulib_microservices', github: 'nulib/nulib_microservices'
-gem 'qa', github: 'samvera/questioning_authority', ref: '9b41dfcf3ba9637304173c81067868aa6118eaa3'
 gem 'solrizer', '>= 3.4', '< 5'
 
 gem 'config'
