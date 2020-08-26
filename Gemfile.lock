@@ -97,21 +97,6 @@ GIT
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
 
-GIT
-  remote: https://github.com/samvera/questioning_authority.git
-  revision: 9b41dfcf3ba9637304173c81067868aa6118eaa3
-  ref: 9b41dfcf3ba9637304173c81067868aa6118eaa3
-  specs:
-    qa (5.3.1)
-      activerecord-import
-      deprecation
-      faraday
-      geocoder
-      ldpath
-      nokogiri (~> 1.6)
-      rails (>= 5.0, < 6.1)
-      rdf
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -165,7 +150,7 @@ GEM
       activemodel (= 5.1.7)
       activesupport (= 5.1.7)
       arel (~> 8.0)
-    activerecord-import (1.0.4)
+    activerecord-import (1.0.6)
       activerecord (>= 3.2)
     activesupport (5.1.7)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -1081,7 +1066,7 @@ GEM
       jquery-rails
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
-    geocoder (1.6.2)
+    geocoder (1.6.3)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-api-client (0.32.1)
@@ -1331,6 +1316,15 @@ GEM
     pul_uv_rails (2.0.1)
     puma (4.3.3)
       nio4r (~> 2.0)
+    qa (5.5.1)
+      activerecord-import
+      deprecation
+      faraday
+      geocoder
+      ldpath
+      nokogiri (~> 1.6)
+      rails (>= 5.0, < 6.1)
+      rdf
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -1656,7 +1650,6 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma (~> 4.1)
-  qa!
   rails (~> 5.1.1)
   redis-rails
   rsolr (>= 1.0)
