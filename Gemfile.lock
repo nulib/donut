@@ -1650,6 +1650,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma (~> 4.1)
+  qa (>= 5.5.1)
   rails (~> 5.1.1)
   redis-rails
   rsolr (>= 1.0)
