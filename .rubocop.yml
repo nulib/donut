@@ -101,6 +101,7 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/app/batch/importer/factory/image_factory_spec.rb'
     - 'spec/forms/hyrax/image_form_spec.rb'
+    - 'spec/services/common_indexers/file_set_spec.rb'
 
 Metrics/CyclomaticComplexity:
   Exclude: 
