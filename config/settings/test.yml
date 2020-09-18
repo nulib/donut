@@ -10,6 +10,8 @@ aws:
     manifests: test-manifests
 common_indexer:
   endpoint: http://localhost:9202/
+iiif:
+  endpoint: http://localhost:8183/iiif/2/
 metadata:
   endpoint: http://localhost:9002/test-manifests/
 solrcloud: true
