@@ -26,6 +26,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'lib/tasks/s3_tasks.rake'
     - 'lib/tasks/donut.rake'
+    - 'app/services/donut/migration_service.rb'
 
 Metrics/ClassLength:
   Exclude:
@@ -35,6 +36,7 @@ Metrics/ClassLength:
     - 'app/models/image.rb'
     - 'app/forms/hyrax/image_form.rb'
     - 'app/services/common_indexers/base.rb'
+    - 'app/services/donut/migration_service.rb'
 
 Metrics/LineLength:
   Max: 164 # default is 80
@@ -42,11 +44,14 @@ Metrics/LineLength:
     - 'spec/forms/hyrax/image_form_spec.rb'
     - 'spec/factories/images.rb'
     - 'spec/support/stub_exif.rb'
+    - 'spec/services/donut/migration_service_spec.rb'
+    - 'app/services/donut/migration_service.rb'
 
 Metrics/MethodLength:
   Max: 14 # default is 10
   Exclude:
     - 'app/services/common_indexers/image.rb'
+    - 'app/services/donut/migration_service.rb'
 
 Layout/IndentationConsistency:
   EnforcedStyle: rails
