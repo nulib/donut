@@ -9,9 +9,10 @@
 # Offense count: 1
 Metrics/AbcSize:
   Exclude:
-    - 'app/jobs/import_url_job.rb'
-    - 'app/services/common_indexers/image.rb'
+    - "app/jobs/import_url_job.rb"
+    - "app/services/common_indexers/image.rb"
+    - "app/services/donut/migration_service.rb"
   Max: 20
 RSpec/MessageSpies:
   Exclude:
-    - 'spec/jobs/characterize_job_spec.rb'
+    - "spec/jobs/characterize_job_spec.rb"
