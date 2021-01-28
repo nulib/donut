@@ -99,7 +99,7 @@ RSpec.describe Donut::MigrationService do
       ],
       'keyword' => %w[keyword_1],
       'rights_statement' => ['http://rightsstatements.org/vocab/InC-EDU/1.0/'],
-      'date_created' => ['2009-12'],
+      'date_created' => ['2009-12', '202u'],
       'subject' => ['Free text Uncontrolled Subject'],
       'language' => [RDF.URI('http://id.loc.gov/vocabulary/languages/eng')],
       'identifier' => ['OCLC identifier 123'],
@@ -130,7 +130,7 @@ RSpec.describe Donut::MigrationService do
           'preservation_level' => { id: '1', scheme: 'preservation_level' }
         },
         descriptive_metadata: {
-          'date_created' => [{ edtf: '2009-12' }],
+          'date_created' => [{ edtf: '2009-12' }, { edtf: '202X' }],
           'contributor' => [
             {
               role: { id: 'arc', scheme: 'marc_relator' },
