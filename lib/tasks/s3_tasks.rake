@@ -20,10 +20,23 @@ namespace :s3 do
     end
   end
 
+  desc 'Populate S3 export bucket with csv'
+  task populate_export_bucket: :environment do
+    s3 = Aws::S3::Resource.new
+    Dir.chdir('spec/fixtures/migration') do
+      Dir.glob('**/*').each do |file|
+        next if File.directory?(file)
+        obj = s3.bucket(Settings.aws.buckets.export).object(file)
+        obj.upload_file(file)
+      end
+    end
+  end
+
   desc 'Create buckets and populate with test batch data'
   task :setup do
     Rake::Task['s3:create_buckets'].invoke
     Rake::Task['s3:populate_batch_bucket'].invoke
+    Rake::Task['s3:populate_export_bucket'].invoke
   end
 
   desc 'Empty configured S3 buckets'
