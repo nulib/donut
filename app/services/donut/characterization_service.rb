@@ -36,7 +36,7 @@ module Donut
 
       # Calls the Vendored Exif Tool with appriorate arguments and returns the hash
       def exif_data
-        Exiftool.new(@source, '-a -u -g1').to_hash
+        Exiftool.new(@source, '-a -g1').to_hash
       end
 
       def map_fields_to_properties(exif_data)
