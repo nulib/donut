@@ -65,6 +65,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'hyrax-spec', '~> 0.2'
   gem 'rspec-activemodel-mocks', '~> 1.0'
+  gem 'super_diff'
 end
 
 group :development, :test do

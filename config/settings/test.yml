@@ -8,6 +8,7 @@ aws:
     batch: test-batch
     uploads: test-uploads
     manifests: test-manifests
+    export: test-export
 common_indexer:
   endpoint: http://localhost:9202/
 iiif:
