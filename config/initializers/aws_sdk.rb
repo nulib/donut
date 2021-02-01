@@ -6,9 +6,10 @@ if Settings.localstack
     endpoint: Settings.aws.endpoint,
     access_key_id: 'minio',
     secret_access_key: 'minio123',
-    force_path_style: true,
     region: 'us-east-1'
   )
+
+  Aws.config[:s3] = { force_path_style: true }
 
   if Settings.localstack.sqs
     require 'active_elastic_job'

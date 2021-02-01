@@ -1,6 +1,6 @@
 module Donut
   class MigrationService
-    attr_reader :client, :limit, :overwrite
+    attr_reader :authority_map, :client, :limit
 
     WORK_ADMINISTRATIVE_METADATA_FIELDS_SINGLE_VALUED = %w[project_cycle].freeze
 
@@ -53,24 +53,20 @@ module Donut
 
     WORK_DESCRIPTIVE_METADATA_CONTROLLED_FIELDS = %w[
       based_near
-      creator
       genre
       language
       style_period
-      subject_geographical
-      subject_temporal
-      subject_topical
       technique
     ].freeze
 
-    def self.run(limit, overwrite)
-      new(limit, overwrite).export
+    def self.run(limit)
+      new(limit).export
     end
 
-    def initialize(limit, overwrite)
+    def initialize(limit)
       @limit = limit
       @client = Aws::S3::Client.new
-      @overwrite = overwrite
+      @authority_map = MeadowAuthorityMap.new(@client)
     end
 
     def export
@@ -81,8 +77,6 @@ module Donut
     def records
       image_ids.map do |image_id|
         image = Image.find(image_id)
-        manifest_key = "#{image.id}.json"
-        next if !overwrite && existing_manifest?(manifest_key)
 
         {
           id: image.id,
@@ -94,7 +88,7 @@ module Donut
           descriptive_metadata: descriptive_metadata(image),
           file_sets: file_set_data(image)
         }.compact
-      end
+      end.compact
     rescue Ldp::NotFound
       raise 'Error: No image was found for #{image.id}'
     end
@@ -103,14 +97,20 @@ module Donut
 
       def upload_manifests
         records.each do |record|
+          body = remove_blank_values!(record)
+          next if body.blank?
+
           client.put_object(
             acl: 'authenticated-read',
-            body: remove_blank_values!(record).to_json,
+            body: body.to_json,
             bucket: Settings.aws.buckets.export,
-            key: "#{record.id}.json",
+            key: "#{record[:id]}.json",
             content_type: 'application/json'
           )
         end
+        Rails.logger.info(
+          "Manifests completed uploading to #{Settings.aws.buckets.export}."
+        )
       end
 
       def upload_csv
@@ -120,6 +120,9 @@ module Donut
           bucket: Settings.aws.buckets.export,
           key: 'images_and_representative_ids.csv',
           content_type: 'text/csv'
+        )
+        Rails.logger.info(
+          "Uploaded images_and_representative_ids.csv to #{Settings.aws.buckets.export}"
         )
       end
 
@@ -146,7 +149,7 @@ module Donut
         end.compact
       end
 
-      def remove_blank_values!(hash)
+      def remove_blank_values!(hash = {})
         hash.each do |k, v|
           if v.blank? && v != false
             hash.delete(k)
@@ -156,28 +159,20 @@ module Donut
         end
       end
 
-      def existing_manifest?(manifest_key)
-        bucket_keys.include?(manifest_key)
-      end
-
-      def bucket_keys
-        @bucket_keys ||= list_bucket
-      end
-
-      def list_bucket
-        client
-          .list_objects(bucket: Settings.aws.buckets.export)
-          .flat_map { |response| response.contents.map(&:key) }
-      end
-
       def descriptive_metadata(image)
         {}.tap do |descriptive_metadata|
           descriptive_metadata['date_created'] =
-            image.date_created.map { |d| { edtf: Date.edtf(d).edtf.tr('u', 'X') } }
+            image.date_created.map do |d|
+              { edtf: Date.edtf(d).edtf.tr('u', 'X') }
+            end
           descriptive_metadata['contributor'] =
             convert_coded_term_mapping(contributor_mapping, image)
           descriptive_metadata['subject'] =
             convert_coded_term_mapping(subject_mapping, image)
+          descriptive_metadata['creator'] =
+            %w[creator nul_creator].flat_map do |field|
+              image.attributes.fetch(field).map { |value| value.is_a?(String) ? authority_map.to_id(value) : value.id }.map { |id| { id: id } }
+            end.compact
 
           WORK_DESCRIPTIVE_METADATA_UNCONTROLLED_FIELDS_SINGLE_VALUED
             .each do |field|
@@ -188,16 +183,12 @@ module Donut
           WORK_DESCRIPTIVE_METADATA_UNCONTROLLED_FIELDS_MULTIVALUED
             .each do |field|
             descriptive_metadata[field_mapping.fetch(field)] =
-              image.attributes.fetch(field)
+              image.attributes.fetch(field).map(&:to_s)
           end
 
           WORK_DESCRIPTIVE_METADATA_CONTROLLED_FIELDS.each do |field|
             descriptive_metadata[field_mapping.fetch(field)] =
-              image
-              .attributes
-              .fetch(field)
-              .map(&:id)
-              .map { |id| { term: { id: id.chomp('/') } } }
+              image.attributes.fetch(field).map { |value| value.is_a?(String) ? authority_map.to_id(value) : value.id }.map { |id| { term: { id: id.chomp('/') } } }
           end
         end
       end
@@ -206,7 +197,7 @@ module Donut
         {}.tap do |administrative_metadata|
           WORK_ADMINISTRATIVE_METADATA_FIELDS_MULTIVALUED.each do |field|
             administrative_metadata[field_mapping.fetch(field)] =
-              image.attributes.fetch(field)
+              image.attributes.fetch(field).map(&:to_s)
           end
 
           WORK_ADMINISTRATIVE_METADATA_FIELDS_SINGLE_VALUED.each do |field|
@@ -244,8 +235,7 @@ module Donut
               file_set_data[:role] = 'am'
               file_set_data[:metadata] = {
                 "location": fedora_binary_s3_uri_for(file_set),
-                "original_filename": File.basename(file_set.import_url),
-                # "characterization_data": file_set.exif_all_data.first
+                "original_filename": File.basename(file_set.import_url)
               }
             end
           end
@@ -267,7 +257,6 @@ module Donut
           'caption' => 'caption',
           'catalog_key' => 'catalog_key',
           'contributor' => 'contributor',
-          'creator' => 'creator',
           'description' => 'description',
           'folder_name' => 'folder_name',
           'folder_number' => 'folder_number',
@@ -277,6 +266,7 @@ module Donut
           'language' => 'language',
           'legacy_identifier' => 'legacy_identifier',
           'notes' => 'notes',
+          'nul_contributor' => 'contributor',
           'nul_use_statement' => 'terms_of_use',
           'physical_description_material' => 'physical_description_material',
           'physical_description_size' => 'physical_description_size',
@@ -297,8 +287,8 @@ module Donut
           'status' => 'status',
           'style_period' => 'style_period',
           'subject_geographical' => 'subject_geographical',
-          'subject_temporal' => 'subject_temporal',
-          'subject_topical' => 'subject_topical',
+          'subject_temporal' => 'subject',
+          'subject_topical' => 'subject',
           'table_of_contents' => 'table_of_contents',
           'task_number' => 'project_task_number',
           'technique' => 'technique',
@@ -337,11 +327,7 @@ module Donut
 
       def convert_coded_term_mapping(mapping, image)
         mapping.keys.flat_map do |field|
-          image
-            .attributes
-            .fetch(field)
-            .map(&:id)
-            .map { |id| mapping.fetch(field).merge(term: { id: id }) }
+          image.attributes.fetch(field).map { |value| value.is_a?(String) ? authority_map.to_id(value) : value.id }.map { |id| mapping.fetch(field).merge(term: { id: id }) }
         end
       end
 
@@ -365,6 +351,7 @@ module Donut
           'illustrator' => { role: { id: 'ill', scheme: 'marc_relator' } },
           'librettist' => { role: { id: 'lbt', scheme: 'marc_relator' } },
           'musician' => { role: { id: 'mus', scheme: 'marc_relator' } },
+          'nul_contributor' => { role: { id: 'ctb', scheme: 'marc_relator' } },
           'performer' => { role: { id: 'prf', scheme: 'marc_relator' } },
           'photographer' => { role: { id: 'pht', scheme: 'marc_relator' } },
           'presenter' => { role: { id: 'pre', scheme: 'marc_relator' } },
@@ -380,7 +367,7 @@ module Donut
 
       def subject_mapping
         {
-          # 'subject' => { role: { id: 'DONUT', scheme: 'subject_role' } },
+          'subject' => { role: { id: 'TOPICAL', scheme: 'subject_role' } },
           'subject_geographical' => {
             role: { id: 'GEOGRAPHICAL', scheme: 'subject_role' }
           },
@@ -388,6 +375,32 @@ module Donut
             role: { id: 'TOPICAL', scheme: 'subject_role' }
           }
         }
+      end
+
+      class MeadowAuthorityMap
+        def initialize(client)
+          @client = client
+          @authorities =
+            CSV.parse(
+              @client
+                .get_object(
+                  bucket: Settings.aws.buckets.export,
+                  key: 'nul_authorities_export.csv'
+                )
+                .body
+                .read
+            )
+        end
+
+        def to_id(label)
+          authorities.find do |authority|
+            authority[1].casecmp(label.downcase).zero?
+          end&.first
+        end
+
+        private
+
+          attr_reader :authorities
       end
   end
 end
