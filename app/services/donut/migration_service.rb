@@ -101,7 +101,6 @@ module Donut
           next if body.blank?
 
           client.put_object(
-            acl: 'authenticated-read',
             body: body.to_json,
             bucket: Settings.aws.buckets.export,
             key: "#{record[:id]}.json",
@@ -115,7 +114,6 @@ module Donut
 
       def upload_csv
         client.put_object(
-          acl: 'authenticated-read',
           body: images_and_representative_ids_csv,
           bucket: Settings.aws.buckets.export,
           key: 'images_and_representative_ids.csv',
