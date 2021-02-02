@@ -2,7 +2,11 @@ require 'rails_helper'
 require 'pry'
 
 RSpec.describe Donut::MigrationService do
-  subject { records.first }
+  let(:collection_id) { SecureRandom.uuid }
+  let(:collection_type) { Hyrax::CollectionTypes::CreateService.create_collection_type(machine_id: 'test', title: 'test', options: Hyrax::CollectionTypes::CreateService::USER_COLLECTION_OPTIONS) }
+  let(:collection) { FactoryBot.build(:collection, id: collection_id, collection_type: collection_type) }
+
+  let(:admin_set) { AdminSet.create(id: '8d2b3787-4cc2-4830-af07-320c32f0cb9d', title: ['test']) }
 
   let(:records) { described_class.new(1).records }
 
@@ -22,6 +26,7 @@ RSpec.describe Donut::MigrationService do
   let(:attributes) do
     {
       'abstract' => ["Spock's Beard!"],
+      'admin_set_id' => admin_set.id,
       'accession_number' => accession_number,
       'alternate_title' => ['What else should we call this thing anyways'],
       'architect' => [RDF.URI('http://vocab.getty.edu/ulan/500006293')],
@@ -125,6 +130,7 @@ RSpec.describe Donut::MigrationService do
       published: false,
       visibility: { id: 'OPEN', scheme: 'visibility' },
       work_type: { id: 'IMAGE', scheme: 'work_type' },
+      collection_id: collection_id,
       administrative_metadata: {
         'project_manager' => ['manager person'],
         'project_cycle' => '2021',
@@ -132,7 +138,7 @@ RSpec.describe Donut::MigrationService do
         'project_name' => ['what is a name'],
         'project_proposer' => ['proposer person'],
         'project_task_number' => ['big task'],
-        'library_unit' => nil,
+        'library_unit' => { id: 'UNIVERSITY_MAIN_LIBRARY', scheme: 'library_unit' },
         'status' => { id: 'IN PROGRESS', scheme: 'status' },
         'preservation_level' => { id: '1', scheme: 'preservation_level' }
       },
@@ -333,9 +339,11 @@ RSpec.describe Donut::MigrationService do
     )
     image.ordered_members << file_set
     image.save!
+    collection.add_member_objects [image.id]
+    collection.save!
   end
 
   it 'matches' do
-    expect(described_class.new(1).records.first).to eq(expected_result)
+    expect(described_class.new(1).generate_record(id)).to eq(expected_result)
   end
 end

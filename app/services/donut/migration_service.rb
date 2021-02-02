@@ -74,42 +74,44 @@ module Donut
       upload_csv
     end
 
-    def records
-      image_ids.map do |image_id|
-        image = Image.find(image_id)
+    def generate_record(image_id)
+      image = Image.find(image_id)
 
-        {
-          id: image.id,
-          accession_number: image.accession_number,
-          published: false,
-          visibility: { id: image.visibility.upcase, scheme: 'visibility' },
-          work_type: { id: 'IMAGE', scheme: 'work_type' },
-          administrative_metadata: administrative_metadata(image),
-          descriptive_metadata: descriptive_metadata(image),
-          file_sets: file_set_data(image)
-        }.compact
-      end.compact
+      record = {
+        id: image.id,
+        accession_number: image.accession_number,
+        published: false,
+        visibility: { id: image.visibility.upcase, scheme: 'visibility' },
+        work_type: { id: 'IMAGE', scheme: 'work_type' },
+        collection_id: image.member_of_collections.select { |c| c.collection_type.id == 3 }&.first&.id,
+        administrative_metadata: administrative_metadata(image),
+        descriptive_metadata: descriptive_metadata(image),
+        file_sets: file_set_data(image)
+      }.compact
+
+      remove_blank_values!(record)
     rescue Ldp::NotFound
-      raise 'Error: No image was found for #{image.id}'
+      Rails.logger.warn('Migration error: No image was found for #{image_id}')
     end
 
     private
 
       def upload_manifests
-        records.each do |record|
-          body = remove_blank_values!(record)
-          next if body.blank?
+        image_ids.map do |image_id|
+          record = generate_record(image_id)
+          next if record.blank?
 
           client.put_object(
-            body: body.to_json,
+            body: record.to_json,
             bucket: Settings.aws.buckets.export,
             key: "#{record[:id]}.json",
             content_type: 'application/json'
           )
+
+          Rails.logger.info(
+            "#{record[:id]}.json uploaded to #{Settings.aws.buckets.export}."
+          )
         end
-        Rails.logger.info(
-          "Manifests completed uploading to #{Settings.aws.buckets.export}."
-        )
       end
 
       def upload_csv
@@ -296,30 +298,14 @@ module Donut
 
       def admin_set_mapping
         {
-          '4d090cfa-f802-4ac3-9fe4-b5adc0294e80' => {
-            term: { id: 'TRANSPORTATION_LIBRARY' }
-          },
-          '810fb25f-bc4a-47f9-9de3-d57f6513699f' => {
-            term: { id: 'UNIVERSITY_ARCHIVES' }
-          },
-          '8d2b3787-4cc2-4830-af07-320c32f0cb9d' => {
-            term: { id: 'UNIVERSITY_MAIN_LIBRARY' }
-          },
-          '9aaa1ade-740f-400c-b35d-d35fb6b6dad0' => {
-            term: { id: 'FACULTY_COLLECTIONS' }
-          },
-          'b3771d7c-5117-4b48-a237-a0a6f02bc048' => {
-            term: { id: 'SPECIAL_COLLECTIONS' }
-          },
-          'ce79271f-aeeb-42a0-bb7b-d945223aadce' => {
-            term: { id: 'GOVERNMENT_AND_GEOGRAPHIC_INFORMATION_COLLECTION' }
-          },
-          'd04a355d-a0d5-430e-a01f-1885142e6d93' => {
-            term: { id: 'MUSIC_LIBRARY' }
-          },
-          'fb560cc3-ea2b-41b0-bc0f-5e495c4f3f7f' => {
-            term: { id: 'HERSKOVITS_LIBRARY' }
-          }
+          '4d090cfa-f802-4ac3-9fe4-b5adc0294e80' => { id: 'TRANSPORTATION_LIBRARY', scheme: 'library_unit' },
+          '810fb25f-bc4a-47f9-9de3-d57f6513699f' => { id: 'UNIVERSITY_ARCHIVES', scheme: 'library_unit' },
+          '8d2b3787-4cc2-4830-af07-320c32f0cb9d' => { id: 'UNIVERSITY_MAIN_LIBRARY', scheme: 'library_unit' },
+          '9aaa1ade-740f-400c-b35d-d35fb6b6dad0' => { id: 'FACULTY_COLLECTIONS', scheme: 'library_unit' },
+          'b3771d7c-5117-4b48-a237-a0a6f02bc048' => { id: 'SPECIAL_COLLECTIONS', scheme: 'library_unit' },
+          'ce79271f-aeeb-42a0-bb7b-d945223aadce' => { id: 'GOVERNMENT_AND_GEOGRAPHIC_INFORMATION_COLLECTION', scheme: 'library_unit' },
+          'd04a355d-a0d5-430e-a01f-1885142e6d93' => { id: 'MUSIC_LIBRARY', scheme: 'library_unit' },
+          'fb560cc3-ea2b-41b0-bc0f-5e495c4f3f7f' => { id: 'HERSKOVITS_LIBRARY', scheme: 'library_unit' }
         }
       end
 
