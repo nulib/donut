@@ -71,7 +71,6 @@ module Donut
 
     def export
       upload_manifests
-      upload_csv
     end
 
     def generate_record(image_id)
@@ -86,7 +85,8 @@ module Donut
         collection_id: image.member_of_collections.select { |c| c.collection_type.id == 3 }&.first&.id,
         administrative_metadata: administrative_metadata(image),
         descriptive_metadata: descriptive_metadata(image),
-        file_sets: file_set_data(image)
+        file_sets: file_set_data(image),
+        representative_file_set_id: image.representative_id
       }.compact
 
       remove_blank_values!(record)
@@ -114,39 +114,10 @@ module Donut
         end
       end
 
-      def upload_csv
-        client.put_object(
-          body: images_and_representative_ids_csv,
-          bucket: Settings.aws.buckets.export,
-          key: 'images_and_representative_ids.csv',
-          content_type: 'text/csv'
-        )
-        Rails.logger.info(
-          "Uploaded images_and_representative_ids.csv to #{Settings.aws.buckets.export}"
-        )
-      end
-
       def image_ids
         ActiveFedora::SolrService
           .query('*:*', fq: ['has_model_ssim:Image'], fl: ['id'], rows: limit)
           .map(&:id)
-      end
-
-      def images_and_representative_ids_csv
-        images_and_representative_ids_query.map(&:to_csv).join('')
-      end
-
-      def images_and_representative_ids_query
-        ActiveFedora::SolrService.query(
-          '*:*',
-          fq: ['has_model_ssim:Image'],
-          fl: %w[id hasRelatedMediaFragment_ssim],
-          rows: 200_000
-        ).map do |h|
-          if h['hasRelatedMediaFragment_ssim'].present?
-            [h['id'], h['hasRelatedMediaFragment_ssim'].first]
-          end
-        end.compact
       end
 
       def remove_blank_values!(hash = {})

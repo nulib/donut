@@ -96,6 +96,7 @@ RSpec.describe Donut::MigrationService do
       'publisher' => ['Teenage Zines Inc.'],
       'related_material' => ['my baseball card collection'],
       'related_url' => [RDF.URI('https://meadow.library.northwestern.edu')],
+      'representative_id' => file_set_id,
       'resource_type' => ['Image'],
       'rights_holder' => %w[everyone],
       'rights_statement' => ['http://rightsstatements.org/vocab/InC-EDU/1.0/'],
@@ -317,6 +318,7 @@ RSpec.describe Donut::MigrationService do
           { term: { id: 'http://vocab.getty.edu/aat/300421535' } }
         ]
       },
+      representative_file_set_id: file_set_id,
       file_sets: [
         {
           id: file_set_id,
