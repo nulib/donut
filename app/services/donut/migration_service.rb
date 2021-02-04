@@ -133,7 +133,7 @@ module Donut
       end
 
       def images_and_representative_ids_csv
-        images_and_representative_ids_query.map(&:to_csv).join('\n')
+        images_and_representative_ids_query.map(&:to_csv).join('')
       end
 
       def images_and_representative_ids_query
@@ -163,7 +163,7 @@ module Donut
         {}.tap do |descriptive_metadata|
           descriptive_metadata['date_created'] =
             image.date_created.map do |d|
-              { edtf: Date.edtf(d).edtf.tr('u', 'X') }
+              { edtf: Date.edtf(d).edtf.gsub(/[uxU]/, 'X') }
             end
           descriptive_metadata['contributor'] =
             convert_coded_term_mapping(contributor_mapping, image)
