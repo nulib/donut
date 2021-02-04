@@ -133,7 +133,7 @@ module Donut
       end
 
       def images_and_representative_ids_csv
-        images_and_representative_ids_query.map(&:to_csv).join('\n')
+        images_and_representative_ids_query.map(&:to_csv).join('')
       end
 
       def images_and_representative_ids_query
