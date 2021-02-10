@@ -17,7 +17,8 @@ RSpec.describe Donut::MigrationService do
     FactoryBot.create(
       :file_set,
       id: file_set_id,
-      import_url: 'http://aws/world.png'
+      import_url: 'http://aws/world.png',
+      title: ['This becomes a label']
     )
   end
 
@@ -95,7 +96,7 @@ RSpec.describe Donut::MigrationService do
       'provenance' => ['check the records'],
       'publisher' => ['Teenage Zines Inc.'],
       'related_material' => ['my baseball card collection'],
-      'related_url' => [RDF.URI('https://meadow.library.northwestern.edu')],
+      'related_url' => ['https://hdl.handle.net/2027/ien.35556025142449'],
       'representative_id' => file_set_id,
       'resource_type' => ['Image'],
       'rights_holder' => %w[everyone],
@@ -306,7 +307,8 @@ RSpec.describe Donut::MigrationService do
         'source' => ['Someone'],
         'table_of_contents' => ['first chapter'],
         'location' => [{ term: { id: 'https://sws.geonames.org/4887398' } }],
-        'creator' => [{ id: 'http://vocab.getty.edu/ulan/500025598' }],
+        'creator' => [{ term: { id: 'http://vocab.getty.edu/ulan/500025598' } }],
+        'related_url' => [{ label: { id: 'HATHI_TRUST_DIGITAL_LIBRARY', scheme: 'related_url' }, url: 'https://hdl.handle.net/2027/ien.35556025142449' }],
         'genre' => [{ term: { id: 'http://vocab.getty.edu/aat/300055911' } }],
         'language' => [
           { term: { id: 'http://id.loc.gov/vocabulary/languages/eng' } }
@@ -318,18 +320,19 @@ RSpec.describe Donut::MigrationService do
           { term: { id: 'http://vocab.getty.edu/aat/300421535' } }
         ]
       },
-      representative_file_set_id: file_set_id,
       file_sets: [
         {
           id: file_set_id,
           accession_number: "#{accession_number}_donut_01",
           role: 'am',
           metadata: {
+            label: 'This becomes a label',
             location: 's3:///f794b23c0c6fe1083d0ca8b58261a078cd968967',
             original_filename: 'world.png'
           }
         }
-      ]
+      ],
+      representative_file_set_id: file_set_id
     }
   end
 

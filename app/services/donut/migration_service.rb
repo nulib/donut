@@ -142,8 +142,9 @@ module Donut
             convert_coded_term_mapping(subject_mapping, image)
           descriptive_metadata['creator'] =
             %w[creator nul_creator].flat_map do |field|
-              image.attributes.fetch(field).map { |value| value.is_a?(String) ? authority_map.to_id(value) : value.id }.map { |id| { id: id } }
+              image.attributes.fetch(field).map { |value| value.is_a?(String) ? authority_map.to_id(value) : value.id }.map { |id| { term: { id: id } } }
             end.compact
+          descriptive_metadata['related_url'] = image.related_url.map { |url| related_url_mapping(url) }
 
           WORK_DESCRIPTIVE_METADATA_UNCONTROLLED_FIELDS_SINGLE_VALUED
             .each do |field|
@@ -161,7 +162,7 @@ module Donut
             descriptive_metadata[field_mapping.fetch(field)] =
               image.attributes.fetch(field).map { |value| value.is_a?(String) ? authority_map.to_id(value) : value.id }.map { |id| { term: { id: id.chomp('/') } } }
           end
-        end
+        end.compact
       end
 
       def administrative_metadata(image)
@@ -186,7 +187,7 @@ module Donut
             id: image.preservation_level,
             scheme: 'preservation_level'
           }
-        end
+        end.compact
       end
 
       def file_set_data(image)
@@ -205,10 +206,11 @@ module Donut
                 end
               file_set_data[:role] = 'am'
               file_set_data[:metadata] = {
+                "label": file_set.title&.first,
                 "location": fedora_binary_s3_uri_for(file_set),
                 "original_filename": File.basename(file_set.import_url)
               }
-            end
+            end.compact
           end
       end
 
@@ -330,6 +332,21 @@ module Donut
             role: { id: 'TOPICAL', scheme: 'subject_role' }
           }
         }
+      end
+
+      def related_url_mapping(url)
+        return nil if url.blank?
+
+        case url
+        when /findingaids/
+          { label: { id: 'FINDING_AID', scheme: 'related_url' } }
+        when /handle/
+          { label: { id: 'HATHI_TRUST_DIGITAL_LIBRARY', scheme: 'related_url' } }
+        when /libguides/
+          { label: { id: 'RESEARCH_GUIDE', scheme: 'related_url' } }
+        else
+          { label: { id: 'RELATED_INFORMATION', scheme: 'related_url' } }
+        end.merge(url: url)
       end
 
       class MeadowAuthorityMap
