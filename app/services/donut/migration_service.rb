@@ -98,6 +98,8 @@ module Donut
 
       def upload_manifests
         image_ids.map do |image_id|
+          next if s3_exists?(image_id)
+
           record = generate_record(image_id)
           next if record.blank?
 
@@ -118,6 +120,13 @@ module Donut
         ActiveFedora::SolrService
           .query('*:*', fq: ['has_model_ssim:Image'], fl: ['id'], rows: limit)
           .map(&:id)
+      end
+
+      def s3_exists?(id)
+        client.head_object(bucket: Settings.aws.buckets.export, key: "#{id}.json")
+        true
+      rescue
+        false
       end
 
       def remove_blank_values!(hash = {})
@@ -208,7 +217,7 @@ module Donut
               file_set_data[:metadata] = {
                 "label": file_set.title&.first,
                 "location": fedora_binary_s3_uri_for(file_set),
-                "original_filename": File.basename(file_set.import_url)
+                "original_filename": File.basename(URI.parse(file_set.import_url).path)
               }
             end.compact
           end
