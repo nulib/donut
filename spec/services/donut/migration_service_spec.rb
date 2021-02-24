@@ -3,10 +3,24 @@ require 'pry'
 
 RSpec.describe Donut::MigrationService do
   let(:collection_id) { SecureRandom.uuid }
-  let(:collection_type) { Hyrax::CollectionTypes::CreateService.create_collection_type(machine_id: 'test', title: 'test', options: Hyrax::CollectionTypes::CreateService::USER_COLLECTION_OPTIONS) }
-  let(:collection) { FactoryBot.build(:collection, id: collection_id, collection_type: collection_type) }
+  let(:collection_type) do
+    Hyrax::CollectionTypes::CreateService.create_collection_type(
+      machine_id: 'test',
+      title: 'test',
+      options: Hyrax::CollectionTypes::CreateService::USER_COLLECTION_OPTIONS
+    )
+  end
+  let(:collection) do
+    FactoryBot.build(
+      :collection,
+      id: collection_id,
+      collection_type: collection_type
+    )
+  end
 
-  let(:admin_set) { AdminSet.create(id: '8d2b3787-4cc2-4830-af07-320c32f0cb9d', title: ['test']) }
+  let(:admin_set) do
+    AdminSet.create(id: '8d2b3787-4cc2-4830-af07-320c32f0cb9d', title: ['test'])
+  end
 
   let(:records) { described_class.new(1).records }
 
@@ -130,8 +144,14 @@ RSpec.describe Donut::MigrationService do
       id: id,
       accession_number: accession_number,
       published: false,
-      visibility: { id: 'OPEN', scheme: 'visibility' },
-      work_type: { id: 'IMAGE', scheme: 'work_type' },
+      visibility: {
+        id: 'OPEN',
+        scheme: 'visibility'
+      },
+      work_type: {
+        id: 'IMAGE',
+        scheme: 'work_type'
+      },
       collection_id: collection_id,
       administrative_metadata: {
         'project_manager' => ['manager person'],
@@ -140,142 +160,311 @@ RSpec.describe Donut::MigrationService do
         'project_name' => ['what is a name'],
         'project_proposer' => ['proposer person'],
         'project_task_number' => ['big task'],
-        'library_unit' => { id: 'UNIVERSITY_MAIN_LIBRARY', scheme: 'library_unit' },
-        'status' => { id: 'IN PROGRESS', scheme: 'status' },
-        'preservation_level' => { id: '1', scheme: 'preservation_level' }
+        'library_unit' => {
+          id: 'UNIVERSITY_MAIN_LIBRARY',
+          scheme: 'library_unit'
+        },
+        'status' => {
+          id: 'IN PROGRESS',
+          scheme: 'status'
+        },
+        'preservation_level' => {
+          id: '1',
+          scheme: 'preservation_level'
+        }
       },
       descriptive_metadata: {
         'date_created' => [{ edtf: '202X' }],
         'contributor' => [
           {
-            role: { id: 'arc', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500006293' }
+            role: {
+              id: 'arc',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500006293'
+            }
           },
           {
-            role: { id: 'art', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500283614' }
+            role: {
+              id: 'art',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500283614'
+            }
           },
           {
-            role: { id: 'aut', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500059498' }
+            role: {
+              id: 'aut',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500059498'
+            }
           },
           {
-            role: { id: 'ctg', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500040876' }
+            role: {
+              id: 'ctg',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500040876'
+            }
           },
           {
-            role: { id: 'col', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500232613' }
+            role: {
+              id: 'col',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500232613'
+            }
           },
           {
-            role: { id: 'com', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500382433' }
+            role: {
+              id: 'com',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500382433'
+            }
           },
           {
-            role: { id: 'cmp', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500475850' }
+            role: {
+              id: 'cmp',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500475850'
+            }
           },
           {
-            role: { id: 'ctb', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500106006' }
+            role: {
+              id: 'ctb',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500106006'
+            }
           },
           {
-            role: { id: 'dsr', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500030701' }
+            role: {
+              id: 'dsr',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500030701'
+            }
           },
           {
-            role: { id: 'drt', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500471728' }
+            role: {
+              id: 'drt',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500471728'
+            }
           },
           {
-            role: { id: 'dst', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500307592' }
+            role: {
+              id: 'dst',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500307592'
+            }
           },
           {
-            role: { id: 'dnr', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500470438' }
+            role: {
+              id: 'dnr',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500470438'
+            }
           },
           {
-            role: { id: 'drm', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500442157' }
+            role: {
+              id: 'drm',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500442157'
+            }
           },
           {
-            role: { id: 'edt', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500391054' }
+            role: {
+              id: 'edt',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500391054'
+            }
           },
           {
-            role: { id: 'egr', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500107899' }
+            role: {
+              id: 'egr',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500107899'
+            }
           },
           {
-            role: { id: 'ill', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500278327' }
+            role: {
+              id: 'ill',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500278327'
+            }
           },
           {
-            role: { id: 'lbt', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500309555' }
+            role: {
+              id: 'lbt',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500309555'
+            }
           },
           {
-            role: { id: 'mus', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500126712' }
+            role: {
+              id: 'mus',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500126712'
+            }
           },
           {
-            role: { id: 'ctb', scheme: 'marc_relator' },
-            term: { id: 'info:nul/762ed989-44cd-4e31-ab43-154497be1c3e' }
+            role: {
+              id: 'ctb',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'info:nul/762ed989-44cd-4e31-ab43-154497be1c3e'
+            }
           },
           {
-            role: { id: 'prf', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500330448' }
+            role: {
+              id: 'prf',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500330448'
+            }
           },
           {
-            role: { id: 'pht', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500006031' }
+            role: {
+              id: 'pht',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500006031'
+            }
           },
           {
-            role: { id: 'pre', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500470578' }
+            role: {
+              id: 'pre',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500470578'
+            }
           },
           {
-            role: { id: 'prt', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500372056' }
+            role: {
+              id: 'prt',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500372056'
+            }
           },
           {
-            role: { id: 'prm', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500013716' }
+            role: {
+              id: 'prm',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500013716'
+            }
           },
           {
-            role: { id: 'pro', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500330922' }
+            role: {
+              id: 'pro',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500330922'
+            }
           },
           {
-            role: { id: 'aus', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500485965' }
+            role: {
+              id: 'aus',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500485965'
+            }
           },
           {
-            role: { id: 'scl', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500068127' }
+            role: {
+              id: 'scl',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500068127'
+            }
           },
           {
-            role: { id: 'spn', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500462763' }
+            role: {
+              id: 'spn',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500462763'
+            }
           },
           {
-            role: { id: 'trc', scheme: 'marc_relator' },
-            term: { id: 'http://vocab.getty.edu/ulan/500341236' }
+            role: {
+              id: 'trc',
+              scheme: 'marc_relator'
+            },
+            term: {
+              id: 'http://vocab.getty.edu/ulan/500341236'
+            }
           }
         ],
         'subject' => [
           {
-            role: { id: 'TOPICAL', scheme: 'subject_role' },
-            term: { id: 'info:nul/299222e9-ef5d-4c72-a498-640326ddd058' }
+            role: {
+              id: 'TOPICAL',
+              scheme: 'subject_role'
+            },
+            term: {
+              id: 'info:nul/299222e9-ef5d-4c72-a498-640326ddd058'
+            }
           },
           {
-            role: { id: 'GEOGRAPHICAL', scheme: 'subject_role' },
-            term: { id: 'http://id.worldcat.org/fast/532999' }
+            role: {
+              id: 'GEOGRAPHICAL',
+              scheme: 'subject_role'
+            },
+            term: {
+              id: 'http://id.worldcat.org/fast/532999'
+            }
           },
           {
-            role: { id: 'TOPICAL', scheme: 'subject_role' },
-            term: { id: 'http://id.loc.gov/authorities/subjects/sh85089429' }
+            role: {
+              id: 'TOPICAL',
+              scheme: 'subject_role'
+            },
+            term: {
+              id: 'http://id.loc.gov/authorities/subjects/sh85089429'
+            }
           }
         ],
         'ark' => '1234',
@@ -284,6 +473,7 @@ RSpec.describe Donut::MigrationService do
         'title' =>
           'Knowing their lines: how social boundaries undermine equity-based integration policies in United States and South African schools',
         'abstract' => ["Spock's Beard!"],
+        'alternate_title' => ['What else should we call this thing anyways'],
         'citation' => ['some book'],
         'caption' => ['this is a test caption'],
         'catalog_key' => ['what key opens this door'],
@@ -302,13 +492,27 @@ RSpec.describe Donut::MigrationService do
         'publisher' => ['Teenage Zines Inc.'],
         'related_material' => ['my baseball card collection'],
         'rights_holder' => ['everyone'],
+        'rights_statement' => {
+          id: 'http://rightsstatements.org/vocab/InC-EDU/1.0/',
+          scheme: 'rights_statement'
+        },
         'scope_and_contents' => ['all the things'],
         'series' => ['the up series'],
         'source' => ['Someone'],
         'table_of_contents' => ['first chapter'],
         'location' => [{ term: { id: 'https://sws.geonames.org/4887398' } }],
-        'creator' => [{ term: { id: 'http://vocab.getty.edu/ulan/500025598' } }],
-        'related_url' => [{ label: { id: 'HATHI_TRUST_DIGITAL_LIBRARY', scheme: 'related_url' }, url: 'https://hdl.handle.net/2027/ien.35556025142449' }],
+        'creator' => [
+          { term: { id: 'http://vocab.getty.edu/ulan/500025598' } }
+        ],
+        'related_url' => [
+          {
+            label: {
+              id: 'HATHI_TRUST_DIGITAL_LIBRARY',
+              scheme: 'related_url'
+            },
+            url: 'https://hdl.handle.net/2027/ien.35556025142449'
+          }
+        ],
         'genre' => [{ term: { id: 'http://vocab.getty.edu/aat/300055911' } }],
         'language' => [
           { term: { id: 'http://id.loc.gov/vocabulary/languages/eng' } }

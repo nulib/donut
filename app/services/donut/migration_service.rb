@@ -14,11 +14,6 @@ module Donut
       task_number
     ].freeze
 
-    WORK_ADMINISTRATIVE_METADATA_CODED_FIELDS = %w[
-      preservation_level
-      status
-    ].freeze
-
     WORK_DESCRIPTIVE_METADATA_UNCONTROLLED_FIELDS_SINGLE_VALUED = %w[
       ark
       nul_use_statement
@@ -27,6 +22,7 @@ module Donut
 
     WORK_DESCRIPTIVE_METADATA_UNCONTROLLED_FIELDS_MULTIVALUED = %w[
       abstract
+      alternate_title
       bibliographic_citation
       caption
       catalog_key
@@ -48,8 +44,6 @@ module Donut
       source
       table_of_contents
     ].freeze
-
-    WORK_DESCRIPTIVE_METADATA_CODED_FIELDS = %w[rights_statement].freeze
 
     WORK_DESCRIPTIVE_METADATA_CONTROLLED_FIELDS = %w[
       based_near
@@ -80,9 +74,18 @@ module Donut
         id: image.id,
         accession_number: image.accession_number,
         published: false,
-        visibility: { id: image.visibility.upcase, scheme: 'visibility' },
-        work_type: { id: 'IMAGE', scheme: 'work_type' },
-        collection_id: image.member_of_collections.select { |c| c.collection_type.id == 3 }&.first&.id,
+        visibility: {
+          id: image.visibility.upcase,
+          scheme: 'visibility'
+        },
+        work_type: {
+          id: 'IMAGE',
+          scheme: 'work_type'
+        },
+        collection_id:
+          image.member_of_collections.select do |c|
+            c.collection_type.id == 3
+          end&.first&.id,
         administrative_metadata: administrative_metadata(image),
         descriptive_metadata: descriptive_metadata(image),
         file_sets: file_set_data(image),
@@ -125,7 +128,7 @@ module Donut
       def s3_exists?(id)
         client.head_object(bucket: Settings.aws.buckets.export, key: "#{id}.json")
         true
-      rescue
+      rescue StandardError
         false
       end
 
@@ -153,7 +156,12 @@ module Donut
             %w[creator nul_creator].flat_map do |field|
               image.attributes.fetch(field).map { |value| value.is_a?(String) ? authority_map.to_id(value) : value.id }.map { |id| { term: { id: id } } }
             end.compact
-          descriptive_metadata['related_url'] = image.related_url.map { |url| related_url_mapping(url) }
+          descriptive_metadata['related_url'] =
+            image.related_url.map { |url| related_url_mapping(url) }
+          descriptive_metadata['rights_statement'] = {
+            id: image.rights_statement&.first,
+            scheme: 'rights_statement'
+          }
 
           WORK_DESCRIPTIVE_METADATA_UNCONTROLLED_FIELDS_SINGLE_VALUED
             .each do |field|
@@ -217,7 +225,8 @@ module Donut
               file_set_data[:metadata] = {
                 "label": file_set.title&.first,
                 "location": fedora_binary_s3_uri_for(file_set),
-                "original_filename": File.basename(URI.parse(file_set.import_url).path)
+                "original_filename":
+                  File.basename(URI.parse(file_set.import_url).path)
               }
             end.compact
           end
@@ -233,6 +242,7 @@ module Donut
       def field_mapping
         {
           'abstract' => 'abstract',
+          'alternate_title' => 'alternate_title',
           'ark' => 'ark',
           'based_near' => 'location',
           'bibliographic_citation' => 'citation',
@@ -280,14 +290,38 @@ module Donut
 
       def admin_set_mapping
         {
-          '4d090cfa-f802-4ac3-9fe4-b5adc0294e80' => { id: 'TRANSPORTATION_LIBRARY', scheme: 'library_unit' },
-          '810fb25f-bc4a-47f9-9de3-d57f6513699f' => { id: 'UNIVERSITY_ARCHIVES', scheme: 'library_unit' },
-          '8d2b3787-4cc2-4830-af07-320c32f0cb9d' => { id: 'UNIVERSITY_MAIN_LIBRARY', scheme: 'library_unit' },
-          '9aaa1ade-740f-400c-b35d-d35fb6b6dad0' => { id: 'FACULTY_COLLECTIONS', scheme: 'library_unit' },
-          'b3771d7c-5117-4b48-a237-a0a6f02bc048' => { id: 'SPECIAL_COLLECTIONS', scheme: 'library_unit' },
-          'ce79271f-aeeb-42a0-bb7b-d945223aadce' => { id: 'GOVERNMENT_AND_GEOGRAPHIC_INFORMATION_COLLECTION', scheme: 'library_unit' },
-          'd04a355d-a0d5-430e-a01f-1885142e6d93' => { id: 'MUSIC_LIBRARY', scheme: 'library_unit' },
-          'fb560cc3-ea2b-41b0-bc0f-5e495c4f3f7f' => { id: 'HERSKOVITS_LIBRARY', scheme: 'library_unit' }
+          '4d090cfa-f802-4ac3-9fe4-b5adc0294e80' => {
+            id: 'TRANSPORTATION_LIBRARY',
+            scheme: 'library_unit'
+          },
+          '810fb25f-bc4a-47f9-9de3-d57f6513699f' => {
+            id: 'UNIVERSITY_ARCHIVES',
+            scheme: 'library_unit'
+          },
+          '8d2b3787-4cc2-4830-af07-320c32f0cb9d' => {
+            id: 'UNIVERSITY_MAIN_LIBRARY',
+            scheme: 'library_unit'
+          },
+          '9aaa1ade-740f-400c-b35d-d35fb6b6dad0' => {
+            id: 'FACULTY_COLLECTIONS',
+            scheme: 'library_unit'
+          },
+          'b3771d7c-5117-4b48-a237-a0a6f02bc048' => {
+            id: 'SPECIAL_COLLECTIONS',
+            scheme: 'library_unit'
+          },
+          'ce79271f-aeeb-42a0-bb7b-d945223aadce' => {
+            id: 'GOVERNMENT_AND_GEOGRAPHIC_INFORMATION_COLLECTION',
+            scheme: 'library_unit'
+          },
+          'd04a355d-a0d5-430e-a01f-1885142e6d93' => {
+            id: 'MUSIC_LIBRARY',
+            scheme: 'library_unit'
+          },
+          'fb560cc3-ea2b-41b0-bc0f-5e495c4f3f7f' => {
+            id: 'HERSKOVITS_LIBRARY',
+            scheme: 'library_unit'
+          }
         }
       end
 
@@ -299,46 +333,202 @@ module Donut
 
       def contributor_mapping
         {
-          'architect' => { role: { id: 'arc', scheme: 'marc_relator' } },
-          'artist' => { role: { id: 'art', scheme: 'marc_relator' } },
-          'author' => { role: { id: 'aut', scheme: 'marc_relator' } },
-          'cartographer' => { role: { id: 'ctg', scheme: 'marc_relator' } },
-          'collector' => { role: { id: 'col', scheme: 'marc_relator' } },
-          'compiler' => { role: { id: 'com', scheme: 'marc_relator' } },
-          'composer' => { role: { id: 'cmp', scheme: 'marc_relator' } },
-          'contributor' => { role: { id: 'ctb', scheme: 'marc_relator' } },
-          'designer' => { role: { id: 'dsr', scheme: 'marc_relator' } },
-          'director' => { role: { id: 'drt', scheme: 'marc_relator' } },
-          'distributor' => { role: { id: 'dst', scheme: 'marc_relator' } },
-          'donor' => { role: { id: 'dnr', scheme: 'marc_relator' } },
-          'draftsman' => { role: { id: 'drm', scheme: 'marc_relator' } },
-          'editor' => { role: { id: 'edt', scheme: 'marc_relator' } },
-          'engraver' => { role: { id: 'egr', scheme: 'marc_relator' } },
-          'illustrator' => { role: { id: 'ill', scheme: 'marc_relator' } },
-          'librettist' => { role: { id: 'lbt', scheme: 'marc_relator' } },
-          'musician' => { role: { id: 'mus', scheme: 'marc_relator' } },
-          'nul_contributor' => { role: { id: 'ctb', scheme: 'marc_relator' } },
-          'performer' => { role: { id: 'prf', scheme: 'marc_relator' } },
-          'photographer' => { role: { id: 'pht', scheme: 'marc_relator' } },
-          'presenter' => { role: { id: 'pre', scheme: 'marc_relator' } },
-          'printer' => { role: { id: 'prt', scheme: 'marc_relator' } },
-          'printmaker' => { role: { id: 'prm', scheme: 'marc_relator' } },
-          'producer' => { role: { id: 'pro', scheme: 'marc_relator' } },
-          'screenwriter' => { role: { id: 'aus', scheme: 'marc_relator' } },
-          'sculptor' => { role: { id: 'scl', scheme: 'marc_relator' } },
-          'sponsor' => { role: { id: 'spn', scheme: 'marc_relator' } },
-          'transcriber' => { role: { id: 'trc', scheme: 'marc_relator' } }
+          'architect' => {
+            role: {
+              id: 'arc',
+              scheme: 'marc_relator'
+            }
+          },
+          'artist' => {
+            role: {
+              id: 'art',
+              scheme: 'marc_relator'
+            }
+          },
+          'author' => {
+            role: {
+              id: 'aut',
+              scheme: 'marc_relator'
+            }
+          },
+          'cartographer' => {
+            role: {
+              id: 'ctg',
+              scheme: 'marc_relator'
+            }
+          },
+          'collector' => {
+            role: {
+              id: 'col',
+              scheme: 'marc_relator'
+            }
+          },
+          'compiler' => {
+            role: {
+              id: 'com',
+              scheme: 'marc_relator'
+            }
+          },
+          'composer' => {
+            role: {
+              id: 'cmp',
+              scheme: 'marc_relator'
+            }
+          },
+          'contributor' => {
+            role: {
+              id: 'ctb',
+              scheme: 'marc_relator'
+            }
+          },
+          'designer' => {
+            role: {
+              id: 'dsr',
+              scheme: 'marc_relator'
+            }
+          },
+          'director' => {
+            role: {
+              id: 'drt',
+              scheme: 'marc_relator'
+            }
+          },
+          'distributor' => {
+            role: {
+              id: 'dst',
+              scheme: 'marc_relator'
+            }
+          },
+          'donor' => {
+            role: {
+              id: 'dnr',
+              scheme: 'marc_relator'
+            }
+          },
+          'draftsman' => {
+            role: {
+              id: 'drm',
+              scheme: 'marc_relator'
+            }
+          },
+          'editor' => {
+            role: {
+              id: 'edt',
+              scheme: 'marc_relator'
+            }
+          },
+          'engraver' => {
+            role: {
+              id: 'egr',
+              scheme: 'marc_relator'
+            }
+          },
+          'illustrator' => {
+            role: {
+              id: 'ill',
+              scheme: 'marc_relator'
+            }
+          },
+          'librettist' => {
+            role: {
+              id: 'lbt',
+              scheme: 'marc_relator'
+            }
+          },
+          'musician' => {
+            role: {
+              id: 'mus',
+              scheme: 'marc_relator'
+            }
+          },
+          'nul_contributor' => {
+            role: {
+              id: 'ctb',
+              scheme: 'marc_relator'
+            }
+          },
+          'performer' => {
+            role: {
+              id: 'prf',
+              scheme: 'marc_relator'
+            }
+          },
+          'photographer' => {
+            role: {
+              id: 'pht',
+              scheme: 'marc_relator'
+            }
+          },
+          'presenter' => {
+            role: {
+              id: 'pre',
+              scheme: 'marc_relator'
+            }
+          },
+          'printer' => {
+            role: {
+              id: 'prt',
+              scheme: 'marc_relator'
+            }
+          },
+          'printmaker' => {
+            role: {
+              id: 'prm',
+              scheme: 'marc_relator'
+            }
+          },
+          'producer' => {
+            role: {
+              id: 'pro',
+              scheme: 'marc_relator'
+            }
+          },
+          'screenwriter' => {
+            role: {
+              id: 'aus',
+              scheme: 'marc_relator'
+            }
+          },
+          'sculptor' => {
+            role: {
+              id: 'scl',
+              scheme: 'marc_relator'
+            }
+          },
+          'sponsor' => {
+            role: {
+              id: 'spn',
+              scheme: 'marc_relator'
+            }
+          },
+          'transcriber' => {
+            role: {
+              id: 'trc',
+              scheme: 'marc_relator'
+            }
+          }
         }
       end
 
       def subject_mapping
         {
-          'subject' => { role: { id: 'TOPICAL', scheme: 'subject_role' } },
+          'subject' => {
+            role: {
+              id: 'TOPICAL',
+              scheme: 'subject_role'
+            }
+          },
           'subject_geographical' => {
-            role: { id: 'GEOGRAPHICAL', scheme: 'subject_role' }
+            role: {
+              id: 'GEOGRAPHICAL',
+              scheme: 'subject_role'
+            }
           },
           'subject_topical' => {
-            role: { id: 'TOPICAL', scheme: 'subject_role' }
+            role: {
+              id: 'TOPICAL',
+              scheme: 'subject_role'
+            }
           }
         }
       end
