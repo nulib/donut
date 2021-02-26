@@ -146,7 +146,7 @@ module Donut
         {}.tap do |descriptive_metadata|
           descriptive_metadata['date_created'] =
             image.date_created.map do |d|
-              { edtf: Date.edtf(d).edtf.gsub(/[uxU]/, 'X') }
+              { edtf: Date.edtf(d).edtf.gsub(/[uxU]/, 'X').gsub(/[y]/, 'Y') }
             end
           descriptive_metadata['contributor'] =
             convert_coded_term_mapping(contributor_mapping, image)
