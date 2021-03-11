@@ -24,6 +24,8 @@ module Donut
       abstract
       alternate_title
       bibliographic_citation
+      box_name
+      box_number
       caption
       catalog_key
       description
@@ -102,7 +104,7 @@ module Donut
       def upload_manifests
         image_ids.map do |image_id|
           next if s3_exists?(image_id)
-
+          Rails.logger.info("Generating record for #{image_id}")
           record = generate_record(image_id)
           next if record.blank?
 
@@ -246,6 +248,8 @@ module Donut
           'ark' => 'ark',
           'based_near' => 'location',
           'bibliographic_citation' => 'citation',
+          'box_name' => 'box_name',
+          'box_number' => 'box_number',
           'caption' => 'caption',
           'catalog_key' => 'catalog_key',
           'contributor' => 'contributor',
