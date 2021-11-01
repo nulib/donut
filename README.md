@@ -1,4 +1,6 @@
-# DONUT
+# DONUT (Archived)
+
+- **Note**: the Donut project is no longer in use. Please visit [Meadow](https://github.com/nulib/meadow) to see our current repository. 
 
 Donut is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax)
 
